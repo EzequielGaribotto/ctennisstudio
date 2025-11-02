@@ -1,0 +1,30 @@
+.metaInfoInline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.separator {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  color: var(--primary);
+}
+
+.period, .location {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .metaInfoInline {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .separator {
+    display: none; /* Hide separator on small screens */
+  }
+}

@@ -1,0 +1,86 @@
+.section {
+  padding: 5rem 0;
+  position: relative;
+  width: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: none;
+}
+
+.container {
+  width: 100%;
+  padding: 0;  /* Remove default padding, controlled by inline style now */
+  box-sizing: border-box;
+}
+
+.fullWidthContainer {
+  width: 100%;
+  padding: 0;  /* Remove default padding, controlled by inline style now */
+  box-sizing: border-box;
+}
+
+.titleWrapper {
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  height: 4px;
+  width: 60px;
+  background: linear-gradient(90deg, #4568dc, #b06ab3);
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+}
+
+.content {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+    width: 95%; /* Match header width (95% of viewport) */
+  }
+  
+  .container, .fullWidthContainer {
+    padding: 0; /* Remove padding, now controlled by inline style */
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .section {
+    padding-left: var(--section-padding-horizontal-mobile);
+    padding-right: var(--section-padding-horizontal-mobile);
+    width: 95%; /* Ensure consistent width */
+  }
+  
+  .container, .fullWidthContainer {
+    padding: 0 0.5rem; /* Further reduced padding */
+  }
+}

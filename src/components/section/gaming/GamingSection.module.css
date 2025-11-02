@@ -1,0 +1,104 @@
+.aboutContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.paragraph {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.paragraphText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-color, #4b5563);
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttonsSection {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.actionButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b5ca0 100%);
+}
+
+.spotifyButton {
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+}
+
+.spotifyButton:hover {
+  box-shadow: 0 8px 20px rgba(29, 185, 84, 0.4);
+  background: linear-gradient(135deg, #1aa34a 0%, #1bc653 100%);
+}
+
+.buttonIcon {
+  font-size: 1.25rem;
+}
+
+/* Dark mode styles */
+:global([data-theme="dark"]) .paragraphText {
+  color: var(--text-color-dark, #d1d5db);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .aboutContainer {
+    padding: 0 0.5rem;
+  }
+  
+  .paragraph {
+    margin-bottom: 1.5rem;
+  }
+  
+  .paragraphText {
+    font-size: 1rem;
+  }
+  
+  .buttonsSection {
+    margin-top: 2rem;
+  }
+  
+  .actionButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .buttonIcon {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .actionButton {
+    padding: 0.9rem 1.75rem;
+    font-size: 1.05rem;
+  }
+}

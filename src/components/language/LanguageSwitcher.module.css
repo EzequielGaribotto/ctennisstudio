@@ -1,0 +1,63 @@
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-right: 5px;
+  transition: none;
+}
+
+.languageButton {
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: 0.7;
+  transition: none;
+}
+
+.languageButton:hover {
+  opacity: 0.9;
+}
+
+.languageButton.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+.languageText {
+  font-size: 0.9rem;
+  transition: none;
+}
+
+.divider {
+  margin: 0 2px;
+  opacity: 0.5;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .languageSwitcher {
+    font-size: 0.75rem;
+    margin-right: 3px;
+  }
+  
+  .languageText {
+    font-size: 0.75rem;
+  }
+  
+  .divider {
+    margin: 0 1px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .languageSwitcher {
+    font-size: 0.7rem;
+  }
+  
+  .languageText {
+    font-size: 0.7rem;
+  }
+}

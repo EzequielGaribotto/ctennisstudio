@@ -1,0 +1,52 @@
+.resultsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.resultsText {
+  font-size: 0.9rem;
+  color: var(--foreground-muted);
+  text-align: center;
+  margin: 0;
+}
+
+.noResults {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.filteredNote {
+  color: var(--primary);
+  font-style: italic;
+}
+
+.toggleLink {
+  background: none;
+  border: none;
+  color: var(--project-title);
+  font-size: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  padding: 0;
+  margin: 0;
+}
+
+.toggleLink:hover {
+  color: var(--project-title);
+  text-decoration: underline;
+}
+
+.toggleLink:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .resultsText {
+    font-size: 0.8rem;
+  }
+}

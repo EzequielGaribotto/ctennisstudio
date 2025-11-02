@@ -1,0 +1,310 @@
+.profileSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem; /* Reduced from 2rem to bring elements closer */
+  padding: 3rem 1rem;
+  justify-content: center;
+  min-height: 420px;
+  position: relative;
+  width: 100%;
+  max-width: 900px; /* Reduced from 1000px to bring elements closer */
+  margin: 0 auto;
+}
+
+/* Add hidden class for initialization period */
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.profileImageContainer {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0; /* Prevent shrinking */
+  flex-grow: 0; /* Prevent growing */
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(0, 112, 243, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Remove absolute positioning */
+  position: relative;
+  align-self: center;
+  /* Add smooth transition for visibility changes */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.profileImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  /* Remove individual transition as it's handled by parent container */
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0;
+  /* Fixed flex properties to prevent shifting */
+  flex: 1;
+  max-width: 400px; /* Constrain width */
+  min-width: 300px; /* Ensure minimum width */
+  min-height: 300px;
+  position: relative;
+  /* Add smooth transition for visibility changes */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.name {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--name);
+}
+
+.description {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--mode-desc, #4b5563);
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  /* Fixed container dimensions to prevent layout shifts */
+  min-height: 5.4rem;
+  width: 100%;
+  max-width: 100%; /* Use full available width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  box-sizing: border-box;
+}
+
+.buttonSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  width: 100%;
+  /* Add fixed height to prevent button section from moving */
+  min-height: 120px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.socialButton {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: none;
+}
+
+.socialButton:hover {
+  transform: scale(1.05);
+}
+
+.githubButton {
+  background-color: #1a202c;
+}
+
+.githubButton:hover {
+  background-color: #2d3748;
+}
+
+.linkedinButton {
+  background-color: #0077b5;
+}
+
+.linkedinButton:hover {
+  background-color: #0069a3;
+}
+
+.emailButton {
+  background-color: #e53e3e;
+}
+
+.emailButton:hover {
+  background-color: #c53030;
+}
+
+.socialIcon {
+  color: white;
+  font-size: 1.375rem;
+}
+
+/* Personal Information Section */
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background-color: var(--card-bg, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.personalText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-color, #4b5563);
+  text-align: center;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.personalButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.personalButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b5ca0 100%);
+}
+
+.buttonIcon {
+  font-size: 1rem;
+}
+
+.cvButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Dark mode specific styles */
+:global([data-theme="dark"]) .profileImageContainer {
+  border-color: rgba(76, 152, 175, 0.2);
+}
+
+:global([data-theme="dark"]) .personalInfo {
+  background-color: var(--card-bg-dark, #1f2937);
+  border-color: var(--border-color-dark, #374151);
+}
+
+:global([data-theme="dark"]) .personalText {
+  color: var(--text-color-dark, #d1d5db);
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+  .profileSection {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    min-height: 500px;
+    gap: 1.5rem; /* Reduced gap on mobile */
+  }
+
+  .profileImageContainer {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 1rem;
+    align-self: center;
+  }
+  
+  .name {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    /* Adjust for mobile but keep stable */
+    min-height: 5rem;
+    max-width: min(100%, 28ch);
+  }
+
+  .contentContainer {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    min-height: 280px;
+  }
+
+  .buttonSection {
+    /* Adjust button section height for mobile */
+    min-height: 100px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .profileSection {
+    flex-direction: column;
+    padding: 2.5rem 1.5rem;
+    margin-top: 1rem;
+    min-height: 480px;
+    gap: 2rem; /* Moderate gap on tablet */
+  }
+  
+  .profileImageContainer {
+    width: 225px;
+    height: 225px;
+    margin-bottom: 1.5rem;
+    align-self: center;
+  }
+  
+  .contentContainer {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    min-height: 290px;
+  }
+
+  .description {
+    min-height: 4.8rem;
+    max-width: min(100%, 30ch);
+  }
+}
+
+@media (min-width: 769px) {
+  .profileImageContainer {
+    width: 275px;
+    height: 275px;
+  }
+
+  .profileSection {
+    min-height: 450px;
+    max-width: 1000px; /* Slightly larger for desktop */
+    gap: 4rem; /* Comfortable spacing for desktop */
+  }
+
+  .contentContainer {
+    max-width: 450px; /* Larger max width for desktop */
+    min-height: 320px;
+  }
+}
+

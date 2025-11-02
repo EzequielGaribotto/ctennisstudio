@@ -1,0 +1,357 @@
+/* Import Tailwind CSS */
+@import "tailwindcss";
+
+/* Root Variables */
+:root {
+  --gradient-primary: #a3a6b4;
+  --gradient-secondary: #c6dcdd;
+  --gradient-accent: #667279;
+  
+  --background: linear-gradient(135deg, var(--gradient-primary) 0%, var(--gradient-secondary) 50%, var(--gradient-accent) 100%);
+  
+  --foreground: #1a1a1a;
+  --primary: #1f62a0;
+  --black: #000000;
+  --primary-hover: #1f62a0;
+  --secondary: #e2e8f0;
+  --secondary-hover: #cbd5e1;
+  --button-bg: var(--black);
+  --button-text: #ffffff;
+  --link: #1f62a0;
+  --link-hover: #0056b3;
+  --name: #1f62a0;
+  --project-title: #1f62a0;
+  --navigation-current: #1f62a0;
+  
+  /* RGB versions for transparency */
+  --foreground-rgb: 26, 26, 26;
+  --background-start-rgb: 249, 249, 252;
+  --background-end-rgb: 240, 245, 255;
+  --secondary-rgb: 226, 232, 240;
+  
+  /* Text colors for light mode */
+  --mode-text: #000000; 
+  --mode-desc: #4b5563;
+  
+  /* Tech tag specific variables for light mode */
+  --tech-bg: #e9f0f8;
+  --tech-border: #1f62a0;
+  --tech-text: #1a1a1a;
+  --tech-hover-bg: #d1e2f5;
+  --tech-hover-border: #0070f3;
+  
+  /* Section padding variables */
+  --section-padding-horizontal: 2rem;
+  --section-padding-horizontal-mobile: 0;
+  
+}
+
+/* System preference detection */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --gradient-primary: #0f1115;
+    --gradient-secondary: #2a2e39;
+    --gradient-accent: #1c1f26;
+    --background: linear-gradient(135deg, var(--gradient-primary) 0%, var(--gradient-secondary) 50%, var(--gradient-accent) 100%);
+    --foreground: #f5f5f5;
+    --primary: #caa550;
+    --primary-hover: #ddb968;
+    --secondary: #2d3748;
+    --secondary-hover: #4a5568;
+    --name: #caa550;
+    --project-title: #caa550;
+    --navigation-current: #caa550;
+    --foreground-rgb: 245, 245, 245;
+    --background-start-rgb: 15, 17, 21;
+    --background-end-rgb: 42, 46, 57;
+    --secondary-rgb: 45, 55, 72;
+    --mode-text: #ffffff;
+    --mode-desc: #e5e7eb;
+    --link: #caa550;
+    --link-hover: #ddb968;
+    --tech-bg: rgba(202, 165, 80, 0.1);
+    --tech-border: rgba(202, 165, 80, 0.5);
+    --tech-text: #f5f5f5;
+    --tech-hover-bg: rgba(202, 165, 80, 0.25);
+    --tech-hover-border: rgba(221, 185, 104, 0.8);
+  }
+  
+  html:not([data-theme]) {
+    color-scheme: dark;
+  }
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --gradient-primary: #0f1115;
+  --gradient-secondary: #2a2e39;
+  --gradient-accent: #1c1f26;
+  --background: linear-gradient(135deg, var(--gradient-primary) 0%, var(--gradient-secondary) 50%, var(--gradient-accent) 100%);
+  --foreground: #f5f5f5;
+  --primary: #caa550;
+  --primary-hover: #ddb968;
+  --secondary: #2d3748;
+  --secondary-hover: #4a5568;
+  --name: #caa550;
+  --project-title: #caa550;
+  --navigation-current: #caa550;
+  --foreground-rgb: 245, 245, 245;
+  --background-start-rgb: 15, 17, 21;
+  --background-end-rgb: 42, 46, 57;
+  --secondary-rgb: 45, 55, 72;
+  --mode-text: #ffffff;
+  --mode-desc: #e5e7eb;
+  --link: #caa550;
+  --link-hover: #ddb968;
+  --tech-bg: rgba(202, 165, 80, 0.1);
+  --tech-border: rgba(202, 165, 80, 0.5);
+  --tech-text: #f5f5f5;
+  --tech-hover-bg: rgba(202, 165, 80, 0.25);
+  --tech-hover-border: rgba(221, 185, 104, 0.8);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Global Styles */
+html {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body {
+  background: var(--background);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overscroll-behavior: none;
+  overflow-x: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+    var(--background);
+  background-blend-mode: overlay;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Header button styles */
+.headerbutton {
+  background: transparent !important;
+  color: var(--foreground) !important;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.headerbutton:hover {
+  background: transparent !important;
+  color: var(--foreground) !important;
+  border-color: var(--background);
+}
+
+/* Ensure header and header buttons inherit theme colors immediately */
+header {
+  color: var(--foreground) !important;
+}
+
+header * {
+  color: inherit;
+}
+
+header .headerbutton {
+  color: var(--foreground) !important;
+  background: transparent !important;
+}
+
+.headerbutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.headerbutton.selected {
+  opacity: 1;
+  cursor: default;
+}
+
+.headerbutton.unselected {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.headerbutton.unselected:hover {
+  opacity: 0.8;
+}
+
+/* Header and Footer */
+header, footer {
+  color: var(--foreground);
+  padding: 1rem;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  background: transparent;
+  text-align: center;
+  font-family: var(--font-sans);
+  z-index: 10;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Main layout */
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  min-height: 100vh;
+  padding: 2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Social icons styling - keep for general use */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.social-icon:hover svg,
+.social-icon:hover > * {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+.social-icon.github {
+  background: #333;
+  color: #fff;
+}
+
+.social-icon.linkedin {
+  background: #0077b5;
+  color: #fff;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Remove all project card related styles - they're now in ProjectCard.module.css */
+
+/* Image optimization styles */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.image-placeholder {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: var(--secondary);
+}
+
+.blur-up {
+  filter: blur(5px);
+  transition: filter 0.3s ease-in-out;
+}
+
+.blur-up.loaded {
+  filter: blur(0);
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--secondary-lighter);
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Ensure body background is applied immediately */
+body {
+  background: var(--background);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overscroll-behavior: none;
+  overflow-x: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+    var(--background);
+  background-blend-mode: overlay;
+}
+
+
+/* Once hydration is complete, enable smooth transitions */
+body.hydration-complete * {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+body.hydration-complete {
+  animation: fadeIn 300ms ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.0; }
+  to { opacity: 1; }
+}
+
+/* CV Overlay Styles */
+.cvOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Restore the diagonal blur effect */
+  backdrop-filter: blur(8px);
+  
+  /* Add diagonal gradient for better visual effect */
+  background-image: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.7) 0%, 
+    rgba(0, 0, 0, 0.5) 50%, 
+    rgba(0, 0, 0, 0.7) 100%);
+}

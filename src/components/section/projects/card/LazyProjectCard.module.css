@@ -1,0 +1,77 @@
+.lazyCardContainer {
+  width: 100%;
+  min-height: 500px; /* Make cards taller */
+  transition: opacity 0.4s ease;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem; /* Increased padding from 1rem to 1.5rem */
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0.7;
+  animation: pulse 1.5s infinite;
+  min-height: 500px; /* Make the placeholder taller as well */
+}
+
+.placeholderTitle {
+  height: 1.75rem;
+  width: 70%;
+  background-color: var(--placeholder);
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.placeholderDescription {
+  height: 4rem; /* Increased height from 3rem to 4rem */
+  width: 100%;
+  background-color: var(--placeholder);
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.placeholderImage {
+  height: 250px; /* Increased height from 200px to 250px */
+  width: 100%;
+  background-color: var(--placeholder);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.placeholderTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.placeholderTag {
+  height: 1.5rem;
+  width: 5rem;
+  background-color: var(--placeholder);
+  border-radius: 1rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 640px) {
+  .placeholder {
+    padding: 1rem;
+    min-height: 450px; /* Slightly smaller on mobile but still taller */
+  }
+  
+  .placeholderImage {
+    height: 200px; /* Adjusted for mobile */
+  }
+}
