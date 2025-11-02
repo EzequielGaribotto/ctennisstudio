@@ -7,7 +7,6 @@ import translations from '../app/translations';
 import Script from 'next/script';
 import ScrollRestorationWrapper from '../components/ScrollRestorationWrapper';
 import HydrationGuard from '../components/HydrationGuard';
-import CloudflareScripts from '../components/analytics/CloudflareScripts';
 
 // Generate metadata with translations
 export function generateMetadata(): Metadata {
@@ -32,21 +31,6 @@ export function generateMetadata(): Metadata {
         { url: `${root}/android-chrome-512x512.png`, sizes: '512x512', type: 'image/png' },
       ],
     },
-    // Update Content Security Policy to include cloudflareinsights.com
-    other: {
-      'Content-Security-Policy': 
-        "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.cloudflareinsights.com https://static.cloudflareinsights.com https://*.cloudflare.com; " +
-        "style-src 'self' 'unsafe-inline'; " +
-        "img-src 'self' data: blob: https:; " +
-        "font-src 'self'; " +
-        "connect-src 'self' https://*.cloudflareinsights.com https://cloudflareinsights.com https://cloudflareinsights.com/cdn-cgi/* https://*.cloudflare.com; " +
-        "frame-src 'self' blob: data:; " +
-        "object-src 'self'; " +
-        "base-uri 'self'; " +
-        "form-action 'self'; " +
-        "frame-ancestors 'self';"
-    }
   };
 }
 
@@ -119,9 +103,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })();
           `}
         </Script>
-        
-        {/* Replace direct Cloudflare script with CloudflareScripts component */}
-        <CloudflareScripts />
       </head>
       <body className="antialiased flex flex-col min-h-screen">
         <TranslationProvider initialLocale={initialLocale}>
