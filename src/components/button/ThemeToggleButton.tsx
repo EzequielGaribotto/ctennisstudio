@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslation } from "../../context/TranslationContext";
+import { useTranslation } from "@/context/TranslationContext";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { ThemeToggleButtonProps } from "../../models/interfaces";

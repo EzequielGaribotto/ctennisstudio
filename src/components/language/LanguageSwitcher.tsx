@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "../../context/TranslationContext";
+import { useTranslation } from "@/context/TranslationContext";
 
 export default function LanguageSwitcher() {
   const { locale, changeLocale } = useTranslation();

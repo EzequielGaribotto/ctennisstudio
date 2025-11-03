@@ -7,206 +7,95 @@ export const baseTranslations = {
     },
     // Navigation translations
     navigation: {
-        profile: "",
-        projects: "",
-        experience: "",
-        training: "",
-        gaming: ""
+        inicio: "",
+        encordado: "",
+        equilibrado: "",
+        cursos: "",
+        experiencia: ""
     },
     // Tooltip translations
     tooltips: {
         github: "",
         linkedin: "",
         email: "",
-        emailCopied: "",
-        competition: "",
-        playGame: "",
-        playStore: "",
-        sourceCode: "",
-        logo: "",
-        expandImage: "",
-        closeImage: "",
-        solvedProblems: "",
-        playArcadeGame: "",
-        viewPresentation: "",
-        viewWebsite: ""
+        emailCopied: ""
     },
     // Footer translations
     footer: {
         disclaimer: "",
         githubLink: ""
     },
-    // About Me section translations
-    aboutMe: {
+    // Tennis studio sections
+    hero: {
+        title: "",
+        subtitle: "",
+        description: ""
+    },
+    experiencia: {
+        title: "",
+        description: ""
+    },
+    encordado: {
         title: "",
         description: "",
-        photoAlt: ""
-    },
-    cv: {
-        download: "",
-        spanish: "",
-        english: "",
-        english_ats: "",
-        preview: "",
-        unableToDisplay: "", // New translation key
-        downloadInstead: "", // New translation key
-        lastUpdated: "" // Add missing lastUpdated key to fix TypeScript error
-    },
-    // Search functionality translations
-    search: {
-        placeholder: "",
-        clearFilters: "",
-        noResults: "",
-        showingAll: "",
-        showingLimited: "",
-        showingFiltered: "",
-        filtered: "",
-        tryAdjusting: "",
-        showAllLink: "",
-        showLessLink: ""
-    },
-    // Projects section translations
-    projects: {
-        title: "",
-        current: "",
-        // Add index signature to allow for project-specific properties
-        neutralNews: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null,
-            websiteLink: string
-        },
-        eulix: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        competitiveProgramming: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        rickAndMorty: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        zomb: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        cronScheduleEditor: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        mapsApp: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        portfolioWebsite: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        peleaDeGallos: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        hackerNewsAPI: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        barcelonaInequality: {} as {
-            title: string,
-            description: string,
-            footer: string,
-            startDate: string,
-            endDate?: string | null
-        },
-        showAllProjects: "", // New translation key for "show all projects" button
-        showLess: "" // New translation key for "show less" button
-    },
-    experiences: {
-        title: "",
-        seidor: {
-            company: "",
-            position: "",
-            period: "",
-            location: "",
-            description: "",
-        },
-        eulix: {
-            company: "",
-            position: "",
-            period: "",
-            location: "",
-            description: "",
-        },
-        telus: {
-            company: "",
-            position: "",
-            period: "",
-            location: "",
-            description: "",
+        cta: "",
+        features: {
+            feature1: "",
+            feature2: "",
+            feature3: ""
         }
     },
-    training: {
+    equilibrado: {
         title: "",
-        itb: {
-            institution: "",
-            course: "",
-            period: "",
-            location: "",
-            description: "",
-        },
-        upf: {
-            institution: "",
-            course: "",
-            period: "",
-            location: "",
-            description: "",
-        },
-        rb4: {
-            institution: "",
-            course: "",
-            period: "",
-            location: "",
-            description: "",
+        description: "",
+        services: {
+            set: {
+                title: "",
+                description: "",
+                price: ""
+            },
+            match: {
+                title: "",
+                description: "",
+                price: ""
+            },
+            point: {
+                title: "",
+                description: "",
+                price: ""
+            }
         }
     },
-    aboutMeSection: {
+    cursos: {
         title: "",
-        personalInfo: "",
-        lifestyleInfo: "",
-        musicInfo: "",
-        hobbiesInfo: "",
-        heavyProfile: "",
-        spotifyPlaylist: ""
+        description: "",
+        cta: "",
+        courses: {
+            base: {
+                name: "",
+                description: "",
+                content1: "",
+                content2: "",
+                content3: "",
+                price: ""
+            },
+            avance: {
+                name: "",
+                description: "",
+                content1: "",
+                content2: "",
+                content3: "",
+                price: ""
+            },
+            maestria: {
+                name: "",
+                description: "",
+                content1: "",
+                content2: "",
+                content3: "",
+                price: ""
+            }
+        }
     }
 };
 
