@@ -4,8 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Fix asset paths for GitHub Pages
-  assetPrefix: './',
   trailingSlash: true,
   reactStrictMode: true,
   // Add security headers to all responses
