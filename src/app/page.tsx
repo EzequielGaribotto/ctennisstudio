@@ -9,7 +9,7 @@ import CursosSection from "@/components/section/tennis/CursosSection"
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <Header />
       <main>
         <TennisHeroSection />

@@ -1,63 +1,46 @@
 .languageSwitcher {
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
-  margin-right: 5px;
-  transition: none;
-}
-
-.languageButton {
-  background: transparent;
-  border: none;
-  color: var(--foreground);
+  justify-content: center;
   cursor: pointer;
-  padding: 0 2px;
-  opacity: 0.7;
-  transition: none;
+  transition: all 0.3s ease;
 }
 
-.languageButton:hover {
-  opacity: 0.9;
+.languageSwitcher:hover {
+  background: rgba(249, 160, 40, 0.1);
+  border-color: var(--primary);
+  transform: scale(1.05);
 }
 
-.languageButton.active {
-  opacity: 1;
-  font-weight: 600;
-}
-
-.languageText {
-  font-size: 0.9rem;
-  transition: none;
-}
-
-.divider {
-  margin: 0 2px;
-  opacity: 0.5;
+.flag {
+  font-size: 1.8rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Mobile responsive styles */
 @media (max-width: 768px) {
   .languageSwitcher {
-    font-size: 0.75rem;
-    margin-right: 3px;
+    padding: 6px 10px;
   }
   
-  .languageText {
-    font-size: 0.75rem;
-  }
-  
-  .divider {
-    margin: 0 1px;
+  .flag {
+    font-size: 1.3rem;
   }
 }
 
-/* For very small screens */
 @media (max-width: 480px) {
   .languageSwitcher {
-    font-size: 0.7rem;
+    padding: 5px 8px;
   }
   
-  .languageText {
-    font-size: 0.7rem;
+  .flag {
+    font-size: 1.2rem;
   }
 }

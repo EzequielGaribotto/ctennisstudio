@@ -7,7 +7,6 @@ import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 const STORAGE_KEYS = {
   LOCALE: "selected-locale",
-  THEME: "selected-theme",
 } as const
 
 const LOCALE = {
@@ -15,19 +14,10 @@ const LOCALE = {
   EN: "en",
 } as const
 
-const THEME = {
-  DARK: "dark",
-  LIGHT: "light",
-} as const
-
-type ThemeType = (typeof THEME)[keyof typeof THEME]
-
 interface TranslationContextType {
   t: (key: string) => string
   locale: string
   changeLocale: (newLocale: string) => void
-  theme: ThemeType
-  changeTheme: (newTheme: ThemeType) => void
   pageLoadTime: number | null
   isHydrated: boolean
 }
@@ -51,16 +41,6 @@ export const TranslationProvider = ({
 }) => {
   const [isHydrated, setIsHydrated] = useState(false)
 
-  const getInitialTheme = (): ThemeType => {
-    if (typeof document !== "undefined") {
-      const dataTheme = document.documentElement.dataset.theme as ThemeType
-      if (dataTheme && (dataTheme === THEME.DARK || dataTheme === THEME.LIGHT)) {
-        return dataTheme
-      }
-    }
-    return THEME.LIGHT
-  }
-
   const getInitialLocale = (): string => {
     if (typeof document === "undefined") {
       return initialLocale
@@ -75,7 +55,6 @@ export const TranslationProvider = ({
   }
 
   const [locale, setLocale] = useLocalStorage(STORAGE_KEYS.LOCALE, getInitialLocale())
-  const [theme, setTheme] = useLocalStorage<ThemeType>(STORAGE_KEYS.THEME, getInitialTheme())
   const [pageLoadTime, setPageLoadTime] = useState<number | null>(null)
 
   useEffect(() => {
@@ -88,19 +67,6 @@ export const TranslationProvider = ({
       return () => clearTimeout(timer)
     }
   }, [])
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.documentElement.setAttribute("data-theme", theme)
-    }
-  }, [theme])
-
-  const changeTheme = (newTheme: ThemeType) => {
-    setTheme(newTheme)
-    if (typeof document !== "undefined") {
-      document.documentElement.setAttribute("data-theme", newTheme)
-    }
-  }
 
   const changeLocale = (newLocale: string) => {
     setLocale(newLocale)
@@ -147,8 +113,6 @@ export const TranslationProvider = ({
         t,
         locale,
         changeLocale,
-        theme,
-        changeTheme,
         pageLoadTime,
         isHydrated,
       }}

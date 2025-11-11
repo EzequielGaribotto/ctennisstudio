@@ -20,7 +20,7 @@ const EncordadoSection: React.FC = () => {
               <li>✓ {t("encordado.features.feature3")}</li>
             </ul>
 
-            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className={styles.ctaButton}>
+            <a href="https://wa.me/34630530839" target="_blank" rel="noopener noreferrer" className={styles.ctaButton}>
               {t("encordado.cta")}
             </a>
           </div>

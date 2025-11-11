@@ -5,14 +5,13 @@
   justify-content: center;
   width: 100%;
   padding: 2rem 0;
-  background: linear-gradient(135deg, var(--background) 0%, var(--card) 100%);
   position: relative;
   overflow: hidden;
 }
 
 .heroContent {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 3rem;
@@ -21,22 +20,16 @@
   max-width: 1200px;
 }
 
-.tournamentRow {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  opacity: 0.6;
-  animation: fadeInUp 0.8s ease-out;
+.profileImageContainer {
+  flex-shrink: 0;
+  animation: fadeInLeft 0.8s ease-out;
 }
 
-.tournamentIcon {
-  font-size: 2rem;
-  transition: transform 0.3s ease;
-}
-
-.tournamentIcon:hover {
-  transform: scale(1.2) rotate(5deg);
+.profileImage {
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 4px solid rgba(255, 255, 255, 0.9);
 }
 
 .centerContent {
@@ -47,18 +40,32 @@
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
+.bannerContainer {
+  width: 100%;
+  max-width: 600px;
+  animation: fadeInScale 0.8s ease-out;
+}
+
+.bannerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.3));
+}
+
 .title {
   font-size: 4.5rem;
   font-weight: 900;
   letter-spacing: 0.15em;
   margin: 0;
-  color: var(--primary);
+  color: #f9a028;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   animation: fadeInScale 0.8s ease-out;
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: var(--muted-foreground);
+  color: #000000;
   margin: 0;
   font-weight: 500;
 }
@@ -66,10 +73,9 @@
 .description {
   font-size: 1.1rem;
   max-width: 600px;
-  color: var(--foreground);
+  color: #000000;
   line-height: 1.6;
   margin: 0;
-  opacity: 0.9;
 }
 
 .socialIcons {
@@ -86,23 +92,59 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--card);
-  border: 2px solid var(--primary);
-  color: var(--primary);
+  color: white;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
+  border: 2px solid;
 }
 
-.socialIcons a:hover {
-  background: var(--primary);
-  color: var(--primary-foreground);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+/* Facebook */
+.socialIcons a[aria-label="Facebook"] {
+  background: var(--facebook-blue);
+  border-color: var(--facebook-blue);
+}
+
+.socialIcons a[aria-label="Facebook"]:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 16px rgba(24, 119, 242, 0.5);
+}
+
+/* Instagram */
+.socialIcons a[aria-label="Instagram"] {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #e4405f;
+}
+
+.socialIcons a[aria-label="Instagram"]:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 16px rgba(228, 64, 95, 0.5);
+}
+
+/* LinkedIn */
+.socialIcons a[aria-label="LinkedIn"] {
+  background: var(--linkedin-blue);
+  border-color: var(--linkedin-blue);
+}
+
+.socialIcons a[aria-label="LinkedIn"]:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 119, 181, 0.5);
+}
+
+/* WhatsApp */
+.socialIcons a[aria-label="WhatsApp"] {
+  background: var(--whatsapp-green);
+  border-color: var(--whatsapp-green);
+}
+
+.socialIcons a[aria-label="WhatsApp"]:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 16px rgba(37, 211, 102, 0.5);
 }
 
 .icon {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 @keyframes fadeInUp {
@@ -127,10 +169,40 @@
   }
 }
 
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 768px) {
   .heroSection {
     min-height: auto;
-    padding: 3rem 1rem;
+    padding: 8rem 1rem 3rem;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  .profileImageContainer {
+    margin-top: 2rem;
+  }
+
+  .profileImage {
+    width: 220px !important;
+    height: 300px !important;
+  }
+
+  .bannerContainer {
+    max-width: 400px;
   }
 
   .title {
@@ -145,10 +217,6 @@
     font-size: 0.95rem;
   }
 
-  .tournamentRow {
-    gap: 1rem;
-  }
-
   .socialIcons {
     gap: 1rem;
   }
@@ -156,5 +224,9 @@
   .socialIcons a {
     width: 45px;
     height: 45px;
+  }
+  
+  .icon {
+    font-size: 1.3rem;
   }
 }

@@ -5,9 +5,12 @@
   padding: 20px 30px;
   width: 90%;
   max-width: 1200px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   gap: 2rem;
 }
 
@@ -40,12 +43,12 @@
 }
 
 .link:hover {
-  color: var(--primary-hover);
+  color: var(--primary-dark);
   text-decoration: underline;
 }
 
 .separator {
-  color: var(--muted-foreground);
+  color: #666;
   opacity: 0.5;
 }
 
@@ -56,26 +59,62 @@
 }
 
 .socialIcon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--card);
-  border: 2px solid var(--primary);
-  color: var(--primary);
+  color: white;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid;
 }
 
-.socialIcon:hover {
-  background: var(--primary);
-  color: var(--primary-foreground);
+/* Facebook */
+.socialIcon[aria-label="Facebook"] {
+  background: var(--facebook-blue);
+  border-color: var(--facebook-blue);
+}
+
+.socialIcon[aria-label="Facebook"]:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(24, 119, 242, 0.4);
+}
+
+/* Instagram */
+.socialIcon[aria-label="Instagram"] {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #e4405f;
+}
+
+.socialIcon[aria-label="Instagram"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(228, 64, 95, 0.4);
+}
+
+/* LinkedIn */
+.socialIcon[aria-label="LinkedIn"] {
+  background: var(--linkedin-blue);
+  border-color: var(--linkedin-blue);
+}
+
+.socialIcon[aria-label="LinkedIn"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 119, 181, 0.4);
+}
+
+/* WhatsApp */
+.socialIcon[aria-label="WhatsApp"] {
+  background: var(--whatsapp-green);
+  border-color: var(--whatsapp-green);
+}
+
+.socialIcon[aria-label="WhatsApp"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(37, 211, 102, 0.4);
 }
 
 /* Mobile responsive styles */
@@ -107,9 +146,9 @@
   }
 
   .socialIcon {
-    width: 35px;
-    height: 35px;
-    font-size: 0.9rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
   }
 }
 
@@ -134,8 +173,8 @@
   }
 
   .socialIcon {
-    width: 32px;
-    height: 32px;
-    font-size: 0.8rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 }

@@ -1,5 +1,6 @@
 "use client"
 import type React from "react"
+import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EquilibradoSection.module.css"
 
@@ -40,6 +41,26 @@ const EquilibradoSection: React.FC = () => {
         <div className={styles.header}>
           <h2 className={styles.title}>{t("equilibrado.title")}</h2>
           <p className={styles.description}>{t("equilibrado.description")}</p>
+          <div className={styles.imagesContainer}>
+            <div className={styles.headerImageContainer}>
+              <Image 
+                src="/images/stringer/racquets/head_racquets.webp"
+                alt="HEAD Racquets"
+                width={600}
+                height={400}
+                className={styles.headerImage}
+              />
+            </div>
+            <div className={styles.upgradeImageContainer}>
+              <Image 
+                src="/images/logo/cts studio upgrade_new.webp"
+                alt="CTS Studio Upgrade"
+                width={300}
+                height={300}
+                className={styles.upgradeImage}
+              />
+            </div>
+          </div>
         </div>
 
         <div className={styles.servicesGrid}>

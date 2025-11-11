@@ -1,0 +1,38 @@
+2025-11-11 14:57:45,666 - INFO - Starting image optimization
+2025-11-11 14:57:46,883 - INFO - Converted public\images\android-chrome-192x192.png to public\images\android-chrome-192x192.webp
+2025-11-11 14:57:46,883 - INFO -   Size reduction: 12.5 KB to 4.5 KB (64.0% saved)
+2025-11-11 14:57:51,338 - INFO - Converted public\images\android-chrome-512x512.png to public\images\android-chrome-512x512.webp
+2025-11-11 14:57:51,339 - INFO -   Size reduction: 65.5 KB to 16.1 KB (75.4% saved)
+2025-11-11 14:57:52,367 - INFO - Converted public\images\apple-touch-icon.png to public\images\apple-touch-icon.webp
+2025-11-11 14:57:52,369 - INFO -   Size reduction: 11.2 KB to 4.2 KB (62.5% saved)
+2025-11-11 14:57:52,390 - INFO - Converted public\images\favicon-16x16.png to public\images\favicon-16x16.webp
+2025-11-11 14:57:52,390 - INFO -   Size reduction: 0.5 KB to 0.3 KB (35.6% saved)
+2025-11-11 14:57:52,434 - INFO - Converted public\images\favicon-32x32.png to public\images\favicon-32x32.webp
+2025-11-11 14:57:52,434 - INFO -   Size reduction: 0.9 KB to 0.5 KB (42.9% saved)
+2025-11-11 14:57:52,435 - INFO - Excluding public\images\logo\ctennisstudio_logo.png as it's in the excluded directory 'logo'
+2025-11-11 14:57:52,438 - INFO - Optimization complete: Processed 5 out of 6 images
+2025-11-11 14:58:12,049 - INFO - Starting image optimization
+2025-11-11 14:58:12,051 - INFO - Skipping public\images\android-chrome-192x192.png - WebP version is newer (use --force to override)
+2025-11-11 14:58:12,051 - INFO - Skipping public\images\android-chrome-512x512.png - WebP version is newer (use --force to override)
+2025-11-11 14:58:12,052 - INFO - Skipping public\images\apple-touch-icon.png - WebP version is newer (use --force to override)
+2025-11-11 14:58:13,278 - INFO - Converted public\images\ctennisstudio_logo.png to public\images\ctennisstudio_logo.webp
+2025-11-11 14:58:13,278 - INFO -   Size reduction: 49.2 KB to 9.8 KB (80.2% saved)
+2025-11-11 14:58:13,279 - INFO - Skipping public\images\favicon-16x16.png - WebP version is newer (use --force to override)
+2025-11-11 14:58:13,280 - INFO - Skipping public\images\favicon-32x32.png - WebP version is newer (use --force to override)
+2025-11-11 14:58:13,282 - INFO - Optimization complete: Processed 1 out of 6 images
+2025-11-11 15:03:34,836 - INFO - Starting image optimization
+2025-11-11 15:03:36,468 - INFO - Converted public\images\android-chrome-192x192.png to public\images\android-chrome-192x192.webp
+2025-11-11 15:03:36,468 - INFO -   Size reduction: 30.4 KB to 8.9 KB (70.9% saved)
+2025-11-11 15:03:41,943 - INFO - Converted public\images\android-chrome-512x512.png to public\images\android-chrome-512x512.webp
+2025-11-11 15:03:41,943 - INFO -   Size reduction: 137.8 KB to 33.1 KB (75.9% saved)
+2025-11-11 15:03:43,327 - INFO - Converted public\images\apple-touch-icon.png to public\images\apple-touch-icon.webp
+2025-11-11 15:03:43,327 - INFO -   Size reduction: 27.5 KB to 8.2 KB (70.3% saved)
+2025-11-11 15:03:43,662 - INFO - Converted public\images\cts studio new logo.png to public\images\cts studio new logo.webp
+2025-11-11 15:03:43,663 - INFO -   Size reduction: 1558.8 KB to 19.4 KB (98.8% saved)
+2025-11-11 15:03:43,687 - INFO - Converted public\images\favicon-16x16.png to public\images\favicon-16x16.webp
+2025-11-11 15:03:43,688 - INFO -   Size reduction: 0.8 KB to 0.5 KB (38.9% saved)
+2025-11-11 15:03:43,739 - INFO - Converted public\images\favicon-32x32.png to public\images\favicon-32x32.webp
+2025-11-11 15:03:43,739 - INFO -   Size reduction: 2.1 KB to 1.1 KB (48.4% saved)
+2025-11-11 15:03:44,109 - INFO - Converted public\images\upgrade your game logo.png to public\images\upgrade your game logo.webp
+2025-11-11 15:03:44,110 - INFO -   Size reduction: 1783.5 KB to 38.2 KB (97.9% saved)
+2025-11-11 15:03:44,114 - INFO - Optimization complete: Processed 7 out of 7 images
