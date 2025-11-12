@@ -338,7 +338,7 @@
   gap: 4px;
   padding: 8px;
   z-index: 10;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+  background: transparent;
 }
 
 .progressBarWrapper {
@@ -352,7 +352,9 @@
 .progressBar {
   height: 100%;
   background: #ffffff;
+  border-radius: 2px;
   transition: width 0.05s linear;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 /* Stories Header */
@@ -366,7 +368,7 @@
   justify-content: space-between;
   padding: 50px 16px 16px;
   z-index: 10;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+  background: transparent;
 }
 
 .tournamentInfo {
