@@ -12,9 +12,9 @@ export const es: Translations = {
   navigation: {
     inicio: "Inicio",
     encordado: "Encordado Profesional",
-    equilibrado: "Equilibrado de raquetas de tenis",
+    equilibrado: "Equilibrado",
     cursos: "Formaciones y Cursos",
-    experiencia: "Tour Experience / Pablo Garibotto"
+    experiencia: "Experience Tour"
   },
   tooltips: {
     linkedin: "Conecta conmigo en LinkedIn",
@@ -31,7 +31,7 @@ export const es: Translations = {
     description: "Servicio profesional de encordado, equilibrado y reparación de raquetas de tenis"
   },
   experiencia: {
-    title: "Experiencia Profesional",
+    title: "Experiencie Tour",
     description: `Más de 15 años en el circuito profesional.
               En Custom Tennis Studio, cada raqueta se ajusta con la misma precisión que en un torneo ATP o WTA.
               Fundado por Pablo Garibotto, encordador oficial en torneos ATP-WTA como Montecarlo, Miami y Madrid.`,
@@ -65,7 +65,7 @@ export const es: Translations = {
       point: {
         title: "POINT",
         description: "Modificar el balance de tu raqueta de tenis",
-        price: "€10"
+        price: "A partir de 19€"
       }
     }
   },

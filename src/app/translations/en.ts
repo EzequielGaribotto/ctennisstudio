@@ -1,22 +1,25 @@
-import { baseTranslations, Translations } from "./baseTranslations";
+import { baseTranslations, Translations } from './baseTranslations';
 
+/**
+ * English translations
+ */
 export const en: Translations = {
   ...baseTranslations,
   meta: {
     title: "CTennis Studio - Professional Stringing and Balancing",
-    description: "Specialized service in stringing and balancing tennis rackets with years of experience.",
+    description: "Specialized service in stringing and balancing tennis rackets."
   },
   navigation: {
     inicio: "Home",
     encordado: "Professional Stringing",
-    equilibrado: "Balancing and Repairs",
-    cursos: "Courses",
-    experiencia: "Experience"
+    equilibrado: "Balancing",
+    cursos: "Courses and Training",
+    experiencia: "Experience Tour"
   },
   tooltips: {
     linkedin: "Connect with me on LinkedIn",
     email: "Copy email",
-    emailCopied: "Copied!"
+    emailCopied: "✓ Copied!"
   },
   footer: {
     disclaimer: "© 2025 CTennis Studio.",
@@ -25,68 +28,70 @@ export const en: Translations = {
   hero: {
     title: "CTennis Studio",
     subtitle: "By Pablo Garibotto",
-    description: "Professional tennis racquet stringing, balancing and repair services with experience in ATP/WTA tournaments"
+    description: "Professional tennis racquet stringing, balancing and repair service"
   },
   experiencia: {
-    title: "Professional Experience",
-    description: "Over two decades of experience working at the world's most prestigious tennis tournaments, participating in Masters 1000, ATP 500, ATP Challengers, World Tennis Tour and wheelchair tennis tournaments.",
+    title: "Experience Tour",
+    description: `Over 15 years in the professional circuit.
+              At Custom Tennis Studio, each racquet is adjusted with the same precision as in an ATP or WTA tournament.
+              Founded by Pablo Garibotto, official stringer at ATP-WTA tournaments like Monte Carlo, Miami and Madrid.`,
     showMore: "Show more",
     showLess: "Show less"
   },
   encordado: {
     title: "Professional Stringing",
-    description: "Professional stringing is essential to optimize your racquet's performance. We use ATP/WTA level equipment and customized tension calibration techniques for each player.",
+    description: "Professional stringing is essential to optimize your racquet's performance. At CTS we use the same techniques, methods and stringing machines currently used in the ATP/WTA tournament circuit.",
     cta: "Contact via WhatsApp",
     features: {
-      feature1: "Precision and Customization",
-      feature2: "ATP/WTA Level Equipment",
-      feature3: "Professional Adjustment and Tension Control"
+      feature1: "Precision and professional adjustment",
+      feature2: "ATP/WTA level tools and machines",
+      feature3: "Personalized advice for each player"
     }
   },
   equilibrado: {
-    title: "Balancing and Repairs",
-    description: "Balancing services optimize your racquet's balance point to improve your game. We offer three service levels adapted to your needs.",
+    title: "Balancing and Repair",
+    description: "Our balancing services optimize your racquet's configuration to improve your game. We offer three service levels adapted to your needs.",
     services: {
       set: {
         title: "SET",
-        description: "Quick adjustment for a specific match",
-        price: "€15"
+        description: "Increase the weight of your tennis racquet",
+        price: "From €19"
       },
       match: {
         title: "MATCH",
-        description: "Complete optimization with detailed analysis",
-        price: "€25"
+        description: "Match one racquet to another from a customized configuration",
+        price: "From €49"
       },
       point: {
         title: "POINT",
-        description: "Express service during competition",
-        price: "€10"
+        description: "Modify the balance of your tennis racquet",
+        price: "From €19"
       }
     }
   },
   cursos: {
-    title: "Professional Courses",
-    description: "Training program in racquet stringing and maintenance. Learn professional techniques used in the ATP/WTA circuit.",
+    title: "Courses and Training",
+    description: "Training program in stringing, balancing and repair of tennis racquets. Learn the professional techniques used in the ATP/WTA circuit.",
     cta: "Enroll",
     courses: {
       base: {
-        name: "Foundation",
+        name: "Base",
         description: "Beginner Level",
         content1: "Stringing fundamentals",
-        content2: "Professional machine handling",
-        content3: "String selection",
-        price: "€199"
+        content2: "Handling professional tools and machines",
+        content3: "2 and 4 knot stringing",
+        price: "€249"
       },
       avance: {
-        name: "Progress",
+        name: "Advance",
         description: "Intermediate Level",
         content1: "Advanced stringing techniques",
-        content2: "Tension calibration",
-        content3: "Player customization",
+        content2: "Weight balance and swingweight",
+        content3: "Repairs and grommet and grip changes",
         price: "€349"
       },
       maestria: {
-        name: "Master",
+        name: "Mastery",
         description: "Advanced Level",
         content1: "ATP/WTA competition stringing",
         content2: "Biomechanical analysis",

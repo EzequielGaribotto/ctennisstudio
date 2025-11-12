@@ -351,8 +351,7 @@
 
 .progressBar {
   height: 100%;
-  background: white;
-  border-radius: 2px;
+  background: #ffffff;
   transition: width 0.05s linear;
 }
 

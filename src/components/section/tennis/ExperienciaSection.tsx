@@ -449,6 +449,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCardHover = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return // Disable hover on mobile
     if (isCarouselLocked) return // Don't change on hover if locked
     
     if (hoverTimeoutRef.current) {
@@ -465,6 +466,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCardLeave = () => {
+    if (isMobile) return // Disable hover on mobile
     if (isCarouselLocked) return
     
     // Immediately hide carousel when leaving card (no delay for smooth horizontal scanning)
@@ -473,6 +475,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCarouselHover = () => {
+    if (isMobile) return // Disable hover on mobile
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
       hoverTimeoutRef.current = null
@@ -480,6 +483,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCarouselLeave = () => {
+    if (isMobile) return // Disable hover on mobile
     if (isCarouselLocked) return
     
     // Immediately hide when leaving carousel too
