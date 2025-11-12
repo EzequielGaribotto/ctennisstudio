@@ -49,6 +49,7 @@ export const baseTranslations = {
     equilibrado: {
         title: "",
         description: "",
+        cta: "",
         services: {
             set: {
                 title: "",

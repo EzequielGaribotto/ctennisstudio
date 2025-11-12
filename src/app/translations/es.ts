@@ -51,6 +51,7 @@ export const es: Translations = {
   equilibrado: {
     title: "Equilibrado y Reparación",
     description: "Nuestros servicios de equilibrado optimizan la configuracion de tu raqueta para mejorar tu juego. Ofrecemos tres niveles de servicio adaptados a tu necesidad.",
+    cta: "Consultar disponibilidad",
     services: {
       set: {
         title: "SET",

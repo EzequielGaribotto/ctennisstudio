@@ -1,6 +1,7 @@
 "use client"
 import type React from "react"
 import Image from "next/image"
+import { FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EquilibradoSection.module.css"
 
@@ -72,6 +73,15 @@ const EquilibradoSection: React.FC = () => {
               </div>
               <div className={styles.imagePlaceholder}>🎾</div>
               <div className={styles.priceTag}>{service.price}</div>
+              <a 
+                href="https://wa.me/34630530839" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.ctaButton}
+              >
+                <FaWhatsapp className={styles.whatsappIcon} />
+                {t("equilibrado.cta")}
+              </a>
             </div>
           ))}
         </div>
