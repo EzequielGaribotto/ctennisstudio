@@ -47,7 +47,23 @@
   html {
     background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%);
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     min-height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  
+  html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%);
+    z-index: -1;
+    will-change: transform;
   }
   
   body {
@@ -67,4 +83,12 @@
   p {
     line-height: 1.6;
   }
+}
+
+/* Ensure all buttons with orange background have white text */
+button[style*="background"],
+a[style*="background"],
+button[class*="primary"],
+a[class*="primary"] {
+  color: white !important;
 }

@@ -72,12 +72,12 @@ const Header: React.FC = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <Tooltip text={t("tooltips.logo")} position="bottom" forcePosition={true}>
+          <Tooltip text={"Custom Tennis Studio"} position="bottom" forcePosition={true}>
             <a
               href="#inicio"
               onClick={scrollToSection("inicio")}
               className={styles.logoLink}
-              aria-label={t("tooltips.logo")}
+              aria-label={"Custom Tennis Studio"}
             >
               <Image 
                 src="/images/logo/ctennisstudio_logo.webp" 
@@ -143,79 +143,70 @@ const Header: React.FC = () => {
           <div className={styles.controls}>
             <LanguageSwitcher />
             <button 
-              className={styles.mobileMenuButton}
-              onClick={() => setMobileMenuOpen(true)}
+              className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Open menu"
             >
-              ☰
+              <span className={styles.burgerIcon}></span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className={`${styles.mobileMenu} ${styles.open}`} onClick={() => setMobileMenuOpen(false)}>
-          <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
-            <button 
-              className={styles.mobileMenuClose}
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              ×
-            </button>
-            <nav>
-              <ul className={styles.mobileNavList}>
-                <li className={styles.mobileNavItem}>
-                  <a
-                    href="#inicio"
-                    onClick={scrollToSection("inicio")}
-                    className={activeSection === "inicio" ? styles.active : ""}
-                  >
-                    {t("navigation.inicio")}
-                  </a>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <a
-                    href="#experiencia"
-                    onClick={scrollToSection("experiencia")}
-                    className={activeSection === "experiencia" ? styles.active : ""}
-                  >
-                    {t("navigation.experiencia")}
-                  </a>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <a
-                    href="#encordado"
-                    onClick={scrollToSection("encordado")}
-                    className={activeSection === "encordado" ? styles.active : ""}
-                  >
-                    {t("navigation.encordado")}
-                  </a>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <a
-                    href="#equilibrado"
-                    onClick={scrollToSection("equilibrado")}
-                    className={activeSection === "equilibrado" ? styles.active : ""}
-                  >
-                    {t("navigation.equilibrado")}
-                  </a>
-                </li>
-                <li className={styles.mobileNavItem}>
-                  <a
-                    href="#cursos"
-                    onClick={scrollToSection("cursos")}
-                    className={activeSection === "cursos" ? styles.active : ""}
-                  >
-                    {t("navigation.cursos")}
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+      <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ''}`}>
+        <div className={styles.mobileMenuContent}>
+          <nav>
+            <ul className={styles.mobileNavList}>
+              <li className={styles.mobileNavItem}>
+                <a
+                  href="#inicio"
+                  onClick={scrollToSection("inicio")}
+                  className={activeSection === "inicio" ? styles.active : ""}
+                >
+                  {t("navigation.inicio")}
+                </a>
+              </li>
+              <li className={styles.mobileNavItem}>
+                <a
+                  href="#experiencia"
+                  onClick={scrollToSection("experiencia")}
+                  className={activeSection === "experiencia" ? styles.active : ""}
+                >
+                  {t("navigation.experiencia")}
+                </a>
+              </li>
+              <li className={styles.mobileNavItem}>
+                <a
+                  href="#encordado"
+                  onClick={scrollToSection("encordado")}
+                  className={activeSection === "encordado" ? styles.active : ""}
+                >
+                  {t("navigation.encordado")}
+                </a>
+              </li>
+              <li className={styles.mobileNavItem}>
+                <a
+                  href="#equilibrado"
+                  onClick={scrollToSection("equilibrado")}
+                  className={activeSection === "equilibrado" ? styles.active : ""}
+                >
+                  {t("navigation.equilibrado")}
+                </a>
+              </li>
+              <li className={styles.mobileNavItem}>
+                <a
+                  href="#cursos"
+                  onClick={scrollToSection("cursos")}
+                  className={activeSection === "cursos" ? styles.active : ""}
+                >
+                  {t("navigation.cursos")}
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
-      )}
+      </div>
     </>
   )
 }

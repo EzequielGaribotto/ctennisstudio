@@ -59,19 +59,19 @@
   letter-spacing: 0.15em;
   margin: 0;
   color: #f9a028;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 8px rgba(3, 3, 3, 0.3);
   animation: fadeInScale 0.8s ease-out;
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: #000000;
   margin: 0;
   font-weight: 500;
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   max-width: 600px;
   color: #000000;
   line-height: 1.6;
@@ -214,7 +214,7 @@
   }
 
   .description {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .socialIcons {

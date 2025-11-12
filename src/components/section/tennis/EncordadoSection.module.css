@@ -35,7 +35,7 @@
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   color: var(--foreground);
   line-height: 1.7;
   margin: 0;
@@ -51,7 +51,7 @@
 }
 
 .featuresList li {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: var(--foreground);
   display: flex;
   align-items: center;

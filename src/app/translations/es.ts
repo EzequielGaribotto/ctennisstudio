@@ -23,6 +23,7 @@ export const es: Translations = {
   },
   footer: {
     disclaimer: "© 2025 CTennis Studio.",
+    copyright: "© 2025 Custom Tennis Studio. Todos los derechos reservados."
   },
   hero: {
     title: "CTennis Studio",
@@ -32,8 +33,8 @@ export const es: Translations = {
   experiencia: {
     title: "Experiencia Profesional",
     description: "Más de dos décadas de experiencia trabajando en los torneos de tenis más prestigiosos del mundo, participando en Masters 1000, ATP 500, ATP Challengers, World Tennis Tour y torneos de tenis adaptado.",
-    showMore: "Ver Más",
-    showLess: "Ver Menos"
+    showMore: "Ver más",
+    showLess: "Ver menos"
   },
   encordado: {
     title: "Encordado Profesional",

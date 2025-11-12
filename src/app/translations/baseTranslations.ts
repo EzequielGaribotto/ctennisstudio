@@ -22,6 +22,7 @@ export const baseTranslations = {
     // Footer translations
     footer: {
         disclaimer: "",
+        copyright: ""
     },
     // Tennis studio sections
     hero: {

@@ -79,3 +79,8 @@
 2025-11-12 12:01:00,288 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\500_wta.png - WebP version is newer (use --force to override)
 2025-11-12 12:01:00,290 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\finals_wta.png - WebP version is newer (use --force to override)
 2025-11-12 12:01:00,290 - INFO - Optimization complete: Processed 6 out of 15 images
+2025-11-12 13:34:36,267 - INFO - Starting image optimization
+2025-11-12 13:34:36,563 - INFO - Converted public\images\stringer\pablo\stringer spiderman.jpg to public\images\stringer\pablo\stringer spiderman.webp
+2025-11-12 13:34:36,563 - INFO -   Size reduction: 42.7 KB to 27.9 KB (34.6% saved)
+2025-11-12 13:34:36,564 - INFO - Skipping public\images\stringer\pablo\stringer spiderman.png - WebP version is newer (use --force to override)
+2025-11-12 13:34:36,567 - INFO - Optimization complete: Processed 1 out of 2 images

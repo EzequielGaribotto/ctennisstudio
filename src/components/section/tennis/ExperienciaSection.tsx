@@ -24,6 +24,8 @@ const ExperienciaSection: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showAll, setShowAll] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const [progress, setProgress] = useState(0)
 
   // Detect if we're on mobile
   useEffect(() => {
@@ -36,6 +38,58 @@ const ExperienciaSection: React.FC = () => {
     
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Preload all tournament images immediately
+  useEffect(() => {
+    const allImages: string[] = []
+    
+    tournaments.forEach(tournament => {
+      const images = getTournamentImages(tournament)
+      allImages.push(...images)
+    })
+
+    // Preload all images
+    allImages.forEach(src => {
+      const img = new window.Image()
+      img.src = src
+    })
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Auto-advance stories (Instagram-like)
+  useEffect(() => {
+    if (!selectedTournament || isPaused) return
+
+    const images = getTournamentImages(selectedTournament)
+    const storyDuration = 5000 // 5 seconds per image
+    const intervalTime = 50 // Update progress every 50ms
+
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        const newProgress = prev + (intervalTime / storyDuration) * 100
+        if (newProgress >= 100) {
+          // Move to next image
+          setCurrentImageIndex((currentIdx) => {
+            const nextIdx = currentIdx + 1
+            if (nextIdx >= images.length) {
+              // Close carousel when all images are viewed
+              handleCloseCarousel()
+              return currentIdx
+            }
+            return nextIdx
+          })
+          return 0
+        }
+        return newProgress
+      })
+    }, intervalTime)
+
+    return () => clearInterval(progressInterval)
+  }, [selectedTournament, currentImageIndex, isPaused])  
+
+  // Reset progress when image changes
+  useEffect(() => {
+    setProgress(0)
+  }, [currentImageIndex])
 
   const tournaments: Tournament[] = [
     // Monte-Carlo
@@ -236,32 +290,82 @@ const ExperienciaSection: React.FC = () => {
       }
     })
     
+    // If no images found, use fallback
+    if (images.length === 0) {
+      images.push('/images/stringer/pablo/stringer_spiderman.webp')
+    }
+    
     return images
   }
 
   const handleCardClick = (tournament: Tournament) => {
     setSelectedTournament(tournament)
     setCurrentImageIndex(0)
+    setProgress(0)
+    setIsPaused(false)
   }
 
   const handleCloseCarousel = () => {
     setSelectedTournament(null)
     setCurrentImageIndex(0)
+    setProgress(0)
+    setIsPaused(false)
   }
 
   const handleNextImage = () => {
     if (selectedTournament) {
       const images = getTournamentImages(selectedTournament)
-      setCurrentImageIndex((prev) => (prev + 1) % images.length)
+      const nextIndex = currentImageIndex + 1
+      if (nextIndex >= images.length) {
+        handleCloseCarousel()
+      } else {
+        setCurrentImageIndex(nextIndex)
+      }
     }
   }
 
   const handlePrevImage = () => {
-    if (selectedTournament) {
-      const images = getTournamentImages(selectedTournament)
-      setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+    if (selectedTournament && currentImageIndex > 0) {
+      setCurrentImageIndex((prev) => prev - 1)
     }
   }
+
+  // Handle tap/click on left or right side of image
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const imageWidth = rect.width
+
+    // Left third: previous, Right third: next, Middle: pause/play
+    if (clickX < imageWidth * 0.33) {
+      handlePrevImage()
+    } else if (clickX > imageWidth * 0.67) {
+      handleNextImage()
+    } else {
+      setIsPaused(!isPaused)
+    }
+  }
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    if (!selectedTournament) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        handleNextImage()
+      } else if (e.key === 'ArrowLeft') {
+        handlePrevImage()
+      } else if (e.key === 'Escape') {
+        handleCloseCarousel()
+      } else if (e.key === ' ') {
+        e.preventDefault()
+        setIsPaused(!isPaused)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedTournament, currentImageIndex, isPaused]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getCurrentImageInfo = () => {
     if (!selectedTournament) return null
@@ -292,6 +396,47 @@ const ExperienciaSection: React.FC = () => {
     return tournaments.slice(0, count)
   }
 
+  // Handle show more/less with auto-scroll
+  const handleToggleShowAll = () => {
+    const section = document.getElementById('experiencia')
+    
+    if (!showAll) {
+      // Expanding - scroll to top of section
+      setShowAll(true)
+      setTimeout(() => {
+        if (section) {
+          const headerOffset = 120 // Account for fixed header
+          const elementPosition = section.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100)
+    } else {
+      // Collapsing - scroll to top of section first, then collapse
+      if (section) {
+        const headerOffset = 120
+        const elementPosition = section.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+        
+        // Wait for scroll to complete before collapsing
+        setTimeout(() => {
+          setShowAll(false)
+        }, 500)
+      } else {
+        setShowAll(false)
+      }
+    }
+  }
+
   const visibleTournaments = getVisibleTournaments()
   const hasMoreTournaments = tournaments.length > (isMobile ? 3 : 4)
 
@@ -320,6 +465,8 @@ const ExperienciaSection: React.FC = () => {
                       width={60}
                       height={60}
                       className={styles.logo}
+                      loading="eager"
+                      priority
                     />
                   </div>
                 )}
@@ -331,6 +478,8 @@ const ExperienciaSection: React.FC = () => {
                       width={60}
                       height={60}
                       className={styles.logo}
+                      loading="eager"
+                      priority
                     />
                   </div>
                 )}
@@ -342,6 +491,8 @@ const ExperienciaSection: React.FC = () => {
                       width={60}
                       height={60}
                       className={styles.logo}
+                      loading="eager"
+                      priority
                     />
                   </div>
                 )}
@@ -378,7 +529,7 @@ const ExperienciaSection: React.FC = () => {
           <div className={styles.showMoreContainer}>
             <button 
               className={styles.showMoreButton}
-              onClick={() => setShowAll(!showAll)}
+              onClick={handleToggleShowAll}
             >
               {showAll ? t("experiencia.showLess") : t("experiencia.showMore")}
             </button>
@@ -386,42 +537,87 @@ const ExperienciaSection: React.FC = () => {
         )}
       </div>
 
-      {/* Carousel Modal */}
+      {/* Carousel Modal - Instagram Stories Style */}
       {selectedTournament && (
         <div className={styles.carouselModal} onClick={handleCloseCarousel}>
-          <div className={styles.carouselContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={handleCloseCarousel}>
-              ✕
-            </button>
-            
-            <button className={styles.navButton} onClick={handlePrevImage}>
-              ‹
-            </button>
-            
-            <div className={styles.imageContainer}>
-              {getCurrentImageInfo() && (
-                <>
-                  <Image
-                    src={getCurrentImageInfo()!.path}
-                    alt={`${selectedTournament.tournamentCode} ${getCurrentImageInfo()!.year}`}
-                    width={800}
-                    height={600}
-                    className={styles.carouselImage}
-                    onError={() => {
-                      // Fallback if image doesn't exist
-                      console.error('Image failed to load:', getCurrentImageInfo()!.path)
+          <div className={styles.storiesContainer} onClick={(e) => e.stopPropagation()}>
+            {/* Progress bars at top */}
+            <div className={styles.progressBarsContainer}>
+              {getTournamentImages(selectedTournament).map((_, idx) => (
+                <div key={idx} className={styles.progressBarWrapper}>
+                  <div 
+                    className={styles.progressBar}
+                    style={{
+                      width: idx < currentImageIndex ? '100%' : 
+                             idx === currentImageIndex ? `${progress}%` : '0%'
                     }}
                   />
-                  <div className={styles.imageCaption}>
-                    {selectedTournament.city} - {getCurrentImageInfo()!.year}
-                  </div>
-                </>
+                </div>
+              ))}
+            </div>
+
+            {/* Header with tournament info */}
+            <div className={styles.storiesHeader}>
+              <div className={styles.tournamentInfo}>
+                <div className={styles.tournamentLogoSmall}>
+                  {selectedTournament.unifiedLogo && (
+                    <Image
+                      src={selectedTournament.unifiedLogo}
+                      alt={selectedTournament.category}
+                      width={40}
+                      height={40}
+                      className={styles.logoSmall}
+                    />
+                  )}
+                </div>
+                <div className={styles.tournamentText}>
+                  <span className={styles.tournamentName}>{selectedTournament.city}</span>
+                  <span className={styles.tournamentYear}>
+                    {getCurrentImageInfo()?.year || selectedTournament.years[0]}
+                  </span>
+                </div>
+              </div>
+              <button className={styles.closeButton} onClick={handleCloseCarousel}>
+                ✕
+              </button>
+            </div>
+
+            {/* Image with tap zones */}
+            <div className={styles.imageWrapper} onClick={handleImageClick}>
+              {getCurrentImageInfo() && (
+                <Image
+                  src={getCurrentImageInfo()!.path}
+                  alt={`${selectedTournament.tournamentCode} ${getCurrentImageInfo()!.year}`}
+                  fill
+                  className={styles.storiesImage}
+                  loading="eager"
+                  priority
+                  style={{ objectFit: 'contain' }}
+                  onError={() => {
+                    console.error('Image failed to load:', getCurrentImageInfo()!.path)
+                  }}
+                />
+              )}
+              
+              {/* Tap zones indicators (subtle) */}
+              {currentImageIndex > 0 && (
+                <div className={styles.tapZoneLeft}>
+                  <span className={styles.tapIndicator}>‹</span>
+                </div>
+              )}
+              {currentImageIndex < getTournamentImages(selectedTournament).length - 1 && (
+                <div className={styles.tapZoneRight}>
+                  <span className={styles.tapIndicator}>›</span>
+                </div>
               )}
             </div>
-            
-            <button className={styles.navButton} onClick={handleNextImage}>
-              ›
-            </button>
+
+            {/* Pause indicator */}
+            {isPaused && (
+              <div className={styles.pauseIndicator}>
+                <div className={styles.pauseIcon}>❚❚</div>
+              </div>
+            )}
           </div>
         </div>
       )}
