@@ -21,7 +21,6 @@ interface Tournament {
 const ExperienciaSection: React.FC = () => {
   const { t } = useTranslation()
   const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null)
-  const [hoveredTournament, setHoveredTournament] = useState<Tournament | null>(null)
   const [isCarouselLocked, setIsCarouselLocked] = useState(false)
   const [hoveredCardRect, setHoveredCardRect] = useState<DOMRect | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -459,7 +458,6 @@ const ExperienciaSection: React.FC = () => {
     
     const rect = event.currentTarget.getBoundingClientRect()
     setHoveredCardRect(rect)
-    setHoveredTournament(tournament)
     setSelectedTournament(tournament)
     setCurrentImageIndex(0)
     setProgress(0)
@@ -470,7 +468,6 @@ const ExperienciaSection: React.FC = () => {
     if (isCarouselLocked) return
     
     // Immediately hide carousel when leaving card (no delay for smooth horizontal scanning)
-    setHoveredTournament(null)
     setSelectedTournament(null)
     setHoveredCardRect(null)
   }
@@ -486,7 +483,6 @@ const ExperienciaSection: React.FC = () => {
     if (isCarouselLocked) return
     
     // Immediately hide when leaving carousel too
-    setHoveredTournament(null)
     setSelectedTournament(null)
     setHoveredCardRect(null)
   }
@@ -499,7 +495,6 @@ const ExperienciaSection: React.FC = () => {
     }
     
     setSelectedTournament(null)
-    setHoveredTournament(null)
     setIsCarouselLocked(false)
     setHoveredCardRect(null)
     setCurrentImageIndex(0)
