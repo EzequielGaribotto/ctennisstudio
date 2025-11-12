@@ -23,12 +23,19 @@ const Header: React.FC = () => {
     e.preventDefault()
     const element = document.getElementById(sectionId)
     if (element) {
-      // Get the first title element within the section for precise alignment
-      const titleElement = element.querySelector('h2, h1, [class*="title"]')
-      const targetElement = titleElement || element
+      let targetElement: HTMLElement = element
+      let offset = 120
       
-      // Calculate offset to align section title with top of viewport
-      const offset = sectionId === "inicio" ? 0 : 120 // No offset for hero, 120px for other sections
+      if (sectionId === "inicio") {
+        // For home section, target the profile image
+        const profileImage = element.querySelector('[alt*="Pablo Garibotto"]')?.parentElement as HTMLElement
+        targetElement = profileImage || element
+        offset = 100 // Offset for header
+      } else {
+        // For other sections, get the title element for precise alignment
+        const titleElement = element.querySelector('h2, h1, [class*="title"]') as HTMLElement
+        targetElement = titleElement || element
+      }
       
       // Smooth scroll to element without updating URL
       window.scrollTo({

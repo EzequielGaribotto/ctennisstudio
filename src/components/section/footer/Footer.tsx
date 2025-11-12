@@ -30,7 +30,7 @@ export default function Footer() {
 
         <div className={styles.socialLinks}>
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/Pablo.Garibotto.Garcia/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialIcon}

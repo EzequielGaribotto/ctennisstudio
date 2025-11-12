@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 30px;
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -12,6 +12,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   gap: 2rem;
+  margin: 0 2rem;
 }
 
 .footerInfo {
@@ -124,7 +125,7 @@
     flex-direction: column;
     gap: 1.5rem;
     border-radius: 12px;
-    width: 95%;
+    margin: 0 0.5rem;
   }
 
   .footerInfo {
@@ -156,7 +157,7 @@
 @media (max-width: 480px) {
   .footerContent {
     padding: 12px 15px;
-    width: 98%;
+    margin: 0 0.5rem;
   }
 
   .copyright {
