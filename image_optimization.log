@@ -36,3 +36,46 @@
 2025-11-11 15:03:44,109 - INFO - Converted public\images\upgrade your game logo.png to public\images\upgrade your game logo.webp
 2025-11-11 15:03:44,110 - INFO -   Size reduction: 1783.5 KB to 38.2 KB (97.9% saved)
 2025-11-11 15:03:44,114 - INFO - Optimization complete: Processed 7 out of 7 images
+2025-11-12 11:45:59,431 - INFO - Starting image optimization
+2025-11-12 11:45:59,705 - INFO - Converted public\images\stringer\pablo\stringer spiderman.png to public\images\stringer\pablo\stringer spiderman.webp
+2025-11-12 11:45:59,705 - INFO -   Size reduction: 320.1 KB to 25.9 KB (91.9% saved)
+2025-11-12 11:46:00,572 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\1000_atp.png to public\images\stringer\tournament_logos\category_stamps\1000_atp.webp
+2025-11-12 11:46:00,572 - INFO -   Size reduction: 16.0 KB to 4.4 KB (72.7% saved)
+2025-11-12 11:46:01,300 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\1000_wta.png to public\images\stringer\tournament_logos\category_stamps\1000_wta.webp
+2025-11-12 11:46:01,300 - INFO -   Size reduction: 11.2 KB to 4.8 KB (57.6% saved)
+2025-11-12 11:46:01,314 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\125_wta.png to public\images\stringer\tournament_logos\category_stamps\125_wta.webp
+2025-11-12 11:46:01,314 - INFO -   Size reduction: 3.6 KB to 3.1 KB (14.1% saved)
+2025-11-12 11:46:04,459 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\250_atp.png to public\images\stringer\tournament_logos\category_stamps\250_atp.webp
+2025-11-12 11:46:04,460 - INFO -   Size reduction: 62.5 KB to 19.4 KB (69.0% saved)
+2025-11-12 11:46:05,246 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\250_wta.png to public\images\stringer\tournament_logos\category_stamps\250_wta.webp
+2025-11-12 11:46:05,248 - INFO -   Size reduction: 12.1 KB to 5.1 KB (58.0% saved)
+2025-11-12 11:46:05,994 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\500_atp.png to public\images\stringer\tournament_logos\category_stamps\500_atp.webp
+2025-11-12 11:46:05,994 - INFO -   Size reduction: 13.3 KB to 2.5 KB (81.2% saved)
+2025-11-12 11:46:06,778 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\500_wta.png to public\images\stringer\tournament_logos\category_stamps\500_wta.webp
+2025-11-12 11:46:06,778 - INFO -   Size reduction: 11.9 KB to 4.7 KB (60.5% saved)
+2025-11-12 11:46:08,652 - INFO - Converted public\images\stringer\tournament_logos\category_stamps\finals_wta.png to public\images\stringer\tournament_logos\category_stamps\finals_wta.webp
+2025-11-12 11:46:08,652 - INFO -   Size reduction: 6.0 KB to 7.8 KB (-29.4% saved)
+2025-11-12 11:46:08,652 - INFO - Optimization complete: Processed 9 out of 9 images
+2025-11-12 12:00:41,745 - INFO - Starting image optimization
+2025-11-12 12:00:41,748 - INFO - Skipping public\images\stringer\pablo\stringer spiderman.png - WebP version is newer (use --force to override)
+2025-11-12 12:00:47,008 - INFO - Converted public\images\stringer\tournament_logos\itf_logo.png to public\images\stringer\tournament_logos\itf_logo.webp
+2025-11-12 12:00:47,009 - INFO -   Size reduction: 42.0 KB to 25.4 KB (39.6% saved)
+2025-11-12 12:00:48,326 - INFO - Converted public\images\stringer\tournament_logos\itf_wheelchair_logo.png to public\images\stringer\tournament_logos\itf_wheelchair_logo.webp
+2025-11-12 12:00:48,326 - INFO -   Size reduction: 2.6 KB to 3.0 KB (-11.6% saved)
+2025-11-12 12:00:50,797 - INFO - Converted public\images\stringer\tournament_logos\itf_wtt_jr_logo.png to public\images\stringer\tournament_logos\itf_wtt_jr_logo.webp
+2025-11-12 12:00:50,797 - INFO -   Size reduction: 28.1 KB to 10.9 KB (61.2% saved)
+2025-11-12 12:00:54,976 - INFO - Converted public\images\stringer\tournament_logos\itf_wtt_logo.png to public\images\stringer\tournament_logos\itf_wtt_logo.webp
+2025-11-12 12:00:54,976 - INFO -   Size reduction: 132.0 KB to 49.6 KB (62.5% saved)
+2025-11-12 12:00:58,988 - INFO - Converted public\images\stringer\tournament_logos\montecarlo_masters.png to public\images\stringer\tournament_logos\montecarlo_masters.webp
+2025-11-12 12:00:58,989 - INFO -   Size reduction: 52.5 KB to 18.3 KB (65.2% saved)
+2025-11-12 12:01:00,282 - INFO - Converted public\images\stringer\tournament_logos\rfet_logo.png to public\images\stringer\tournament_logos\rfet_logo.webp
+2025-11-12 12:01:00,282 - INFO -   Size reduction: 6.4 KB to 4.5 KB (30.1% saved)
+2025-11-12 12:01:00,283 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\1000_atp.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,284 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\1000_wta.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,286 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\125_wta.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,286 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\250_atp.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,287 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\250_wta.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,288 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\500_atp.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,288 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\500_wta.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,290 - INFO - Skipping public\images\stringer\tournament_logos\category_stamps\finals_wta.png - WebP version is newer (use --force to override)
+2025-11-12 12:01:00,290 - INFO - Optimization complete: Processed 6 out of 15 images

@@ -32,6 +32,9 @@ type TranslationsType = {
 
 const TranslationContext = createContext<TranslationContextType | null>(null)
 
+// Keep track of keys we've already warned about to avoid spamming the console
+const warnedKeys = new Set<string>()
+
 export const TranslationProvider = ({
   children,
   initialLocale = LOCALE.ES,
@@ -83,7 +86,10 @@ export const TranslationProvider = ({
 
       for (const k of keys) {
         if (value === undefined || value === null) {
-          console.warn(`Missing translation for key: ${key}`)
+          if (!warnedKeys.has(key)) {
+            console.warn(`Missing translation for key: ${key}`)
+            warnedKeys.add(key)
+          }
           return key
         }
         const nextValue = value[k]
@@ -92,14 +98,41 @@ export const TranslationProvider = ({
           return nextValue
         }
 
+        if (Array.isArray(nextValue)) {
+          return (nextValue as string[]).join(" \n")
+        }
+
         if (nextValue && typeof nextValue === "object") {
           value = nextValue as NestedTranslation
+        } else if (nextValue !== undefined && nextValue !== null) {
+          // If nextValue exists but is a primitive other than string (number, boolean),
+          // return its string representation instead of warning repeatedly.
+          return String(nextValue)
         } else {
-          console.warn(`Invalid translation for key: ${key}`)
+          if (!warnedKeys.has(key)) {
+            console.warn(`Invalid translation for key: ${key}`)
+            warnedKeys.add(key)
+          }
           return key
         }
       }
 
+      // After walking all keys, check what we ended up with
+      if (typeof value === "string") return value as string
+      if (Array.isArray(value)) return (value as string[]).join(" \n")
+
+      // If value is an object at this point, it means the key path was incomplete
+      // (e.g., asking for "cursos.courses" instead of "cursos.courses.base.name")
+      // Only warn if it's truly an error case
+      if (typeof value === "object" && value !== null) {
+        // Don't warn - just return the key as is
+        return key
+      }
+
+      if (!warnedKeys.has(key)) {
+        console.warn(`Invalid translation for key: ${key}`)
+        warnedKeys.add(key)
+      }
       return key
     } catch (error) {
       console.warn(`Error accessing translation for key: ${key}`, error)

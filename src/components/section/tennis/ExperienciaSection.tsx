@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import ReactCountryFlag from "react-country-flag"
@@ -22,48 +22,141 @@ const ExperienciaSection: React.FC = () => {
   const { t } = useTranslation()
   const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [showAll, setShowAll] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect if we're on mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const tournaments: Tournament[] = [
+    // Monte-Carlo
     {
-      id: "1",
+      id: "MONTECARLO",
       city: "Monte-Carlo",
       countryCode: "MC",
-      category: "Masters 1000",
-      years: ["2025"],
+      category: "ROLEX MONTE-CARLO MASTERS",
+      years: ["2025", "2024", "2023", "2022"],
       tournamentCode: "MONTECARLO",
+      // Use Monte-Carlo masters logo and show ATP/WTA 1000 stamps when appropriate
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/challenger_tour_logo.webp", // Placeholder until we get Monte-Carlo logo
+      womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
+      unifiedLogo: "/images/stringer/tournament_logos/montecarlo_masters_logo.webp",
     },
+
+    // Madrid
     {
-      id: "2",
+      id: "MADRID",
       city: "Madrid",
       countryCode: "ES",
-      category: "Masters 1000",
-      years: ["2025", "2024", "2023", "2022", "2021", "2017"],
+      category: "MUTUA MADRID OPEN",
+      years: ["2025", "2024", "2023", "2022", "2021", "2019", "2018", "2017", "2016", "2010"],
       tournamentCode: "MADRID",
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/mutua_madrid_open_logo.webp",
     },
+
+    // Miami
     {
-      id: "3",
+      id: "MIAMI",
+      city: "Miami",
+      countryCode: "US",
+      category: "MIAMI OPEN",
+      years: ["2025"],
+      tournamentCode: "MIAMI",
+      // Miami is a 1000-level event for both tours — show ATP/WTA 1000 stamps plus the event logo if available
+      mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
+      womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
+      unifiedLogo: "/images/stringer/tournament_logos/miami_open_logo.webp",
+    },
+
+    // Godó (Barcelona)
+    {
+      id: "GODO",
       city: "Barcelona",
       countryCode: "ES",
-      category: "ATP 500",
-      years: ["2018", "2017", "2016"],
+      category: "GODÓ Barcelona",
+      years: ["2025", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012"],
       tournamentCode: "GODO",
       mensLogo: "/images/stringer/tournament_logos/category_stamps/500_atp.webp",
       unifiedLogo: "/images/stringer/tournament_logos/godo_logo.webp",
     },
+
+    // Mallorca
     {
-      id: "4",
-      city: "San Sebastián",
+      id: "MALLORCA",
+      city: "Mallorca",
       countryCode: "ES",
-      category: "Challenger",
-      years: ["2017"],
-      tournamentCode: "SASCO",
+      category: "CHAMPIONSHIPS",
+      years: ["2025"],
+      tournamentCode: "MALLORCA",
+      mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
+    },
+
+    // Challenger cluster: Girona, Barcelona, Madrid
+    {
+      id: "CHALLENGERS",
+      city: "Girona / Barcelona / Madrid",
+      countryCode: "ES",
+      category: "ATP CHALLENGER TOUR",
+      years: ["2025", "2024", "2023", "2022", "2021", "2020"],
+      tournamentCode: "CHALLENGER",
       mensLogo: "/images/stringer/tournament_logos/category_stamps/challenger_atp.webp",
       unifiedLogo: "/images/stringer/tournament_logos/challenger_tour_logo.webp",
+    },
+
+    // WTA 125s and WTA Tour examples (Biarritz, La Bisbal, Barcelona WTA125)
+    {
+      id: "WTA125S",
+      city: "Biarritz / La Bisbal / Barcelona",
+      countryCode: "ES",
+      category: "WTA 125",
+      years: ["2025", "2024"],
+      tournamentCode: "WTA125",
+      womensLogo: "/images/stringer/tournament_logos/category_stamps/125_wta.webp",
+      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
+    },
+
+    // ITF Wheelchair
+    {
+      id: "ITF_WC",
+      city: "Olot",
+      countryCode: "ES",
+      category: "ITF WHEELCHAIR TENNIS",
+      years: ["2025", "2024", "2023"],
+      tournamentCode: "ITF_WC",
+      unifiedLogo: "/images/stringer/tournament_logos/itf_wheelchair_logo.webp",
+    },
+
+    // ITF Juniors
+    {
+      id: "ITF_JR",
+      city: "Barcelona",
+      countryCode: "ES",
+      category: "ITF WORLD TENNIS TOUR JUNIORS",
+      years: ["2025", "2024", "2023"],
+      tournamentCode: "ITF_JR",
+      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_jr_logo.webp",
+    },
+
+    // RFET - Spanish Team Championships
+    {
+      id: "RFET",
+      city: "Sabadell / Tarragona / Barcelona",
+      countryCode: "ES",
+      category: "RFET - Campeonato de España por Equipos",
+      years: ["2025", "2024", "2023", "2022", "2021"],
+      tournamentCode: "RFET",
+      unifiedLogo: "/images/stringer/tournament_logos/rfet_logo.webp",
     },
   ]
 
@@ -189,6 +282,19 @@ const ExperienciaSection: React.FC = () => {
     return { code: selectedTournament.tournamentCode, year: "Unknown", path: imagePath }
   }
 
+  // Determine how many tournaments to show
+  const getVisibleTournaments = () => {
+    if (showAll) {
+      return tournaments
+    }
+    // Show 4 on desktop, 3 on mobile
+    const count = isMobile ? 3 : 4
+    return tournaments.slice(0, count)
+  }
+
+  const visibleTournaments = getVisibleTournaments()
+  const hasMoreTournaments = tournaments.length > (isMobile ? 3 : 4)
+
   return (
     <section id="experiencia" className={styles.section}>
       <div className={styles.container}>
@@ -198,7 +304,7 @@ const ExperienciaSection: React.FC = () => {
         </div>
 
         <div className={styles.grid}>
-          {tournaments.map((tournament) => (
+          {visibleTournaments.map((tournament) => (
             <div
               key={tournament.id}
               className={styles.card}
@@ -211,8 +317,8 @@ const ExperienciaSection: React.FC = () => {
                     <Image
                       src={tournament.mensLogo}
                       alt="Men's Tournament"
-                      width={80}
-                      height={80}
+                      width={60}
+                      height={60}
                       className={styles.logo}
                     />
                   </div>
@@ -222,8 +328,8 @@ const ExperienciaSection: React.FC = () => {
                     <Image
                       src={tournament.unifiedLogo}
                       alt="Tournament Logo"
-                      width={80}
-                      height={80}
+                      width={60}
+                      height={60}
                       className={styles.logo}
                     />
                   </div>
@@ -233,8 +339,8 @@ const ExperienciaSection: React.FC = () => {
                     <Image
                       src={tournament.womensLogo}
                       alt="Women's Tournament"
-                      width={80}
-                      height={80}
+                      width={60}
+                      height={60}
                       className={styles.logo}
                     />
                   </div>
@@ -266,6 +372,18 @@ const ExperienciaSection: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* Show More / Show Less Button */}
+        {hasMoreTournaments && (
+          <div className={styles.showMoreContainer}>
+            <button 
+              className={styles.showMoreButton}
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? t("experiencia.showLess") : t("experiencia.showMore")}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Carousel Modal */}

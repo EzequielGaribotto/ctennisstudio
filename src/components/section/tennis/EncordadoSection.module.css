@@ -6,7 +6,7 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 24px;
@@ -68,25 +68,45 @@
 .ctaButton {
   align-self: flex-start;
   padding: 0.875rem 1.75rem;
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  background-color: var(--whatsapp-green);
+  color: white;
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 1rem;
 }
 
 .ctaButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+  background-color: #1ea952;
+}
+
+.whatsappIcon {
+  font-size: 1.3rem;
 }
 
 .videoContent {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.stringerImage {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.stringerImage:hover {
+  transform: scale(1.02);
 }
 
 .videoPlaceholder {

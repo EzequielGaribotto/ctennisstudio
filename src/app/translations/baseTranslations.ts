@@ -15,7 +15,6 @@ export const baseTranslations = {
     },
     // Tooltip translations
     tooltips: {
-        github: "",
         linkedin: "",
         email: "",
         emailCopied: ""
@@ -23,7 +22,6 @@ export const baseTranslations = {
     // Footer translations
     footer: {
         disclaimer: "",
-        githubLink: ""
     },
     // Tennis studio sections
     hero: {
@@ -33,7 +31,9 @@ export const baseTranslations = {
     },
     experiencia: {
         title: "",
-        description: ""
+        description: "",
+        showMore: "",
+        showLess: ""
     },
     encordado: {
         title: "",

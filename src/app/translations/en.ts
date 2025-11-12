@@ -8,89 +8,89 @@ export const en: Translations = {
   },
   navigation: {
     inicio: "Home",
-    encordado: "Stringing",
-    equilibrado: "Balancing",
+    encordado: "Professional Stringing",
+    equilibrado: "Balancing and Repairs",
     cursos: "Courses",
     experiencia: "Experience"
   },
   tooltips: {
-    github: "Visit my GitHub profile",
     linkedin: "Connect with me on LinkedIn",
     email: "Copy email",
     emailCopied: "Copied!"
   },
   footer: {
     disclaimer: "© 2025 CTennis Studio.",
-    githubLink: "GitHub repo"
   },
   hero: {
     title: "CTennis Studio",
-    subtitle: "Professional Stringing and Racket Balancing",
-    description: "Specialized service in stringing and balancing tennis rackets with years of experience"
+    subtitle: "By Pablo Garibotto",
+    description: "Professional tennis racquet stringing, balancing and repair services with experience in ATP/WTA tournaments"
   },
   experiencia: {
-    title: "My Experience",
-    description: "Tournaments and competitions I have participated in"
+    title: "Professional Experience",
+    description: "Over two decades of experience working at the world's most prestigious tennis tournaments, participating in Masters 1000, ATP 500, ATP Challengers, World Tennis Tour and wheelchair tennis tournaments.",
+    showMore: "Show More",
+    showLess: "Show Less"
   },
   encordado: {
-    title: "Stringing Service",
-    description: "Professional racket stringing with high-quality strings",
-    cta: "Request Service",
+    title: "Professional Stringing",
+    description: "Professional stringing is essential to optimize your racquet's performance. We use ATP/WTA level equipment and customized tension calibration techniques for each player.",
+    cta: "Contact via WhatsApp",
     features: {
-      feature1: "Premium quality strings",
-      feature2: "Custom tension",
-      feature3: "Fast and professional service"
+      feature1: "Precision and Customization",
+      feature2: "ATP/WTA Level Equipment",
+      feature3: "Professional Adjustment and Tension Control"
     }
   },
   equilibrado: {
-    title: "Racket Balancing",
-    description: "Professional balancing service to optimize your racket performance",
+    title: "Balancing and Repairs",
+    description: "Balancing services optimize your racquet's balance point to improve your game. We offer three service levels adapted to your needs.",
     services: {
       set: {
-        title: "Set Balancing",
-        description: "Complete balancing of your racket to improve control",
-        price: "€30"
+        title: "SET",
+        description: "Quick adjustment for a specific match",
+        price: "€15"
       },
       match: {
-        title: "Match Balancing",
-        description: "Precise adjustment of your racket balance",
+        title: "MATCH",
+        description: "Complete optimization with detailed analysis",
         price: "€25"
       },
       point: {
-        title: "Point Balancing",
-        description: "Weight and balance optimization point by point",
-        price: "€20"
+        title: "POINT",
+        description: "Express service during competition",
+        price: "€10"
       }
     }
   },
   cursos: {
-    title: "Stringing Courses",
-    description: "Learn the art of professional racket stringing",
+    title: "Professional Courses",
+    description: "Training program in racquet stringing and maintenance. Learn professional techniques used in the ATP/WTA circuit.",
     cta: "Enroll",
     courses: {
       base: {
-        name: "Basic Course",
-        description: "Fundamentals of stringing",
-        content1: "Introduction to strings",
-        content2: "Basic stringing techniques",
-        content3: "Machine maintenance",
-        price: "€150"
+        name: "Foundation",
+        description: "Beginner Level",
+        content1: "Stringing fundamentals",
+        content2: "Professional machine handling",
+        content3: "String selection",
+        price: "€199"
       },
       avance: {
-        name: "Advanced Course",
-        description: "Professional techniques",
-        content1: "Advanced stringing patterns",
-        content2: "Custom tension adjustment",
-        content3: "Problem diagnosis",
-        price: "€250"
+        name: "Progress",
+        description: "Intermediate Level",
+        content1: "Advanced stringing techniques",
+        content2: "Tension calibration",
+        content3: "Player customization",
+        price: "€349"
       },
       maestria: {
-        name: "Mastery Course",
-        description: "Expert level",
-        content1: "Professional balancing",
-        content2: "Complete customization",
-        content3: "Professional certification",
-        price: "€400"
+        name: "Master",
+        description: "Advanced Level",
+        content1: "ATP/WTA competition stringing",
+        content2: "Biomechanical analysis",
+        content3: "Personalized player service",
+        price: "€499"
       }
     }
   }

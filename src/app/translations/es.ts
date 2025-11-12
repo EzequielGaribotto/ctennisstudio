@@ -11,89 +11,89 @@ export const es: Translations = {
   },
   navigation: {
     inicio: "Inicio",
-    encordado: "Encordado",
-    equilibrado: "Equilibrado",
+    encordado: "Encordado Profesional",
+    equilibrado: "Equilibrado y Reparación",
     cursos: "Cursos",
     experiencia: "Experiencia"
   },
   tooltips: {
-    github: "Visita mi perfil de GitHub",
     linkedin: "Conecta conmigo en LinkedIn",
     email: "Copiar email",
     emailCopied: "✓ ¡Copiado!"
   },
   footer: {
     disclaimer: "© 2025 CTennis Studio.",
-    githubLink: "GitHub repo"
   },
   hero: {
     title: "CTennis Studio",
-    subtitle: "Encordado Profesional y Equilibrado de Raquetas",
-    description: "Servicio especializado en encordado y equilibrado de raquetas de tenis con años de experiencia"
+    subtitle: "By Pablo Garibotto",
+    description: "Servicio profesional de encordado, equilibrado y reparación de raquetas de tenis con experiencia en torneos ATP/WTA"
   },
   experiencia: {
-    title: "Mi Experiencia",
-    description: "Torneos y competiciones en los que he participado"
+    title: "Experiencia Profesional",
+    description: "Más de dos décadas de experiencia trabajando en los torneos de tenis más prestigiosos del mundo, participando en Masters 1000, ATP 500, ATP Challengers, World Tennis Tour y torneos de tenis adaptado.",
+    showMore: "Ver Más",
+    showLess: "Ver Menos"
   },
   encordado: {
-    title: "Servicio de Encordado",
-    description: "Encordado profesional de raquetas con cuerdas de alta calidad",
-    cta: "Solicitar Servicio",
+    title: "Encordado Profesional",
+    description: "El encordado profesional es fundamental para optimizar el rendimiento de tu raqueta. Utilizamos equipamiento de nivel ATP/WTA y técnicas de calibración de tensión personalizadas para cada jugador.",
+    cta: "Contactar por WhatsApp",
     features: {
-      feature1: "Cuerdas de primera calidad",
-      feature2: "Tensión personalizada",
-      feature3: "Servicio rápido y profesional"
+      feature1: "Precisión y Personalización",
+      feature2: "Equipamiento de Nivel ATP/WTA",
+      feature3: "Ajuste Profesional y Control de Tensión"
     }
   },
   equilibrado: {
-    title: "Equilibrado de Raquetas",
-    description: "Servicio profesional de equilibrado para optimizar el rendimiento de tu raqueta",
+    title: "Equilibrado y Reparación",
+    description: "Los servicios de equilibrado optimizan el punto de balance de tu raqueta para mejorar tu juego. Ofrecemos tres niveles de servicio adaptados a tu necesidad.",
     services: {
       set: {
-        title: "Equilibrado por Set",
-        description: "Equilibrado completo de tu raqueta para mejorar el control",
-        price: "€30"
+        title: "SET",
+        description: "Ajuste rápido para un partido específico",
+        price: "€15"
       },
       match: {
-        title: "Equilibrado por Match",
-        description: "Ajuste preciso del balance de tu raqueta",
+        title: "MATCH",
+        description: "Optimización completa con análisis detallado",
         price: "€25"
       },
       point: {
-        title: "Equilibrado por Point",
-        description: "Optimización del peso y balance punto por punto",
-        price: "€20"
+        title: "POINT",
+        description: "Servicio express durante la competición",
+        price: "€10"
       }
     }
   },
   cursos: {
-    title: "Cursos de Encordado",
-    description: "Aprende el arte del encordado profesional de raquetas",
+    title: "Cursos Profesionales",
+    description: "Programa de formación en encordado y mantenimiento de raquetas. Aprende las técnicas profesionales utilizadas en el circuito ATP/WTA.",
     cta: "Inscribirse",
     courses: {
       base: {
-        name: "Curso Básico",
-        description: "Fundamentos del encordado",
-        content1: "Introducción a las cuerdas",
-        content2: "Técnicas básicas de encordado",
-        content3: "Mantenimiento de la máquina",
-        price: "€150"
+        name: "Base",
+        description: "Nivel Principiante",
+        content1: "Fundamentos de encordado",
+        content2: "Manejo de máquinas profesionales",
+        content3: "Selección de cuerdas",
+        price: "€199"
       },
       avance: {
-        name: "Curso Avanzado",
-        description: "Técnicas profesionales",
-        content1: "Patrones de encordado avanzados",
-        content2: "Ajuste de tensión personalizado",
-        content3: "Diagnóstico de problemas",
-        price: "€250"
+        name: "Avance",
+        description: "Nivel Intermedio",
+        content1: "Técnicas avanzadas de encordado",
+        content2: "Calibración de tensión",
+        content3: "Personalización para jugadores",
+        price: "€349"
       },
       maestria: {
-        name: "Curso Maestría",
-        description: "Nivel experto",
-        content1: "Equilibrado profesional",
-        content2: "Personalización completa",
-        content3: "Certificación profesional",
-        price: "€400"
+        name: "Maestría",
+        description: "Nivel Avanzado",
+        content1: "Encordado de competición ATP/WTA",
+        content2: "Análisis biomecánico",
+        content3: "Servicio personalizado a jugadores",
+        price: "€499"
       }
     }
   }
