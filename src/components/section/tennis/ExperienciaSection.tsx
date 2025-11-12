@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import ReactCountryFlag from "react-country-flag"
@@ -21,6 +21,9 @@ interface Tournament {
 const ExperienciaSection: React.FC = () => {
   const { t } = useTranslation()
   const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null)
+  const [hoveredTournament, setHoveredTournament] = useState<Tournament | null>(null)
+  const [isCarouselLocked, setIsCarouselLocked] = useState(false)
+  const [hoveredCardRect, setHoveredCardRect] = useState<DOMRect | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showAll, setShowAll] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -28,6 +31,16 @@ const ExperienciaSection: React.FC = () => {
   const [progress, setProgress] = useState(0)
   const [isCollapsing, setIsCollapsing] = useState(false)
   const gridRef = useRef<HTMLDivElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  
+  // Dragging and resizing state
+  const [isDragging, setIsDragging] = useState(false)
+  const [isResizing, setIsResizing] = useState(false)
+  const [carouselPosition, setCarouselPosition] = useState({ x: 0, y: 0 })
+  const [carouselSize, setCarouselSize] = useState({ width: 400, height: 700 })
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 })
 
   // Detect if we're on mobile
   useEffect(() => {
@@ -56,6 +69,15 @@ const ExperienciaSection: React.FC = () => {
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [selectedTournament])
+
+  // Cleanup hover timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+      }
+    }
+  }, [])
 
   // Preload all tournament images immediately
   useEffect(() => {
@@ -89,9 +111,8 @@ const ExperienciaSection: React.FC = () => {
           setCurrentImageIndex((currentIdx) => {
             const nextIdx = currentIdx + 1
             if (nextIdx >= images.length) {
-              // Close carousel when all images are viewed
-              handleCloseCarousel()
-              return currentIdx
+              // Loop back to first image instead of closing
+              return 0
             }
             return nextIdx
           })
@@ -316,26 +337,174 @@ const ExperienciaSection: React.FC = () => {
     return images
   }
 
-  const handleCardClick = (tournament: Tournament) => {
+  // Drag handlers
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    if (isMobile) return // Disable on mobile
+    
+    setIsDragging(true)
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
+    setDragStart({ x: clientX - carouselPosition.x, y: clientY - carouselPosition.y })
+  }
+
+  const handleDrag = useCallback((e: MouseEvent | TouchEvent) => {
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
+    
+    setCarouselPosition({
+      x: clientX - dragStart.x,
+      y: clientY - dragStart.y
+    })
+  }, [dragStart.x, dragStart.y])
+
+  const handleDragEnd = () => {
+    setIsDragging(false)
+  }
+
+  // Resize handlers
+  const handleResizeStart = (e: React.MouseEvent | React.TouchEvent) => {
+    if (isMobile) return // Disable on mobile
+    
+    e.stopPropagation()
+    setIsResizing(true)
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
+    setResizeStart({ 
+      x: clientX, 
+      y: clientY, 
+      width: carouselSize.width, 
+      height: carouselSize.height 
+    })
+  }
+
+  const handleResize = useCallback((e: MouseEvent | TouchEvent) => {
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
+    
+    const deltaX = clientX - resizeStart.x
+    
+    // Use the larger delta to maintain aspect ratio (9:16 for stories)
+    const aspectRatio = 9 / 16
+    let newWidth = resizeStart.width + deltaX
+    let newHeight = newWidth / aspectRatio
+    
+    // Clamp to reasonable sizes
+    newWidth = Math.max(300, Math.min(800, newWidth))
+    newHeight = newWidth / aspectRatio
+    
+    setCarouselSize({ width: newWidth, height: newHeight })
+  }, [resizeStart.x, resizeStart.width])
+
+  const handleResizeEnd = () => {
+    setIsResizing(false)
+  }
+
+  // Add drag and resize listeners
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener('mousemove', handleDrag)
+      window.addEventListener('mouseup', handleDragEnd)
+      window.addEventListener('touchmove', handleDrag)
+      window.addEventListener('touchend', handleDragEnd)
+      
+      return () => {
+        window.removeEventListener('mousemove', handleDrag)
+        window.removeEventListener('mouseup', handleDragEnd)
+        window.removeEventListener('touchmove', handleDrag)
+        window.removeEventListener('touchend', handleDragEnd)
+      }
+    }
+  }, [isDragging, handleDrag])
+
+  useEffect(() => {
+    if (isResizing) {
+      window.addEventListener('mousemove', handleResize)
+      window.addEventListener('mouseup', handleResizeEnd)
+      window.addEventListener('touchmove', handleResize)
+      window.addEventListener('touchend', handleResizeEnd)
+      
+      return () => {
+        window.removeEventListener('mousemove', handleResize)
+        window.removeEventListener('mouseup', handleResizeEnd)
+        window.removeEventListener('touchmove', handleResize)
+        window.removeEventListener('touchend', handleResizeEnd)
+      }
+    }
+  }, [isResizing, handleResize])
+
+  const handleCardClick = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
+    
+    // Clear any pending hide timeouts
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+    
+    const rect = event.currentTarget.getBoundingClientRect()
+    setHoveredCardRect(rect)
+    setSelectedTournament(tournament)
+    setIsCarouselLocked(true)
+    setCurrentImageIndex(0)
+    setProgress(0)
+    setIsPaused(false)
+  }
+
+  const handleCardHover = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
+    if (isCarouselLocked) return // Don't change on hover if locked
+    
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+    
+    const rect = event.currentTarget.getBoundingClientRect()
+    setHoveredCardRect(rect)
+    setHoveredTournament(tournament)
     setSelectedTournament(tournament)
     setCurrentImageIndex(0)
     setProgress(0)
     setIsPaused(false)
+  }
+
+  const handleCardLeave = () => {
+    if (isCarouselLocked) return
     
-    // Push a new history state to handle back button
-    window.history.pushState({ modal: true }, '')
+    // Immediately hide carousel when leaving card (no delay for smooth horizontal scanning)
+    setHoveredTournament(null)
+    setSelectedTournament(null)
+    setHoveredCardRect(null)
+  }
+
+  const handleCarouselHover = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+  }
+
+  const handleCarouselLeave = () => {
+    if (isCarouselLocked) return
+    
+    // Immediately hide when leaving carousel too
+    setHoveredTournament(null)
+    setSelectedTournament(null)
+    setHoveredCardRect(null)
   }
 
   const handleCloseCarousel = () => {
+    // Clear any pending timeouts
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+    
     setSelectedTournament(null)
+    setHoveredTournament(null)
+    setIsCarouselLocked(false)
+    setHoveredCardRect(null)
     setCurrentImageIndex(0)
     setProgress(0)
     setIsPaused(false)
-    
-    // Remove the history state we added
-    if (window.history.state?.modal) {
-      window.history.back()
-    }
   }
 
   const handleNextImage = () => {
@@ -543,7 +712,9 @@ const ExperienciaSection: React.FC = () => {
             <div
               key={tournament.id}
               className={styles.card}
-              onClick={() => handleCardClick(tournament)}
+              onClick={(e) => handleCardClick(tournament, e)}
+              onMouseEnter={(e) => handleCardHover(tournament, e)}
+              onMouseLeave={handleCardLeave}
             >
               {/* Row 1: Tournament Logos */}
               <div className={styles.logosRow}>
@@ -629,8 +800,59 @@ const ExperienciaSection: React.FC = () => {
 
       {/* Carousel Modal - Instagram Stories Style */}
       {selectedTournament && (
-        <div className={styles.carouselModal} onClick={handleCloseCarousel}>
-          <div className={styles.storiesContainer} onClick={(e) => e.stopPropagation()}>
+        <div 
+          className={`${styles.carouselModal} ${isCarouselLocked ? styles.locked : styles.hover}`}
+          onClick={handleCloseCarousel}
+          onMouseEnter={handleCarouselHover}
+          onMouseLeave={handleCarouselLeave}
+          style={hoveredCardRect && !isCarouselLocked ? (() => {
+            const windowWidth = window.innerWidth
+            const cardCenterX = hoveredCardRect.left + (hoveredCardRect.width / 2)
+            const isRightSide = cardCenterX > windowWidth / 2
+            
+            // Calculate position to show carousel next to card
+            const top = hoveredCardRect.top + window.scrollY
+            const left = isRightSide 
+              ? hoveredCardRect.left - carouselSize.width - 20 
+              : hoveredCardRect.right + 20
+            
+            return {
+              position: 'fixed',
+              top: `${top - window.scrollY}px`,
+              left: `${left}px`,
+              right: 'auto',
+              bottom: 'auto',
+              width: 'auto',
+              height: 'auto',
+              transform: 'none',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-start',
+              padding: 0
+            }
+          })() : {}}
+        >
+          <div 
+            ref={carouselRef}
+            className={styles.storiesContainer} 
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={isCarouselLocked ? handleDragStart : undefined}
+            onTouchStart={isCarouselLocked ? handleDragStart : undefined}
+            style={{
+              width: `${carouselSize.width}px`,
+              height: `${carouselSize.height}px`,
+              transform: isCarouselLocked && !isMobile ? `translate(${carouselPosition.x}px, ${carouselPosition.y}px)` : 'none',
+              cursor: isCarouselLocked && isDragging ? 'grabbing' : isCarouselLocked ? 'grab' : 'default',
+              position: 'relative'
+            }}
+          >
+            {/* Resize handle (desktop only, when locked) */}
+            {!isMobile && isCarouselLocked && (
+              <div 
+                className={styles.resizeHandle}
+                onMouseDown={handleResizeStart}
+                onTouchStart={handleResizeStart}
+              />
+            )}
             {/* Progress bars at top */}
             <div className={styles.progressBarsContainer}>
               {getTournamentImages(selectedTournament).map((_, idx) => (
