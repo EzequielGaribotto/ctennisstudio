@@ -70,8 +70,19 @@
   margin-right: -12px;
 }
 
+/* Hide cards 5+ by default (when not expanded) */
+.grid .card:nth-child(n+5) {
+  display: none;
+}
+
+/* Show all cards when expanded */
+.grid.expanded .card:nth-child(n+5) {
+  display: flex;
+}
+
 /* Collapsing state - fade out extra cards with reversed order */
 .grid.collapsing .card:nth-child(n+5) {
+  display: flex;
   animation: fadeOutDown 0.5s ease-out forwards;
 }
 
@@ -190,8 +201,8 @@
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 8px;
 }
@@ -239,7 +250,8 @@
   font-size: 1.125rem;
   color: var(--muted-foreground);
   font-weight: 500;
-  font-family: monospace;
+  font-family: inherit;
+  text-align: center;
 }
 
 /* Carousel Modal - Instagram Stories Style */
@@ -492,8 +504,8 @@
   }
 
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
   }
 
   .logosRow {
@@ -512,6 +524,7 @@
 
   .years {
     font-size: 0.8rem;
+    text-align: center;
   }
 
   .showMoreButton {
@@ -526,7 +539,7 @@
 
   .storiesContainer {
     max-width: 100%;
-    height: auto;
+    height: calc(100vh - 40px);
     max-height: calc(100vh - 40px);
     border-radius: 12px;
   }

@@ -414,13 +414,8 @@ const ExperienciaSection: React.FC = () => {
 
   // Determine how many tournaments to show
   const getVisibleTournaments = () => {
-    // When collapsing, keep showing all items until animation completes
-    if (showAll || isCollapsing) {
-      return tournaments
-    }
-    // Show 4 on desktop, 4 on mobile (2x2 grid)
-    const count = isMobile ? 4 : 4
-    return tournaments.slice(0, count)
+    // Always render all tournaments, but use CSS to hide extras
+    return tournaments
   }
 
   // Handle show more/less with auto-scroll
@@ -428,9 +423,12 @@ const ExperienciaSection: React.FC = () => {
     const section = document.getElementById('experiencia')
     
     if (!showAll) {
-      // Expanding - show items first, then scroll to first card
+      // Expanding - add expanded class and show items first, then scroll to first card
       setShowAll(true)
       setIsCollapsing(false)
+      if (gridRef.current) {
+        gridRef.current.classList.add(styles.expanded)
+      }
       setTimeout(() => {
         if (section) {
           // Find the first tournament card
@@ -492,6 +490,7 @@ const ExperienciaSection: React.FC = () => {
           setShowAll(false)
           setIsCollapsing(false)
           gridRef.current?.classList.remove(styles.collapsing)
+          gridRef.current?.classList.remove(styles.expanded)
         }, 900)
       } else {
         setShowAll(false)
