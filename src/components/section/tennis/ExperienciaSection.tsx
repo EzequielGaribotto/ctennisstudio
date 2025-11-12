@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import ReactCountryFlag from "react-country-flag"
@@ -26,6 +26,8 @@ const ExperienciaSection: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [isCollapsing, setIsCollapsing] = useState(false)
+  const gridRef = useRef<HTMLDivElement>(null)
 
   // Detect if we're on mobile
   useEffect(() => {
@@ -38,6 +40,22 @@ const ExperienciaSection: React.FC = () => {
     
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (selectedTournament) {
+        event.preventDefault()
+        setSelectedTournament(null)
+        setCurrentImageIndex(0)
+        setProgress(0)
+        setIsPaused(false)
+      }
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [selectedTournament])
 
   // Preload all tournament images immediately
   useEffect(() => {
@@ -303,6 +321,9 @@ const ExperienciaSection: React.FC = () => {
     setCurrentImageIndex(0)
     setProgress(0)
     setIsPaused(false)
+    
+    // Push a new history state to handle back button
+    window.history.pushState({ modal: true }, '')
   }
 
   const handleCloseCarousel = () => {
@@ -310,6 +331,11 @@ const ExperienciaSection: React.FC = () => {
     setCurrentImageIndex(0)
     setProgress(0)
     setIsPaused(false)
+    
+    // Remove the history state we added
+    if (window.history.state?.modal) {
+      window.history.back()
+    }
   }
 
   const handleNextImage = () => {
@@ -388,7 +414,8 @@ const ExperienciaSection: React.FC = () => {
 
   // Determine how many tournaments to show
   const getVisibleTournaments = () => {
-    if (showAll) {
+    // When collapsing, keep showing all items until animation completes
+    if (showAll || isCollapsing) {
       return tournaments
     }
     // Show 4 on desktop, 4 on mobile (2x2 grid)
@@ -401,44 +428,108 @@ const ExperienciaSection: React.FC = () => {
     const section = document.getElementById('experiencia')
     
     if (!showAll) {
-      // Expanding - scroll to top of section
+      // Expanding - show items first, then scroll to first card
       setShowAll(true)
+      setIsCollapsing(false)
       setTimeout(() => {
         if (section) {
-          const headerOffset = 120 // Account for fixed header
-          const elementPosition = section.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+          // Find the first tournament card
+          const firstCard = section.querySelector('[class*="card"]')
+          if (firstCard) {
+            const headerOffset = 120 // Account for fixed header
+            const cardPosition = firstCard.getBoundingClientRect().top
+            const offsetPosition = cardPosition + window.pageYOffset - headerOffset
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            })
+          }
+        }
+      }, 100)
+    } else {
+      // Collapsing - animate cards out, then collapse height
+      if (gridRef.current && section) {
+        // Lock current height before starting collapse
+        const currentHeight = gridRef.current.scrollHeight
+        gridRef.current.style.maxHeight = `${currentHeight}px`
+        
+        // Force reflow
+        void gridRef.current.offsetHeight
+        
+        // Add collapsing class to trigger card animations
+        gridRef.current.classList.add(styles.collapsing)
+        setIsCollapsing(true)
+        
+        const firstCard = section.querySelector('[class*="card"]')
+        if (firstCard) {
+          const headerOffset = 120
+          const cardPosition = firstCard.getBoundingClientRect().top
+          const offsetPosition = cardPosition + window.pageYOffset - headerOffset
           
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
           })
         }
-      }, 100)
-    } else {
-      // Collapsing - scroll to top of section first, then collapse
-      if (section) {
-        const headerOffset = 120
-        const elementPosition = section.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
         
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
+        // Start collapsing height after a short delay
+        setTimeout(() => {
+          // Calculate new height (only first 4 cards)
+          const cards = gridRef.current?.children
+          if (cards && gridRef.current) {
+            // Approximate height for 4 cards
+            const cardHeight = (cards[0] as HTMLElement).offsetHeight
+            const gap = 20 // 1.25rem gap
+            const rows = isMobile ? 2 : 1 // 2 rows on mobile, 1 row on desktop
+            const newHeight = (cardHeight * rows) + (gap * (rows - 1))
+            gridRef.current.style.maxHeight = `${newHeight}px`
+          }
+        }, 100)
         
-        // Wait for scroll to complete before collapsing
+        // Wait for animations to complete, then update state
         setTimeout(() => {
           setShowAll(false)
-        }, 500)
+          setIsCollapsing(false)
+          gridRef.current?.classList.remove(styles.collapsing)
+        }, 900)
       } else {
         setShowAll(false)
+        setIsCollapsing(false)
       }
     }
   }
 
   const visibleTournaments = getVisibleTournaments()
   const hasMoreTournaments = tournaments.length > 4
+
+  // Manage grid height animation
+  useEffect(() => {
+    if (gridRef.current) {
+      // Small delay to ensure DOM is updated
+      setTimeout(() => {
+        if (gridRef.current) {
+          const newHeight = gridRef.current.scrollHeight
+          gridRef.current.style.maxHeight = `${newHeight}px`
+        }
+      }, 50)
+    }
+  }, [showAll, isCollapsing, visibleTournaments.length])
+
+  // Add 'loaded' class to cards after initial animation
+  useEffect(() => {
+    if (gridRef.current) {
+      const cards = gridRef.current.querySelectorAll(`.${styles.card}`)
+      // Wait for longest animation delay (0.6s) + animation duration (0.5s)
+      const timer = setTimeout(() => {
+        cards.forEach(card => {
+          card.classList.add(styles.loaded)
+        })
+      }, 1100)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [])
 
   return (
     <section id="experiencia" className={styles.section}>
@@ -448,7 +539,7 @@ const ExperienciaSection: React.FC = () => {
           <p className={styles.description}>{t("experiencia.description")}</p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={styles.grid} ref={gridRef}>
           {visibleTournaments.map((tournament) => (
             <div
               key={tournament.id}

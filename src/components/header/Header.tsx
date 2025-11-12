@@ -32,9 +32,13 @@ const Header: React.FC = () => {
         targetElement = profileImage || element
         offset = 100 // Offset for header
       } else {
-        // For other sections, get the title element for precise alignment
-        const titleElement = element.querySelector('h2, h1, [class*="title"]') as HTMLElement
-        targetElement = titleElement || element
+        // For other sections, scroll to the container (white card)
+        const container = element.querySelector('[class*="container"]') as HTMLElement
+        targetElement = container || element
+        
+        // Different offset for mobile vs desktop
+        const isMobile = window.innerWidth <= 768
+        offset = isMobile ? 80 : 120
       }
       
       // Smooth scroll to element without updating URL

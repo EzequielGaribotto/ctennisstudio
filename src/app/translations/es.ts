@@ -7,14 +7,14 @@ export const es: Translations = {
   ...baseTranslations,
   meta: {
     title: "CTennis Studio - Encordado y Equilibrado Profesional",
-    description: "Servicio especializado en encordado y equilibrado de raquetas de tenis con años de experiencia."
+    description: "Servicio especializado en encordado y equilibrado de raquetas de tenis."
   },
   navigation: {
     inicio: "Inicio",
     encordado: "Encordado Profesional",
-    equilibrado: "Equilibrado y Reparación",
-    cursos: "Cursos",
-    experiencia: "Experiencia"
+    equilibrado: "Equilibrado de raquetas de tenis",
+    cursos: "Formaciones y Cursos",
+    experiencia: "Tour Experience / Pablo Garibotto"
   },
   tooltips: {
     linkedin: "Conecta conmigo en LinkedIn",
@@ -28,64 +28,66 @@ export const es: Translations = {
   hero: {
     title: "CTennis Studio",
     subtitle: "By Pablo Garibotto",
-    description: "Servicio profesional de encordado, equilibrado y reparación de raquetas de tenis con experiencia en torneos ATP/WTA"
+    description: "Servicio profesional de encordado, equilibrado y reparación de raquetas de tenis"
   },
   experiencia: {
     title: "Experiencia Profesional",
-    description: "Más de dos décadas de experiencia trabajando en los torneos de tenis más prestigiosos del mundo, participando en Masters 1000, ATP 500, ATP Challengers, World Tennis Tour y torneos de tenis adaptado.",
+    description: `Más de 15 años en el circuito profesional.
+              En Custom Tennis Studio, cada raqueta se ajusta con la misma precisión que en un torneo ATP o WTA.
+              Fundado por Pablo Garibotto, encordador oficial en torneos ATP-WTA como Montecarlo, Miami y Madrid.`,
     showMore: "Ver más",
     showLess: "Ver menos"
   },
   encordado: {
     title: "Encordado Profesional",
-    description: "El encordado profesional es fundamental para optimizar el rendimiento de tu raqueta. Utilizamos equipamiento de nivel ATP/WTA y técnicas de calibración de tensión personalizadas para cada jugador.",
+    description: "Un encordado profesional es fundamental para optimizar el rendimiento de tu raqueta. En CTS utilizamos las mismas técnicas, métodos y maquinas de encordar que se utilizan actualmente en el circuito de torneos ATP/WTA .",
     cta: "Contactar por WhatsApp",
     features: {
-      feature1: "Precisión y Personalización",
-      feature2: "Equipamiento de Nivel ATP/WTA",
-      feature3: "Ajuste Profesional y Control de Tensión"
+      feature1: "Precisión y Ajuste profesional",
+      feature2: "Herramientas y maquinas de Nivel ATP/WTA",
+      feature3: "Asesoramiento personalizado para cada jugador/a"
     }
   },
   equilibrado: {
     title: "Equilibrado y Reparación",
-    description: "Los servicios de equilibrado optimizan el punto de balance de tu raqueta para mejorar tu juego. Ofrecemos tres niveles de servicio adaptados a tu necesidad.",
+    description: "Nuestros servicios de equilibrado optimizan la configuracion de tu raqueta para mejorar tu juego. Ofrecemos tres niveles de servicio adaptados a tu necesidad.",
     services: {
       set: {
         title: "SET",
-        description: "Ajuste rápido para un partido específico",
-        price: "€15"
+        description: "Aumentar el peso de tu raqueta de tenis",
+        price: "A partir de 19€"
       },
       match: {
         title: "MATCH",
-        description: "Optimización completa con análisis detallado",
-        price: "€25"
+        description: "Igualar una raqueta a otra a partir de una configuracion personalizada",
+        price: "A partir de 49€"
       },
       point: {
         title: "POINT",
-        description: "Servicio express durante la competición",
+        description: "Modificar el balance de tu raqueta de tenis",
         price: "€10"
       }
     }
   },
   cursos: {
-    title: "Cursos Profesionales",
-    description: "Programa de formación en encordado y mantenimiento de raquetas. Aprende las técnicas profesionales utilizadas en el circuito ATP/WTA.",
+    title: "Cursos y Formaciones",
+    description: "Programa de formación en encordado y equilibrado y reparación de raquetas de tenis. Aprende las técnicas profesionales utilizadas en el circuito ATP/WTA.",
     cta: "Inscribirse",
     courses: {
       base: {
         name: "Base",
         description: "Nivel Principiante",
         content1: "Fundamentos de encordado",
-        content2: "Manejo de máquinas profesionales",
-        content3: "Selección de cuerdas",
-        price: "€199"
+        content2: "Manejo de herramientas y máquinas profesionales",
+        content3: "Encordado a 2 y 4 nudos",
+        price: "€249"
       },
       avance: {
         name: "Avance",
         description: "Nivel Intermedio",
         content1: "Técnicas avanzadas de encordado",
-        content2: "Calibración de tensión",
-        content3: "Personalización para jugadores",
+        content2: "Peso balance y swingweight",
+        content3: "Reparaciones y cambios de grommets y grips",
         price: "€349"
       },
       maestria: {

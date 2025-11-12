@@ -16,6 +16,54 @@
   transform: scale(1.05);
 }
 
+.flagContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  height: 3.2em;
+  width: 2.5em;
+  justify-content: center;
+}
+
+.activeFlag {
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  transform: translateY(-0.4em) scale(1);
+  position: absolute;
+  z-index: 2;
+  filter: grayscale(0%) brightness(1);
+}
+
+.inactiveFlag {
+  transition: all 0.5s ease-in-out;
+  opacity: 0.4;
+  filter: grayscale(100%) brightness(1.5);
+  transform: translateY(1.2em) scale(0.7);
+  position: absolute;
+  z-index: 1;
+}
+
+.languageSwitcher.animating .activeFlag {
+  opacity: 0.4;
+  filter: grayscale(100%) brightness(1.5);
+  transform: translateY(1.2em) scale(0.7);
+  z-index: 1;
+}
+
+.languageSwitcher.animating .inactiveFlag {
+  opacity: 1;
+  filter: grayscale(0%) brightness(1);
+  transform: translateY(-0.4em) scale(1.43);
+  z-index: 2;
+}
+
+.languageSwitcher:hover .inactiveFlag {
+  opacity: 0.6;
+  transform: translateY(1.2em) scale(0.75);
+}
+
 .flag {
   font-size: 1.8rem;
   line-height: 1;

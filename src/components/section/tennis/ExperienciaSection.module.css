@@ -32,12 +32,22 @@
   content: "";
   position: absolute;
   bottom: -10px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   height: 4px;
   background: linear-gradient(90deg, #000000, var(--primary));
   border-radius: 2px;
   animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .description {
@@ -53,6 +63,37 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   margin-top: 2rem;
+  padding: 12px;
+  transition: max-height 0.8s ease-in-out, opacity 0.3s ease;
+  overflow: hidden;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+/* Collapsing state - fade out extra cards with reversed order */
+.grid.collapsing .card:nth-child(n+5) {
+  animation: fadeOutDown 0.5s ease-out forwards;
+}
+
+/* Reverse delays for bottom-to-top, right-to-left collapse */
+.grid.collapsing .card:nth-child(5) { animation-delay: 0.35s; }
+.grid.collapsing .card:nth-child(6) { animation-delay: 0.3s; }
+.grid.collapsing .card:nth-child(7) { animation-delay: 0.25s; }
+.grid.collapsing .card:nth-child(8) { animation-delay: 0.2s; }
+.grid.collapsing .card:nth-child(9) { animation-delay: 0.15s; }
+.grid.collapsing .card:nth-child(10) { animation-delay: 0.1s; }
+.grid.collapsing .card:nth-child(11) { animation-delay: 0.05s; }
+.grid.collapsing .card:nth-child(12) { animation-delay: 0s; }
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
 
 .card {
@@ -67,6 +108,46 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  /* Only animate on initial load */
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Remove animation after initial load */
+.card.loaded {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Default staggered animation for expanding */
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.2s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.3s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
+.card:nth-child(8) { animation-delay: 0.4s; }
+.card:nth-child(9) { animation-delay: 0.45s; }
+.card:nth-child(10) { animation-delay: 0.5s; }
+.card:nth-child(11) { animation-delay: 0.55s; }
+.card:nth-child(12) { animation-delay: 0.6s; }
+
+/* Override animation when collapsing - set all cards to no animation first */
+.grid.collapsing .card {
+  animation: none;
+  opacity: 1;
 }
 
 .card::before {
@@ -171,6 +252,7 @@
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.2s ease;
+  padding: 0;
 }
 
 .storiesContainer {
@@ -234,8 +316,8 @@
 }
 
 .tournamentLogoSmall {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: white;
   display: flex;
@@ -261,13 +343,13 @@
 .tournamentName {
   color: white;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .tournamentYear {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -392,6 +474,10 @@
     font-size: 2rem;
   }
 
+  .title::after {
+    width: auto;
+  }
+
   .description {
     font-size: 1rem;
   }
@@ -434,10 +520,14 @@
   }
 
   /* Stories mobile adjustments */
+  .carouselModal {
+    padding: 20px;
+  }
+
   .storiesContainer {
-    max-width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+    max-width: 100%;
+    height: auto;
+    max-height: calc(100vh - 40px);
     border-radius: 12px;
   }
 
@@ -455,16 +545,16 @@
   }
 
   .tournamentLogoSmall {
-    width: 32px;
-    height: 32px;
+    width: 56px;
+    height: 56px;
   }
 
   .tournamentName {
-    font-size: 0.85rem;
+    font-size: 1.15rem;
   }
 
   .tournamentYear {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 
   .tapIndicator {
