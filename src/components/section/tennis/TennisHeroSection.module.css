@@ -183,13 +183,13 @@
 @media (max-width: 768px) {
   .heroSection {
     min-height: auto;
-    padding: 8rem 1rem 3rem;
+    padding: 5rem 1rem 3rem;
   }
 
   .heroContent {
     flex-direction: column;
     gap: 2rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 
   .profileImageContainer {

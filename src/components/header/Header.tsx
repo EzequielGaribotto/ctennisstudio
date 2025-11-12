@@ -23,9 +23,16 @@ const Header: React.FC = () => {
     e.preventDefault()
     const element = document.getElementById(sectionId)
     if (element) {
+      // Get the first title element within the section for precise alignment
+      const titleElement = element.querySelector('h2, h1, [class*="title"]')
+      const targetElement = titleElement || element
+      
+      // Calculate offset to align section title with top of viewport
+      const offset = sectionId === "inicio" ? 0 : 120 // No offset for hero, 120px for other sections
+      
       // Smooth scroll to element without updating URL
       window.scrollTo({
-        top: element.offsetTop - 100, // Offset for header height
+        top: targetElement.getBoundingClientRect().top + window.pageYOffset - offset,
         behavior: "smooth",
       })
       // Close mobile menu if open
@@ -154,8 +161,11 @@ const Header: React.FC = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ''}`}>
-        <div className={styles.mobileMenuContent}>
+      <div 
+        className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+      >
+        <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
           <nav>
             <ul className={styles.mobileNavList}>
               <li className={styles.mobileNavItem}>

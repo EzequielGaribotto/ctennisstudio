@@ -191,13 +191,22 @@
 .mobileMenu {
   display: none;
   position: fixed;
-  top: 80px;
-  right: 10px;
-  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 998;
   pointer-events: none;
 }
 
+.mobileMenu.open {
+  pointer-events: auto;
+}
+
 .mobileMenuContent {
+  position: fixed;
+  top: 80px;
+  right: 10px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);

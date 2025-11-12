@@ -391,8 +391,8 @@ const ExperienciaSection: React.FC = () => {
     if (showAll) {
       return tournaments
     }
-    // Show 4 on desktop, 3 on mobile
-    const count = isMobile ? 3 : 4
+    // Show 4 on desktop, 4 on mobile (2x2 grid)
+    const count = isMobile ? 4 : 4
     return tournaments.slice(0, count)
   }
 
@@ -438,7 +438,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const visibleTournaments = getVisibleTournaments()
-  const hasMoreTournaments = tournaments.length > (isMobile ? 3 : 4)
+  const hasMoreTournaments = tournaments.length > 4
 
   return (
     <section id="experiencia" className={styles.section}>
