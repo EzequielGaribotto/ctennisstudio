@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import ReactCountryFlag from "react-country-flag"
 import styles from "./ExperienciaSection.module.css"
+import tournamentImagesManifest from "@/data/tournament-images.json"
 
 interface Tournament {
   id: string
@@ -12,7 +13,8 @@ interface Tournament {
   countryCode: string
   category: string
   years: string[]
-  tournamentCode: string // e.g., "GODO", "MADRID", "MONTECARLO", "SASCO"
+  tournamentCode: string // Matches image filename prefix
+  places?: string[] // Different places for the tournament (e.g., Valencia, Girona, Barcelona for Challenger)
   mensLogo?: string
   womensLogo?: string
   unifiedLogo?: string
@@ -78,21 +80,17 @@ const ExperienciaSection: React.FC = () => {
     }
   }, [])
 
-  // Preload all tournament images immediately
+  // Preload all tournament images from manifest
   useEffect(() => {
-    const allImages: string[] = []
+    const manifest = tournamentImagesManifest as Record<string, string[]>
+    const allImages: string[] = Object.values(manifest).flat()
     
-    tournaments.forEach(tournament => {
-      const images = getTournamentImages(tournament)
-      allImages.push(...images)
-    })
-
-    // Preload all images
+    // Preload all images in bulk
     allImages.forEach(src => {
       const img = new window.Image()
       img.src = src
     })
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   // Auto-advance stories (Instagram-like)
   useEffect(() => {
@@ -132,13 +130,13 @@ const ExperienciaSection: React.FC = () => {
   const tournaments: Tournament[] = [
     // Monte-Carlo
     {
-      id: "MONTECARLO",
+      id: "ROLEX",
       city: "Monte-Carlo",
       countryCode: "MC",
-      category: "ROLEX MONTE-CARLO MASTERS",
-      years: ["2025", "2024", "2023", "2022"],
-      tournamentCode: "MONTECARLO",
-      // Use Monte-Carlo masters logo and show ATP/WTA 1000 stamps when appropriate
+      category: "Rolex Monte-Carlo Masters",
+      years: ["2025", "2024", "2023"],
+      tournamentCode: "ROLEX",
+      places: ["Montecarlo"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/montecarlo_masters_logo.webp",
@@ -146,12 +144,13 @@ const ExperienciaSection: React.FC = () => {
 
     // Madrid
     {
-      id: "MADRID",
+      id: "MUTUA",
       city: "Madrid",
       countryCode: "ES",
-      category: "MUTUA MADRID OPEN",
-      years: ["2025", "2024", "2023", "2022", "2021", "2019", "2018", "2017", "2016", "2010"],
-      tournamentCode: "MADRID",
+      category: "Mutua Madrid Open",
+      years: ["2025", "2024", "2023", "2022", "2021", "2019", "2017"],
+      tournamentCode: "MUTUA",
+      places: ["Madrid"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/mutua_madrid_open_logo.webp",
@@ -159,13 +158,13 @@ const ExperienciaSection: React.FC = () => {
 
     // Miami
     {
-      id: "MIAMI",
+      id: "OPEN",
       city: "Miami",
       countryCode: "US",
-      category: "MIAMI OPEN",
+      category: "Miami Open",
       years: ["2025"],
-      tournamentCode: "MIAMI",
-      // Miami is a 1000-level event for both tours — show ATP/WTA 1000 stamps plus the event logo if available
+      tournamentCode: "OPEN",
+      places: ["Miami"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/miami_open_logo.webp",
@@ -176,57 +175,86 @@ const ExperienciaSection: React.FC = () => {
       id: "GODO",
       city: "Barcelona",
       countryCode: "ES",
-      category: "GODÓ Barcelona",
-      years: ["2025", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012"],
+      category: "Trofeo Conde de Godó",
+      years: ["2019", "2018", "2017", "2016", "2015", "2014", "2013"],
       tournamentCode: "GODO",
+      places: ["Barcelona"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/500_atp.webp",
       unifiedLogo: "/images/stringer/tournament_logos/godo_logo.webp",
     },
 
-    // Mallorca
+    // Challenger cluster
     {
-      id: "MALLORCA",
-      city: "Mallorca",
+      id: "CHALLENGER",
+      city: "Valencia / Girona / Barcelona",
       countryCode: "ES",
-      category: "CHAMPIONSHIPS",
-      years: ["2025"],
-      tournamentCode: "MALLORCA",
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
-    },
-
-    // Challenger cluster: Girona, Barcelona, Madrid
-    {
-      id: "CHALLENGERS",
-      city: "Girona / Barcelona / Madrid",
-      countryCode: "ES",
-      category: "ATP CHALLENGER TOUR",
+      category: "ATP Challenger Tour",
       years: ["2025", "2024", "2023", "2022", "2021", "2020"],
       tournamentCode: "CHALLENGER",
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/challenger_atp.webp",
+      places: ["Valencia", "Girona", "Barcelona"],
       unifiedLogo: "/images/stringer/tournament_logos/challenger_tour_logo.webp",
     },
 
-    // WTA 125s and WTA Tour examples (Biarritz, La Bisbal, Barcelona WTA125)
+    // ENGIE Open Biarritz
     {
-      id: "WTA125S",
-      city: "Biarritz / La Bisbal / Barcelona",
+      id: "ENGIE",
+      city: "Biarritz",
+      countryCode: "FR",
+      category: "Engie Open Biarritz",
+      years: ["2025", "2024"],
+      tournamentCode: "ENGIE",
+      places: ["Biarritz"],
+      unifiedLogo: "/images/stringer/tournament_logos/engie_open_logo.webp",
+    },
+
+    // WTA 125s (La Bisbal, Barcelona)
+    {
+      id: "WTA125",
+      city: "La Bisbal / Barcelona",
       countryCode: "ES",
       category: "WTA 125",
-      years: ["2025", "2024"],
+      years: ["2025", "2012"],
       tournamentCode: "WTA125",
+      places: ["La Bisbal", "Barcelona"],
       womensLogo: "/images/stringer/tournament_logos/category_stamps/125_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
     },
 
     // ITF Wheelchair
     {
-      id: "ITF_WC",
+      id: "WHEELCHAIR",
       city: "Olot",
       countryCode: "ES",
-      category: "ITF WHEELCHAIR TENNIS",
-      years: ["2025", "2024", "2023"],
-      tournamentCode: "ITF_WC",
+      category: "ITF Wheelchair Tennis",
+      years: ["2018", "2017", "2014"],
+      tournamentCode: "WHEELCHAIR",
+      places: ["Olot"],
       unifiedLogo: "/images/stringer/tournament_logos/itf_wheelchair_logo.webp",
+    },
+
+    // RFET - Spanish Team Championships
+    {
+      id: "RFET",
+      city: "Polo / Tarragona",
+      countryCode: "ES",
+      category: "RFET - Campeonato de España por Equipos",
+      years: ["2019", "2016", "2015", "2014"],
+      tournamentCode: "RFET",
+      places: ["Polo", "Tarragona"],
+      unifiedLogo: "/images/stringer/tournament_logos/rfet_logo.webp",
+    },
+
+    // Mallorca Championships
+    {
+      id: "MALLORCA",
+      city: "Mallorca",
+      countryCode: "ES",
+      category: "Mallorca Championships",
+      years: ["2025"],
+      tournamentCode: "CHAMPIONSHIPS",
+      places: ["Mallorca"],
+      mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
+      unifiedLogo: "/images/stringer/tournament_logos/mallorca_championships_logo.webp",
     },
 
     // ITF Juniors
@@ -234,106 +262,21 @@ const ExperienciaSection: React.FC = () => {
       id: "ITF_JR",
       city: "Barcelona",
       countryCode: "ES",
-      category: "ITF WORLD TENNIS TOUR JUNIORS",
+      category: "ITF World Tennis Tour Juniors",
       years: ["2025", "2024", "2023"],
       tournamentCode: "ITF_JR",
+      places: ["Barcelona"],
       unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_jr_logo.webp",
-    },
-
-    // RFET - Spanish Team Championships
-    {
-      id: "RFET",
-      city: "Sabadell / Tarragona / Barcelona",
-      countryCode: "ES",
-      category: "RFET - Campeonato de España por Equipos",
-      years: ["2025", "2024", "2023", "2022", "2021"],
-      tournamentCode: "RFET",
-      unifiedLogo: "/images/stringer/tournament_logos/rfet_logo.webp",
     },
   ]
 
-  // Get all images for a tournament (in descending chronological order)
+  // Get all images for a tournament from manifest
   const getTournamentImages = (tournament: Tournament): string[] => {
-    const images: string[] = []
-    // Sort years in descending order
-    const sortedYears = [...tournament.years].sort((a, b) => parseInt(b) - parseInt(a))
+    const manifest = tournamentImagesManifest as Record<string, string[]>
+    const images = manifest[tournament.tournamentCode] || []
     
-    // Available images mapping based on actual files
-    const availableImages: Record<string, Record<string, string[]>> = {
-      MADRID: {
-        "2025": [
-          "/images/stringer/tournaments/MADRID 2025.webp",
-          "/images/stringer/tournaments/MADRID 2025 2.webp",
-        ],
-        "2024": [
-          "/images/stringer/tournaments/MADRID 2024.webp",
-          "/images/stringer/tournaments/MADRID 2024 1.webp",
-          "/images/stringer/tournaments/MADRID 2024 2.webp",
-        ],
-        "2023": [
-          "/images/stringer/tournaments/MADRID 23 1.webp",
-          "/images/stringer/tournaments/MADRID 23 2.webp",
-        ],
-        "2022": [
-          "/images/stringer/tournaments/MADRID 2022.webp",
-          "/images/stringer/tournaments/MADRID 2022 2.webp",
-          "/images/stringer/tournaments/MADRID 2022 3.webp",
-        ],
-        "2021": [
-          "/images/stringer/tournaments/MADRID 2021.webp",
-          "/images/stringer/tournaments/MADRID 2021 1.webp",
-        ],
-        "2017": [
-          "/images/stringer/tournaments/MADRID 2017.webp",
-        ],
-      },
-      GODO: {
-        "2018": [
-          "/images/stringer/tournaments/GODO 2018.webp",
-          "/images/stringer/tournaments/GODO 2018 1.webp",
-          "/images/stringer/tournaments/GOGO 2018 3.webp", // Note: typo in original filename
-        ],
-        "2017": [
-          "/images/stringer/tournaments/GODO 2017.webp",
-          "/images/stringer/tournaments/GODO 2017 4.webp",
-          "/images/stringer/tournaments/GODO 2017 5.webp",
-        ],
-        "2016": [
-          "/images/stringer/tournaments/GODO 2016 1.webp",
-          "/images/stringer/tournaments/GODO 2016 2.webp",
-          "/images/stringer/tournaments/GODO 2016 3.webp",
-          "/images/stringer/tournaments/GODO 2016 4.webp",
-          "/images/stringer/tournaments/GODO 2016 5.webp",
-        ],
-      },
-      MONTECARLO: {
-        "2025": [
-          "/images/stringer/tournaments/MONTECARLO 2025.webp",
-        ],
-      },
-      SASCO: {
-        "2017": [
-          "/images/stringer/tournaments/SASCO 2017.webp",
-        ],
-      },
-    }
-    
-    const tournamentImages = availableImages[tournament.tournamentCode] || {}
-    
-    sortedYears.forEach((year) => {
-      const yearImages = tournamentImages[year]
-      
-      if (yearImages) {
-        images.push(...yearImages)
-      }
-    })
-    
-    // If no images found, use fallback
-    if (images.length === 0) {
-      images.push('/images/stringer/pablo/stringer_spiderman.webp')
-    }
-    
-    return images
+    // Return images if found, otherwise fallback
+    return images.length > 0 ? images : ['/images/stringer/pablo/stringer_spiderman.webp']
   }
 
   // Drag handlers
@@ -568,16 +511,54 @@ const ExperienciaSection: React.FC = () => {
     
     if (!imagePath) return null
     
-    // Extract year from path - handle different formats
-    // Examples: "MADRID 2025.webp", "MADRID 2025 2.webp", "MADRID 23 1.webp"
-    const match = imagePath.match(/(\w+)\s(20\d{2}|\d{2})(?:\s\d+)?\.webp$/)
-    if (match) {
-      const [, code, yearStr] = match
-      // Convert 2-digit year to 4-digit if needed
-      const year = yearStr.length === 2 ? `20${yearStr}` : yearStr
-      return { code, year, path: imagePath }
+    // Check if this is the fallback image
+    if (imagePath.includes('stringer_spiderman.webp')) {
+      return {
+        tournamentName: selectedTournament.category,
+        place: 'Unknown',
+        year: 'Unknown',
+        path: imagePath
+      }
     }
-    return { code: selectedTournament.tournamentCode, year: "Unknown", path: imagePath }
+    
+    // Extract tournament name, place, and year from path
+    // Format: "TOURNAMENT PLACE YEAR INDEX.webp"
+    const match = imagePath.match(/\/(\w+)\s([A-Z]+)\s(\d{4})\s\d+\.webp$/)
+    if (match) {
+      const [, tournamentCode, place, year] = match
+      // Normalize place: uppercase first letter, lowercase rest
+      const normalizedPlace = place.charAt(0) + place.slice(1).toLowerCase()
+      
+      // Get tournament name from mapping
+      const tournamentNames: Record<string, string> = {
+        CHALLENGER: "ATP Challenger Tour",
+        GODO: "Trofeo Conde de Godó",
+        MUTUA: "Mutua Madrid Open",
+        OPEN: "Miami Open",
+        RFET: "RFET - Campeonato de España por Equipos",
+        ROLEX: "Rolex Monte-Carlo Masters",
+        WHEELCHAIR: "ITF Wheelchair Tennis",
+        ENGIE: "Engie Open Biarritz",
+        WTA125: "WTA 125",
+        CHAMPIONSHIPS: "Mallorca Championships",
+        ITF_JR: "ITF World Tennis Tour Juniors"
+      }
+      
+      const tournamentName = tournamentNames[tournamentCode] || selectedTournament.category
+      
+      return { 
+        tournamentName, 
+        place: normalizedPlace, 
+        year, 
+        path: imagePath 
+      }
+    }
+    return { 
+      tournamentName: selectedTournament.category, 
+      place: selectedTournament.city, 
+      year: selectedTournament.years[0] || "Unknown", 
+      path: imagePath 
+    }
   }
 
   // Determine how many tournaments to show
@@ -882,9 +863,11 @@ const ExperienciaSection: React.FC = () => {
                   )}
                 </div>
                 <div className={styles.tournamentText}>
-                  <span className={styles.tournamentName}>{selectedTournament.city}</span>
+                  <span className={styles.tournamentName}>
+                    {getCurrentImageInfo()?.tournamentName || selectedTournament.category}
+                  </span>
                   <span className={styles.tournamentYear}>
-                    {getCurrentImageInfo()?.year || selectedTournament.years[0]}
+                    {getCurrentImageInfo()?.year || selectedTournament.years[0]}, {getCurrentImageInfo()?.place || selectedTournament.city}
                   </span>
                 </div>
               </div>
@@ -904,8 +887,10 @@ const ExperienciaSection: React.FC = () => {
                   loading="eager"
                   priority
                   style={{ objectFit: 'contain' }}
-                  onError={() => {
+                  onError={(e) => {
                     console.error('Image failed to load:', getCurrentImageInfo()!.path)
+                    // Use fallback if somehow validation missed this
+                    e.currentTarget.src = '/images/stringer/pablo/stringer_spiderman.webp'
                   }}
                 />
               )}

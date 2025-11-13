@@ -11,9 +11,7 @@
     "deploy": "gh-pages -d out --dotfiles",
     "start": "next start",
     "lint": "next lint",
-    "update-cv": "node update-cv-metadata.mjs",
-    "cv:watch": "node scripts/watch-cv-changes.mjs",
-    "cv:init": "node scripts/init-cv-metadata.mjs"
+    "generate-images": "node generate-image-manifest.mjs"
   },
   "dependencies": {
     "chokidar": "^3.6.0",

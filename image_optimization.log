@@ -84,3 +84,119 @@
 2025-11-12 13:34:36,563 - INFO -   Size reduction: 42.7 KB to 27.9 KB (34.6% saved)
 2025-11-12 13:34:36,564 - INFO - Skipping public\images\stringer\pablo\stringer spiderman.png - WebP version is newer (use --force to override)
 2025-11-12 13:34:36,567 - INFO - Optimization complete: Processed 1 out of 2 images
+2025-11-13 19:49:40,710 - INFO - Starting image optimization
+2025-11-13 19:49:41,306 - INFO - Converted public\images\stringer\pablo\pablo_montecarlo.jpg to public\images\stringer\pablo\pablo_montecarlo.webp
+2025-11-13 19:49:41,307 - INFO -   Size reduction: 164.4 KB to 55.5 KB (66.3% saved)
+2025-11-13 19:49:46,134 - INFO - Converted public\images\stringer\tournament_logos\mallorca_championships_logo.png to public\images\stringer\tournament_logos\mallorca_championships_logo.webp
+2025-11-13 19:49:46,135 - INFO -   Size reduction: 49.9 KB to 21.7 KB (56.6% saved)
+2025-11-13 19:49:46,137 - INFO - Optimization complete: Processed 2 out of 2 images
+2025-11-13 21:07:01,162 - INFO - Starting image optimization
+2025-11-13 21:07:01,485 - INFO - Converted public\images\stringer\tournaments\CHALLENGER BARCELONA 2023 0.jpg to public\images\stringer\tournaments\CHALLENGER BARCELONA 2023 0.webp
+2025-11-13 21:07:01,486 - INFO -   Size reduction: 115.8 KB to 53.3 KB (54.0% saved)
+2025-11-13 21:07:01,763 - INFO - Converted public\images\stringer\tournaments\CHALLENGER GIRONA 2022 0.JPG to public\images\stringer\tournaments\CHALLENGER GIRONA 2022 0.webp
+2025-11-13 21:07:01,765 - INFO -   Size reduction: 171.7 KB to 91.4 KB (46.8% saved)
+2025-11-13 21:07:02,092 - INFO - Converted public\images\stringer\tournaments\CHALLENGER GIRONA 2023 0.jpg to public\images\stringer\tournaments\CHALLENGER GIRONA 2023 0.webp
+2025-11-13 21:07:02,092 - INFO -   Size reduction: 213.8 KB to 137.6 KB (35.6% saved)
+2025-11-13 21:07:02,531 - INFO - Converted public\images\stringer\tournaments\CHALLENGER GIRONA 2023 1.jpg to public\images\stringer\tournaments\CHALLENGER GIRONA 2023 1.webp
+2025-11-13 21:07:02,531 - INFO -   Size reduction: 178.3 KB to 183.7 KB (-3.0% saved)
+2025-11-13 21:07:02,862 - INFO - Converted public\images\stringer\tournaments\CHALLENGER GIRONA 2023 2.JPG to public\images\stringer\tournaments\CHALLENGER GIRONA 2023 2.webp
+2025-11-13 21:07:02,863 - INFO -   Size reduction: 201.1 KB to 116.7 KB (42.0% saved)
+2025-11-13 21:07:03,039 - INFO - Converted public\images\stringer\tournaments\CHALLENGER VALENCIA 2023.jpg to public\images\stringer\tournaments\CHALLENGER VALENCIA 2023.webp
+2025-11-13 21:07:03,039 - INFO -   Size reduction: 100.1 KB to 45.6 KB (54.4% saved)
+2025-11-13 21:07:03,619 - INFO - Converted public\images\stringer\tournaments\CHALLENGER VALENCIA- 2025.jpeg to public\images\stringer\tournaments\CHALLENGER VALENCIA- 2025.webp
+2025-11-13 21:07:03,620 - INFO -   Size reduction: 179.7 KB to 122.7 KB (31.7% saved)
+2025-11-13 21:07:04,220 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2013.jpg to public\images\stringer\tournaments\GODO BARCELONA 2013.webp
+2025-11-13 21:07:04,220 - INFO -   Size reduction: 198.7 KB to 129.7 KB (34.7% saved)
+2025-11-13 21:07:04,363 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2014 0.jpg to public\images\stringer\tournaments\GODO BARCELONA 2014 0.webp
+2025-11-13 21:07:04,364 - INFO -   Size reduction: 43.4 KB to 29.9 KB (31.1% saved)
+2025-11-13 21:07:04,539 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2014 1.jpg to public\images\stringer\tournaments\GODO BARCELONA 2014 1.webp
+2025-11-13 21:07:04,540 - INFO -   Size reduction: 112.7 KB to 58.5 KB (48.1% saved)
+2025-11-13 21:07:04,843 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2015 0.jpg to public\images\stringer\tournaments\GODO BARCELONA 2015 0.webp
+2025-11-13 21:07:04,843 - INFO -   Size reduction: 102.2 KB to 84.5 KB (17.3% saved)
+2025-11-13 21:07:05,195 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2016 1.jpg to public\images\stringer\tournaments\GODO BARCELONA 2016 1.webp
+2025-11-13 21:07:05,195 - INFO -   Size reduction: 116.4 KB to 108.0 KB (7.2% saved)
+2025-11-13 21:07:05,387 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2016 5.jpg to public\images\stringer\tournaments\GODO BARCELONA 2016 5.webp
+2025-11-13 21:07:05,388 - INFO -   Size reduction: 68.0 KB to 55.6 KB (18.2% saved)
+2025-11-13 21:07:05,665 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2016 6.jpg to public\images\stringer\tournaments\GODO BARCELONA 2016 6.webp
+2025-11-13 21:07:05,665 - INFO -   Size reduction: 84.5 KB to 63.5 KB (24.8% saved)
+2025-11-13 21:07:05,994 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2016 7.jpg to public\images\stringer\tournaments\GODO BARCELONA 2016 7.webp
+2025-11-13 21:07:05,995 - INFO -   Size reduction: 121.3 KB to 93.8 KB (22.7% saved)
+2025-11-13 21:07:06,177 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2016 8.jpg to public\images\stringer\tournaments\GODO BARCELONA 2016 8.webp
+2025-11-13 21:07:06,177 - INFO -   Size reduction: 64.6 KB to 51.3 KB (20.6% saved)
+2025-11-13 21:07:06,372 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2017 1.jpg to public\images\stringer\tournaments\GODO BARCELONA 2017 1.webp
+2025-11-13 21:07:06,372 - INFO -   Size reduction: 58.7 KB to 48.4 KB (17.5% saved)
+2025-11-13 21:07:06,644 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2017 4.jpg to public\images\stringer\tournaments\GODO BARCELONA 2017 4.webp
+2025-11-13 21:07:06,644 - INFO -   Size reduction: 87.7 KB to 74.6 KB (14.9% saved)
+2025-11-13 21:07:06,763 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2018 2.jpg to public\images\stringer\tournaments\GODO BARCELONA 2018 2.webp
+2025-11-13 21:07:06,763 - INFO -   Size reduction: 49.1 KB to 38.1 KB (22.5% saved)
+2025-11-13 21:07:07,164 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2019 1.jpg to public\images\stringer\tournaments\GODO BARCELONA 2019 1.webp
+2025-11-13 21:07:07,164 - INFO -   Size reduction: 114.2 KB to 88.4 KB (22.5% saved)
+2025-11-13 21:07:07,512 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2019 2.jpg to public\images\stringer\tournaments\GODO BARCELONA 2019 2.webp
+2025-11-13 21:07:07,513 - INFO -   Size reduction: 105.6 KB to 93.3 KB (11.6% saved)
+2025-11-13 21:07:07,803 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2019 3.jpg to public\images\stringer\tournaments\GODO BARCELONA 2019 3.webp
+2025-11-13 21:07:07,803 - INFO -   Size reduction: 78.3 KB to 58.6 KB (25.2% saved)
+2025-11-13 21:07:08,294 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2017 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2017 1.webp
+2025-11-13 21:07:08,295 - INFO -   Size reduction: 175.6 KB to 133.3 KB (24.1% saved)
+2025-11-13 21:07:08,563 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2019 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2019 0.webp
+2025-11-13 21:07:08,563 - INFO -   Size reduction: 68.2 KB to 53.7 KB (21.2% saved)
+2025-11-13 21:07:08,725 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2019 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2019 1.webp
+2025-11-13 21:07:08,725 - INFO -   Size reduction: 57.3 KB to 40.6 KB (29.1% saved)
+2025-11-13 21:07:09,059 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2021 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2021 0.webp
+2025-11-13 21:07:09,060 - INFO -   Size reduction: 102.3 KB to 75.6 KB (26.1% saved)
+2025-11-13 21:07:09,392 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2021 3.jpg to public\images\stringer\tournaments\MUTUA MADRID 2021 3.webp
+2025-11-13 21:07:09,392 - INFO -   Size reduction: 93.7 KB to 78.7 KB (16.0% saved)
+2025-11-13 21:07:09,700 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2023 2.jpg to public\images\stringer\tournaments\MUTUA MADRID 2023 2.webp
+2025-11-13 21:07:09,700 - INFO -   Size reduction: 151.2 KB to 46.9 KB (69.0% saved)
+2025-11-13 21:07:10,265 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2023 3.jpg to public\images\stringer\tournaments\MUTUA MADRID 2023 3.webp
+2025-11-13 21:07:10,265 - INFO -   Size reduction: 299.5 KB to 125.5 KB (58.1% saved)
+2025-11-13 21:07:10,770 - INFO - Converted public\images\stringer\tournaments\OPEN MIAMI 2025 0.jpg to public\images\stringer\tournaments\OPEN MIAMI 2025 0.webp
+2025-11-13 21:07:10,770 - INFO -   Size reduction: 121.4 KB to 83.1 KB (31.5% saved)
+2025-11-13 21:07:11,220 - INFO - Converted public\images\stringer\tournaments\OPEN MIAMI 2025 1.jpg to public\images\stringer\tournaments\OPEN MIAMI 2025 1.webp
+2025-11-13 21:07:11,220 - INFO -   Size reduction: 107.7 KB to 69.0 KB (35.9% saved)
+2025-11-13 21:07:11,398 - INFO - Converted public\images\stringer\tournaments\RFET POLO 2015 1.jpg to public\images\stringer\tournaments\RFET POLO 2015 1.webp
+2025-11-13 21:07:11,398 - INFO -   Size reduction: 60.2 KB to 44.9 KB (25.4% saved)
+2025-11-13 21:07:11,798 - INFO - Converted public\images\stringer\tournaments\RFET POLO 2019.jpg to public\images\stringer\tournaments\RFET POLO 2019.webp
+2025-11-13 21:07:11,798 - INFO -   Size reduction: 126.5 KB to 112.9 KB (10.8% saved)
+2025-11-13 21:07:12,019 - INFO - Converted public\images\stringer\tournaments\RFET TARRAGONA 2016 0.jpg to public\images\stringer\tournaments\RFET TARRAGONA 2016 0.webp
+2025-11-13 21:07:12,020 - INFO -   Size reduction: 83.4 KB to 71.3 KB (14.5% saved)
+2025-11-13 21:07:12,306 - INFO - Converted public\images\stringer\tournaments\RFET TARRAGONA 2016 1.jpg to public\images\stringer\tournaments\RFET TARRAGONA 2016 1.webp
+2025-11-13 21:07:12,306 - INFO -   Size reduction: 109.6 KB to 96.1 KB (12.2% saved)
+2025-11-13 21:07:12,880 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2023 0.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2023 0.webp
+2025-11-13 21:07:12,880 - INFO -   Size reduction: 331.5 KB to 116.9 KB (64.7% saved)
+2025-11-13 21:07:13,276 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2023 1.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2023 1.webp
+2025-11-13 21:07:13,277 - INFO -   Size reduction: 164.4 KB to 55.5 KB (66.3% saved)
+2025-11-13 21:07:13,977 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2023 2.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2023 2.webp
+2025-11-13 21:07:13,977 - INFO -   Size reduction: 445.7 KB to 181.6 KB (59.3% saved)
+2025-11-13 21:07:14,620 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2023 3.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2023 3.webp
+2025-11-13 21:07:14,620 - INFO -   Size reduction: 379.0 KB to 149.1 KB (60.7% saved)
+2025-11-13 21:07:15,060 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2024 0.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2024 0.webp
+2025-11-13 21:07:15,062 - INFO -   Size reduction: 210.8 KB to 75.9 KB (64.0% saved)
+2025-11-13 21:07:15,408 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2024 1.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2024 1.webp
+2025-11-13 21:07:15,409 - INFO -   Size reduction: 113.0 KB to 37.2 KB (67.0% saved)
+2025-11-13 21:07:15,918 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2024 2.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2024 2.webp
+2025-11-13 21:07:15,918 - INFO -   Size reduction: 288.3 KB to 116.4 KB (59.6% saved)
+2025-11-13 21:07:16,342 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2024 3.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2024 3.webp
+2025-11-13 21:07:16,342 - INFO -   Size reduction: 233.9 KB to 95.4 KB (59.2% saved)
+2025-11-13 21:07:16,745 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2024 4.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2024 4.webp
+2025-11-13 21:07:16,745 - INFO -   Size reduction: 200.4 KB to 81.4 KB (59.4% saved)
+2025-11-13 21:07:16,825 - INFO - Converted public\images\stringer\tournaments\WHEELCHAIR OLOT 2014.jpg to public\images\stringer\tournaments\WHEELCHAIR OLOT 2014.webp
+2025-11-13 21:07:16,825 - INFO -   Size reduction: 44.8 KB to 17.8 KB (60.3% saved)
+2025-11-13 21:07:16,983 - INFO - Converted public\images\stringer\tournaments\WHEELCHAIR OLOT 2017.jpg to public\images\stringer\tournaments\WHEELCHAIR OLOT 2017.webp
+2025-11-13 21:07:16,983 - INFO -   Size reduction: 99.5 KB to 49.8 KB (50.0% saved)
+2025-11-13 21:07:17,153 - INFO - Converted public\images\stringer\tournaments\WHEELCHAIR OLOT 2018.jpg to public\images\stringer\tournaments\WHEELCHAIR OLOT 2018.webp
+2025-11-13 21:07:17,153 - INFO -   Size reduction: 107.8 KB to 52.8 KB (51.0% saved)
+2025-11-13 21:07:17,155 - INFO - Skipping public\images\stringer\tournament_logos\mallorca_championships_logo.png - WebP version is newer (use --force to override)
+2025-11-13 21:07:17,157 - INFO - Optimization complete: Processed 47 out of 48 images
+2025-11-13 21:39:01,733 - INFO - Starting image optimization
+2025-11-13 21:39:02,114 - INFO - Converted public\images\stringer\tournaments\CHAMPIONSHIPS MALLORCA 2025 0.jpg to public\images\stringer\tournaments\CHAMPIONSHIPS MALLORCA 2025 0.webp
+2025-11-13 21:39:02,114 - INFO -   Size reduction: 203.3 KB to 123.8 KB (39.1% saved)
+2025-11-13 21:39:02,412 - INFO - Converted public\images\stringer\tournaments\ENGIE BIARRITZ 2025 0.jpg to public\images\stringer\tournaments\ENGIE BIARRITZ 2025 0.webp
+2025-11-13 21:39:02,414 - INFO -   Size reduction: 161.1 KB to 72.6 KB (54.9% saved)
+2025-11-13 21:39:02,577 - INFO - Converted public\images\stringer\tournaments\ENGIE BIARRITZ 2025 1.jpg to public\images\stringer\tournaments\ENGIE BIARRITZ 2025 1.webp
+2025-11-13 21:39:02,577 - INFO -   Size reduction: 84.4 KB to 36.7 KB (56.5% saved)
+2025-11-13 21:39:03,071 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2025 2.jpg to public\images\stringer\tournaments\MUTUA MADRID 2025 2.webp
+2025-11-13 21:39:03,071 - INFO -   Size reduction: 296.5 KB to 181.7 KB (38.7% saved)
+2025-11-13 21:39:03,320 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2022 0.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2022 0.webp
+2025-11-13 21:39:03,320 - INFO -   Size reduction: 160.5 KB to 86.8 KB (45.9% saved)
+2025-11-13 21:39:03,321 - INFO - Skipping public\images\stringer\tournament_logos\mallorca_championships_logo.png - WebP version is newer (use --force to override)
+2025-11-13 21:39:03,325 - INFO - Optimization complete: Processed 5 out of 6 images
