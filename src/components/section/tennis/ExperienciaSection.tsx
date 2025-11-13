@@ -7,6 +7,16 @@ import ReactCountryFlag from "react-country-flag"
 import styles from "./ExperienciaSection.module.css"
 import tournamentImagesManifest from "@/data/tournament-images.json"
 
+// Tournament importance levels for sorting
+enum TournamentLevel {
+  ATP_WTA_1000 = 1,
+  ATP_500 = 2,
+  ATP_250 = 3,
+  CHALLENGER = 4,
+  ATP_WTA_125 = 5,
+  UNCLASSIFIED = 6,
+}
+
 interface Tournament {
   id: string
   city: string
@@ -18,6 +28,7 @@ interface Tournament {
   mensLogo?: string
   womensLogo?: string
   unifiedLogo?: string
+  level?: TournamentLevel // Tournament importance level
 }
 
 const ExperienciaSection: React.FC = () => {
@@ -140,6 +151,7 @@ const ExperienciaSection: React.FC = () => {
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/montecarlo_masters_logo.webp",
+      level: TournamentLevel.ATP_WTA_1000,
     },
 
     // Madrid
@@ -154,6 +166,7 @@ const ExperienciaSection: React.FC = () => {
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/mutua_madrid_open_logo.webp",
+      level: TournamentLevel.ATP_WTA_1000,
     },
 
     // Miami
@@ -168,6 +181,7 @@ const ExperienciaSection: React.FC = () => {
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
       womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/miami_open_logo.webp",
+      level: TournamentLevel.ATP_WTA_1000,
     },
 
     // Godó (Barcelona)
@@ -181,6 +195,7 @@ const ExperienciaSection: React.FC = () => {
       places: ["Barcelona"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/500_atp.webp",
       unifiedLogo: "/images/stringer/tournament_logos/godo_logo.webp",
+      level: TournamentLevel.ATP_500,
     },
 
     // Challenger cluster
@@ -193,6 +208,7 @@ const ExperienciaSection: React.FC = () => {
       tournamentCode: "CHALLENGER",
       places: ["Valencia", "Girona", "Barcelona"],
       unifiedLogo: "/images/stringer/tournament_logos/challenger_tour_logo.webp",
+      level: TournamentLevel.CHALLENGER,
     },
 
     // ENGIE Open Biarritz
@@ -205,6 +221,7 @@ const ExperienciaSection: React.FC = () => {
       tournamentCode: "ENGIE",
       places: ["Biarritz"],
       unifiedLogo: "/images/stringer/tournament_logos/engie_open_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
     },
 
     // WTA 125s (La Bisbal, Barcelona)
@@ -218,6 +235,7 @@ const ExperienciaSection: React.FC = () => {
       places: ["La Bisbal", "Barcelona"],
       womensLogo: "/images/stringer/tournament_logos/category_stamps/125_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
+      level: TournamentLevel.ATP_WTA_125,
     },
 
     // ITF Wheelchair
@@ -230,6 +248,7 @@ const ExperienciaSection: React.FC = () => {
       tournamentCode: "WHEELCHAIR",
       places: ["Olot"],
       unifiedLogo: "/images/stringer/tournament_logos/itf_wheelchair_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
     },
 
     // RFET - Spanish Team Championships
@@ -242,6 +261,7 @@ const ExperienciaSection: React.FC = () => {
       tournamentCode: "RFET",
       places: ["Polo", "Tarragona"],
       unifiedLogo: "/images/stringer/tournament_logos/rfet_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
     },
 
     // Mallorca Championships
@@ -255,6 +275,7 @@ const ExperienciaSection: React.FC = () => {
       places: ["Mallorca"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
       unifiedLogo: "/images/stringer/tournament_logos/mallorca_championships_logo.webp",
+      level: TournamentLevel.ATP_250,
     },
 
     // ITF Juniors
@@ -267,8 +288,23 @@ const ExperienciaSection: React.FC = () => {
       tournamentCode: "ITF_JR",
       places: ["Barcelona"],
       unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_jr_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
     },
-  ]
+  ].sort((a, b) => {
+    // Sort by tournament level first
+    const levelA = a.level ?? TournamentLevel.UNCLASSIFIED
+    const levelB = b.level ?? TournamentLevel.UNCLASSIFIED
+    
+    if (levelA !== levelB) {
+      return levelA - levelB
+    }
+    
+    // Within same level, sort by most recent year (descending)
+    const maxYearA = Math.max(...a.years.map(y => parseInt(y)))
+    const maxYearB = Math.max(...b.years.map(y => parseInt(y)))
+    
+    return maxYearB - maxYearA
+  })
 
   // Get all images for a tournament from manifest
   const getTournamentImages = (tournament: Tournament): string[] => {
@@ -389,6 +425,58 @@ const ExperienciaSection: React.FC = () => {
     setCurrentImageIndex(0)
     setProgress(0)
     setIsPaused(false)
+  }
+
+  const handleYearHover = (tournament: Tournament, year: string, event: React.MouseEvent<HTMLSpanElement>) => {
+    event.stopPropagation()
+    
+    // Clear any pending hide timeouts
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+    
+    // Find the first image for this year
+    const images = getTournamentImages(tournament)
+    const yearImageIndex = images.findIndex(img => img.includes(` ${year} `))
+    
+    if (yearImageIndex !== -1) {
+      const rect = (event.target as HTMLElement).closest(`.${styles.card}`)?.getBoundingClientRect()
+      if (rect) {
+        setHoveredCardRect(rect)
+        setSelectedTournament(tournament)
+        setIsCarouselLocked(false) // Don't lock on year hover
+        setCurrentImageIndex(yearImageIndex)
+        setProgress(0)
+        setIsPaused(false)
+      }
+    }
+  }
+
+  const handleYearClick = (tournament: Tournament, year: string, event: React.MouseEvent<HTMLSpanElement>) => {
+    event.stopPropagation()
+    
+    // Clear any pending hide timeouts
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+    
+    // Find the first image for this year
+    const images = getTournamentImages(tournament)
+    const yearImageIndex = images.findIndex(img => img.includes(` ${year} `))
+    
+    if (yearImageIndex !== -1) {
+      const rect = (event.target as HTMLElement).closest(`.${styles.card}`)?.getBoundingClientRect()
+      if (rect) {
+        setHoveredCardRect(rect)
+        setSelectedTournament(tournament)
+        setIsCarouselLocked(true)
+        setCurrentImageIndex(yearImageIndex)
+        setProgress(0)
+        setIsPaused(false)
+      }
+    }
   }
 
   const handleCardHover = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
@@ -759,7 +847,19 @@ const ExperienciaSection: React.FC = () => {
 
               {/* Row 4: Years */}
               <div className={styles.yearsRow}>
-                <span className={styles.years}>{tournament.years.join(" - ")}</span>
+                {tournament.years.map((year, idx) => (
+                  <span key={year}>
+                    <span 
+                      className={styles.year}
+                      onMouseEnter={(e) => handleYearHover(tournament, year, e)}
+                      onClick={(e) => handleYearClick(tournament, year, e)}
+                      data-year={year}
+                    >
+                      {year}
+                    </span>
+                    {idx < tournament.years.length - 1 && <span className={styles.yearSeparator}> - </span>}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
