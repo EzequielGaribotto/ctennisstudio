@@ -31,10 +31,10 @@ export const es: Translations = {
     description: "Servicio profesional de encordado, equilibrado y reparación de raquetas de tenis"
   },
   experiencia: {
-    title: "Experiencie Tour",
+    title: "Experience Tour",
     description: `Más de 15 años en el circuito profesional.
               En Custom Tennis Studio, cada raqueta se ajusta con la misma precisión que en un torneo ATP o WTA.
-              Fundado por Pablo Garibotto, encordador oficial en torneos ATP-WTA como Montecarlo, Miami y Madrid.`,
+              Fundado por Pablo Garibotto, encordador oficial en torneos como Montecarlo, Miami y Madrid.`,
     showMore: "Ver más",
     showLess: "Ver menos"
   },

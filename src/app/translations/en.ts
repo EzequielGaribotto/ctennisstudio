@@ -34,7 +34,7 @@ export const en: Translations = {
     title: "Experience Tour",
     description: `Over 15 years in the professional circuit.
               At Custom Tennis Studio, each racquet is adjusted with the same precision as in an ATP or WTA tournament.
-              Founded by Pablo Garibotto, official stringer at ATP-WTA tournaments like Monte Carlo, Miami and Madrid.`,
+              Founded by Pablo Garibotto, official stringer at tournaments like Monte Carlo, Miami and Madrid.`,
     showMore: "Show more",
     showLess: "Show less"
   },
