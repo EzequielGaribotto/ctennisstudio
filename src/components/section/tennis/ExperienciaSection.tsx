@@ -45,6 +45,7 @@ const ExperienciaSection: React.FC = () => {
   const gridRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const timelapseIntervalRef = useRef<NodeJS.Timeout | null>(null)
   
   // Dragging and resizing state
   const [isDragging, setIsDragging] = useState(false)
@@ -87,6 +88,9 @@ const ExperienciaSection: React.FC = () => {
     return () => {
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current)
+      }
+      if (timelapseIntervalRef.current) {
+        clearInterval(timelapseIntervalRef.current)
       }
     }
   }, [])
@@ -436,19 +440,63 @@ const ExperienciaSection: React.FC = () => {
       hoverTimeoutRef.current = null
     }
     
+    // Clear any ongoing timelapse
+    if (timelapseIntervalRef.current) {
+      clearInterval(timelapseIntervalRef.current)
+      timelapseIntervalRef.current = null
+    }
+    
     // Find the first image for this year
     const images = getTournamentImages(tournament)
-    const yearImageIndex = images.findIndex(img => img.includes(` ${year} `))
+    const targetYearImageIndex = images.findIndex(img => img.includes(` ${year} `))
     
-    if (yearImageIndex !== -1) {
+    if (targetYearImageIndex !== -1) {
       const rect = (event.target as HTMLElement).closest(`.${styles.card}`)?.getBoundingClientRect()
       if (rect) {
         setHoveredCardRect(rect)
-        setSelectedTournament(tournament)
-        setIsCarouselLocked(false) // Don't lock on year hover
-        setCurrentImageIndex(yearImageIndex)
-        setProgress(0)
-        setIsPaused(false)
+        
+        // If already showing this tournament
+        if (selectedTournament?.id === tournament.id) {
+          const currentIdx = currentImageIndex
+          const difference = Math.abs(targetYearImageIndex - currentIdx)
+          
+          // If there are images in between, do a timelapse
+          if (difference > 1) {
+            setIsPaused(true) // Pause auto-advance during timelapse
+            const direction = targetYearImageIndex > currentIdx ? 1 : -1
+            let step = currentIdx + direction
+            
+            // Quick timelapse: 100ms per image
+            timelapseIntervalRef.current = setInterval(() => {
+              if ((direction === 1 && step >= targetYearImageIndex) || 
+                  (direction === -1 && step <= targetYearImageIndex)) {
+                // Reached target
+                if (timelapseIntervalRef.current) {
+                  clearInterval(timelapseIntervalRef.current)
+                  timelapseIntervalRef.current = null
+                }
+                setCurrentImageIndex(targetYearImageIndex)
+                setProgress(0)
+                setIsPaused(false)
+              } else {
+                setCurrentImageIndex(step)
+                setProgress(0)
+                step += direction
+              }
+            }, 100) // 100ms per image for quick timelapse
+          } else {
+            // Jump directly if adjacent or same
+            setCurrentImageIndex(targetYearImageIndex)
+            setProgress(0)
+          }
+        } else {
+          // First time showing this tournament, jump directly
+          setSelectedTournament(tournament)
+          setIsCarouselLocked(false)
+          setCurrentImageIndex(targetYearImageIndex)
+          setProgress(0)
+          setIsPaused(false)
+        }
       }
     }
   }
@@ -527,6 +575,12 @@ const ExperienciaSection: React.FC = () => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
       hoverTimeoutRef.current = null
+    }
+    
+    // Clear any ongoing timelapse
+    if (timelapseIntervalRef.current) {
+      clearInterval(timelapseIntervalRef.current)
+      timelapseIntervalRef.current = null
     }
     
     setSelectedTournament(null)
