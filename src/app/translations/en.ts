@@ -127,7 +127,13 @@ export const en: Translations = {
       emailRequired: "Email is required",
       emailInvalid: "Email is not valid",
       messageRequired: "Message is required",
-      sendFailed: "Error sending message. Please try again."
+      sendFailed: "Error sending message. Please try again.",
+      invalidNameLength: "Name must be between 2 and 100 characters",
+      invalidSubjectLength: "Subject must be between 3 and 200 characters",
+      invalidMessageLength: "Message must be between 10 and 5000 characters",
+      invalidPhoneFormat: "Invalid phone number format",
+      spamDetected: "Your message was flagged as spam. Please try again.",
+      tooManyRequests: "Too many requests. Please wait before trying again."
     }
   }
 };

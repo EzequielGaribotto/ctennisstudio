@@ -127,7 +127,13 @@ export const es: Translations = {
       emailRequired: "El email es obligatorio",
       emailInvalid: "El email no es válido",
       messageRequired: "El mensaje es obligatorio",
-      sendFailed: "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
+      sendFailed: "Error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+      invalidNameLength: "El nombre debe tener entre 2 y 100 caracteres",
+      invalidSubjectLength: "El asunto debe tener entre 3 y 200 caracteres",
+      invalidMessageLength: "El mensaje debe tener entre 10 y 5000 caracteres",
+      invalidPhoneFormat: "Formato de teléfono inválido",
+      spamDetected: "Tu mensaje fue marcado como spam. Por favor, inténtalo de nuevo.",
+      tooManyRequests: "Demasiadas solicitudes. Por favor, espera antes de intentarlo de nuevo."
     }
   }
 };

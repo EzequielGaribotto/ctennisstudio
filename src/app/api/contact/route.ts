@@ -205,7 +205,7 @@ ${sanitizedMessage}
     console.log('📨 Attempting to send email via Resend...');
 
     const result = await resend!.emails.send({
-      from: 'CTennis Studio <noreply@ctenisstudio.com>', // Cambiado: ctenisstudio (sin doble t)
+      from: 'CTennis Studio <noreply@ctenisstudio.com>',
       to: 'pablo_garis@hotmail.com',
       replyTo: sanitizedEmail,
       subject: sanitizedSubject || `Nuevo contacto de ${sanitizedName}`,

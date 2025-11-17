@@ -124,7 +124,13 @@ export const baseTranslations = {
             emailRequired: "",
             emailInvalid: "",
             messageRequired: "",
-            sendFailed: ""
+            sendFailed: "",
+            invalidNameLength: "",
+            invalidSubjectLength: "",
+            invalidMessageLength: "",
+            invalidPhoneFormat: "",
+            spamDetected: "",
+            tooManyRequests: ""
         }
     }
 };

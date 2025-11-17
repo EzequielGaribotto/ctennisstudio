@@ -143,7 +143,7 @@ const ContactPageContent: React.FC = () => {
     
     // Validate name length
     if (formData.name.trim().length < 2 || formData.name.trim().length > 100) {
-      setErrorMessage("Name must be between 2 and 100 characters")
+      setErrorMessage(t("contact.errors.invalidNameLength"))
       return
     }
     
@@ -159,7 +159,7 @@ const ContactPageContent: React.FC = () => {
     
     // Validate subject length
     if (formData.subject.trim().length < 3 || formData.subject.trim().length > 200) {
-      setErrorMessage("Subject must be between 3 and 200 characters")
+      setErrorMessage(t("contact.errors.invalidSubjectLength"))
       return
     }
     
@@ -170,7 +170,7 @@ const ContactPageContent: React.FC = () => {
     
     // Validate message length
     if (formData.message.trim().length < 10 || formData.message.trim().length > 5000) {
-      setErrorMessage("Message must be between 10 and 5000 characters")
+      setErrorMessage(t("contact.errors.invalidMessageLength"))
       return
     }
 
