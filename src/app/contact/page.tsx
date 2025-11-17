@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { useTranslation } from "@/context/TranslationContext"
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaPhone, FaMapMarkerAlt } from "react-icons/fa"
@@ -18,7 +18,7 @@ interface ContactFormData {
   honeypot: string // Bot detection field
 }
 
-const ContactPage: React.FC = () => {
+const ContactPageContent: React.FC = () => {
   const { t, locale } = useTranslation()
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -447,6 +447,25 @@ const ContactPage: React.FC = () => {
         </div>
       </div>
     </div>
+  )
+}
+
+const ContactPage: React.FC = () => {
+  return (
+    <Suspense fallback={
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh',
+        fontSize: '1.5rem',
+        color: 'var(--primary)'
+      }}>
+        Loading...
+      </div>
+    }>
+      <ContactPageContent />
+    </Suspense>
   )
 }
 

@@ -39,6 +39,7 @@ const ExperienciaSection: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showAll, setShowAll] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [isTabletOrSmaller, setIsTabletOrSmaller] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [progress, setProgress] = useState(0)
   const [isCollapsing, setIsCollapsing] = useState(false)
@@ -55,16 +56,17 @@ const ExperienciaSection: React.FC = () => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
   const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 })
 
-  // Detect if we're on mobile
+  // Detect if we're on mobile or tablet (<=1024px means 3 or fewer columns)
   useEffect(() => {
-    const checkMobile = () => {
+    const checkViewport = () => {
       setIsMobile(window.innerWidth <= 768)
+      setIsTabletOrSmaller(window.innerWidth <= 1024)
     }
     
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
+    checkViewport()
+    window.addEventListener('resize', checkViewport)
     
-    return () => window.removeEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkViewport)
   }, [])
 
   // Handle browser back button
@@ -321,7 +323,7 @@ const ExperienciaSection: React.FC = () => {
 
   // Drag handlers
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    if (isMobile) return // Disable on mobile
+    if (isTabletOrSmaller) return // Disable on tablet and mobile
     
     setIsDragging(true)
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
@@ -345,7 +347,7 @@ const ExperienciaSection: React.FC = () => {
 
   // Resize handlers
   const handleResizeStart = (e: React.MouseEvent | React.TouchEvent) => {
-    if (isMobile) return // Disable on mobile
+    if (isTabletOrSmaller) return // Disable on tablet and mobile
     
     e.stopPropagation()
     setIsResizing(true)
@@ -528,7 +530,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCardHover = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile) return // Disable hover on mobile
+    if (isTabletOrSmaller) return // Disable hover on tablet and mobile (3 or fewer columns)
     if (isCarouselLocked) return // Don't change on hover if locked
     
     if (hoverTimeoutRef.current) {
@@ -545,7 +547,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCardLeave = () => {
-    if (isMobile) return // Disable hover on mobile
+    if (isTabletOrSmaller) return // Disable hover on tablet and mobile
     if (isCarouselLocked) return
     
     // Immediately hide carousel when leaving card (no delay for smooth horizontal scanning)
@@ -554,7 +556,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCarouselHover = () => {
-    if (isMobile) return // Disable hover on mobile
+    if (isTabletOrSmaller) return // Disable hover on tablet and mobile
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
       hoverTimeoutRef.current = null
@@ -562,7 +564,7 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const handleCarouselLeave = () => {
-    if (isMobile) return // Disable hover on mobile
+    if (isTabletOrSmaller) return // Disable hover on tablet and mobile
     if (isCarouselLocked) return
     
     // Immediately hide when leaving carousel too
