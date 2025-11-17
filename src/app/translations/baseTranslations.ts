@@ -11,13 +11,8 @@ export const baseTranslations = {
         encordado: "",
         equilibrado: "",
         cursos: "",
-        experiencia: ""
-    },
-    // Tooltip translations
-    tooltips: {
-        linkedin: "",
-        email: "",
-        emailCopied: ""
+        experiencia: "",
+        contacto: ""
     },
     // Footer translations
     footer: {
@@ -97,6 +92,39 @@ export const baseTranslations = {
                 content3: "",
                 price: ""
             }
+        }
+    },
+    contact: {
+        title: "",
+        description: "",
+        back: "",
+        success: "",
+        info: {
+            title: "",
+            social: "",
+            phone: "",
+            location: ""
+        },
+        form: {
+            name: "",
+            namePlaceholder: "",
+            email: "",
+            emailPlaceholder: "",
+            phone: "",
+            phonePlaceholder: "",
+            optional: "",
+            subject: "",
+            message: "",
+            messagePlaceholder: "",
+            submit: "",
+            sending: ""
+        },
+        errors: {
+            nameRequired: "",
+            emailRequired: "",
+            emailInvalid: "",
+            messageRequired: "",
+            sendFailed: ""
         }
     }
 };

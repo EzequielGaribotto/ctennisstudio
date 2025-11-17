@@ -2,10 +2,10 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { useTranslation } from "@/context/TranslationContext"
 import LanguageSwitcher from "../language/LanguageSwitcher"
 import styles from "./Header.module.css"
-import Tooltip from "../tooltip/Tooltip"
 
 const Header: React.FC = () => {
   const { t, isHydrated } = useTranslation()
@@ -90,7 +90,6 @@ const Header: React.FC = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <Tooltip text={"Custom Tennis Studio"} position="bottom" forcePosition={true}>
             <a
               href="#inicio"
               onClick={scrollToSection("inicio")}
@@ -106,7 +105,6 @@ const Header: React.FC = () => {
                 priority
               />
             </a>
-          </Tooltip>
 
           <nav className={styles.navigation}>
             <ul className={styles.navList}>
@@ -154,6 +152,11 @@ const Header: React.FC = () => {
                 >
                   {t("navigation.cursos")}
                 </a>
+              </li>
+              <li className={styles.navItem}>
+                <Link href="/contact" className={styles.contactLink}>
+                  {t("navigation.contacto")}
+                </Link>
               </li>
             </ul>
           </nav>
@@ -223,6 +226,11 @@ const Header: React.FC = () => {
                 >
                   {t("navigation.cursos")}
                 </a>
+              </li>
+              <li className={styles.mobileNavItem}>
+                <Link href="/contact" className={styles.contactLink}>
+                  {t("navigation.contacto")}
+                </Link>
               </li>
             </ul>
           </nav>

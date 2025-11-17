@@ -1,6 +1,7 @@
 "use client"
 import type React from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EquilibradoSection.module.css"
@@ -45,8 +46,8 @@ const EquilibradoSection: React.FC = () => {
           <div className={styles.imagesContainer}>
             <div className={styles.headerImageContainer}>
               <Image 
-                src="/images/stringer/racquets/head_racquets.webp"
-                alt="HEAD Racquets"
+                src="/images/stringer/services/racquets/equilibrado_y_reparacion.webp"
+                alt="Equilibrado y Reparación de Raquetas"
                 width={600}
                 height={400}
                 className={styles.headerImage}
@@ -71,17 +72,23 @@ const EquilibradoSection: React.FC = () => {
                 <h3 className={styles.serviceTitle}>{service.title}</h3>
                 <p className={styles.serviceDescript}>{service.description}</p>
               </div>
-              <div className={styles.imagePlaceholder}>🎾</div>
+              <div className={styles.imagePlaceholder}>
+                <Image 
+                  src={`/images/stringer/services/racquets/${service.key.toUpperCase()}.webp`}
+                  alt={service.title}
+                  width={300}
+                  height={300}
+                  className={styles.serviceImage}
+                />
+              </div>
               <div className={styles.priceTag}>{service.price}</div>
-              <a 
-                href="https://wa.me/34630530839" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <Link 
+                href={`/contact?service=${service.key}`}
                 className={styles.ctaButton}
               >
                 <FaWhatsapp className={styles.whatsappIcon} />
                 {t("equilibrado.cta")}
-              </a>
+              </Link>
             </div>
           ))}
         </div>

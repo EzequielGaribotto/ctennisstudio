@@ -14,12 +14,8 @@ export const en: Translations = {
     encordado: "Professional Stringing",
     equilibrado: "Balancing",
     cursos: "Courses and Training",
-    experiencia: "Experience Tour"
-  },
-  tooltips: {
-    linkedin: "Connect with me on LinkedIn",
-    email: "Copy email",
-    emailCopied: "✓ Copied!"
+    experiencia: "Experience Tour",
+    contacto: "Contact"
   },
   footer: {
     disclaimer: "© 2025 CTennis Studio.",
@@ -99,6 +95,39 @@ export const en: Translations = {
         content3: "Personalized player service",
         price: "€499"
       }
+    }
+  },
+  contact: {
+    title: "Contact",
+    description: "Fill out the form and we'll get back to you as soon as possible.",
+    back: "Back",
+    success: "Message sent successfully! Redirecting...",
+    info: {
+      title: "Contact Information",
+      social: "Social Media",
+      phone: "Phone",
+      location: "Location"
+    },
+    form: {
+      name: "Name",
+      namePlaceholder: "Your name",
+      email: "Email",
+      emailPlaceholder: "your@email.com",
+      phone: "Phone",
+      phonePlaceholder: "+1 234 567 890",
+      optional: "optional",
+      subject: "Subject",
+      message: "Message",
+      messagePlaceholder: "Write your message here...",
+      submit: "Send Message",
+      sending: "Sending..."
+    },
+    errors: {
+      nameRequired: "Name is required",
+      emailRequired: "Email is required",
+      emailInvalid: "Email is not valid",
+      messageRequired: "Message is required",
+      sendFailed: "Error sending message. Please try again."
     }
   }
 };

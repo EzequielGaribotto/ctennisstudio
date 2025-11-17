@@ -164,7 +164,7 @@ const ExperienciaSection: React.FC = () => {
       city: "Madrid",
       countryCode: "ES",
       category: "Mutua Madrid Open",
-      years: ["2025", "2024", "2023", "2022", "2021", "2019", "2017"],
+      years: ["2025", "2024", "2023", "2022", "2021", "2019", "2018", "2017", "2016", "2010"],
       tournamentCode: "MUTUA",
       places: ["Madrid"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
@@ -665,11 +665,14 @@ const ExperienciaSection: React.FC = () => {
     
     // Extract tournament name, place, and year from path
     // Format: "TOURNAMENT PLACE YEAR INDEX.webp"
-    const match = imagePath.match(/\/(\w+)\s([A-Z]+)\s(\d{4})\s\d+\.webp$/)
+    // Place can be one or more words (e.g., "LA BISBAL", "VALENCIA", "MONTECARLO")
+    const match = imagePath.match(/\/(\w+)\s([A-Z\s]+?)\s(\d{4})\s\d+\.webp$/)
     if (match) {
       const [, tournamentCode, place, year] = match
-      // Normalize place: uppercase first letter, lowercase rest
-      const normalizedPlace = place.charAt(0) + place.slice(1).toLowerCase()
+      // Normalize place: capitalize each word properly
+      const normalizedPlace = place.trim().split(' ').map(word => 
+        word.charAt(0) + word.slice(1).toLowerCase()
+      ).join(' ')
       
       // Get tournament name from mapping
       const tournamentNames: Record<string, string> = {

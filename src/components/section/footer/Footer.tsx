@@ -2,6 +2,7 @@
 
 import { useTranslation } from "@/context/TranslationContext"
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
+import Link from "next/link"
 import styles from "./Footer.module.css"
 import { useEffect, useState } from "react"
 
@@ -26,6 +27,9 @@ export default function Footer() {
       <div className={styles.footerContent}>
         <div className={styles.footerInfo}>
           <p className={styles.copyright}>{t("footer.copyright")}</p>
+          <Link href="/contact" className={styles.contactButton}>
+            {t("navigation.contacto")}
+          </Link>
         </div>
 
         <div className={styles.socialLinks}>

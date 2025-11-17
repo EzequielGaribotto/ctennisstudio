@@ -14,12 +14,8 @@ export const es: Translations = {
     encordado: "Encordado Profesional",
     equilibrado: "Equilibrado",
     cursos: "Formaciones y Cursos",
-    experiencia: "Experience Tour"
-  },
-  tooltips: {
-    linkedin: "Conecta conmigo en LinkedIn",
-    email: "Copiar email",
-    emailCopied: "✓ ¡Copiado!"
+    experiencia: "Experience Tour",
+    contacto: "Contacto"
   },
   footer: {
     disclaimer: "© 2025 CTennis Studio.",
@@ -99,6 +95,39 @@ export const es: Translations = {
         content3: "Servicio personalizado a jugadores",
         price: "€499"
       }
+    }
+  },
+  contact: {
+    title: "Contacto",
+    description: "Completa el formulario y nos pondremos en contacto contigo lo antes posible.",
+    back: "Volver",
+    success: "¡Mensaje enviado con éxito! Redirigiendo...",
+    info: {
+      title: "Información de Contacto",
+      social: "Redes Sociales",
+      phone: "Teléfono",
+      location: "Ubicación"
+    },
+    form: {
+      name: "Nombre",
+      namePlaceholder: "Tu nombre",
+      email: "Email",
+      emailPlaceholder: "tu@email.com",
+      phone: "Teléfono",
+      phonePlaceholder: "+34 600 000 000",
+      optional: "opcional",
+      subject: "Asunto",
+      message: "Mensaje",
+      messagePlaceholder: "Escribe tu mensaje aquí...",
+      submit: "Enviar Mensaje",
+      sending: "Enviando..."
+    },
+    errors: {
+      nameRequired: "El nombre es obligatorio",
+      emailRequired: "El email es obligatorio",
+      emailInvalid: "El email no es válido",
+      messageRequired: "El mensaje es obligatorio",
+      sendFailed: "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
     }
   }
 };

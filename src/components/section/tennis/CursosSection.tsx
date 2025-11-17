@@ -1,6 +1,7 @@
 "use client"
 import type React from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./CursosSection.module.css"
 
@@ -57,14 +58,25 @@ const CursosSection: React.FC = () => {
         <div className={styles.header}>
           <h2 className={styles.title}>{t("cursos.title")}</h2>
           <p className={styles.description}>{t("cursos.description")}</p>
-          <div className={styles.headerImageContainer}>
-            <Image 
-              src="/images/stringer/machines/babolat_machines.webp"
-              alt="Babolat Professional Stringing Machines"
-              width={600}
-              height={400}
-              className={styles.headerImage}
-            />
+          <div className={styles.headerImagesWrapper}>
+            <div className={styles.headerImageContainer}>
+              <Image 
+                src="/images/stringer/machines/babolat_machines.webp"
+                alt="Babolat Professional Stringing Machines"
+                width={600}
+                height={400}
+                className={styles.headerImage}
+              />
+            </div>
+            <div className={styles.diplomaImageContainer}>
+              <Image 
+                src="/images/stringer/pablo/pablo_10_yrs_mutua_2025.webp"
+                alt="Pablo Garibotto - 10 Years Mutua Madrid Open 2025"
+                width={500}
+                height={400}
+                className={styles.diplomaImage}
+              />
+            </div>
           </div>
         </div>
 
@@ -84,7 +96,9 @@ const CursosSection: React.FC = () => {
 
               <div className={styles.courseFooter}>
                 <div className={styles.price}>{course.price}</div>
-                <button className={styles.enrollButton}>{t("cursos.cta")}</button>
+                <Link href={`/contact?service=${course.key}`} className={styles.enrollButton}>
+                  {t("cursos.cta")}
+                </Link>
               </div>
             </div>
           ))}

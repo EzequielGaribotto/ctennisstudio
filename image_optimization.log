@@ -200,3 +200,86 @@
 2025-11-13 21:39:03,320 - INFO -   Size reduction: 160.5 KB to 86.8 KB (45.9% saved)
 2025-11-13 21:39:03,321 - INFO - Skipping public\images\stringer\tournament_logos\mallorca_championships_logo.png - WebP version is newer (use --force to override)
 2025-11-13 21:39:03,325 - INFO - Optimization complete: Processed 5 out of 6 images
+2025-11-17 13:19:10,001 - INFO - Starting image optimization
+2025-11-17 13:19:10,583 - INFO - Converted public\images\stringer\Aumento de peso de raquetas.png to public\images\stringer\Aumento de peso de raquetas.webp
+2025-11-17 13:19:10,584 - INFO -   Size reduction: 1717.6 KB to 40.1 KB (97.7% saved)
+2025-11-17 13:19:10,608 - INFO - Converted public\images\stringer\Captura de pantalla 2025-03-09 124807.png to public\images\stringer\Captura de pantalla 2025-03-09 124807.webp
+2025-11-17 13:19:10,608 - INFO -   Size reduction: 41.9 KB to 8.6 KB (79.6% saved)
+2025-11-17 13:19:10,810 - INFO - Converted public\images\stringer\Diploma Madrid 2025 -10 años de mutua Madrid.jpg to public\images\stringer\Diploma Madrid 2025 -10 años de mutua Madrid.webp
+2025-11-17 13:19:10,811 - INFO -   Size reduction: 109.5 KB to 53.6 KB (51.0% saved)
+2025-11-17 13:19:17,109 - INFO - Converted public\images\stringer\IMG_20250226_182007.jpg to public\images\stringer\IMG_20250226_182007.webp
+2025-11-17 13:19:17,109 - INFO -   Size reduction: 5341.5 KB to 968.0 KB (81.9% saved)
+2025-11-17 13:19:22,639 - INFO - Converted public\images\stringer\IMG_20250226_212049.jpg to public\images\stringer\IMG_20250226_212049.webp
+2025-11-17 13:19:22,640 - INFO -   Size reduction: 4541.1 KB to 549.0 KB (87.9% saved)
+2025-11-17 13:19:22,746 - INFO - Converted public\images\stringer\madrid 2018.png to public\images\stringer\madrid 2018.webp
+2025-11-17 13:19:22,746 - INFO -   Size reduction: 404.8 KB to 25.0 KB (93.8% saved)
+2025-11-17 13:19:22,858 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2013 1.jpg to public\images\stringer\tournaments\GODO BARCELONA 2013 1.webp
+2025-11-17 13:19:22,859 - INFO -   Size reduction: 59.7 KB to 29.0 KB (51.5% saved)
+2025-11-17 13:19:22,930 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2013 2.jpg to public\images\stringer\tournaments\GODO BARCELONA 2013 2.webp
+2025-11-17 13:19:22,931 - INFO -   Size reduction: 23.5 KB to 20.2 KB (14.1% saved)
+2025-11-17 13:19:23,065 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2013 3.jpg to public\images\stringer\tournaments\GODO BARCELONA 2013 3.webp
+2025-11-17 13:19:23,065 - INFO -   Size reduction: 84.6 KB to 47.0 KB (44.4% saved)
+2025-11-17 13:19:23,290 - INFO - Converted public\images\stringer\tournaments\GODO BARCELONA 2025 0.jpg to public\images\stringer\tournaments\GODO BARCELONA 2025 0.webp
+2025-11-17 13:19:23,290 - INFO -   Size reduction: 147.4 KB to 79.6 KB (46.0% saved)
+2025-11-17 13:19:23,573 - INFO - Converted public\images\stringer\tournaments\LA BISBAL 2025 1.jpg to public\images\stringer\tournaments\LA BISBAL 2025 1.webp
+2025-11-17 13:19:23,573 - INFO -   Size reduction: 178.0 KB to 108.1 KB (39.3% saved)
+2025-11-17 13:19:27,707 - INFO - Converted public\images\stringer\tournaments\LA BISBAL 2025 2.jpg to public\images\stringer\tournaments\LA BISBAL 2025 2.webp
+2025-11-17 13:19:27,708 - INFO -   Size reduction: 1584.8 KB to 631.7 KB (60.1% saved)
+2025-11-17 13:19:28,850 - INFO - Converted public\images\stringer\tournaments\Madrid Portada.jpg to public\images\stringer\tournaments\Madrid Portada.webp
+2025-11-17 13:19:28,850 - INFO -   Size reduction: 1151.0 KB to 153.8 KB (86.6% saved)
+2025-11-17 13:19:29,253 - INFO - Converted public\images\stringer\tournaments\Matching de raquetas.png to public\images\stringer\tournaments\Matching de raquetas.webp
+2025-11-17 13:19:29,254 - INFO -   Size reduction: 1709.1 KB to 56.9 KB (96.7% saved)
+2025-11-17 13:19:29,514 - INFO - Converted public\images\stringer\tournaments\miami 25 - 2.jpg to public\images\stringer\tournaments\miami 25 - 2.webp
+2025-11-17 13:19:29,514 - INFO -   Size reduction: 169.0 KB to 97.1 KB (42.6% saved)
+2025-11-17 13:19:29,777 - INFO - Converted public\images\stringer\tournaments\Miami 25 - 3.jpg to public\images\stringer\tournaments\Miami 25 - 3.webp
+2025-11-17 13:19:29,777 - INFO -   Size reduction: 161.4 KB to 97.1 KB (39.8% saved)
+2025-11-17 13:19:29,975 - INFO - Converted public\images\stringer\tournaments\Miami 25.jpg to public\images\stringer\tournaments\Miami 25.webp
+2025-11-17 13:19:29,975 - INFO -   Size reduction: 75.4 KB to 25.8 KB (65.8% saved)
+2025-11-17 13:19:30,181 - INFO - Converted public\images\stringer\tournaments\Montecarlo -  Portada.jpg to public\images\stringer\tournaments\Montecarlo -  Portada.webp
+2025-11-17 13:19:30,182 - INFO -   Size reduction: 106.6 KB to 51.7 KB (51.5% saved)
+2025-11-17 13:19:30,441 - INFO - Converted public\images\stringer\tournaments\Montecarlo 2025 - 02.jpg to public\images\stringer\tournaments\Montecarlo 2025 - 02.webp
+2025-11-17 13:19:30,442 - INFO -   Size reduction: 149.0 KB to 78.6 KB (47.3% saved)
+2025-11-17 13:19:30,544 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2010 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2010 0.webp
+2025-11-17 13:19:30,544 - INFO -   Size reduction: 46.4 KB to 27.2 KB (41.5% saved)
+2025-11-17 13:19:30,647 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2010 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2010 1.webp
+2025-11-17 13:19:30,647 - INFO -   Size reduction: 44.7 KB to 37.8 KB (15.3% saved)
+2025-11-17 13:19:30,782 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2010 2.jpg to public\images\stringer\tournaments\MUTUA MADRID 2010 2.webp
+2025-11-17 13:19:30,782 - INFO -   Size reduction: 45.6 KB to 41.7 KB (8.5% saved)
+2025-11-17 13:19:31,170 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2016 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2016 0.webp
+2025-11-17 13:19:31,171 - INFO -   Size reduction: 136.6 KB to 111.4 KB (18.5% saved)
+2025-11-17 13:19:31,569 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2016 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2016 1.webp
+2025-11-17 13:19:31,569 - INFO -   Size reduction: 145.1 KB to 132.0 KB (9.0% saved)
+2025-11-17 13:19:31,816 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2018 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2018 0.webp
+2025-11-17 13:19:31,816 - INFO -   Size reduction: 53.3 KB to 33.5 KB (37.2% saved)
+2025-11-17 13:19:32,024 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2018 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2018 1.webp
+2025-11-17 13:19:32,026 - INFO -   Size reduction: 63.5 KB to 52.8 KB (16.9% saved)
+2025-11-17 13:19:32,213 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2018 2.jpg to public\images\stringer\tournaments\MUTUA MADRID 2018 2.webp
+2025-11-17 13:19:32,214 - INFO -   Size reduction: 53.7 KB to 43.5 KB (19.1% saved)
+2025-11-17 13:19:32,214 - INFO - Skipping public\images\stringer\tournaments\MUTUA MADRID 2018 2.png - WebP version is newer (use --force to override)
+2025-11-17 13:19:32,467 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2018 3.jpg to public\images\stringer\tournaments\MUTUA MADRID 2018 3.webp
+2025-11-17 13:19:32,467 - INFO -   Size reduction: 80.4 KB to 64.8 KB (19.4% saved)
+2025-11-17 13:19:32,621 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2021 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2021 0.webp
+2025-11-17 13:19:32,622 - INFO -   Size reduction: 90.8 KB to 43.6 KB (52.0% saved)
+2025-11-17 13:19:32,926 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2021 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2021 1.webp
+2025-11-17 13:19:32,926 - INFO -   Size reduction: 170.1 KB to 92.1 KB (45.8% saved)
+2025-11-17 13:19:33,233 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2021 6.jpg to public\images\stringer\tournaments\MUTUA MADRID 2021 6.webp
+2025-11-17 13:19:33,233 - INFO -   Size reduction: 166.7 KB to 85.4 KB (48.8% saved)
+2025-11-17 13:19:33,751 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2022 0.jpg to public\images\stringer\tournaments\MUTUA MADRID 2022 0.webp
+2025-11-17 13:19:33,751 - INFO -   Size reduction: 283.1 KB to 168.6 KB (40.5% saved)
+2025-11-17 13:19:34,069 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2022 1.jpg to public\images\stringer\tournaments\MUTUA MADRID 2022 1.webp
+2025-11-17 13:19:34,070 - INFO -   Size reduction: 175.4 KB to 80.2 KB (54.3% saved)
+2025-11-17 13:19:34,281 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2022 2.jpg to public\images\stringer\tournaments\MUTUA MADRID 2022 2.webp
+2025-11-17 13:19:34,281 - INFO -   Size reduction: 127.1 KB to 63.0 KB (50.5% saved)
+2025-11-17 13:19:34,283 - INFO - Skipping public\images\stringer\tournaments\MUTUA MADRID 2025 2.jpg - WebP version is newer (use --force to override)
+2025-11-17 13:19:34,614 - INFO - Converted public\images\stringer\tournaments\Raqueta CTS.png to public\images\stringer\tournaments\Raqueta CTS.webp
+2025-11-17 13:19:34,614 - INFO -   Size reduction: 1712.9 KB to 88.4 KB (94.8% saved)
+2025-11-17 13:19:35,005 - INFO - Converted public\images\stringer\tournaments\reparacion de raquetas.png to public\images\stringer\tournaments\reparacion de raquetas.webp
+2025-11-17 13:19:35,005 - INFO -   Size reduction: 1802.8 KB to 51.7 KB (97.1% saved)
+2025-11-17 13:19:35,231 - INFO - Converted public\images\stringer\tournaments\RFET POLO 2019-6.jpg to public\images\stringer\tournaments\RFET POLO 2019-6.webp
+2025-11-17 13:19:35,231 - INFO -   Size reduction: 131.0 KB to 70.7 KB (46.0% saved)
+2025-11-17 13:19:35,735 - INFO - Converted public\images\stringer\tournaments\WHEELCHAIR 2018 -2.jpeg to public\images\stringer\tournaments\WHEELCHAIR 2018 -2.webp
+2025-11-17 13:19:35,735 - INFO -   Size reduction: 272.0 KB to 152.1 KB (44.1% saved)
+2025-11-17 13:19:35,776 - INFO - Converted public\images\stringer\tournaments\wHEELCHAIR 2018.jpg to public\images\stringer\tournaments\wHEELCHAIR 2018.webp
+2025-11-17 13:19:35,776 - INFO -   Size reduction: 21.9 KB to 13.0 KB (40.6% saved)
+2025-11-17 13:19:35,777 - INFO - Skipping public\images\stringer\tournament_logos\mallorca_championships_logo.png - WebP version is newer (use --force to override)
+2025-11-17 13:19:35,780 - INFO - Optimization complete: Processed 39 out of 42 images

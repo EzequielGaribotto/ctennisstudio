@@ -1,6 +1,6 @@
 "use client"
 import type React from "react"
-import Image from "next/image"
+import Link from "next/link"
 import { FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EncordadoSection.module.css"
@@ -22,20 +22,25 @@ const EncordadoSection: React.FC = () => {
               <li>{t("encordado.features.feature3")}</li>
             </ul>
 
-            <a href="https://wa.me/34630530839" target="_blank" rel="noopener noreferrer" className={styles.ctaButton}>
+            <Link href="/contact?service=encordado" className={styles.ctaButton}>
               <FaWhatsapp className={styles.whatsappIcon} />
               {t("encordado.cta")}
-            </a>
+            </Link>
           </div>
 
           <div className={styles.videoContent}>
-            <Image
-              src="/images/stringer/pablo/pablo_garibotto_stringer.webp"
-              alt="Pablo Garibotto - Professional Tennis Stringer"
-              width={600}
-              height={400}
-              className={styles.stringerImage}
-            />
+            <video
+              className={styles.stringerVideo}
+              controls
+              muted
+              preload="metadata"
+              poster="/images/stringer/pablo/pablo_garibotto_stringer.webp"
+              playsInline
+            >
+              <source src="/video/stringing/encordado_profesional_video.webm" type="video/webm" />
+              <source src="/video/stringing/encordado_profesional_video.ogv" type="video/ogg" />
+              Tu navegador no soporta el video.
+            </video>
           </div>
         </div>
       </div>

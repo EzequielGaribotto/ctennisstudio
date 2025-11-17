@@ -99,7 +99,12 @@
   animation-delay: 1.1s;
 }
 
-.navItem a {
+.navItem:nth-child(6) {
+  animation-delay: 1.2s;
+}
+
+.navItem a,
+.navItem .contactLink {
   color: var(--foreground);
   text-decoration: none;
   font-weight: 600;
@@ -109,11 +114,26 @@
   transition: all 0.3s ease;
   position: relative;
   white-space: nowrap;
+  display: block;
 }
 
 .navItem a:hover {
   background: rgba(249, 160, 40, 0.1);
   color: var(--primary);
+}
+
+.navItem .contactLink {
+  background: transparent;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.navItem .contactLink:hover {
+  color: var(--primary);
+  text-decoration-thickness: 3px;
 }
 
 .navItem a.active {
@@ -313,7 +333,8 @@
   gap: 4px;
 }
 
-.mobileNavItem a {
+.mobileNavItem a,
+.mobileNavItem .contactLink {
   display: block;
   color: var(--foreground);
   text-decoration: none;
@@ -327,6 +348,21 @@
 .mobileNavItem a:hover {
   background: rgba(249, 160, 40, 0.1);
   color: var(--primary);
+}
+
+.mobileNavItem .contactLink {
+  background: transparent;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.mobileNavItem .contactLink:hover {
+  color: var(--primary);
+  background: transparent;
+  text-decoration-thickness: 3px;
 }
 
 .mobileNavItem a.active {

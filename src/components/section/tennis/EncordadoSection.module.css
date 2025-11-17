@@ -122,9 +122,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.stringerImage {
+.stringerVideo {
   width: 100%;
   height: auto;
   border-radius: 16px;
@@ -133,7 +134,7 @@
   transition: transform 0.3s ease;
 }
 
-.stringerImage:hover {
+.stringerVideo:hover {
   transform: scale(1.02);
 }
 

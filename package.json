@@ -1,11 +1,10 @@
 {
-  "name": "portfolio-ezequielgaribotto",
+  "name": "ctennisstudio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ezequielgaribotto.com",
+  "homepage": "https://ctenisstudio.com",
   "scripts": {
     "dev": "next dev --turbopack",
-    "dev:watch": "concurrently \"npm run cv:watch\" \"next dev --turbopack\"",
     "build": "next build",
     "predeploy": "next build && (IF NOT EXIST out\\.nojekyll (echo.> out\\.nojekyll))",
     "deploy": "gh-pages -d out --dotfiles",
@@ -23,7 +22,8 @@
     "react-country-flag": "^3.1.0",
     "react-dom": "^19.1.0",
     "react-i18next": "^15.4.1",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "resend": "^6.4.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
