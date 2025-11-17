@@ -15,6 +15,7 @@ interface ContactFormData {
   subject: string
   message: string
   serviceType: ServiceType | null
+  honeypot: string // Bot detection field
 }
 
 const ContactPage: React.FC = () => {
@@ -28,7 +29,8 @@ const ContactPage: React.FC = () => {
     phone: "",
     subject: "",
     message: "",
-    serviceType: null
+    serviceType: null,
+    honeypot: "" // Bot trap
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -139,6 +141,12 @@ const ContactPage: React.FC = () => {
       return
     }
     
+    // Validate name length
+    if (formData.name.trim().length < 2 || formData.name.trim().length > 100) {
+      setErrorMessage("Name must be between 2 and 100 characters")
+      return
+    }
+    
     if (!formData.email.trim()) {
       setErrorMessage(t("contact.errors.emailRequired"))
       return
@@ -149,8 +157,20 @@ const ContactPage: React.FC = () => {
       return
     }
     
+    // Validate subject length
+    if (formData.subject.trim().length < 3 || formData.subject.trim().length > 200) {
+      setErrorMessage("Subject must be between 3 and 200 characters")
+      return
+    }
+    
     if (!formData.message.trim()) {
       setErrorMessage(t("contact.errors.messageRequired"))
+      return
+    }
+    
+    // Validate message length
+    if (formData.message.trim().length < 10 || formData.message.trim().length > 5000) {
+      setErrorMessage("Message must be between 10 and 5000 characters")
       return
     }
 
@@ -165,11 +185,12 @@ const ContactPage: React.FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          honeypot: formData.honeypot,
           locale
         }),
       })
@@ -215,6 +236,17 @@ const ContactPage: React.FC = () => {
             {/* Contact Form */}
             <div className={styles.formSection}>
               <form onSubmit={handleSubmit} className={styles.form}>
+                {/* Honeypot field - hidden from users, bots will fill it */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleInputChange}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                
                 {/* Name Field */}
                 <div className={styles.formGroup}>
                   <label htmlFor="name" className={styles.label}>
