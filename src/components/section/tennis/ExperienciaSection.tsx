@@ -290,7 +290,7 @@ const ExperienciaSection: React.FC = () => {
       city: "Barcelona",
       countryCode: "ES",
       category: "ITF World Tennis Tour Juniors",
-      years: ["2025", "2024", "2023"],
+      years: ["2023", "2022", "2021"],
       tournamentCode: "ITF_JR",
       places: ["Barcelona"],
       unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_jr_logo.webp",
