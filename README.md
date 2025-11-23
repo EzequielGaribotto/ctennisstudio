@@ -28,3 +28,11 @@ Asegurarte de que estas aca:
 `git add .`  
 `git commit -m "añadida imagen engie biarritz"`  
 `git push`
+
+
+## Husky
+
+`npm install --save-dev husky lint-staged`  
+
+`npx husky install`
+`npx husky add .husky/pre-commit "npx lint-staged"`
