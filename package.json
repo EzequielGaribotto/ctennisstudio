@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://ctenisstudio.com",
   "scripts": {
+    "prepare": "husky install",
+    "prebuild": "npm run lint -- --max-warnings=0",
     "dev": "next dev --turbopack",
     "build": "next build",
     "predeploy": "next build && (IF NOT EXIST out\\.nojekyll (echo.> out\\.nojekyll))",
@@ -45,7 +47,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint"
+      "npm run lint -- --max-warnings=0"
     ]
   }
 }
