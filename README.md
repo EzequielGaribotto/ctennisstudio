@@ -18,7 +18,13 @@ Abre la terminal y ejecuta
 
 ## 5. Verificar que las imagenes se añaden correctamente
 - Correr la página localmente
-Abre la terminal y ejecuta
+Abre la terminal y ejecuta  
 `npm run dev`
 
-## 6. 
+## 6. Hacer commit y push
+Asegurarte de que estas aca:  
+`C:\Users\pablo\Desktop\CTS\ctennisstudio>`  
+- Desde la terminal, ejecutar  
+`git add .`  
+`git commit -m "añadida imagen engie biarritz"`  
+`git push`

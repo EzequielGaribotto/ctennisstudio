@@ -901,7 +901,15 @@ const ExperienciaSection: React.FC = () => {
 
               {/* Row 3: Category */}
               <div className={styles.categoryRow}>
-                <span className={styles.category}>{tournament.category}</span>
+                <span className={`${
+                  styles.category
+                } ${
+                  ['ROLEX', 'MUTUA', 'OPEN'].includes(tournament.id) 
+                    ? styles.categoryHighlight 
+                    : tournament.id === 'GODO' 
+                    ? styles.categoryHighlightSilver 
+                    : ''
+                }`}>{tournament.category}</span>
               </div>
 
               {/* Row 4: Years */}
