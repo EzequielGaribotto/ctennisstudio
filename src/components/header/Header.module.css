@@ -308,7 +308,10 @@
 }
 
 .mobileMenu.open {
+  /* Make overlay visible and allow interaction when open */
+  display: block;
   pointer-events: auto;
+  background: rgba(0,0,0,0.16); /* subtle dim behind menu */
 }
 
 
