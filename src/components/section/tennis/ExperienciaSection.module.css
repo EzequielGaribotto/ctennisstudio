@@ -194,17 +194,37 @@
   align-items: center;
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--border);
+  max-width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  box-sizing: border-box;
 }
 
 .logoContainer {
   flex-shrink: 0;
 }
 
+.logoContainer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 25%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+
 .logo {
-  width: 80px;
-  height: 80px;
+  display: block;
+  max-width: 100%;
+  max-height: 60px;
+  width: 100%;
+  height: auto;
   object-fit: contain;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 /* Row 2: Location */
@@ -618,14 +638,22 @@
     padding: 0.75rem;
   }
 
+  .logoContainer {
+    max-width: 30%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+  }
+
   .logo {
-    width: 60px;
-    height: 60px;
+    max-height: 48px;
   }
 
   .logosRow {
     gap: 0.4rem;
     padding: 0.6rem 0;
+    max-width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   .city {
@@ -674,14 +702,22 @@
     padding: 0.5rem;
   }
 
+  .logoContainer {
+    max-width: 40%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+  }
+
   .logo {
-    width: 60px;
-    height: 60px;
+    max-height: 36px;
   }
 
   .logosRow {
     gap: 0.25rem;
     padding: 0.5rem 0;
+    max-width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   .city {
