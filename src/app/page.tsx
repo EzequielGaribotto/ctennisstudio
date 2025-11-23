@@ -9,9 +9,9 @@ import CursosSection from "@/components/section/tennis/CursosSection"
 
 export default function Page() {
   return (
-    <div className="min-h-screen text-foreground">
+    <div style={{ minHeight: '100vh', background: 'transparent', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <main>
+      <main style={{ flex: 1, background: 'transparent' }}>
         <TennisHeroSection />
         <ExperienciaSection />
         <EncordadoSection />
