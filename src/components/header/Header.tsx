@@ -1,8 +1,8 @@
 "use client"
 import type React from "react"
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import LanguageSwitcher from "../language/LanguageSwitcher"
 import styles from "./Header.module.css"
@@ -100,6 +100,21 @@ const Header: React.FC = () => {
               <span className={styles.burgerIcon}></span>
             </button>
           </div>
+
+          {/* Logo (visible on desktop / web only) */}
+          <div className={styles.logo}>
+            <Link href="/" aria-label="CTennisStudio home" className={styles.logoLink}>
+              <Image
+                src="/images/logo/ctennisstudio_logo.webp"
+                alt="CTennisStudio"
+                width={140}
+                height={40}
+                priority
+                className={styles.logoImage}
+              />
+            </Link>
+          </div>
+
           <nav className={styles.navigation}>
             <ul className={styles.navList}>
               <li className={styles.navItem}>
@@ -154,6 +169,11 @@ const Header: React.FC = () => {
               </li>
             </ul>
           </nav>
+
+          {/* Language switcher for desktop (visible on web) */}
+          <div className={styles.desktopRight}>
+            <LanguageSwitcher />
+          </div>
 
           <div className={styles.mobileRight}>
             <LanguageSwitcher />
