@@ -151,7 +151,7 @@ const ExperienciaSection: React.FC = () => {
       city: "Monte-Carlo",
       countryCode: "MC",
       category: "Rolex Monte-Carlo Masters",
-      years: ["2025", "2024", "2023"],
+      years: ["2025", "2024", "2023", "2022"],
       tournamentCode: "ROLEX",
       places: ["Montecarlo"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",

@@ -283,3 +283,9 @@
 2025-11-17 13:19:35,776 - INFO -   Size reduction: 21.9 KB to 13.0 KB (40.6% saved)
 2025-11-17 13:19:35,777 - INFO - Skipping public\images\stringer\tournament_logos\mallorca_championships_logo.png - WebP version is newer (use --force to override)
 2025-11-17 13:19:35,780 - INFO - Optimization complete: Processed 39 out of 42 images
+2025-11-23 15:47:49,672 - INFO - Starting image optimization
+2025-11-23 15:47:55,456 - INFO - Converted public\images\stringer\tournaments\biarritz 25.jpg to public\images\stringer\tournaments\biarritz 25.webp
+2025-11-23 15:47:55,456 - INFO -   Size reduction: 7157.9 KB to 1279.9 KB (82.1% saved)
+2025-11-23 15:47:58,927 - INFO - Converted public\images\stringer\tournament_logos\mallorca_championships_logo.png to public\images\stringer\tournament_logos\mallorca_championships_logo.webp
+2025-11-23 15:47:58,928 - INFO -   Size reduction: 49.9 KB to 21.7 KB (56.6% saved)
+2025-11-23 15:47:58,931 - INFO - Optimization complete: Processed 2 out of 2 images
