@@ -90,22 +90,16 @@ const Header: React.FC = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-            <a
-              href="#inicio"
-              onClick={scrollToSection("inicio")}
-              className={styles.logoLink}
-              aria-label={"Custom Tennis Studio"}
+          {/* Mobile: Burger left, LanguageSwitcher right, no logo */}
+          <div className={styles.mobileLeft}>
+            <button 
+              className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Open menu"
             >
-              <Image 
-                src="/images/logo/ctennisstudio_logo.webp" 
-                alt="CTS Logo" 
-                width={60}
-                height={60}
-                className={styles.logo}
-                priority
-              />
-            </a>
-
+              <span className={styles.burgerIcon}></span>
+            </button>
+          </div>
           <nav className={styles.navigation}>
             <ul className={styles.navList}>
               <li className={styles.navItem}>
@@ -161,15 +155,8 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          <div className={styles.controls}>
+          <div className={styles.mobileRight}>
             <LanguageSwitcher />
-            <button 
-              className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Open menu"
-            >
-              <span className={styles.burgerIcon}></span>
-            </button>
           </div>
         </div>
       </header>

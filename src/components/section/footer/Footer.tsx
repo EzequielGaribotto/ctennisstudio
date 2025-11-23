@@ -16,14 +16,14 @@ export default function Footer() {
 
   if (!isClient || !isHydrated) {
     return (
-      <footer className="w-full py-3 px-4 flex justify-center">
+      <footer className="w-full py-3 flex justify-center">
         <div className={styles.footerContent} style={{ visibility: "hidden" }}></div>
       </footer>
     )
   }
 
   return (
-    <footer className="w-full py-3 px-4 flex justify-center">
+    <footer className="w-full py-3 flex justify-center">
       <div className={styles.footerContent}>
         <div className={styles.footerInfo}>
           <p className={styles.copyright}>{t("footer.copyright")}</p>

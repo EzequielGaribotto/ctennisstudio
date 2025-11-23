@@ -45,15 +45,18 @@ export const TranslationProvider = ({
   const [isHydrated, setIsHydrated] = useState(false)
 
   const getInitialLocale = (): string => {
-    if (typeof document === "undefined") {
+    if (typeof document === "undefined" && typeof navigator === "undefined") {
       return initialLocale
     }
-
-    const dataLocale = document.documentElement.dataset.locale
+    // Prefer explicit html lang or data-locale
+    const dataLocale = typeof document !== "undefined" ? document.documentElement.dataset.locale : undefined
     if (dataLocale && (dataLocale === LOCALE.EN || dataLocale === LOCALE.ES)) {
       return dataLocale
     }
-
+    // Detect browser language
+    const navLang = typeof navigator !== "undefined" ? (navigator.language || navigator.languages?.[0] || "es") : "es"
+    if (navLang.toLowerCase().startsWith("en")) return LOCALE.EN
+    if (navLang.toLowerCase().startsWith("es")) return LOCALE.ES
     return initialLocale
   }
 
