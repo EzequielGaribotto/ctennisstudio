@@ -15,7 +15,7 @@
     "generate-images": "node generate-image-manifest.mjs"
   },
   "dependencies": {
-    "chokidar": "^3.6.0",
+    "chokidar": "^5.0.0",
     "i18next": "^25.0.0",
     "lightningcss": "^1.29.3",
     "next": "15.3.8",
