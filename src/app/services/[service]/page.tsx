@@ -5,7 +5,6 @@ import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import { FaArrowLeft } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
-import Header from "@/components/header/Header"
 import Footer from "@/components/section/footer/Footer"
 import ContactModal from "@/components/contact-modal/ContactModal"
 import styles from "./page.module.css"
@@ -140,7 +139,6 @@ const ServiceDetailPage: React.FC = () => {
   if (!currentService) {
     return (
       <div className={styles.notFound}>
-        <Header />
         <main className={styles.main}>
           <div className={styles.container}>
             <h1>Servicio no encontrado</h1>
@@ -158,7 +156,6 @@ const ServiceDetailPage: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      <Header />
       <main className={styles.main}>
         <div className={styles.container}>
           <button onClick={() => router.back()} className={styles.backButton}>
