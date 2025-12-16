@@ -96,7 +96,10 @@ const CursosSection: React.FC = () => {
 
               <div className={styles.courseFooter}>
                 <div className={styles.price}>{course.price}</div>
-                <Link href={`/contact?service=${course.key}`} className={styles.enrollButton}>
+                <Link 
+                  href={`/services/${course.key}`}
+                  className={styles.enrollButton}
+                >
                   {t("cursos.cta")}
                 </Link>
               </div>

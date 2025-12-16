@@ -4,9 +4,18 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 2rem 0;
+  padding: 6rem 2rem 4rem;
   position: relative;
   overflow: hidden;
+}
+
+.heroCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .heroContent {
@@ -16,8 +25,6 @@
   justify-content: center;
   gap: 3rem;
   text-align: center;
-  width: 90%;
-  max-width: 1400px;
 }
 
 .profileImageContainer {
@@ -186,10 +193,13 @@
     padding: 5rem 1rem 3rem;
   }
 
+  .heroCard {
+    padding: 2rem 1.5rem;
+  }
+
   .heroContent {
     flex-direction: column;
     gap: 2rem;
-    padding-top: 1rem;
   }
 
   .profileImageContainer {

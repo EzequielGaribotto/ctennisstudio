@@ -1,7 +1,6 @@
 "use client"
 import type React from "react"
 import Link from "next/link"
-import { FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EncordadoSection.module.css"
 
@@ -22,8 +21,10 @@ const EncordadoSection: React.FC = () => {
               <li>{t("encordado.features.feature3")}</li>
             </ul>
 
-            <Link href="/contact?service=encordado" className={styles.ctaButton}>
-              <FaWhatsapp className={styles.whatsappIcon} />
+            <Link 
+              href="/services/encordado" 
+              className={styles.ctaButton}
+            >
               {t("encordado.cta")}
             </Link>
           </div>

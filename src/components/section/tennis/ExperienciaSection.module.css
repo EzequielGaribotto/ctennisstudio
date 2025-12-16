@@ -479,7 +479,25 @@
 }
 
 .closeButton {
-  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
 }
 
 /* Image wrapper with tap zones */
@@ -504,7 +522,22 @@
   top: 0;
   bottom: 0;
   width: 33%;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.tapZoneLeft:hover,
+.tapZoneRight:hover {
+  opacity: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.tapZoneRight:hover {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
 }
 
 .tapZoneLeft {
@@ -516,7 +549,18 @@
 }
 
 .tapIndicator {
-  display: none;
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
 /* Pause indicator */

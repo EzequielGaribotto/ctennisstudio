@@ -215,6 +215,7 @@
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  font-family: inherit;
 }
 
 .enrollButton:hover {

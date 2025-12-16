@@ -2,7 +2,6 @@
 import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EquilibradoSection.module.css"
 
@@ -18,6 +17,12 @@ const EquilibradoSection: React.FC = () => {
 
   const services: Service[] = [
     {
+      key: "point",
+      title: t("equilibrado.services.point.title"),
+      description: t("equilibrado.services.point.description"),
+      price: t("equilibrado.services.point.price"),
+    },
+    {
       key: "set",
       title: t("equilibrado.services.set.title"),
       description: t("equilibrado.services.set.description"),
@@ -28,12 +33,6 @@ const EquilibradoSection: React.FC = () => {
       title: t("equilibrado.services.match.title"),
       description: t("equilibrado.services.match.description"),
       price: t("equilibrado.services.match.price"),
-    },
-    {
-      key: "point",
-      title: t("equilibrado.services.point.title"),
-      description: t("equilibrado.services.point.description"),
-      price: t("equilibrado.services.point.price"),
     },
   ]
 
@@ -83,10 +82,9 @@ const EquilibradoSection: React.FC = () => {
               </div>
               <div className={styles.priceTag}>{service.price}</div>
               <Link 
-                href={`/contact?service=${service.key}`}
+                href={`/services/${service.key}`}
                 className={styles.ctaButton}
               >
-                <FaWhatsapp className={styles.whatsappIcon} />
                 {t("equilibrado.cta")}
               </Link>
             </div>

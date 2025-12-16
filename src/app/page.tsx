@@ -6,6 +6,7 @@ import ExperienciaSection from "@/components/section/tennis/ExperienciaSection"
 import EncordadoSection from "@/components/section/tennis/EncordadoSection"
 import EquilibradoSection from "@/components/section/tennis/EquilibradoSection"
 import CursosSection from "@/components/section/tennis/CursosSection"
+import WhatsAppButton from "@/components/whatsapp/WhatsAppButton"
 
 export default function Page() {
   return (
@@ -19,6 +20,7 @@ export default function Page() {
         <CursosSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }
