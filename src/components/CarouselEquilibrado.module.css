@@ -1,0 +1,45 @@
+.carousel {
+  position: relative;
+  height: 350px;
+  max-height: 350px;
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 150px;
+  }
+}
+
+.progressContainer {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 6px;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.progressBar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: white;
+  transition: width 0.1s linear;
+}
+
+.image {
+  object-fit: cover;
+}

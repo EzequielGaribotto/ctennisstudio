@@ -1,8 +1,8 @@
 "use client"
 import type React from "react"
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import LanguageSwitcher from "../language/LanguageSwitcher"
 import styles from "./Header.module.css"
@@ -90,21 +90,30 @@ const Header: React.FC = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-            <a
-              href="#inicio"
-              onClick={scrollToSection("inicio")}
-              className={styles.logoLink}
-              aria-label={"Custom Tennis Studio"}
+          {/* Mobile: Burger left, LanguageSwitcher right, no logo */}
+          <div className={styles.mobileLeft}>
+            <button 
+              className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Open menu"
             >
-              <Image 
-                src="/images/logo/ctennisstudio_logo.webp" 
-                alt="CTS Logo" 
-                width={60}
-                height={60}
-                className={styles.logo}
+              <span className={styles.burgerIcon}></span>
+            </button>
+          </div>
+
+          {/* Logo (visible on desktop / web only) */}
+          <div className={styles.logo}>
+            <Link href="/" aria-label="CTennisStudio home" className={styles.logoLink}>
+              <Image
+                src="/images/logo/ctennisstudio_logo.webp"
+                alt="CTennisStudio"
+                width={140}
+                height={40}
                 priority
+                className={styles.logoImage}
               />
-            </a>
+            </Link>
+          </div>
 
           <nav className={styles.navigation}>
             <ul className={styles.navList}>
@@ -161,15 +170,13 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          <div className={styles.controls}>
+          {/* Language switcher for desktop (visible on web) */}
+          <div className={styles.desktopRight}>
             <LanguageSwitcher />
-            <button 
-              className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Open menu"
-            >
-              <span className={styles.burgerIcon}></span>
-            </button>
+          </div>
+
+          <div className={styles.mobileRight}>
+            <LanguageSwitcher />
           </div>
         </div>
       </header>

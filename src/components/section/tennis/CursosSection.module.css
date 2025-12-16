@@ -25,7 +25,7 @@
   justify-content: center;
   align-items: stretch;
   margin: 2rem auto;
-  max-width: 1200px;
+  max-width: 720px;
 }
 
 .headerImageContainer {
@@ -234,7 +234,8 @@
   }
 
   .headerImagesWrapper {
-    flex-direction: column;
+    flex-direction: row;
+    max-width: 500px;
   }
 
   .title {

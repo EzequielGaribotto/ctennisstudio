@@ -13,6 +13,19 @@ const TennisHeroSection: React.FC = () => {
       <div className={styles.heroCard}>
         <div className={styles.heroContent}>
           <div className={styles.profileImageContainer}>
+      <div className={styles.heroContent}>
+        <div className={styles.profileImageContainer}>
+          <Image 
+            src="/images/stringer/pablo/portada_cts.webp"
+            alt="Pablo Garibotto - Professional Stringer"
+            width={280}
+            height={380}
+            className={styles.profileImage}
+            priority
+          />
+        </div>
+        <div className={styles.centerContent}>
+          <div className={styles.bannerContainer}>
             <Image 
               src="/images/stringer/pablo/stringer perfil.webp"
               alt="Pablo Garibotto - Professional Stringer"

@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EquilibradoSection.module.css"
+import CarouselEquilibrado from "./../../CarouselEquilibrado";
 
 interface Service {
   key: "set" | "match" | "point"
@@ -39,30 +40,28 @@ const EquilibradoSection: React.FC = () => {
   return (
     <section id="equilibrado" className={styles.section}>
       <div className={styles.container}>
+
         <div className={styles.header}>
           <h2 className={styles.title}>{t("equilibrado.title")}</h2>
           <p className={styles.description}>{t("equilibrado.description")}</p>
-          <div className={styles.imagesContainer}>
-            <div className={styles.headerImageContainer}>
-              <Image 
-                src="/images/stringer/services/racquets/equilibrado_y_reparacion.webp"
-                alt="Equilibrado y Reparación de Raquetas"
-                width={600}
-                height={400}
-                className={styles.headerImage}
-              />
+
+          <div className={styles.topRow}>
+            <div className={styles.carouselLeft}>
+              <CarouselEquilibrado />
             </div>
-            <div className={styles.upgradeImageContainer}>
-              <Image 
+
+            <div className={styles.upgradeRight}>
+              <Image
                 src="/images/logo/cts studio upgrade_new.webp"
                 alt="CTS Studio Upgrade"
-                width={300}
-                height={300}
+                width={100}
+                height={100}
                 className={styles.upgradeImage}
               />
             </div>
           </div>
         </div>
+
 
         <div className={styles.servicesGrid}>
           {services.map((service) => (
@@ -76,7 +75,7 @@ const EquilibradoSection: React.FC = () => {
                   src={`/images/stringer/services/racquets/${service.key.toUpperCase()}.webp`}
                   alt={service.title}
                   width={300}
-                  height={300}
+                  height={450}
                   className={styles.serviceImage}
                 />
               </div>

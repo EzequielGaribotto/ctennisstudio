@@ -283,3 +283,21 @@
 2025-11-17 13:19:35,776 - INFO -   Size reduction: 21.9 KB to 13.0 KB (40.6% saved)
 2025-11-17 13:19:35,777 - INFO - Skipping public\images\stringer\tournament_logos\mallorca_championships_logo.png - WebP version is newer (use --force to override)
 2025-11-17 13:19:35,780 - INFO - Optimization complete: Processed 39 out of 42 images
+2025-11-23 15:47:49,672 - INFO - Starting image optimization
+2025-11-23 15:47:55,456 - INFO - Converted public\images\stringer\tournaments\biarritz 25.jpg to public\images\stringer\tournaments\biarritz 25.webp
+2025-11-23 15:47:55,456 - INFO -   Size reduction: 7157.9 KB to 1279.9 KB (82.1% saved)
+2025-11-23 15:47:58,927 - INFO - Converted public\images\stringer\tournament_logos\mallorca_championships_logo.png to public\images\stringer\tournament_logos\mallorca_championships_logo.webp
+2025-11-23 15:47:58,928 - INFO -   Size reduction: 49.9 KB to 21.7 KB (56.6% saved)
+2025-11-23 15:47:58,931 - INFO - Optimization complete: Processed 2 out of 2 images
+2025-11-23 18:39:19,839 - INFO - Starting image optimization
+2025-11-23 18:39:20,663 - INFO - Converted public\images\stringer\pablo\portada_cts.jpg to public\images\stringer\pablo\portada_cts.webp
+2025-11-23 18:39:20,664 - INFO -   Size reduction: 385.8 KB to 105.7 KB (72.6% saved)
+2025-11-23 18:39:20,671 - INFO - Optimization complete: Processed 1 out of 1 images
+2025-11-23 19:18:22,699 - INFO - Starting image optimization
+2025-11-23 19:18:23,356 - INFO - Converted public\images\stringer\services\racquets\equilibrado_2.jpg to public\images\stringer\services\racquets\equilibrado_2.webp
+2025-11-23 19:18:23,357 - INFO -   Size reduction: 598.3 KB to 243.5 KB (59.3% saved)
+2025-11-23 19:18:23,825 - INFO - Converted public\images\stringer\services\racquets\equilibrado_3.jpg to public\images\stringer\services\racquets\equilibrado_3.webp
+2025-11-23 19:18:23,825 - INFO -   Size reduction: 466.3 KB to 141.1 KB (69.7% saved)
+2025-11-23 19:18:24,258 - INFO - Converted public\images\stringer\services\racquets\equilibrado_4.jpg to public\images\stringer\services\racquets\equilibrado_4.webp
+2025-11-23 19:18:24,259 - INFO -   Size reduction: 395.3 KB to 118.5 KB (70.0% saved)
+2025-11-23 19:18:24,260 - INFO - Optimization complete: Processed 3 out of 3 images

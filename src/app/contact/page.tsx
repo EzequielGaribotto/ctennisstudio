@@ -3,8 +3,11 @@ import type React from "react"
 import { useState, useEffect, useCallback, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { useTranslation } from "@/context/TranslationContext"
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaPhone, FaMapMarkerAlt } from "react-icons/fa"
 import styles from "./page.module.css"
+import { ContactForm } from "./components/ContactForm"
+import { ContactInfoSidebar } from "./components/ContactInfoSidebar"
+import { LocationSection } from "./components/LocationSection"
+import { SocialSection } from "./components/SocialSection"
 
 type ServiceType = "encordado" | "set" | "match" | "point" | "base" | "avance" | "maestria"
 
@@ -233,215 +236,35 @@ const ContactPageContent: React.FC = () => {
           </div>
 
           <div className={styles.contentGrid}>
-            {/* Contact Form */}
-            <div className={styles.formSection}>
-              <form onSubmit={handleSubmit} className={styles.form}>
-                {/* Honeypot field - hidden from users, bots will fill it */}
-                <input
-                  type="text"
-                  name="honeypot"
-                  value={formData.honeypot}
-                  onChange={handleInputChange}
-                  style={{ display: 'none' }}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-                
-                {/* Name Field */}
-                <div className={styles.formGroup}>
-                  <label htmlFor="name" className={styles.label}>
-                    {t("contact.form.name")} <span className={styles.required}>*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    placeholder={t("contact.form.namePlaceholder")}
-                    required
-                  />
-                </div>
+            {/* Desktop: Form + Sidebar */}
+            <ContactForm
+              formData={formData}
+              onInputChange={handleInputChange}
+              onSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
+              submitStatus={submitStatus}
+              errorMessage={errorMessage}
+            />
+            <ContactInfoSidebar />
+          </div>
 
-                {/* Email Field */}
-                <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.label}>
-                    {t("contact.form.email")} <span className={styles.required}>*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    placeholder={t("contact.form.emailPlaceholder")}
-                    required
-                  />
-                </div>
+          {/* Mobile: Reorganized layout */}
+          <div className={styles.mobileContentGrid}>
+            {/* Mobile: Form first */}
+            <ContactForm
+              formData={formData}
+              onInputChange={handleInputChange}
+              onSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
+              submitStatus={submitStatus}
+              errorMessage={errorMessage}
+            />
 
-                {/* Phone Field (Optional) */}
-                <div className={styles.formGroup}>
-                  <label htmlFor="phone" className={styles.label}>
-                    {t("contact.form.phone")} <span className={styles.optional}>({t("contact.form.optional")})</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    placeholder={t("contact.form.phonePlaceholder")}
-                  />
-                </div>
-
-                {/* Subject Field (Now Editable but Required) */}
-                <div className={styles.formGroup}>
-                  <label htmlFor="subject" className={styles.label}>
-                    {t("contact.form.subject")} <span className={styles.required}>*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    required
-                  />
-                </div>
-
-                {/* Message Field */}
-                <div className={styles.formGroup}>
-                  <label htmlFor="message" className={styles.label}>
-                    {t("contact.form.message")} <span className={styles.required}>*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className={styles.textarea}
-                    rows={8}
-                    placeholder={t("contact.form.messagePlaceholder")}
-                    required
-                  />
-                </div>
-
-                {/* Error Message */}
-                {errorMessage && (
-                  <div className={styles.errorMessage}>
-                    {errorMessage}
-                  </div>
-                )}
-
-                {/* Success Message */}
-                {submitStatus === "success" && (
-                  <div className={styles.successMessage}>
-                    {t("contact.success")}
-                  </div>
-                )}
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className={styles.submitButton}
-                  disabled={isSubmitting || submitStatus === "success"}
-                >
-                  {isSubmitting ? t("contact.form.sending") : t("contact.form.submit")}
-                </button>
-              </form>
-            </div>
-
-            {/* Contact Information Sidebar */}
-            <div className={styles.contactInfo}>
+            {/* Mobile: Location info + Map */}
+            <div className={styles.mobileContactInfo}>
               <h2 className={styles.contactInfoTitle}>{t("contact.info.title")}</h2>
-              
-              {/* Social Media */}
-              <div className={styles.infoSection}>
-                <h3 className={styles.infoSectionTitle}>{t("contact.info.social")}</h3>
-                <div className={styles.socialLinks}>
-                  <a
-                    href="https://www.facebook.com/Pablo.Garibotto.Garcia/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="Facebook"
-                  >
-                    <FaFacebook className={styles.socialIcon} />
-                    <span>Facebook</span>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/ctennisstudio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="Instagram"
-                  >
-                    <FaInstagram className={styles.socialIcon} />
-                    <span>Instagram</span>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/pablogaribottogarcia/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="LinkedIn"
-                  >
-                    <FaLinkedin className={styles.socialIcon} />
-                    <span>LinkedIn</span>
-                  </a>
-                  <a
-                    href="https://wa.me/34630530839"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="WhatsApp"
-                  >
-                    <FaWhatsapp className={styles.socialIcon} />
-                    <span>WhatsApp</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className={styles.infoSection}>
-                <h3 className={styles.infoSectionTitle}>{t("contact.info.phone")}</h3>
-                <a href="tel:+34630530839" className={styles.contactLink}>
-                  <FaPhone className={styles.contactIcon} />
-                  <span>+34 630 530 839</span>
-                </a>
-              </div>
-
-              {/* Location */}
-              <div className={styles.infoSection}>
-                <h3 className={styles.infoSectionTitle}>{t("contact.info.location")}</h3>
-                <a 
-                  href="https://www.google.com/maps/search/?api=1&query=C%2F+Verdaguer%2C+12%2C+Matar%C3%B3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.contactLink}
-                >
-                  <FaMapMarkerAlt className={styles.contactIcon} />
-                  <span>C/ Verdaguer, 12, Mataró</span>
-                </a>
-              </div>
-
-              {/* Map */}
-              <div className={styles.mapContainer}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.1234567890123!2d2.4444444444444!3d41.5555555555555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDMzJzIwLjAiTiAywrAyNiczNi4wIkU!5e0!3m2!1sen!2ses!4v1234567890123!5m2!1sen!2ses"
-                  width="100%"
-                  height="200"
-                  style={{ border: 0, borderRadius: '12px' }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="CTennis Studio Location"
-                />
-              </div>
+              <LocationSection />
+              <SocialSection />
             </div>
           </div>
         </div>

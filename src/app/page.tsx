@@ -1,4 +1,5 @@
 "use client"
+
 import Header from "@/components/header/Header"
 import Footer from "@/components/section/footer/Footer"
 import TennisHeroSection from "@/components/section/tennis/TennisHeroSection"
@@ -8,11 +9,15 @@ import EquilibradoSection from "@/components/section/tennis/EquilibradoSection"
 import CursosSection from "@/components/section/tennis/CursosSection"
 import WhatsAppButton from "@/components/whatsapp/WhatsAppButton"
 
+import ProgressBar from "@/components/ProgressBar"
+
 export default function Page() {
+
   return (
-    <div className="min-h-screen text-foreground">
+    <div style={{ minHeight: '100vh', background: 'transparent', display: 'flex', flexDirection: 'column' }}>
+      <ProgressBar />
       <Header />
-      <main>
+      <main style={{ flex: 1, background: 'transparent' }}>
         <TennisHeroSection />
         <ExperienciaSection />
         <EncordadoSection />

@@ -151,7 +151,7 @@ const ExperienciaSection: React.FC = () => {
       city: "Monte-Carlo",
       countryCode: "MC",
       category: "Rolex Monte-Carlo Masters",
-      years: ["2025", "2024", "2023"],
+      years: ["2025", "2024", "2023", "2022"],
       tournamentCode: "ROLEX",
       places: ["Montecarlo"],
       mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
@@ -901,7 +901,15 @@ const ExperienciaSection: React.FC = () => {
 
               {/* Row 3: Category */}
               <div className={styles.categoryRow}>
-                <span className={styles.category}>{tournament.category}</span>
+                <span className={`${
+                  styles.category
+                } ${
+                  ['ROLEX', 'MUTUA', 'OPEN'].includes(tournament.id) 
+                    ? styles.categoryHighlight 
+                    : tournament.id === 'GODO' 
+                    ? styles.categoryHighlightSilver 
+                    : ''
+                }`}>{tournament.category}</span>
               </div>
 
               {/* Row 4: Years */}

@@ -127,7 +127,7 @@
 }
 
 .stringerVideo {
-  width: 100%;
+  width: 50%;
   height: auto;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
@@ -135,12 +135,9 @@
   transition: transform 0.3s ease;
 }
 
-.stringerVideo:hover {
-  transform: scale(1.02);
-}
 
 .videoPlaceholder {
-  width: 100%;
+  width: 50%;
   aspect-ratio: 16 / 9;
   background: white;
   border: 3px solid var(--primary);
