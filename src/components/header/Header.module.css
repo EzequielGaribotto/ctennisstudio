@@ -243,7 +243,7 @@
   border: none;
   cursor: pointer;
   padding: 8px;
-  color: var(--foreground);
+  color: white;
   font-size: 1.5rem;
   position: relative;
 }
@@ -256,7 +256,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: currentColor;
+  background: white;
   position: relative;
   transition: background 0.3s ease;
 }
@@ -267,7 +267,7 @@
   position: absolute;
   width: 24px;
   height: 2px;
-  background: currentColor;
+  background: white;
   left: 0;
   transition: all 0.3s ease;
 }

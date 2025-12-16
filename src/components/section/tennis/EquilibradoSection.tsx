@@ -1,10 +1,10 @@
 "use client"
 import type React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./EquilibradoSection.module.css"
-import CarouselEquilibrado from "./../../CarouselEquilibrado";
 
 interface Service {
   key: "set" | "match" | "point"
@@ -13,8 +13,16 @@ interface Service {
   price: string
 }
 
+const equilibradoImages = [
+  "/images/stringer/services/racquets/equilibrado_1.webp",
+  "/images/stringer/services/racquets/equilibrado_2.webp",
+  "/images/stringer/services/racquets/equilibrado_3.webp",
+  "/images/stringer/services/racquets/equilibrado_4.webp",
+]
+
 const EquilibradoSection: React.FC = () => {
   const { t } = useTranslation()
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const services: Service[] = [
     {
@@ -47,7 +55,36 @@ const EquilibradoSection: React.FC = () => {
 
           <div className={styles.topRow}>
             <div className={styles.carouselLeft}>
-              <CarouselEquilibrado />
+              <div className={styles.carouselWrapper}>
+                <Image
+                  src={equilibradoImages[currentImageIndex]}
+                  alt={`Equilibrado ${currentImageIndex + 1}`}
+                  width={300}
+                  height={500}
+                  className={styles.carouselImage}
+                  style={{ objectFit: 'cover', borderRadius: '12px' }}
+                />
+                
+                {/* Navigation buttons - appear on hover */}
+                <button
+                  className={styles.navButton + ' ' + styles.navButtonLeft}
+                  onClick={() => setCurrentImageIndex((prev) => 
+                    prev === 0 ? equilibradoImages.length - 1 : prev - 1
+                  )}
+                  aria-label="Imagen anterior"
+                >
+                  ‹
+                </button>
+                <button
+                  className={styles.navButton + ' ' + styles.navButtonRight}
+                  onClick={() => setCurrentImageIndex((prev) => 
+                    (prev + 1) % equilibradoImages.length
+                  )}
+                  aria-label="Imagen siguiente"
+                >
+                  ›
+                </button>
+              </div>
             </div>
 
             <div className={styles.upgradeRight}>

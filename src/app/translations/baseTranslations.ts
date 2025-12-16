@@ -35,6 +35,7 @@ export const baseTranslations = {
         title: "",
         description: "",
         cta: "",
+        whatsappMessage: "",
         features: {
             feature1: "",
             feature2: "",
@@ -49,17 +50,20 @@ export const baseTranslations = {
             set: {
                 title: "",
                 description: "",
-                price: ""
+                price: "",
+                whatsappMessage: ""
             },
             match: {
                 title: "",
                 description: "",
-                price: ""
+                price: "",
+                whatsappMessage: ""
             },
             point: {
                 title: "",
                 description: "",
-                price: ""
+                price: "",
+                whatsappMessage: ""
             }
         }
     },
@@ -74,7 +78,8 @@ export const baseTranslations = {
                 content1: "",
                 content2: "",
                 content3: "",
-                price: ""
+                price: "",
+                whatsappMessage: ""
             },
             avance: {
                 name: "",
@@ -82,7 +87,8 @@ export const baseTranslations = {
                 content1: "",
                 content2: "",
                 content3: "",
-                price: ""
+                price: "",
+                whatsappMessage: ""
             },
             maestria: {
                 name: "",
@@ -90,7 +96,8 @@ export const baseTranslations = {
                 content1: "",
                 content2: "",
                 content3: "",
-                price: ""
+                price: "",
+                whatsappMessage: ""
             }
         }
     },
@@ -131,6 +138,80 @@ export const baseTranslations = {
             invalidPhoneFormat: "",
             spamDetected: "",
             tooManyRequests: ""
+        }
+    },
+    serviceDetails: {
+        whatIncludes: "",
+        serviceIncludes: "",
+        price: "",
+        coursePrice: "",
+        encordado: {
+            item1: "",
+            item2: "",
+            item3: "",
+            item4: "",
+            item5: "",
+            price: ""
+        },
+        point: {
+            item1: "",
+            item2: "",
+            item3: "",
+            item4: "",
+            item5: ""
+        },
+        set: {
+            item1: "",
+            item2: "",
+            item3: "",
+            item4: "",
+            item5: ""
+        },
+        match: {
+            item1: "",
+            item2: "",
+            item3: "",
+            item4: "",
+            item5: ""
+        },
+        base: {
+            item4: "",
+            item5: ""
+        },
+        avance: {
+            item4: "",
+            item5: ""
+        },
+        maestria: {
+            item4: "",
+            item5: ""
+        }
+    },
+    contactModal: {
+        title: "",
+        subtitle: "",
+        whatsappTitle: "",
+        whatsappSubtitle: "",
+        formTitle: "",
+        formSubtitle: "",
+        or: ""
+    },
+    serviceDetail: {
+        contractService: "",
+        enrollCourse: ""
+    },
+    modal: {
+        title: "",
+        subtitle: "",
+        whatsapp: {
+            title: "",
+            description: "",
+            button: ""
+        },
+        form: {
+            title: "",
+            description: "",
+            button: ""
         }
     }
 };

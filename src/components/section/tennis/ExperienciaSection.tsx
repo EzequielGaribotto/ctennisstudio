@@ -33,6 +33,10 @@ interface Tournament {
 
 const ExperienciaSection: React.FC = () => {
   const { t } = useTranslation()
+  
+  // Configurable timelapse speed (ms per image when hovering year navigation)
+  const TIMELAPSE_SPEED_MS = 500 // Change this value to adjust speed (e.g., 100, 250, 500, 1000)
+  
   const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null)
   const [isCarouselLocked, setIsCarouselLocked] = useState(false)
   const [hoveredCardRect, setHoveredCardRect] = useState<DOMRect | null>(null)
@@ -468,7 +472,7 @@ const ExperienciaSection: React.FC = () => {
             const direction = targetYearImageIndex > currentIdx ? 1 : -1
             let step = currentIdx + direction
             
-            // Quick timelapse: 100ms per image
+            // Timelapse with configurable speed
             timelapseIntervalRef.current = setInterval(() => {
               if ((direction === 1 && step >= targetYearImageIndex) || 
                   (direction === -1 && step <= targetYearImageIndex)) {
@@ -485,7 +489,7 @@ const ExperienciaSection: React.FC = () => {
                 setProgress(0)
                 step += direction
               }
-            }, 100) // 100ms per image for quick timelapse
+            }, TIMELAPSE_SPEED_MS)
           } else {
             // Jump directly if adjacent or same
             setCurrentImageIndex(targetYearImageIndex)

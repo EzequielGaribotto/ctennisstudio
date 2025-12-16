@@ -1,45 +1,226 @@
-.carousel {
+/* Carousel Modal - Instagram Stories Style (Fullscreen) */
+.carouselModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.storiesContainer {
   position: relative;
-  height: 350px;
-  max-height: 350px;
-  aspect-ratio: 9 / 16;
-  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  height: 90vh;
+  max-height: 900px;
+  background: #000;
+  border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  user-select: none;
+  pointer-events: auto;
 }
 
-@media (max-width: 768px) {
-  .carousel {
-    height: 150px;
-  }
-}
-
-.progressContainer {
+/* Progress bars */
+.progressBarsContainer {
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 0;
   right: 0;
   display: flex;
-  gap: 6px;
-  padding: 0 10px;
+  gap: 4px;
+  padding: 8px;
   z-index: 10;
+  background: transparent;
 }
 
-.progressBar {
+.progressBarWrapper {
   flex: 1;
   height: 3px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
   overflow: hidden;
 }
 
-.progressFill {
+.progressBar {
   height: 100%;
-  background: white;
-  transition: width 0.1s linear;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
-.image {
-  object-fit: cover;
+/* Stories Header */
+.storiesHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 16px 16px;
+  z-index: 10;
+  background: transparent;
+}
+
+.tournamentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tournamentText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tournamentName {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tournamentYear {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+/* Image wrapper with tap zones */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.storiesImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Tap zones */
+.tapZoneLeft,
+.tapZoneRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.tapZoneLeft:hover,
+.tapZoneRight:hover {
+  opacity: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.tapZoneRight:hover {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.tapZoneLeft {
+  left: 0;
+}
+
+.tapZoneRight {
+  right: 0;
+}
+
+.tapIndicator {
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+/* Pause indicator */
+.pauseIndicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.pauseIcon {
+  color: white;
+  font-size: 4rem;
+  opacity: 0.8;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .storiesContainer {
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
 }

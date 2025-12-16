@@ -222,6 +222,61 @@
 
 .carouselLeft {
   height: max-content;
+  position: relative;
+}
+
+.carouselWrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.carouselImage {
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+/* Navigation buttons */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
+
+.carouselWrapper:hover .navButton {
+  opacity: 1;
+}
+
+.navButton:hover {
+  background: rgba(255, 140, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.navButtonLeft {
+  left: 10px;
+}
+
+.navButtonRight {
+  right: 10px;
 }
 
 .upgradeRight {

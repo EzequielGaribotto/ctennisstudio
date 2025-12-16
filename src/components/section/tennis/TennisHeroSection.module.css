@@ -194,7 +194,7 @@
   .heroSection {
     min-height: 100vh;
     /* No background here, let it inherit the global gradient */
-    padding: 2.5rem 0.5rem 0.5rem;
+    padding: 5.5rem 0.5rem 0.5rem;
     box-sizing: border-box;
   }
 
