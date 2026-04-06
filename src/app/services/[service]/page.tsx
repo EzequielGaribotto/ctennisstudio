@@ -124,7 +124,6 @@ const ServiceDetailPage: React.FC = () => {
       items: [
         t("cursos.courses.maestria.content1"),
         t("cursos.courses.maestria.content2"),
-        t("cursos.courses.maestria.content3"),
         t("serviceDetails.maestria.item4"),
         t("serviceDetails.maestria.item5"),
       ],

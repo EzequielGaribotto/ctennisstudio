@@ -97,8 +97,7 @@ export const es: Translations = {
         name: "Maestría",
         description: "Nivel Avanzado",
         content1: "Encordado de competición ATP/WTA",
-        content2: "Análisis biomecánico",
-        content3: "Servicio personalizado a jugadores",
+        content2: "Servicio personalizado a jugadores",
         price: "€499",
         whatsappMessage: "¡Hola! Estoy interesado en el curso Maestría para convertirme en encordador profesional. ¿Podrías darme información sobre el programa?"
       }

@@ -301,3 +301,23 @@
 2025-11-23 19:18:24,258 - INFO - Converted public\images\stringer\services\racquets\equilibrado_4.jpg to public\images\stringer\services\racquets\equilibrado_4.webp
 2025-11-23 19:18:24,259 - INFO -   Size reduction: 395.3 KB to 118.5 KB (70.0% saved)
 2025-11-23 19:18:24,260 - INFO - Optimization complete: Processed 3 out of 3 images
+2026-04-06 13:45:30,186 - INFO - Starting image optimization
+2026-04-06 13:45:30,452 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2016 X.jpg to public\images\stringer\tournaments\MUTUA MADRID 2016 X.webp
+2026-04-06 13:45:30,452 - INFO -   Size reduction: 81.2 KB to 27.1 KB (66.6% saved)
+2026-04-06 13:45:30,638 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2016 X2.jpg to public\images\stringer\tournaments\MUTUA MADRID 2016 X2.webp
+2026-04-06 13:45:30,639 - INFO -   Size reduction: 69.7 KB to 64.2 KB (7.9% saved)
+2026-04-06 13:45:30,751 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2016 X3.jpg to public\images\stringer\tournaments\MUTUA MADRID 2016 X3.webp
+2026-04-06 13:45:30,751 - INFO -   Size reduction: 39.5 KB to 33.6 KB (15.0% saved)
+2026-04-06 13:45:30,882 - INFO - Converted public\images\stringer\tournaments\MUTUA MADRID 2016 X4.jpg to public\images\stringer\tournaments\MUTUA MADRID 2016 X4.webp
+2026-04-06 13:45:30,882 - INFO -   Size reduction: 96.3 KB to 42.4 KB (56.0% saved)
+2026-04-06 13:45:32,718 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2026 0.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2026 0.webp
+2026-04-06 13:45:32,718 - INFO -   Size reduction: 1913.3 KB to 173.4 KB (90.9% saved)
+2026-04-06 13:45:40,658 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2026 1.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2026 1.webp
+2026-04-06 13:45:40,659 - INFO -   Size reduction: 18521.3 KB to 780.1 KB (95.8% saved)
+2026-04-06 13:45:47,694 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2026 2.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2026 2.webp
+2026-04-06 13:45:47,694 - INFO -   Size reduction: 16368.4 KB to 2856.7 KB (82.5% saved)
+2026-04-06 13:45:50,931 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2026 3.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2026 3.webp
+2026-04-06 13:45:50,931 - INFO -   Size reduction: 3543.3 KB to 808.1 KB (77.2% saved)
+2026-04-06 13:45:51,792 - INFO - Converted public\images\stringer\tournaments\ROLEX MONTECARLO 2026 4.jpg to public\images\stringer\tournaments\ROLEX MONTECARLO 2026 4.webp
+2026-04-06 13:45:51,793 - INFO -   Size reduction: 1028.1 KB to 141.3 KB (86.3% saved)
+2026-04-06 13:45:51,797 - INFO - Optimization complete: Processed 9 out of 9 images

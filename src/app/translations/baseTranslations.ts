@@ -95,7 +95,6 @@ export const baseTranslations = {
                 description: "",
                 content1: "",
                 content2: "",
-                content3: "",
                 price: "",
                 whatsappMessage: ""
             }

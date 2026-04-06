@@ -97,8 +97,7 @@ export const en: Translations = {
         name: "Mastery",
         description: "Advanced Level",
         content1: "ATP/WTA competition stringing",
-        content2: "Biomechanical analysis",
-        content3: "Personalized player service",
+        content2: "Personalized player service",
         price: "€499",
         whatsappMessage: "Hello! I'm interested in the Mastery course to become a professional stringer. Could you provide information about the program?"
       }

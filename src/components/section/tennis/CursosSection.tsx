@@ -46,7 +46,6 @@ const CursosSection: React.FC = () => {
       content: [
         t("cursos.courses.maestria.content1"),
         t("cursos.courses.maestria.content2"),
-        t("cursos.courses.maestria.content3"),
       ],
       price: t("cursos.courses.maestria.price"),
     },
