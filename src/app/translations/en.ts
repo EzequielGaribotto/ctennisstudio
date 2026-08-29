@@ -53,19 +53,16 @@ export const en: Translations = {
       point: {
         title: "POINT",
         description: "Modify the balance of your tennis racquet",
-        price: "From €19",
         whatsappMessage: "Hello! I'm interested in the POINT service to modify the balance of my racquet. Could you give me more details?"
       },
       set: {
         title: "SET",
         description: "Increase the weight of your tennis racquet",
-        price: "From €19",
         whatsappMessage: "Hello! I'm interested in the SET service to increase the weight of my racquet. Could you provide more information?"
       },
       match: {
         title: "MATCH",
         description: "Match one racquet to another from a customized configuration",
-        price: "From €49",
         whatsappMessage: "Hello! I'm interested in the MATCH service to match my racquets. Could you explain the process?"
       }
     }
@@ -81,7 +78,6 @@ export const en: Translations = {
         content1: "Stringing fundamentals",
         content2: "Handling professional tools and machines",
         content3: "2 and 4 knot stringing",
-        price: "€249",
         whatsappMessage: "Hello! I'm interested in enrolling in the Base stringing course. Could you provide information about schedule and availability?"
       },
       avance: {
@@ -90,7 +86,6 @@ export const en: Translations = {
         content1: "Advanced stringing techniques",
         content2: "Weight balance and swingweight",
         content3: "Repairs and grommet and grip changes",
-        price: "€349",
         whatsappMessage: "Hello! I'm interested in the Advance stringing course. Could you give me more details about the program and requirements?"
       },
       maestria: {
@@ -98,7 +93,6 @@ export const en: Translations = {
         description: "Advanced Level",
         content1: "ATP/WTA competition stringing",
         content2: "Personalized player service",
-        price: "€499",
         whatsappMessage: "Hello! I'm interested in the Mastery course to become a professional stringer. Could you provide information about the program?"
       }
     }
@@ -145,8 +139,6 @@ export const en: Translations = {
   serviceDetails: {
     whatIncludes: "What's Included",
     serviceIncludes: "Service Includes",
-    price: "Service Price",
-    coursePrice: "Course Price",
     point: {
       item1: "Detailed analysis of current racquet balance",
       item2: "Professional weight adjustment using precision tools",
@@ -173,8 +165,7 @@ export const en: Translations = {
       item2: "Precision tension calibration (±0.5kg)",
       item3: "ATP/WTA tournament stringing techniques",
       item4: "Personalized string and tension recommendations",
-      item5: "Complete racquet inspection and cleaning",
-      price: "From €25"
+      item5: "Complete racquet inspection and cleaning"
     },
     base: {
       item4: "Hands-on practice with professional equipment",

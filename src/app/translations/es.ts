@@ -53,19 +53,16 @@ export const es: Translations = {
       point: {
         title: "POINT",
         description: "Modificar el balance de tu raqueta de tenis",
-        price: "A partir de 19€",
         whatsappMessage: "¡Hola! Estoy interesado en el servicio POINT para modificar el balance de mi raqueta. ¿Podrías darme más detalles?"
       },
       set: {
         title: "SET",
         description: "Aumentar el peso de tu raqueta de tenis",
-        price: "A partir de 19€",
         whatsappMessage: "¡Hola! Estoy interesado en el servicio SET para aumentar el peso de mi raqueta. ¿Podrías darme más información?"
       },
       match: {
         title: "MATCH",
         description: "Igualar una raqueta a otra a partir de una configuracion personalizada",
-        price: "A partir de 49€",
         whatsappMessage: "¡Hola! Estoy interesado en el servicio MATCH para igualar mis raquetas. ¿Podrías explicarme el proceso?"
       }
     }
@@ -81,7 +78,6 @@ export const es: Translations = {
         content1: "Fundamentos de encordado",
         content2: "Manejo de herramientas y máquinas profesionales",
         content3: "Encordado a 2 y 4 nudos",
-        price: "€249",
         whatsappMessage: "¡Hola! Estoy interesado en inscribirme en el curso Base de encordado. ¿Podrías darme información sobre horarios y disponibilidad?"
       },
       avance: {
@@ -90,7 +86,6 @@ export const es: Translations = {
         content1: "Técnicas avanzadas de encordado",
         content2: "Peso balance y swingweight",
         content3: "Reparaciones y cambios de grommets y grips",
-        price: "€349",
         whatsappMessage: "¡Hola! Estoy interesado en el curso Avance de encordado. ¿Podrías darme más detalles sobre el programa y requisitos?"
       },
       maestria: {
@@ -98,7 +93,6 @@ export const es: Translations = {
         description: "Nivel Avanzado",
         content1: "Encordado de competición ATP/WTA",
         content2: "Servicio personalizado a jugadores",
-        price: "€499",
         whatsappMessage: "¡Hola! Estoy interesado en el curso Maestría para convertirme en encordador profesional. ¿Podrías darme información sobre el programa?"
       }
     }
@@ -145,8 +139,6 @@ export const es: Translations = {
   serviceDetails: {
     whatIncludes: "Qué Incluye",
     serviceIncludes: "El Servicio Incluye",
-    price: "Precio del Servicio",
-    coursePrice: "Precio del Curso",
     point: {
       item1: "Análisis detallado del balance actual de la raqueta",
       item2: "Ajuste profesional del peso usando herramientas de precisión",
@@ -173,8 +165,7 @@ export const es: Translations = {
       item2: "Calibración de tensión de precisión (±0.5kg)",
       item3: "Técnicas de encordado de torneos ATP/WTA",
       item4: "Recomendaciones personalizadas de cuerdas y tensión",
-      item5: "Inspección completa y limpieza de la raqueta",
-      price: "Desde 25€"
+      item5: "Inspección completa y limpieza de la raqueta"
     },
     base: {
       item4: "Práctica con equipamiento profesional",

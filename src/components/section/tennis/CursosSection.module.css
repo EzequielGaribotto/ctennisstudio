@@ -189,17 +189,11 @@
 
 .courseFooter {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 1rem;
   border-top: 2px solid var(--border);
   padding-top: 1.5rem;
-}
-
-.price {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--primary);
 }
 
 .enrollButton {
@@ -256,10 +250,6 @@
 
   .contentList li {
     font-size: 0.95rem;
-  }
-
-  .price {
-    font-size: 1.1rem;
   }
 
   .enrollButton {

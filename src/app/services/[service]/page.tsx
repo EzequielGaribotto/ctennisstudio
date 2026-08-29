@@ -14,7 +14,6 @@ interface ServiceDetail {
   title: string
   subtitle: string
   items: string[]
-  price: string
   image: string
   whatsappMessage: string
 }
@@ -38,7 +37,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.point.item4"),
         t("serviceDetails.point.item5"),
       ],
-      price: t("equilibrado.services.point.price"),
       image: "/images/stringer/services/racquets/POINT.webp",
       whatsappMessage: "Hola, estoy interesado en el servicio POINT de equilibrado de raquetas",
     },
@@ -53,7 +51,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.set.item4"),
         t("serviceDetails.set.item5"),
       ],
-      price: t("equilibrado.services.set.price"),
       image: "/images/stringer/services/racquets/SET.webp",
       whatsappMessage: "Hola, estoy interesado en el servicio SET de aumento de peso",
     },
@@ -68,7 +65,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.match.item4"),
         t("serviceDetails.match.item5"),
       ],
-      price: t("equilibrado.services.match.price"),
       image: "/images/stringer/services/racquets/MATCH.webp",
       whatsappMessage: "Hola, estoy interesado en el servicio MATCH de igualación de raquetas",
     },
@@ -83,7 +79,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.encordado.item4"),
         t("serviceDetails.encordado.item5"),
       ],
-      price: t("serviceDetails.encordado.price"),
       image: "/images/stringer/pablo/pablo_garibotto_stringer.webp",
       whatsappMessage: "Hola, estoy interesado en el servicio de encordado profesional",
     },
@@ -98,7 +93,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.base.item4"),
         t("serviceDetails.base.item5"),
       ],
-      price: t("cursos.courses.base.price"),
       image: "/images/stringer/machines/babolat_machines.webp",
       whatsappMessage: "Hola, estoy interesado en el curso Base de encordado",
     },
@@ -113,7 +107,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.avance.item4"),
         t("serviceDetails.avance.item5"),
       ],
-      price: t("cursos.courses.avance.price"),
       image: "/images/stringer/machines/babolat_machines.webp",
       whatsappMessage: "Hola, estoy interesado en el curso Avance de encordado",
     },
@@ -127,7 +120,6 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.maestria.item4"),
         t("serviceDetails.maestria.item5"),
       ],
-      price: t("cursos.courses.maestria.price"),
       image: "/images/stringer/pablo/pablo_10_yrs_mutua_2025.webp",
       whatsappMessage: "Hola, estoy interesado en el curso Maestría de encordado",
     },
@@ -192,16 +184,7 @@ const ServiceDetailPage: React.FC = () => {
               ))}
             </ul>
 
-            <div className={styles.priceSection}>
-              <div className={styles.priceLabel}>
-                {service === "base" || service === "avance" || service === "maestria"
-                  ? t("serviceDetails.coursePrice")
-                  : t("serviceDetails.price")}
-              </div>
-              <div className={styles.priceValue}>{currentService.price}</div>
-            </div>
-
-            <button 
+            <button
               onClick={() => setIsModalOpen(true)} 
               className={styles.contractButton}
             >
