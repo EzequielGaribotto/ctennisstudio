@@ -208,6 +208,20 @@ const ExperienciaSection: React.FC = () => {
       level: TournamentLevel.ATP_500,
     },
 
+    // Gonet Geneva Open
+    {
+      id: "GENEVA",
+      city: "Geneva",
+      countryCode: "CH",
+      category: "Gonet Geneva Open",
+      years: ["2026"],
+      tournamentCode: "GENEVA",
+      places: ["Geneva"],
+      mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
+      unifiedLogo: "/images/stringer/tournament_logos/geneva_open_logo.webp",
+      level: TournamentLevel.ATP_250,
+    },
+
     // Challenger cluster
     {
       id: "CHALLENGER",
@@ -234,18 +248,57 @@ const ExperienciaSection: React.FC = () => {
       level: TournamentLevel.UNCLASSIFIED,
     },
 
-    // WTA 125s (La Bisbal, Barcelona)
+    // WTA 125s (La Bisbal, Barcelona, Valencia)
     {
       id: "WTA125",
-      city: "La Bisbal / Barcelona",
+      city: "La Bisbal / Barcelona / Valencia",
       countryCode: "ES",
       category: "WTA 125",
-      years: ["2025", "2012"],
+      years: ["2026", "2025", "2012"],
       tournamentCode: "WTA125",
-      places: ["La Bisbal", "Barcelona"],
+      places: ["La Bisbal", "Barcelona", "Valencia"],
       womensLogo: "/images/stringer/tournament_logos/category_stamps/125_wta.webp",
       unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
       level: TournamentLevel.ATP_WTA_125,
+    },
+
+    // ITF M25 Sabadell
+    {
+      id: "M25_SABADELL",
+      city: "Sabadell",
+      countryCode: "ES",
+      category: "ITF M25 Sabadell",
+      years: ["2026"],
+      tournamentCode: "M25SABADELL",
+      places: ["Sabadell"],
+      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
+    },
+
+    // ITF W35 Tauste
+    {
+      id: "W35_TAUSTE",
+      city: "Tauste",
+      countryCode: "ES",
+      category: "ITF W35 Tauste",
+      years: ["2026"],
+      tournamentCode: "W35TAUSTE",
+      places: ["Tauste"],
+      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
+    },
+
+    // ITF M35 Klagenfurt
+    {
+      id: "M35_KLAGENFURT",
+      city: "Klagenfurt",
+      countryCode: "AT",
+      category: "ITF M35 Klagenfurt",
+      years: ["2026"],
+      tournamentCode: "M35KLAGENFURT",
+      places: ["Klagenfurt"],
+      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
+      level: TournamentLevel.UNCLASSIFIED,
     },
 
     // ITF Wheelchair
@@ -692,7 +745,11 @@ const ExperienciaSection: React.FC = () => {
         ENGIE: "Engie Open Biarritz",
         WTA125: "WTA 125",
         CHAMPIONSHIPS: "Mallorca Championships",
-        ITF_JR: "ITF World Tennis Tour Juniors"
+        ITF_JR: "ITF World Tennis Tour Juniors",
+        GENEVA: "Gonet Geneva Open",
+        M25SABADELL: "ITF M25 Sabadell",
+        W35TAUSTE: "ITF W35 Tauste",
+        M35KLAGENFURT: "ITF M35 Klagenfurt"
       }
       
       const tournamentName = tournamentNames[tournamentCode] || selectedTournament.category
