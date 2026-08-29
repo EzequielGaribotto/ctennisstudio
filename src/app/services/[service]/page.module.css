@@ -142,30 +142,6 @@
   flex: 1;
 }
 
-.priceSection {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: center;
-  margin: 0 auto 2rem auto;
-  width: fit-content;
-  min-width: 250px;
-}
-
-.priceLabel {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-}
-
-.priceValue {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: white;
-}
-
 .contractButton {
   display: flex;
   align-items: center;
@@ -223,9 +199,5 @@
 
   .itemText {
     font-size: 1rem;
-  }
-
-  .priceValue {
-    font-size: 2rem;
   }
 }

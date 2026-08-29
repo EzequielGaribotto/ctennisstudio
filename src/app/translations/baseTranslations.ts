@@ -50,19 +50,16 @@ export const baseTranslations = {
             set: {
                 title: "",
                 description: "",
-                price: "",
                 whatsappMessage: ""
             },
             match: {
                 title: "",
                 description: "",
-                price: "",
                 whatsappMessage: ""
             },
             point: {
                 title: "",
                 description: "",
-                price: "",
                 whatsappMessage: ""
             }
         }
@@ -78,7 +75,6 @@ export const baseTranslations = {
                 content1: "",
                 content2: "",
                 content3: "",
-                price: "",
                 whatsappMessage: ""
             },
             avance: {
@@ -87,7 +83,6 @@ export const baseTranslations = {
                 content1: "",
                 content2: "",
                 content3: "",
-                price: "",
                 whatsappMessage: ""
             },
             maestria: {
@@ -95,7 +90,6 @@ export const baseTranslations = {
                 description: "",
                 content1: "",
                 content2: "",
-                price: "",
                 whatsappMessage: ""
             }
         }
@@ -142,15 +136,12 @@ export const baseTranslations = {
     serviceDetails: {
         whatIncludes: "",
         serviceIncludes: "",
-        price: "",
-        coursePrice: "",
         encordado: {
             item1: "",
             item2: "",
             item3: "",
             item4: "",
-            item5: "",
-            price: ""
+            item5: ""
         },
         point: {
             item1: "",

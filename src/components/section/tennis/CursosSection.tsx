@@ -10,7 +10,6 @@ interface Course {
   name: string
   description: string
   content: string[]
-  price: string
 }
 
 const CursosSection: React.FC = () => {
@@ -26,7 +25,6 @@ const CursosSection: React.FC = () => {
         t("cursos.courses.base.content2"),
         t("cursos.courses.base.content3"),
       ],
-      price: t("cursos.courses.base.price"),
     },
     {
       key: "avance",
@@ -37,7 +35,6 @@ const CursosSection: React.FC = () => {
         t("cursos.courses.avance.content2"),
         t("cursos.courses.avance.content3"),
       ],
-      price: t("cursos.courses.avance.price"),
     },
     {
       key: "maestria",
@@ -47,7 +44,6 @@ const CursosSection: React.FC = () => {
         t("cursos.courses.maestria.content1"),
         t("cursos.courses.maestria.content2"),
       ],
-      price: t("cursos.courses.maestria.price"),
     },
   ]
 
@@ -94,8 +90,7 @@ const CursosSection: React.FC = () => {
               </ul>
 
               <div className={styles.courseFooter}>
-                <div className={styles.price}>{course.price}</div>
-                <Link 
+                <Link
                   href={`/services/${course.key}`}
                   className={styles.enrollButton}
                 >

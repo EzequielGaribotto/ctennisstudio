@@ -10,7 +10,6 @@ interface Service {
   key: "set" | "match" | "point"
   title: string
   description: string
-  price: string
 }
 
 const equilibradoImages = [
@@ -29,19 +28,16 @@ const EquilibradoSection: React.FC = () => {
       key: "point",
       title: t("equilibrado.services.point.title"),
       description: t("equilibrado.services.point.description"),
-      price: t("equilibrado.services.point.price"),
     },
     {
       key: "set",
       title: t("equilibrado.services.set.title"),
       description: t("equilibrado.services.set.description"),
-      price: t("equilibrado.services.set.price"),
     },
     {
       key: "match",
       title: t("equilibrado.services.match.title"),
       description: t("equilibrado.services.match.description"),
-      price: t("equilibrado.services.match.price"),
     },
   ]
 
@@ -116,8 +112,7 @@ const EquilibradoSection: React.FC = () => {
                   className={styles.serviceImage}
                 />
               </div>
-              <div className={styles.priceTag}>{service.price}</div>
-              <Link 
+              <Link
                 href={`/services/${service.key}`}
                 className={styles.ctaButton}
               >

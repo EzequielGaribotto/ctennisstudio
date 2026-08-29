@@ -177,13 +177,6 @@
   display: block;
 }
 
-.priceTag {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--primary);
-  text-align: center;
-}
-
 .ctaButton {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -318,10 +311,6 @@
     font-size: 0.95rem;
   }
 
-  .priceTag {
-    font-size: 1.1rem;
-  }
-
   .ctaButton {
     padding: 0.65rem 1.25rem;
     font-size: 0.9rem;
@@ -369,10 +358,6 @@
   .serviceDescript {
     font-size: 0.75rem;
     line-height: 1.2;
-  }
-
-  .priceTag {
-    font-size: 0.9rem;
   }
 
   /* Fuerza disposición horizontal */
