@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react"
 
-const gradient = "linear-gradient(90deg, #a8e6cf 0%, #dcedc1 50%, #ffd3b6 100%)"
+const gradient = "linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 100%)"
 
 
 const ProgressBar: React.FC = () => {

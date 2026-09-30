@@ -26,11 +26,26 @@ Review the diff (and files it touches) for:
   components; no leftover debug `console.log`, commented-out code or unused imports/files.
 - **Performance**: images via the scripts (WebP ≤1600px, few hundred KB), no new eager/priority images below the
   fold, no big new dependencies without reason.
-- **Design cohesion (minimal)**: text readable on its background (e.g. no white text on white), buttons
-  consistent with the existing ones (orange `--primary`), both languages updated, layout OK on mobile widths.
+- **Design cohesion**: text readable on its background (contrast ≥ 4.5:1 — e.g. never white on the orange, use
+  `var(--on-primary)`), buttons consistent with the existing ones (orange `--primary`, dark text), both languages
+  updated, layout OK on phone widths, keyboard focus visible, images with `alt`.
+- **Accessibility / correctness**: interactive elements are buttons/links (or have `role`, `tabIndex`, key
+  handlers), no duplicate `id`s, no hydration mismatches (don't read `window`/`localStorage` during render).
 
-Fix only small, safe issues that **don't change how the site behaves**. If something bigger is off, explain it
-simply and ask whether to fix it now or later.
+What to do with findings:
+- **Bugs** (anything broken, wrong, unreadable, insecure, missing translation, console errors, broken links/images,
+  layout overflow on mobile…): **always fix them** before publishing, even if they weren't part of today's change,
+  as long as the fix keeps the intended behavior. Tell Pablo in one line what you fixed ("De paso arreglé un botón
+  que no se leía bien").
+- **Cleanups** (duplication, dead code, small performance wins): fix when safe and small.
+- **Design/behavior changes that are a matter of taste or big**: don't do them silently — explain simply and ask.
+
+### Visual check (Chrome DevTools MCP)
+
+With `npm run dev` running (or `npm run build && npx next start` for a production-like check), use the
+`chrome-devtools` MCP to open the pages touched by the change (home `/`, `/contact/`, `/services/<x>/`):
+`take_screenshot` on desktop and on a phone size (`emulate`/`resize_page` 390×844), and `list_console_messages`
+(no errors, no CSP violations). Anything wrong there is a bug → fix.
 
 ## 3. Automatic checks
 
@@ -64,4 +79,7 @@ Show the plain-language summary + "todo verificado ✅" and ask (AskUserQuestion
 - Then check `https://ctenisstudio.com` answers 200 (and, if practical, that the new content/photo URL is there).
 - Tell him: "¡Listo! Ya está en la web. Si no ves el cambio, apretá Ctrl+F5 para recargar."
 - If Vercel fails: the previous version stays online (nothing breaks for visitors). Explain that, find the cause,
-  fix and publish again.
+  fix and publish again. If the status description says the deployment was **blocked / needs authorization**
+  (Vercel didn't accept a commit from `pablogaris`), that's an account setting, not his fault: tell him to let
+  Ezequiel know, and don't retry in a loop.
+- Optionally open https://ctenisstudio.com with the Chrome DevTools MCP and screenshot the changed section.

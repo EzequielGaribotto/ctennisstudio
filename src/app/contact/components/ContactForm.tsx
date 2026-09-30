@@ -49,6 +49,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <input
             type="text"
             id="name"
+            autoComplete="name"
             name="name"
             value={formData.name}
             onChange={onInputChange}
@@ -65,6 +66,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <input
             type="email"
             id="email"
+            autoComplete="email"
             name="email"
             value={formData.email}
             onChange={onInputChange}
@@ -82,6 +84,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <input
             type="tel"
             id="phone"
+            autoComplete="tel"
             name="phone"
             value={formData.phone}
             onChange={onInputChange}

@@ -63,16 +63,6 @@
   filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.3));
 }
 
-.title {
-  font-size: 4.5rem;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  margin: 0;
-  color: #f9a028;
-  text-shadow: 2px 2px 8px rgba(3, 3, 3, 0.3);
-  animation: fadeInScale 0.8s ease-out;
-}
-
 .subtitle {
   font-size: 1.125rem;
   color: #000000;
@@ -227,10 +217,6 @@
 
   .bannerContainer {
     max-width: 320px;
-  }
-
-  .title {
-    font-size: 2.2rem;
   }
 
   .subtitle {

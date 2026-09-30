@@ -33,11 +33,20 @@ function Ensure-Tool($cmd, $wingetId, $label) {
 if (-not (Has "winget")) { throw "Falta 'winget' (App Installer de Microsoft Store). Instalalo desde la Microsoft Store y reintenta." }
 Ensure-Tool "git" "Git.Git" "Git"
 Ensure-Tool "node" "OpenJS.NodeJS.LTS" "Node.js"
-$nodeMajor = [int]((node -v).TrimStart("v").Split(".")[0])
-if ($nodeMajor -lt 20) {
-  Say "Actualizando Node.js (tenias la version $nodeMajor)..."
+$nodeVersion = [version]((node -v).TrimStart("v"))
+if ($nodeVersion -lt [version]"20.19.0") {
+  Say "Actualizando Node.js (tenias la version $nodeVersion)..."
   winget upgrade --id OpenJS.NodeJS.LTS -e --accept-source-agreements --accept-package-agreements --silent
   Refresh-Path
+}
+
+# Chrome: Claude uses it (Chrome DevTools MCP) to open and check the site
+$chromePaths = @("$env:ProgramFiles\Google\Chrome\Application\chrome.exe", "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe", "$env:LOCALAPPDATA\Google\Chrome\Application\chrome.exe")
+if ($chromePaths | Where-Object { Test-Path $_ }) { Ok "Google Chrome ya estaba instalado" }
+else {
+  Say "Instalando Google Chrome..."
+  winget install --id Google.Chrome -e --accept-source-agreements --accept-package-agreements --silent
+  Ok "Google Chrome instalado"
 }
 
 # 2. Project folder --------------------------------------------------------

@@ -67,7 +67,7 @@ const EquilibradoSection: React.FC = () => {
                   onClick={() => setCurrentImageIndex((prev) => 
                     prev === 0 ? equilibradoImages.length - 1 : prev - 1
                   )}
-                  aria-label="Imagen anterior"
+                  aria-label={t("common.previousImage")}
                 >
                   ‹
                 </button>
@@ -76,7 +76,7 @@ const EquilibradoSection: React.FC = () => {
                   onClick={() => setCurrentImageIndex((prev) => 
                     (prev + 1) % equilibradoImages.length
                   )}
-                  aria-label="Imagen siguiente"
+                  aria-label={t("common.nextImage")}
                 >
                   ›
                 </button>

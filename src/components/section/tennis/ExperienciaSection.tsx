@@ -109,9 +109,17 @@ const ExperienciaSection: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [selectedTournament])
 
+  // Timers used by the show more/less animation (cleared on unmount)
+  const animationTimersRef = useRef<ReturnType<typeof setTimeout>[]>([])
+  const later = (fn: () => void, ms: number) => {
+    animationTimersRef.current.push(setTimeout(fn, ms))
+  }
+
   // Cleanup hover timeout on unmount
   useEffect(() => {
+    const animationTimers = animationTimersRef.current
     return () => {
+      animationTimers.forEach(clearTimeout)
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current)
       }
@@ -271,7 +279,7 @@ const ExperienciaSection: React.FC = () => {
     }
   }, [isResizing, handleResize])
 
-  const handleCardClick = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
+  const handleCardClick = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
     event.stopPropagation()
     
     // Clear any pending hide timeouts
@@ -565,7 +573,7 @@ const ExperienciaSection: React.FC = () => {
       if (gridRef.current) {
         gridRef.current.classList.add(styles.expanded)
       }
-      setTimeout(() => {
+      later(() => {
         if (section) {
           // Find the first tournament card
           const firstCard = section.querySelector('[class*="card"]')
@@ -608,7 +616,7 @@ const ExperienciaSection: React.FC = () => {
         }
         
         // Start collapsing height after a short delay
-        setTimeout(() => {
+        later(() => {
           // Calculate new height (only first 4 cards)
           const cards = gridRef.current?.children
           if (cards && gridRef.current) {
@@ -622,7 +630,7 @@ const ExperienciaSection: React.FC = () => {
         }, 100)
         
         // Wait for animations to complete, then update state
-        setTimeout(() => {
+        later(() => {
           setShowAll(false)
           setIsCollapsing(false)
           gridRef.current?.classList.remove(styles.collapsing)
@@ -636,18 +644,21 @@ const ExperienciaSection: React.FC = () => {
   }
 
   const visibleTournaments = getVisibleTournaments()
+  const currentImageInfo = selectedTournament ? getCurrentImageInfo() : null
+  const selectedImages = selectedTournament ? getTournamentImages(selectedTournament) : []
   const hasMoreTournaments = tournaments.length > 4
 
   // Manage grid height animation
   useEffect(() => {
     if (gridRef.current) {
       // Small delay to ensure DOM is updated
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         if (gridRef.current) {
           const newHeight = gridRef.current.scrollHeight
           gridRef.current.style.maxHeight = `${newHeight}px`
         }
       }, 50)
+      return () => clearTimeout(timer)
     }
   }, [showAll, isCollapsing, visibleTournaments.length])
 
@@ -679,7 +690,16 @@ const ExperienciaSection: React.FC = () => {
             <div
               key={tournament.id}
               className={styles.card}
+              role="button"
+              tabIndex={0}
+              aria-label={`${tournament.category} (${tournament.years.join(", ")})`}
               onClick={(e) => handleCardClick(tournament, e)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault()
+                  handleCardClick(tournament, e)
+                }
+              }}
               onMouseEnter={(e) => handleCardHover(tournament, e)}
               onMouseLeave={handleCardLeave}
             >
@@ -689,7 +709,7 @@ const ExperienciaSection: React.FC = () => {
                   <div className={styles.logoContainer}>
                     <Image
                       src={tournament.mensLogo}
-                      alt="Men's Tournament"
+                      alt={`${tournament.category} ATP`}
                       width={60}
                       height={60}
                       className={styles.logo}
@@ -700,7 +720,7 @@ const ExperienciaSection: React.FC = () => {
                   <div className={styles.logoContainer}>
                     <Image
                       src={tournament.unifiedLogo}
-                      alt="Tournament Logo"
+                      alt={tournament.category}
                       width={60}
                       height={60}
                       className={styles.logo}
@@ -711,7 +731,7 @@ const ExperienciaSection: React.FC = () => {
                   <div className={styles.logoContainer}>
                     <Image
                       src={tournament.womensLogo}
-                      alt="Women's Tournament"
+                      alt={`${tournament.category} WTA`}
                       width={60}
                       height={60}
                       className={styles.logo}
@@ -836,7 +856,7 @@ const ExperienciaSection: React.FC = () => {
             )}
             {/* Progress bars at top */}
             <div className={styles.progressBarsContainer}>
-              {getTournamentImages(selectedTournament).map((_, idx) => (
+              {selectedImages.map((_, idx) => (
                 <div key={idx} className={styles.progressBarWrapper}>
                   <div 
                     className={styles.progressBar}
@@ -865,31 +885,31 @@ const ExperienciaSection: React.FC = () => {
                 </div>
                 <div className={styles.tournamentText}>
                   <span className={styles.tournamentName}>
-                    {getCurrentImageInfo()?.tournamentName || selectedTournament.category}
+                    {currentImageInfo?.tournamentName || selectedTournament.category}
                   </span>
                   <span className={styles.tournamentYear}>
-                    {getCurrentImageInfo()?.year || selectedTournament.years[0]}, {getCurrentImageInfo()?.place || selectedTournament.city}
+                    {currentImageInfo?.year || selectedTournament.years[0]}, {currentImageInfo?.place || selectedTournament.city}
                   </span>
                 </div>
               </div>
-              <button className={styles.closeButton} onClick={handleCloseCarousel}>
+              <button className={styles.closeButton} onClick={handleCloseCarousel} aria-label={t("contactModal.close")}>
                 ✕
               </button>
             </div>
 
             {/* Image with tap zones */}
             <div className={styles.imageWrapper} onClick={handleImageClick}>
-              {getCurrentImageInfo() && (
+              {currentImageInfo && (
                 <Image
-                  src={getCurrentImageInfo()!.path}
-                  alt={`${selectedTournament.tournamentCode} ${getCurrentImageInfo()!.year}`}
+                  src={currentImageInfo.path}
+                  alt={`${selectedTournament.tournamentCode} ${currentImageInfo.year}`}
                   fill
                   className={styles.storiesImage}
                   loading="eager"
                   priority
                   style={{ objectFit: 'contain' }}
                   onError={(e) => {
-                    console.error('Image failed to load:', getCurrentImageInfo()!.path)
+                    console.error('Image failed to load:', currentImageInfo.path)
                     // Use fallback if somehow validation missed this
                     e.currentTarget.src = '/images/stringer/pablo/stringer_spiderman.webp'
                   }}
@@ -902,7 +922,7 @@ const ExperienciaSection: React.FC = () => {
                   <span className={styles.tapIndicator}>‹</span>
                 </div>
               )}
-              {currentImageIndex < getTournamentImages(selectedTournament).length - 1 && (
+              {currentImageIndex < selectedImages.length - 1 && (
                 <div className={styles.tapZoneRight}>
                   <span className={styles.tapIndicator}>›</span>
                 </div>

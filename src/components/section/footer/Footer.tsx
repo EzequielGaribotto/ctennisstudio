@@ -4,24 +4,10 @@ import { useTranslation } from "@/context/TranslationContext"
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import styles from "./Footer.module.css"
-import { useEffect, useState } from "react"
 import { SOCIAL_LINKS } from "@/data/contact"
 
 export default function Footer() {
-  const { t, isHydrated } = useTranslation()
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  if (!isClient || !isHydrated) {
-    return (
-      <footer className="w-full py-3 flex justify-center">
-        <div className={styles.footerContent} style={{ visibility: "hidden" }}></div>
-      </footer>
-    )
-  }
+  const { t } = useTranslation()
 
   return (
     <footer className="w-full py-3 flex justify-center">

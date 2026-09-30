@@ -1,5 +1,5 @@
 {
-  "name": "CTS - Tennis Studio",
+  "name": "CTS - Custom Tennis Studio",
   "short_name": "CTS",
   "icons": [
     {
@@ -13,7 +13,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#f9a028",
-  "background_color": "#a8e6cf",
-  "display": "standalone"
+  "theme_color": "#ff8c00",
+  "background_color": "#1a1a1a",
+  "display": "standalone",
+  "start_url": "/"
 }

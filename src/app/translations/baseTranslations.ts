@@ -189,7 +189,25 @@ export const baseTranslations = {
     },
     serviceDetail: {
         contractService: "",
-        enrollCourse: ""
+        enrollCourse: "",
+        notFound: "",
+        backHome: "",
+        whatsapp: {
+            point: "",
+            set: "",
+            match: "",
+            encordado: "",
+            base: "",
+            avance: "",
+            maestria: ""
+        }
+    },
+    common: {
+        loading: "",
+        videoUnsupported: "",
+        previousImage: "",
+        nextImage: "",
+        whatsappGeneric: ""
     },
     modal: {
         title: "",

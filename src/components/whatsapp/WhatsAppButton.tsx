@@ -1,12 +1,15 @@
 "use client"
 import type React from "react"
 import { FaWhatsapp } from "react-icons/fa"
+import { useTranslation } from "@/context/TranslationContext"
 import styles from "./WhatsAppButton.module.css"
 import { openWhatsApp } from "@/data/contact"
 
 const WhatsAppButton: React.FC = () => {
+  const { t } = useTranslation()
+
   const handleClick = () => {
-    openWhatsApp("Hola, estoy interesado en sus servicios de CTennis Studio")
+    openWhatsApp(t("common.whatsappGeneric"))
   }
 
   return (

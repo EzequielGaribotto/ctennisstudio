@@ -3,7 +3,7 @@ import type React from "react"
 import { FaPhone, FaMapMarkerAlt } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "../page.module.css"
-import { CONTACT } from "@/data/contact"
+import { CONTACT, MAPS } from "@/data/contact"
 
 export const LocationSection: React.FC = () => {
   const { t } = useTranslation()
@@ -14,20 +14,20 @@ export const LocationSection: React.FC = () => {
       <div className={styles.infoSection}>
         <h3 className={styles.infoSectionTitle}>{t("contact.info.location")}</h3>
         <a
-          href="https://www.google.com/maps/search/?api=1&query=C%2F+Jacint+Verdaguer%2C+31%2C+Matar%C3%B3"
+          href={MAPS.link}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.contactLink}
         >
           <FaMapMarkerAlt className={styles.contactIcon} />
-          <span>C/ Jacint Verdaguer, 31, Mataró</span>
+          <span>{CONTACT.address}</span>
         </a>
       </div>
 
       {/* Map debajo de la ubicación */}
       <div className={styles.mapContainer} style={{ marginTop: 24, marginBottom: 40 }}>
         <iframe
-          src="https://www.google.com/maps?q=C%2F+Jacint+Verdaguer%2C+31%2C+Matar%C3%B3&output=embed"
+          src={MAPS.embed}
           width="100%"
           height="200"
           style={{ border: 0, borderRadius: "12px" }}

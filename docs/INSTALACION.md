@@ -26,12 +26,16 @@ Se hace **una sola vez**.
    tocá **Sí**. Si se abre una ventana de **GitHub**, iniciá sesión con tu usuario **pablogaris**.
 7. Cuando termine, en Visual Studio Code: **Archivo → Abrir carpeta…** → elegí la carpeta que te indique Claude
    (normalmente `Documentos\ctennisstudio`).
+8. La primera vez que Claude quiera abrir la página, puede preguntarte si permitís el servidor
+   **"chrome-devtools"**: decí que **sí** (es lo que usa para abrirte la página en Chrome y revisarla).
 
 Listo. Desde ahí podés pedirle cosas como:
 
 - "¿Qué fotos me faltan?" · "Te dejé fotos nuevas" · "No tengo fotos del Godó 2013"
 - "Agregá el torneo de …" · "Cambiá el texto de cursos por …"
-- **"probar"** → te muestra la página en tu computadora (nadie más la ve)
+- **"probar"** → te muestra la página en Chrome, en tu computadora (nadie más la ve)
+- **"verlo en el celular"** → te muestra un código QR para abrir la página de prueba en tu celular
+- **"¿qué cambió?"** → te cuenta los últimos cambios de la web
 - **"publicar"** → revisa todo, te pregunta y lo sube a la web real
 
 ---
@@ -41,7 +45,7 @@ Listo. Desde ahí podés pedirle cosas como:
 You are setting up Pablo's Windows PC. Talk to him in simple Spanish (see the repo's CLAUDE.md for tone).
 Explain each step in one plain sentence before running it.
 
-1. Download and run the setup script (installs Git + Node.js LTS via winget if missing, clones the repo,
+1. Download and run the setup script (installs Git + Node.js LTS + Google Chrome via winget if missing, clones the repo,
    sets the repo-local git identity to `pablogaris`, runs `npm ci`, saves the project location in
    `~/.claude/CLAUDE.md`, and checks GitHub push access):
 
@@ -67,5 +71,9 @@ Explain each step in one plain sentence before running it.
    there. Verify with `npm run fotos` and, if he wants, run the **probar** skill so he sees his site locally.
 
 4. Remind him about **auto mode** (step 4 of Parte 1) if he's being asked for permission often.
+
+5. The project ships a **Chrome DevTools MCP** server in `.mcp.json` (`chrome-devtools`, run with `npx`). After
+   opening the folder, if Claude Code asks to approve it, tell him to accept. Check it works by opening
+   http://localhost:3000 with it (run the **probar** skill).
 
 If the setup script fails, fix the cause (don't skip steps) and explain it simply.

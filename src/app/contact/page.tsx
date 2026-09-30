@@ -6,8 +6,6 @@ import { useTranslation } from "@/context/TranslationContext"
 import styles from "./page.module.css"
 import { ContactForm } from "./components/ContactForm"
 import { ContactInfoSidebar } from "./components/ContactInfoSidebar"
-import { LocationSection } from "./components/LocationSection"
-import { SocialSection } from "./components/SocialSection"
 
 const SERVICE_TYPES = ["encordado", "set", "match", "point", "base", "avance", "maestria"] as const
 type ServiceType = (typeof SERVICE_TYPES)[number]
@@ -238,8 +236,8 @@ const ContactPageContent: React.FC = () => {
             <p className={styles.description}>{t("contact.description")}</p>
           </div>
 
+          {/* Form + contact info (stacks on mobile; one form in the DOM) */}
           <div className={styles.contentGrid}>
-            {/* Desktop: Form + Sidebar */}
             <ContactForm
               formData={formData}
               onInputChange={handleInputChange}
@@ -250,46 +248,31 @@ const ContactPageContent: React.FC = () => {
             />
             <ContactInfoSidebar />
           </div>
-
-          {/* Mobile: Reorganized layout */}
-          <div className={styles.mobileContentGrid}>
-            {/* Mobile: Form first */}
-            <ContactForm
-              formData={formData}
-              onInputChange={handleInputChange}
-              onSubmit={handleSubmit}
-              isSubmitting={isSubmitting}
-              submitStatus={submitStatus}
-              errorMessage={errorMessage}
-            />
-
-            {/* Mobile: Location info + Map */}
-            <div className={styles.mobileContactInfo}>
-              <h2 className={styles.contactInfoTitle}>{t("contact.info.title")}</h2>
-              <LocationSection />
-              <SocialSection />
-            </div>
-          </div>
         </div>
       </div>
     </div>
   )
 }
 
+const LoadingFallback: React.FC = () => {
+  const { t } = useTranslation()
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      fontSize: '1.5rem',
+      color: 'var(--primary)'
+    }}>
+      {t("common.loading")}
+    </div>
+  )
+}
+
 const ContactPage: React.FC = () => {
   return (
-    <Suspense fallback={
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        minHeight: '100vh',
-        fontSize: '1.5rem',
-        color: 'var(--primary)'
-      }}>
-        Loading...
-      </div>
-    }>
+    <Suspense fallback={<LoadingFallback />}>
       <ContactPageContent />
     </Suspense>
   )

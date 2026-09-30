@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "@/context/TranslationContext";
 import ReactCountryFlag from "react-country-flag";
 import styles from "./LanguageSwitcher.module.css";
@@ -9,6 +9,12 @@ export default function LanguageSwitcher() {
   const { locale, changeLocale } = useTranslation();
   const [isAnimating, setIsAnimating] = useState(false);
   const [displayLocale, setDisplayLocale] = useState(locale);
+
+  // Follow locale changes that don't come from this button (e.g. saved preference applied on load)
+  useEffect(() => {
+    if (!isAnimating) setDisplayLocale(locale);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale]);
 
   const toggleLanguage = () => {
     if (isAnimating) return;

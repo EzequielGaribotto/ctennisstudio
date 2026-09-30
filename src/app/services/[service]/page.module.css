@@ -31,7 +31,7 @@
 
 .backButton:hover {
   background: var(--primary);
-  color: white;
+  color: var(--on-primary);
   transform: translateX(-5px);
 }
 
@@ -129,7 +129,7 @@
   align-items: center;
   justify-content: center;
   background: var(--primary);
-  color: white;
+  color: var(--on-primary);
   border-radius: 50%;
   font-weight: 700;
   font-size: 0.875rem;
@@ -150,7 +150,7 @@
   width: 100%;
   padding: 1.25rem 2rem;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
+  color: var(--on-primary);
   border: none;
   border-radius: 16px;
   font-size: 1.125rem;

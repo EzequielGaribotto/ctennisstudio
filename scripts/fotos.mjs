@@ -2,6 +2,7 @@
 // Tournament photo manager.
 //
 //   npm run fotos                      -> status: what's missing, what's waiting in fotos-nuevas/
+//   npm run fotos -- recordatorio      -> short reminder: recent tournaments (this/last year) still without photos
 //   npm run fotos -- revisar           -> list photos waiting in fotos-nuevas/ with the date they were taken
 //   npm run fotos -- agregar <archivo> --torneo MUTUA --lugar Madrid --anio 2026
 //   npm run fotos -- descartar MUTUA 2010 [--motivo "no hay fotos"]
@@ -145,6 +146,29 @@ function status({ json = false } = {}) {
       ? `\n📥 En la carpeta fotos-nuevas hay ${inbox.length} foto(s) esperando: ${inbox.join(", ")}`
       : `\n📥 La carpeta fotos-nuevas está vacía.`
   )
+}
+
+// ---------------------------------------------------------------- reminder
+/** One-glance reminder for the start of a session: recent seasons still missing photos. */
+function reminder() {
+  const thisYear = new Date().getFullYear()
+  const recent = [String(thisYear), String(thisYear - 1)]
+  const { noPhotos } = loadStatus()
+  const photos = listPhotos()
+  const missing = loadTournaments().flatMap((t) =>
+    t.years
+      .filter((y) => recent.includes(y))
+      .filter((y) => !noPhotos[t.tournamentCode]?.[y])
+      .filter((y) => !photos.some((p) => p.code === t.tournamentCode && p.year === y))
+      .map((y) => `${t.category} ${y}`)
+  )
+  const inbox = listInbox()
+  if (!missing.length && !inbox.length) {
+    console.log("✅ Nada pendiente: los torneos recientes ya tienen fotos.")
+    return
+  }
+  if (missing.length) console.log(`📸 Torneos recientes sin fotos: ${missing.join(" · ")}`)
+  if (inbox.length) console.log(`📥 Hay ${inbox.length} foto(s) esperando en fotos-nuevas.`)
 }
 
 // ---------------------------------------------------------------- review inbox
@@ -326,6 +350,9 @@ try {
     case "estado":
       status({ json: Boolean(flags.json) })
       break
+    case "recordatorio":
+      reminder()
+      break
     case "revisar":
       await review()
       break
@@ -348,7 +375,7 @@ try {
       verify()
       break
     default:
-      console.log(`Comando desconocido "${command}". Usá: estado | revisar | agregar | descartar | recuperar | manifiesto | optimizar | verificar`)
+      console.log(`Comando desconocido "${command}". Usá: estado | recordatorio | revisar | agregar | descartar | recuperar | manifiesto | optimizar | verificar`)
       process.exitCode = 1
   }
 } catch (err) {

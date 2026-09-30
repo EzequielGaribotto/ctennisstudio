@@ -63,31 +63,17 @@
   transform: translateY(1.2em) scale(0.75);
 }
 
-.flag {
-  font-size: 1.8rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Mobile responsive styles */
 @media (max-width: 768px) {
   .languageSwitcher {
     padding: 6px 10px;
   }
-  
-  .flag {
-    font-size: 1.3rem;
-  }
+
 }
 
 @media (max-width: 480px) {
   .languageSwitcher {
     padding: 5px 8px;
   }
-  
-  .flag {
-    font-size: 1.2rem;
-  }
+
 }

@@ -12,8 +12,12 @@ export const ContactInfoSidebar: React.FC = () => {
     <div className={styles.contactInfo}>
       <h2 className={styles.contactInfoTitle}>{t("contact.info.title")}</h2>
 
-      <SocialSection />
-      <LocationSection />
+      <div className={styles.sidebarSocial}>
+        <SocialSection />
+      </div>
+      <div className={styles.sidebarLocation}>
+        <LocationSection />
+      </div>
     </div>
   )
 }

@@ -3,7 +3,6 @@
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 import translations from "@/app/translations"
-import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 const STORAGE_KEYS = {
   LOCALE: "selected-locale",
@@ -18,8 +17,6 @@ interface TranslationContextType {
   t: (key: string) => string
   locale: string
   changeLocale: (newLocale: string) => void
-  pageLoadTime: number | null
-  isHydrated: boolean
 }
 
 interface NestedTranslation {
@@ -42,43 +39,36 @@ export const TranslationProvider = ({
   children: React.ReactNode
   initialLocale?: string
 }) => {
-  const [isHydrated, setIsHydrated] = useState(false)
-
-  const getInitialLocale = (): string => {
-    if (typeof document === "undefined" && typeof navigator === "undefined") {
-      return initialLocale
-    }
-    // Prefer explicit html lang or data-locale
-    const dataLocale = typeof document !== "undefined" ? document.documentElement.dataset.locale : undefined
-    if (dataLocale && (dataLocale === LOCALE.EN || dataLocale === LOCALE.ES)) {
-      return dataLocale
-    }
-    // Detect browser language
-    const navLang = typeof navigator !== "undefined" ? (navigator.language || navigator.languages?.[0] || "es") : "es"
-    if (navLang.toLowerCase().startsWith("en")) return LOCALE.EN
-    if (navLang.toLowerCase().startsWith("es")) return LOCALE.ES
-    return initialLocale
-  }
-
-  const [locale, setLocale] = useLocalStorage(STORAGE_KEYS.LOCALE, getInitialLocale())
-  const [pageLoadTime, setPageLoadTime] = useState<number | null>(null)
+  // Server and first client render always use the default locale (no hydration mismatch);
+  // the visitor's saved choice or browser language is applied right after mounting.
+  const [locale, setLocale] = useState<string>(initialLocale)
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const timer = setTimeout(() => {
-        setIsHydrated(true)
-        setPageLoadTime(Math.round(performance.now()))
-      }, 50)
-
-      return () => clearTimeout(timer)
+    let preferred: string | null = null
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEYS.LOCALE)
+      preferred = saved ? JSON.parse(saved) : null
+    } catch {
+      // storage unavailable (private mode) - fall back to browser language
     }
-  }, [])
+    if (preferred !== LOCALE.EN && preferred !== LOCALE.ES) {
+      const navLang = (navigator.language || navigator.languages?.[0] || "").toLowerCase()
+      preferred = navLang.startsWith("en") ? LOCALE.EN : initialLocale
+    }
+    setLocale(preferred)
+  }, [initialLocale])
+
+  useEffect(() => {
+    document.documentElement.lang = locale
+    document.documentElement.dataset.locale = locale
+  }, [locale])
 
   const changeLocale = (newLocale: string) => {
     setLocale(newLocale)
-    if (typeof document !== "undefined") {
-      document.documentElement.setAttribute("lang", newLocale)
-      document.documentElement.dataset.locale = newLocale
+    try {
+      window.localStorage.setItem(STORAGE_KEYS.LOCALE, JSON.stringify(newLocale))
+    } catch {
+      // ignore storage errors; the choice still applies for this visit
     }
   }
 
@@ -149,8 +139,6 @@ export const TranslationProvider = ({
         t,
         locale,
         changeLocale,
-        pageLoadTime,
-        isHydrated,
       }}
     >
       {children}

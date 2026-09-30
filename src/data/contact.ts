@@ -5,6 +5,13 @@ export const CONTACT = {
   phoneE164: "34630530839", // international format without "+", used by WhatsApp
   phoneDisplay: "+34 630 530 839",
   email: "pablo_garis@hotmail.com",
+  address: "C/ Jacint Verdaguer, 31, Mataró",
+} as const
+
+const mapsQuery = encodeURIComponent(CONTACT.address)
+export const MAPS = {
+  link: `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`,
+  embed: `https://www.google.com/maps?q=${mapsQuery}&output=embed`,
 } as const
 
 export const SOCIAL_LINKS = {

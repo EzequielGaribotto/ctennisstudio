@@ -38,7 +38,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.point.item5"),
       ],
       image: "/images/stringer/services/racquets/POINT.webp",
-      whatsappMessage: "Hola, estoy interesado en el servicio POINT de equilibrado de raquetas",
+      whatsappMessage: t("serviceDetail.whatsapp.point"),
     },
     set: {
       key: "set",
@@ -52,7 +52,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.set.item5"),
       ],
       image: "/images/stringer/services/racquets/SET.webp",
-      whatsappMessage: "Hola, estoy interesado en el servicio SET de aumento de peso",
+      whatsappMessage: t("serviceDetail.whatsapp.set"),
     },
     match: {
       key: "match",
@@ -66,7 +66,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.match.item5"),
       ],
       image: "/images/stringer/services/racquets/MATCH.webp",
-      whatsappMessage: "Hola, estoy interesado en el servicio MATCH de igualación de raquetas",
+      whatsappMessage: t("serviceDetail.whatsapp.match"),
     },
     encordado: {
       key: "encordado",
@@ -80,7 +80,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.encordado.item5"),
       ],
       image: "/images/stringer/pablo/pablo_garibotto_stringer.webp",
-      whatsappMessage: "Hola, estoy interesado en el servicio de encordado profesional",
+      whatsappMessage: t("serviceDetail.whatsapp.encordado"),
     },
     base: {
       key: "base",
@@ -94,7 +94,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.base.item5"),
       ],
       image: "/images/stringer/machines/babolat_machines.webp",
-      whatsappMessage: "Hola, estoy interesado en el curso Base de encordado",
+      whatsappMessage: t("serviceDetail.whatsapp.base"),
     },
     avance: {
       key: "avance",
@@ -108,7 +108,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.avance.item5"),
       ],
       image: "/images/stringer/machines/babolat_machines.webp",
-      whatsappMessage: "Hola, estoy interesado en el curso Avance de encordado",
+      whatsappMessage: t("serviceDetail.whatsapp.avance"),
     },
     maestria: {
       key: "maestria",
@@ -121,7 +121,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.maestria.item5"),
       ],
       image: "/images/stringer/pablo/pablo_10_yrs_mutua_2025.webp",
-      whatsappMessage: "Hola, estoy interesado en el curso Maestría de encordado",
+      whatsappMessage: t("serviceDetail.whatsapp.maestria"),
     },
   }
 
@@ -132,9 +132,9 @@ const ServiceDetailPage: React.FC = () => {
       <div className={styles.notFound}>
         <main className={styles.main}>
           <div className={styles.container}>
-            <h1>Servicio no encontrado</h1>
+            <h1>{t("serviceDetail.notFound")}</h1>
             <button onClick={() => router.push("/")} className={styles.backButton}>
-              <FaArrowLeft /> Volver al inicio
+              <FaArrowLeft /> {t("serviceDetail.backHome")}
             </button>
           </div>
         </main>

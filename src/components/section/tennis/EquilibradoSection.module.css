@@ -19,35 +19,6 @@
   margin-bottom: 3rem;
 }
 
-.imagesContainer {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem auto;
-  flex-wrap: wrap;
-}
-
-.headerImageContainer {
-  flex: 1;
-  max-width: 600px;
-  min-width: 300px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.headerImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.upgradeImageContainer {
-  flex-shrink: 0;
-  max-width: 300px;
-}
-
 .upgradeImage {
   width: 100%;
   height: auto;
@@ -180,7 +151,7 @@
 .ctaButton {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
+  color: var(--on-primary);
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
@@ -318,10 +289,6 @@
     justify-content: center;
   }
 
-  .whatsappIcon {
-    font-size: 1.1rem;
-  }
-
   /* ---- SERVICIOS EN HORIZONTAL EN MÓVIL ---- */
 
   .servicesGrid {
@@ -360,34 +327,6 @@
     line-height: 1.2;
   }
 
-  /* Fuerza disposición horizontal */
-  .imagesContainer {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 1rem;
-    justify-content: flex-start; 
-  }
-
-
-  .imagesContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .headerImageContainer,
-  .upgradeImageContainer {
-    width: 45%;      /* Ambas caben en una sola fila */
-    max-width: 45%;
-    min-width: auto;
-    height: auto;
-    flex-shrink: 1;  /* Permite que se ajusten sin overflow */
-  }
-
-  .headerImage,
   .upgradeImage {
     width: 100%;
     height: auto;

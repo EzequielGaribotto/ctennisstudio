@@ -22,7 +22,12 @@
       "PowerShell(git diff*)",
       "PowerShell(git log*)",
       "PowerShell(explorer fotos-nuevas*)",
-      "PowerShell(start http://localhost*)"
+      "PowerShell(start http://localhost*)",
+      "mcp__chrome-devtools",
+      "Bash(npm run celular*)",
+      "Bash(npm run historial*)",
+      "PowerShell(npm run celular*)",
+      "PowerShell(npm run historial*)"
     ],
     "deny": [
       "Bash(git push --force*)",
@@ -34,5 +39,8 @@
       "PowerShell(git reset --hard*)",
       "PowerShell(git clean -f*)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "chrome-devtools"
+  ]
 }

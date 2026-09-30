@@ -192,6 +192,24 @@ export const en: Translations = {
   },
   serviceDetail: {
     contractService: "Book This Service",
-    enrollCourse: "Enroll Now"
+    enrollCourse: "Enroll Now",
+    notFound: "Service not found",
+    backHome: "Back to home",
+    whatsapp: {
+      point: "Hi, I'm interested in the POINT racquet balancing service",
+      set: "Hi, I'm interested in the SET weight increase service",
+      match: "Hi, I'm interested in the MATCH racquet matching service",
+      encordado: "Hi, I'm interested in the professional stringing service",
+      base: "Hi, I'm interested in the Base stringing course",
+      avance: "Hi, I'm interested in the Advance stringing course",
+      maestria: "Hi, I'm interested in the Mastery stringing course"
+    }
+  },
+  common: {
+    loading: "Loading...",
+    videoUnsupported: "Your browser does not support the video.",
+    previousImage: "Previous image",
+    nextImage: "Next image",
+    whatsappGeneric: "Hi, I'm interested in CTennis Studio's services"
   }
 };

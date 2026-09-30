@@ -7,16 +7,13 @@ import { useTranslation } from "@/context/TranslationContext"
 import LanguageSwitcher from "../language/LanguageSwitcher"
 import styles from "./Header.module.css"
 
-const Header: React.FC = () => {
-  const { t, isHydrated } = useTranslation()
-  const [activeSection, setActiveSection] = useState<string>("inicio")
-  const [isClient, setIsClient] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+// Home page sections, in menu order (ids of the <section> elements; labels in translations "navigation.*")
+const NAV_SECTIONS = ["inicio", "experiencia", "encordado", "equilibrado", "cursos"] as const
 
-  // Set isClient to true when component mounts on client side
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
+const Header: React.FC = () => {
+  const { t } = useTranslation()
+  const [activeSection, setActiveSection] = useState<string>("inicio")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Handle smooth scrolling without updating URL hash
   const scrollToSection = (sectionId: string) => (e: React.MouseEvent) => {
@@ -54,10 +51,9 @@ const Header: React.FC = () => {
   // Update active section based on scroll position only
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["inicio", "experiencia", "encordado", "equilibrado", "cursos"]
       const scrollPosition = window.scrollY + 200
 
-      for (const section of sections) {
+      for (const section of NAV_SECTIONS) {
         const element = document.getElementById(section)
         if (
           element &&
@@ -70,21 +66,11 @@ const Header: React.FC = () => {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  // Don't render until client-side hydration is complete
-  if (!isClient || !isHydrated) {
-    // Return a placeholder with the same dimensions to prevent layout shift
-    return (
-      <header className={styles.header}>
-        <div className={styles.headerContent} style={{ visibility: "hidden" }}></div>
-      </header>
-    )
-  }
 
   return (
     <>
@@ -95,7 +81,8 @@ const Header: React.FC = () => {
             <button 
               className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Open menu"
+              aria-label="Menu"
+              aria-expanded={mobileMenuOpen}
             >
               <span className={styles.burgerIcon}></span>
             </button>
@@ -117,51 +104,17 @@ const Header: React.FC = () => {
 
           <nav className={styles.navigation}>
             <ul className={styles.navList}>
-              <li className={styles.navItem}>
-                <a
-                  href="#inicio"
-                  onClick={scrollToSection("inicio")}
-                  className={activeSection === "inicio" ? styles.active : ""}
-                >
-                  {t("navigation.inicio")}
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a
-                  href="#experiencia"
-                  onClick={scrollToSection("experiencia")}
-                  className={activeSection === "experiencia" ? styles.active : ""}
-                >
-                  {t("navigation.experiencia")}
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a
-                  href="#encordado"
-                  onClick={scrollToSection("encordado")}
-                  className={activeSection === "encordado" ? styles.active : ""}
-                >
-                  {t("navigation.encordado")}
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a
-                  href="#equilibrado"
-                  onClick={scrollToSection("equilibrado")}
-                  className={activeSection === "equilibrado" ? styles.active : ""}
-                >
-                  {t("navigation.equilibrado")}
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a
-                  href="#cursos"
-                  onClick={scrollToSection("cursos")}
-                  className={activeSection === "cursos" ? styles.active : ""}
-                >
-                  {t("navigation.cursos")}
-                </a>
-              </li>
+              {NAV_SECTIONS.map((section) => (
+                <li key={section} className={styles.navItem}>
+                  <a
+                    href={`#${section}`}
+                    onClick={scrollToSection(section)}
+                    className={activeSection === section ? styles.active : ""}
+                  >
+                    {t(`navigation.${section}`)}
+                  </a>
+                </li>
+              ))}
               <li className={styles.navItem}>
                 <Link href="/contact" className={styles.contactLink}>
                   {t("navigation.contacto")}
@@ -189,51 +142,17 @@ const Header: React.FC = () => {
         <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
           <nav>
             <ul className={styles.mobileNavList}>
-              <li className={styles.mobileNavItem}>
-                <a
-                  href="#inicio"
-                  onClick={scrollToSection("inicio")}
-                  className={activeSection === "inicio" ? styles.active : ""}
-                >
-                  {t("navigation.inicio")}
-                </a>
-              </li>
-              <li className={styles.mobileNavItem}>
-                <a
-                  href="#experiencia"
-                  onClick={scrollToSection("experiencia")}
-                  className={activeSection === "experiencia" ? styles.active : ""}
-                >
-                  {t("navigation.experiencia")}
-                </a>
-              </li>
-              <li className={styles.mobileNavItem}>
-                <a
-                  href="#encordado"
-                  onClick={scrollToSection("encordado")}
-                  className={activeSection === "encordado" ? styles.active : ""}
-                >
-                  {t("navigation.encordado")}
-                </a>
-              </li>
-              <li className={styles.mobileNavItem}>
-                <a
-                  href="#equilibrado"
-                  onClick={scrollToSection("equilibrado")}
-                  className={activeSection === "equilibrado" ? styles.active : ""}
-                >
-                  {t("navigation.equilibrado")}
-                </a>
-              </li>
-              <li className={styles.mobileNavItem}>
-                <a
-                  href="#cursos"
-                  onClick={scrollToSection("cursos")}
-                  className={activeSection === "cursos" ? styles.active : ""}
-                >
-                  {t("navigation.cursos")}
-                </a>
-              </li>
+              {NAV_SECTIONS.map((section) => (
+                <li key={section} className={styles.mobileNavItem}>
+                  <a
+                    href={`#${section}`}
+                    onClick={scrollToSection(section)}
+                    className={activeSection === section ? styles.active : ""}
+                  >
+                    {t(`navigation.${section}`)}
+                  </a>
+                </li>
+              ))}
               <li className={styles.mobileNavItem}>
                 <Link href="/contact" className={styles.contactLink}>
                   {t("navigation.contacto")}

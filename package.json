@@ -12,7 +12,9 @@
     "fotos": "node scripts/fotos.mjs",
     "imagen": "node scripts/imagen.mjs",
     "favicons": "node scripts/favicons.mjs",
-    "generate-images": "node scripts/fotos.mjs manifiesto"
+    "generate-images": "node scripts/fotos.mjs manifiesto",
+    "celular": "node scripts/celular.mjs",
+    "historial": "node scripts/historial.mjs"
   },
   "dependencies": {
     "next": "^15.5.27",
@@ -30,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15.5.27",
+    "qrcode": "^1.5.4",
     "sharp": "^0.35.5",
     "tailwindcss": "^4",
     "typescript": "^5"

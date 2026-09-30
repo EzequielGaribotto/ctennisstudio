@@ -144,7 +144,7 @@
 
 .formButton {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white;
+  color: var(--on-primary);
   box-shadow: 0 4px 16px rgba(255, 140, 0, 0.3);
 }
 

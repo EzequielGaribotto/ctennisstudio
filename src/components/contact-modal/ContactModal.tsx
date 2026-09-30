@@ -1,5 +1,7 @@
 "use client"
 import type React from "react"
+import { useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 import { FaWhatsapp, FaTimes } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./ContactModal.module.css"
@@ -21,6 +23,23 @@ const ContactModal: React.FC<ContactModalProps> = ({
   whatsappMessage,
 }) => {
   const { t } = useTranslation()
+  const router = useRouter()
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const onCloseRef = useRef(onClose)
+  useEffect(() => {
+    onCloseRef.current = onClose
+  }, [onClose])
+
+  // Close with Escape and move keyboard focus into the dialog while it's open
+  useEffect(() => {
+    if (!isOpen) return
+    closeButtonRef.current?.focus()
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onCloseRef.current()
+    }
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [isOpen])
 
   if (!isOpen) return null
 
@@ -30,7 +49,7 @@ const ContactModal: React.FC<ContactModalProps> = ({
   }
 
   const handleContactFormClick = () => {
-    window.location.href = `/contact?service=${serviceKey}`
+    router.push(`/contact?service=${encodeURIComponent(serviceKey)}`)
     onClose()
   }
 
@@ -42,13 +61,13 @@ const ContactModal: React.FC<ContactModalProps> = ({
 
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
-      <div className={styles.modal}>
-        <button className={styles.closeButton} onClick={onClose} aria-label={t("contactModal.close")}>
+      <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <button ref={closeButtonRef} className={styles.closeButton} onClick={onClose} aria-label={t("contactModal.close")}>
           <FaTimes />
         </button>
 
         <div className={styles.content}>
-          <h2 className={styles.title}>{t("contactModal.title")}</h2>
+          <h2 id="contact-modal-title" className={styles.title}>{t("contactModal.title")}</h2>
           <p className={styles.subtitle}>
             {t("contactModal.subtitle")} <strong>{serviceName}</strong>
           </p>

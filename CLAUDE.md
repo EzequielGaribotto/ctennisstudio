@@ -26,15 +26,19 @@ With Pablo:
 2. `git status` + `git pull --rebase origin main` so he works on the latest version. If he has unpublished
    changes, tell him plainly ("Tenés cambios sin publicar de la otra vez: …").
 3. If `node_modules` is missing or `package.json` changed, run `npm ci`.
+4. Run `npm run fotos -- recordatorio`. If it lists recent tournaments without photos (or photos waiting in
+   `fotos-nuevas`), mention it **once**, in one friendly line, and move on to what he asked
+   ("Por cierto: todavía faltan fotos del Mutua 2026 y Ginebra 2026, cuando las tengas pasámelas 😉").
 
 ## Pablo's commands (plain phrases → what to do)
 
 | He says something like | Do this |
 |---|---|
-| "probar", "test", "quiero verlo", "abrí la página" | Skill **probar**: run the site locally and give him the link |
+| "probar", "test", "quiero verlo", "abrí la página", "verlo en el celular" | Skill **probar**: run the site locally, open it in Chrome (Chrome DevTools MCP), optionally on his phone |
 | "publicar", "subir", "prod", "subir los cambios", "ponelo online", "que se vea en la web" | Skill **publicar**: pre-production checklist → checks → confirm → commit → push to `main` → confirm it's live |
 | anything about photos, "¿qué fotos faltan?", "no tengo foto de…", "te pasé fotos" | Skill **fotos** |
 | "deshacer", "volvé atrás", "lo de antes estaba mejor" (after publishing) | `git revert` the relevant commit(s), explain, then run the **publicar** flow. Never rewrite history |
+| "¿qué cambió?", "historial", "¿qué hicimos la otra vez?" | `npm run historial` and retell it in plain Spanish (who, when, what the visitor sees; published or not) |
 | "ayuda", "¿qué puedo hacer?" | Short list of what he can ask for (photos, tournaments, texts, design changes, probar, publicar) |
 
 Never publish (commit/push) unless he asked to publish **and** confirmed the summary.
@@ -76,7 +80,11 @@ Never publish (commit/push) unless he asked to publish **and** confirmed the sum
 - `npm run favicons [-- logo --margen 10]` — regenerates browser/phone icons from the logo.
 - `npm run build` — full check (lint + photo verification + type check + production build). Must pass
   before publishing.
-- `npm run dev` — local site at http://localhost:3000.
+- `npm run dev` — local site at http://localhost:3000. `npm run celular` — QR code to open it on his phone (same Wi-Fi).
+- `npm run historial [-- N]` — last changes, who made them, published or not.
+- **Chrome DevTools MCP** (`chrome-devtools`, configured in `.mcp.json`): use it to open the local site for Pablo, take
+  screenshots (desktop + phone via `emulate`/`resize_page`), and read console errors. Prefer it over asking him to
+  describe what he sees.
 
 Pablo drops new files in **`fotos-nuevas/`** (ignored by git; originals are kept in `fotos-nuevas/_procesadas/`).
 
@@ -88,5 +96,7 @@ Pablo drops new files in **`fotos-nuevas/`** (ignored by git; originals are kept
 - Filenames are case-sensitive in production (Vercel = Linux).
 - Never commit secrets (`.env*`), never `git push --force`, never `git reset --hard` on published work,
   never skip hooks/checks.
+- **Bugs are always fixed** when you find them (see the publicar checklist); taste/design changes are proposed first.
+- Text on orange (`--primary`) backgrounds uses `var(--on-primary)` (dark), never white (unreadable).
 - Match the existing code style (see surrounding files). Keep colors on the CSS variables in
   [src/app/globals.css](src/app/globals.css) (`--primary` orange, dark background, white cards).

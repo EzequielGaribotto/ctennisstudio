@@ -192,6 +192,24 @@ export const es: Translations = {
   },
   serviceDetail: {
     contractService: "Contratar Servicio",
-    enrollCourse: "Inscribirme Ahora"
+    enrollCourse: "Inscribirme Ahora",
+    notFound: "Servicio no encontrado",
+    backHome: "Volver al inicio",
+    whatsapp: {
+      point: "Hola, estoy interesado en el servicio POINT de equilibrado de raquetas",
+      set: "Hola, estoy interesado en el servicio SET de aumento de peso",
+      match: "Hola, estoy interesado en el servicio MATCH de igualación de raquetas",
+      encordado: "Hola, estoy interesado en el servicio de encordado profesional",
+      base: "Hola, estoy interesado en el curso Base de encordado",
+      avance: "Hola, estoy interesado en el curso Avance de encordado",
+      maestria: "Hola, estoy interesado en el curso Maestría de encordado"
+    }
+  },
+  common: {
+    loading: "Cargando...",
+    videoUnsupported: "Tu navegador no soporta el video.",
+    previousImage: "Imagen anterior",
+    nextImage: "Imagen siguiente",
+    whatsappGeneric: "Hola, estoy interesado en sus servicios de CTennis Studio"
   }
 };

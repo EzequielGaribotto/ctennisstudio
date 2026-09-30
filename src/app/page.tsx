@@ -1,5 +1,3 @@
-"use client"
-
 import Header from "@/components/header/Header"
 import Footer from "@/components/section/footer/Footer"
 import TennisHeroSection from "@/components/section/tennis/TennisHeroSection"

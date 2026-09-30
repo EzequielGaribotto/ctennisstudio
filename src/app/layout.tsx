@@ -10,10 +10,30 @@ const inter = Inter({
   display: "swap",
 })
 
+const SITE_TITLE = "CTS - Custom Tennis Studio | Pablo Garibotto"
+const SITE_DESCRIPTION =
+  "Encordado y equilibrado profesional de raquetas de tenis por Pablo Garibotto, encordador oficial en torneos ATP y WTA como Montecarlo, Madrid y Miami."
+
 export const metadata: Metadata = {
-  title: "CTS - Tennis Studio",
-  description: "Professional Tennis Stringing & Balancing Studio",
-  generator: "Next.js",
+  metadataBase: new URL("https://ctenisstudio.com"),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Custom Tennis Studio",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "es_ES",
+    alternateLocale: ["en_GB"],
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Pablo Garibotto encordando una raqueta" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/images/og-image.jpg"],
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },

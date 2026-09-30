@@ -23,10 +23,6 @@
   margin-top: 2rem;
 }
 
-.mobileContentGrid {
-  display: none;
-}
-
 .formSection {
   min-width: 0;
 }
@@ -42,16 +38,6 @@
   height: fit-content;
   position: sticky;
   top: 100px;
-}
-
-.mobileContactInfo {
-  background: rgba(249, 160, 40, 0.05);
-  border: 2px solid var(--primary);
-  border-radius: 16px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
 .contactInfoTitle {
@@ -159,7 +145,7 @@
 
 .backButton:hover {
   background: var(--primary);
-  color: white;
+  color: var(--on-primary);
   border-color: var(--primary);
   transform: translateX(-4px);
 }
@@ -245,12 +231,6 @@
   box-shadow: 0 0 0 3px rgba(249, 160, 40, 0.1);
 }
 
-.input.readOnly {
-  background: #f5f5f5;
-  cursor: not-allowed;
-  color: #666;
-}
-
 .textarea {
   resize: vertical;
   min-height: 150px;
@@ -277,7 +257,7 @@
 
 .submitButton {
   background: var(--primary);
-  color: white;
+  color: var(--on-primary);
   border: none;
   padding: 1.25rem 2.5rem;
   font-size: 1.125rem;
@@ -301,16 +281,8 @@
   transform: none;
 }
 
-.mobileMapContainer {
-  display: none;
-}
-
 .socialText {
   display: inline;
-}
-
-.mobileMapContainer {
-  display: none;
 }
 
 .socialText {
@@ -327,22 +299,23 @@
   }
 
   .contentGrid {
-    display: none;
-  }
-
-  .mobileContentGrid {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
 
+  /* On phones show the location before the social links */
+  .sidebarLocation {
+    order: 1;
+  }
+
+  .sidebarSocial {
+    order: 2;
+  }
+
   .contactInfo {
     position: static;
     top: auto;
-  }
-
-  .mobileContactInfo {
-    position: static;
   }
 
   .socialLinks {

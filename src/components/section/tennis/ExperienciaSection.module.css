@@ -650,7 +650,7 @@
 
 .showMoreButton {
   background: var(--primary);
-  color: white;
+  color: var(--on-primary);
   border: none;
   padding: 1rem 2.5rem;
   font-size: 1.125rem;
