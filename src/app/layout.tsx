@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { TranslationProvider } from "@/context/TranslationContext"
@@ -49,6 +49,11 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
+}
+
+// Dark browser UI (address bar / overscroll area) on mobile, matching the page background
+export const viewport: Viewport = {
+  themeColor: "#1a1a1a",
 }
 
 export default function RootLayout({

@@ -46,39 +46,37 @@
     box-sizing: border-box;
   }
   
+  /* Solid dark base: anything the browser hasn't painted yet (e.g. when the mobile
+     address bar hides while scrolling, or on overscroll) shows dark, never white. */
   html {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-color: var(--gradient-start);
     min-height: 100vh;
     width: 100%;
     position: relative;
   }
-  
-  html::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-    z-index: -1;
-    will-change: transform;
-  }
-  
+
+  /* Fixed background layers sized to the *largest* mobile viewport (100lvh), so they
+     already cover the area revealed when the address bar collapses. */
+  html::before,
   html::after {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%);
+    width: 100%;
+    height: 100vh;
+    height: 100lvh;
     z-index: -1;
     pointer-events: none;
+  }
+
+  html::before {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+  }
+
+  html::after {
+    background: radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%);
   }
   
   body {
