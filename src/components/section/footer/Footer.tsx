@@ -5,6 +5,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import styles from "./Footer.module.css"
 import { useEffect, useState } from "react"
+import { SOCIAL_LINKS } from "@/data/contact"
 
 export default function Footer() {
   const { t, isHydrated } = useTranslation()
@@ -26,7 +27,7 @@ export default function Footer() {
     <footer className="w-full py-3 flex justify-center">
       <div className={styles.footerContent}>
         <div className={styles.footerInfo}>
-          <p className={styles.copyright}>{t("footer.copyright")}</p>
+          <p className={styles.copyright}>{t("footer.copyright").replace("{year}", String(new Date().getFullYear()))}</p>
           <Link href="/contact" className={styles.contactButton}>
             {t("navigation.contacto")}
           </Link>
@@ -34,7 +35,7 @@ export default function Footer() {
 
         <div className={styles.socialLinks}>
           <a
-            href="https://www.facebook.com/Pablo.Garibotto.Garcia/"
+            href={SOCIAL_LINKS.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialIcon}
@@ -43,7 +44,7 @@ export default function Footer() {
             <FaFacebook />
           </a>
           <a
-            href="https://www.instagram.com/ctennisstudio"
+            href={SOCIAL_LINKS.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialIcon}
@@ -52,7 +53,7 @@ export default function Footer() {
             <FaInstagram />
           </a>
           <a
-            href="https://www.linkedin.com/in/pablogaribottogarcia/"
+            href={SOCIAL_LINKS.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialIcon}
@@ -61,7 +62,7 @@ export default function Footer() {
             <FaLinkedin />
           </a>
           <a
-            href="https://wa.me/34630530839"
+            href={SOCIAL_LINKS.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialIcon}

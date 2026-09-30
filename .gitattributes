@@ -1,0 +1,9 @@
+# Keep LF everywhere so Windows and the photo scripts never fight over line endings
+* text=auto eol=lf
+*.webp binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.mp4 binary
+*.webm binary
+*.ps1 text eol=crlf

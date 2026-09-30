@@ -3,6 +3,7 @@ import type React from "react"
 import { FaWhatsapp, FaTimes } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./ContactModal.module.css"
+import { openWhatsApp } from "@/data/contact"
 
 interface ContactModalProps {
   isOpen: boolean
@@ -24,9 +25,7 @@ const ContactModal: React.FC<ContactModalProps> = ({
   if (!isOpen) return null
 
   const handleWhatsAppClick = () => {
-    const phone = "34630530839"
-    const message = encodeURIComponent(whatsappMessage)
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
+    openWhatsApp(whatsappMessage)
     onClose()
   }
 
@@ -44,7 +43,7 @@ const ContactModal: React.FC<ContactModalProps> = ({
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button className={styles.closeButton} onClick={onClose} aria-label={t("contactModal.close")}>
           <FaTimes />
         </button>
 

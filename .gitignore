@@ -25,3 +25,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# photo inbox (originals never go to git; only the README)
+/fotos-nuevas/*
+!/fotos-nuevas/README.md
+
+# local Claude settings
+.claude/settings.local.json

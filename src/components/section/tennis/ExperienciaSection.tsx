@@ -6,6 +6,7 @@ import { useTranslation } from "@/context/TranslationContext"
 import ReactCountryFlag from "react-country-flag"
 import styles from "./ExperienciaSection.module.css"
 import tournamentImagesManifest from "@/data/tournament-images.json"
+import tournamentsData from "@/data/tournaments.json"
 
 // Tournament importance levels for sorting
 enum TournamentLevel {
@@ -30,6 +31,25 @@ interface Tournament {
   unifiedLogo?: string
   level?: TournamentLevel // Tournament importance level
 }
+
+// Tournament data lives in src/data/tournaments.json (edit that file to add/change tournaments)
+const SORTED_TOURNAMENTS: Tournament[] = (tournamentsData as Array<Omit<Tournament, "level"> & { level?: string }>)
+  .map((t) => ({ ...t, level: TournamentLevel[(t.level ?? "UNCLASSIFIED") as keyof typeof TournamentLevel] }))
+  .sort((a, b) => {
+    // Sort by tournament level first
+    const levelA = a.level ?? TournamentLevel.UNCLASSIFIED
+    const levelB = b.level ?? TournamentLevel.UNCLASSIFIED
+
+    if (levelA !== levelB) {
+      return levelA - levelB
+    }
+
+    // Within same level, sort by most recent year (descending)
+    const maxYearA = Math.max(...a.years.map(y => parseInt(y)))
+    const maxYearB = Math.max(...b.years.map(y => parseInt(y)))
+
+    return maxYearB - maxYearA
+  })
 
 const ExperienciaSection: React.FC = () => {
   const { t } = useTranslation()
@@ -101,17 +121,15 @@ const ExperienciaSection: React.FC = () => {
     }
   }, [])
 
-  // Preload all tournament images from manifest
+  // Preload only the opened tournament's photos (not the whole gallery on page load)
   useEffect(() => {
+    if (!selectedTournament) return
     const manifest = tournamentImagesManifest as Record<string, string[]>
-    const allImages: string[] = Object.values(manifest).flat()
-    
-    // Preload all images in bulk
-    allImages.forEach(src => {
+    ;(manifest[selectedTournament.tournamentCode] || []).forEach(src => {
       const img = new window.Image()
       img.src = src
     })
-  }, [])
+  }, [selectedTournament])
 
   // Auto-advance stories (Instagram-like)
   useEffect(() => {
@@ -148,226 +166,7 @@ const ExperienciaSection: React.FC = () => {
     setProgress(0)
   }, [currentImageIndex])
 
-  const tournaments: Tournament[] = [
-    // Monte-Carlo
-    {
-      id: "ROLEX",
-      city: "Monte-Carlo",
-      countryCode: "MC",
-      category: "Rolex Monte-Carlo Masters",
-      years: ["2025", "2024", "2023", "2022"],
-      tournamentCode: "ROLEX",
-      places: ["Montecarlo"],
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
-      womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/montecarlo_masters_logo.webp",
-      level: TournamentLevel.ATP_WTA_1000,
-    },
-
-    // Madrid
-    {
-      id: "MUTUA",
-      city: "Madrid",
-      countryCode: "ES",
-      category: "Mutua Madrid Open",
-      years: ["2026", "2025", "2024", "2023", "2022", "2021", "2019", "2018", "2017", "2016", "2010"],
-      tournamentCode: "MUTUA",
-      places: ["Madrid"],
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
-      womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/mutua_madrid_open_logo.webp",
-      level: TournamentLevel.ATP_WTA_1000,
-    },
-
-    // Miami
-    {
-      id: "OPEN",
-      city: "Miami",
-      countryCode: "US",
-      category: "Miami Open",
-      years: ["2026","2025"],
-      tournamentCode: "OPEN",
-      places: ["Miami"],
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
-      womensLogo: "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/miami_open_logo.webp",
-      level: TournamentLevel.ATP_WTA_1000,
-    },
-
-    // Godó (Barcelona)
-    {
-      id: "GODO",
-      city: "Barcelona",
-      countryCode: "ES",
-      category: "Trofeo Conde de Godó",
-      years: ["2019", "2018", "2017", "2016", "2015", "2014", "2013"],
-      tournamentCode: "GODO",
-      places: ["Barcelona"],
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/500_atp.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/godo_logo.webp",
-      level: TournamentLevel.ATP_500,
-    },
-
-    // Gonet Geneva Open
-    {
-      id: "GENEVA",
-      city: "Geneva",
-      countryCode: "CH",
-      category: "Gonet Geneva Open",
-      years: ["2026"],
-      tournamentCode: "GENEVA",
-      places: ["Geneva"],
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/geneva_open_logo.webp",
-      level: TournamentLevel.ATP_250,
-    },
-
-    // Challenger cluster
-    {
-      id: "CHALLENGER",
-      city: "Valencia / Girona / Barcelona",
-      countryCode: "ES",
-      category: "ATP Challenger Tour",
-      years: ["2026", "2025", "2024", "2023", "2022", "2021", "2020"],
-      tournamentCode: "CHALLENGER",
-      places: ["Valencia", "Girona", "Barcelona"],
-      unifiedLogo: "/images/stringer/tournament_logos/challenger_tour_logo.webp",
-      level: TournamentLevel.CHALLENGER,
-    },
-
-    // ENGIE Open Biarritz
-    {
-      id: "ENGIE",
-      city: "Biarritz",
-      countryCode: "FR",
-      category: "Engie Open Biarritz",
-      years: ["2025", "2024"],
-      tournamentCode: "ENGIE",
-      places: ["Biarritz"],
-      unifiedLogo: "/images/stringer/tournament_logos/engie_open_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-
-    // WTA 125s (La Bisbal, Barcelona, Valencia)
-    {
-      id: "WTA125",
-      city: "La Bisbal / Barcelona / Valencia",
-      countryCode: "ES",
-      category: "WTA 125",
-      years: ["2026", "2025", "2012"],
-      tournamentCode: "WTA125",
-      places: ["La Bisbal", "Barcelona", "Valencia"],
-      womensLogo: "/images/stringer/tournament_logos/category_stamps/125_wta.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
-      level: TournamentLevel.ATP_WTA_125,
-    },
-
-    // ITF M25 Sabadell
-    {
-      id: "M25_SABADELL",
-      city: "Sabadell",
-      countryCode: "ES",
-      category: "ITF M25 Sabadell",
-      years: ["2026"],
-      tournamentCode: "M25SABADELL",
-      places: ["Sabadell"],
-      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-
-    // ITF W35 Tauste
-    {
-      id: "W35_TAUSTE",
-      city: "Tauste",
-      countryCode: "ES",
-      category: "ITF W35 Tauste",
-      years: ["2026"],
-      tournamentCode: "W35TAUSTE",
-      places: ["Tauste"],
-      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-
-    // ITF M35 Klagenfurt
-    {
-      id: "M35_KLAGENFURT",
-      city: "Klagenfurt",
-      countryCode: "AT",
-      category: "ITF M35 Klagenfurt",
-      years: ["2026"],
-      tournamentCode: "M35KLAGENFURT",
-      places: ["Klagenfurt"],
-      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-
-    // ITF Wheelchair
-    {
-      id: "WHEELCHAIR",
-      city: "Olot",
-      countryCode: "ES",
-      category: "ITF Wheelchair Tennis",
-      years: ["2018", "2017", "2014"],
-      tournamentCode: "WHEELCHAIR",
-      places: ["Olot"],
-      unifiedLogo: "/images/stringer/tournament_logos/itf_wheelchair_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-
-    // RFET - Spanish Team Championships
-    {
-      id: "RFET",
-      city: "Polo / Tarragona",
-      countryCode: "ES",
-      category: "RFET - Campeonato de España por Equipos",
-      years: ["2019", "2016", "2015", "2014"],
-      tournamentCode: "RFET",
-      places: ["Polo", "Tarragona"],
-      unifiedLogo: "/images/stringer/tournament_logos/rfet_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-
-    // Mallorca Championships
-    {
-      id: "MALLORCA",
-      city: "Mallorca",
-      countryCode: "ES",
-      category: "Mallorca Championships",
-      years: ["2025"],
-      tournamentCode: "CHAMPIONSHIPS",
-      places: ["Mallorca"],
-      mensLogo: "/images/stringer/tournament_logos/category_stamps/250_atp.webp",
-      unifiedLogo: "/images/stringer/tournament_logos/mallorca_championships_logo.webp",
-      level: TournamentLevel.ATP_250,
-    },
-
-    // ITF Juniors
-    {
-      id: "ITF_JR",
-      city: "Barcelona",
-      countryCode: "ES",
-      category: "ITF World Tennis Tour Juniors",
-      years: ["2023", "2022", "2021"],
-      tournamentCode: "ITF_JR",
-      places: ["Barcelona"],
-      unifiedLogo: "/images/stringer/tournament_logos/itf_wtt_jr_logo.webp",
-      level: TournamentLevel.UNCLASSIFIED,
-    },
-  ].sort((a, b) => {
-    // Sort by tournament level first
-    const levelA = a.level ?? TournamentLevel.UNCLASSIFIED
-    const levelB = b.level ?? TournamentLevel.UNCLASSIFIED
-    
-    if (levelA !== levelB) {
-      return levelA - levelB
-    }
-    
-    // Within same level, sort by most recent year (descending)
-    const maxYearA = Math.max(...a.years.map(y => parseInt(y)))
-    const maxYearB = Math.max(...b.years.map(y => parseInt(y)))
-    
-    return maxYearB - maxYearA
-  })
+  const tournaments = SORTED_TOURNAMENTS
 
   // Get all images for a tournament from manifest
   const getTournamentImages = (tournament: Tournament): string[] => {
@@ -727,32 +526,12 @@ const ExperienciaSection: React.FC = () => {
     // Place can be one or more words (e.g., "LA BISBAL", "VALENCIA", "MONTECARLO")
     const match = imagePath.match(/\/(\w+)\s([A-Z\s]+?)\s(\d{4})\s\d+\.webp$/)
     if (match) {
-      const [, tournamentCode, place, year] = match
+      const [, , place, year] = match
       // Normalize place: capitalize each word properly
       const normalizedPlace = place.trim().split(' ').map(word => 
         word.charAt(0) + word.slice(1).toLowerCase()
       ).join(' ')
-      
-      // Get tournament name from mapping
-      const tournamentNames: Record<string, string> = {
-        CHALLENGER: "ATP Challenger Tour",
-        GODO: "Trofeo Conde de Godó",
-        MUTUA: "Mutua Madrid Open",
-        OPEN: "Miami Open",
-        RFET: "RFET - Campeonato de España por Equipos",
-        ROLEX: "Rolex Monte-Carlo Masters",
-        WHEELCHAIR: "ITF Wheelchair Tennis",
-        ENGIE: "Engie Open Biarritz",
-        WTA125: "WTA 125",
-        CHAMPIONSHIPS: "Mallorca Championships",
-        ITF_JR: "ITF World Tennis Tour Juniors",
-        GENEVA: "Gonet Geneva Open",
-        M25SABADELL: "ITF M25 Sabadell",
-        W35TAUSTE: "ITF W35 Tauste",
-        M35KLAGENFURT: "ITF M35 Klagenfurt"
-      }
-      
-      const tournamentName = tournamentNames[tournamentCode] || selectedTournament.category
+      const tournamentName = selectedTournament.category
       
       return { 
         tournamentName, 
@@ -914,8 +693,6 @@ const ExperienciaSection: React.FC = () => {
                       width={60}
                       height={60}
                       className={styles.logo}
-                      loading="eager"
-                      priority
                     />
                   </div>
                 )}
@@ -927,8 +704,6 @@ const ExperienciaSection: React.FC = () => {
                       width={60}
                       height={60}
                       className={styles.logo}
-                      loading="eager"
-                      priority
                     />
                   </div>
                 )}
@@ -940,8 +715,6 @@ const ExperienciaSection: React.FC = () => {
                       width={60}
                       height={60}
                       className={styles.logo}
-                      loading="eager"
-                      priority
                     />
                   </div>
                 )}

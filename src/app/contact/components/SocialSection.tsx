@@ -3,6 +3,7 @@ import type React from "react"
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "../page.module.css"
+import { SOCIAL_LINKS } from "@/data/contact"
 
 export const SocialSection: React.FC = () => {
   const { t } = useTranslation()
@@ -12,7 +13,7 @@ export const SocialSection: React.FC = () => {
       <h3 className={styles.infoSectionTitle}>{t("contact.info.social")}</h3>
       <div className={styles.socialLinks}>
         <a
-          href="https://www.facebook.com/Pablo.Garibotto.Garcia/"
+          href={SOCIAL_LINKS.facebook}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}
@@ -22,7 +23,7 @@ export const SocialSection: React.FC = () => {
           <span className={styles.socialText}>Facebook</span>
         </a>
         <a
-          href="https://www.instagram.com/ctennisstudio"
+          href={SOCIAL_LINKS.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}
@@ -32,7 +33,7 @@ export const SocialSection: React.FC = () => {
           <span className={styles.socialText}>Instagram</span>
         </a>
         <a
-          href="https://www.linkedin.com/in/pablogaribottogarcia/"
+          href={SOCIAL_LINKS.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}
@@ -42,7 +43,7 @@ export const SocialSection: React.FC = () => {
           <span className={styles.socialText}>LinkedIn</span>
         </a>
         <a
-          href="https://wa.me/34630530839"
+          href={SOCIAL_LINKS.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}

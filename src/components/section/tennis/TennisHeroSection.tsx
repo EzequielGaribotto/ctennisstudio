@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import styles from "./TennisHeroSection.module.css"
+import { SOCIAL_LINKS } from "@/data/contact"
 
 const TennisHeroSection: React.FC = () => {
   const { t } = useTranslation()
@@ -37,16 +38,16 @@ const TennisHeroSection: React.FC = () => {
             <p className={styles.description}>{t("hero.description")}</p>
 
             <div className={styles.socialIcons}>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <FaFacebook className={styles.icon} />
               </a>
-              <a href="https://instagram.com/ctennisstudio" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <FaInstagram className={styles.icon} />
               </a>
-              <a href="https://linkedin.com/in/pablogaribottogarcia" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <FaLinkedin className={styles.icon} />
               </a>
-              <a href="https://wa.me/34630530839" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <FaWhatsapp className={styles.icon} />
               </a>
             </div>

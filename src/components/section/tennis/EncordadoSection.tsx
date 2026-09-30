@@ -39,7 +39,7 @@ const EncordadoSection: React.FC = () => {
               playsInline
             >
               <source src="/video/stringing/encordado_profesional_video.webm" type="video/webm" />
-              <source src="/video/stringing/encordado_profesional_video.ogv" type="video/ogg" />
+              <source src="/video/stringing/encordado_profesional_video.mp4" type="video/mp4" />
               Tu navegador no soporta el video.
             </video>
           </div>

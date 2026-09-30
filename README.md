@@ -1,38 +1,23 @@
-# Instructivo para añadir imagenes a experencias
+# CTennis Studio — ctenisstudio.com
 
-## 1. Optimizar imagenes a .webp
+Website of Pablo Garibotto, professional tennis stringer. Next.js 15 + React 19, deployed on **Vercel**
+(every push to `main` goes live automatically).
 
-Coloca las imagenes en la carpeta "public"
-Usa el script de python optimize_images.py:
-Abre la terminal y ejecuta  
-`python .\optimize_images.py`
+- **Pablo:** everything is done by talking to Claude. First-time setup: [docs/INSTALACION.md](docs/INSTALACION.md).
+- **Claude / developers:** read [CLAUDE.md](CLAUDE.md) (project map, workflows, rules). Skills in
+  [.claude/skills/](.claude/skills/): `probar`, `publicar`, `fotos`.
 
-## 2. Generar el manifest de imagenes
+## Commands
 
-Abre la terminal y ejecuta
-`node .\generate-image-manifest.mjs`
+| Command | What it does |
+|---|---|
+| `npm run dev` | Local site at http://localhost:3000 |
+| `npm run build` | Lint + photo verification + type check + production build |
+| `npm run fotos` | Tournament photo status; `revisar`, `agregar`, `descartar`, `recuperar`, `manifiesto`, `optimizar`, `verificar` |
+| `npm run imagen -- <src> <dest.webp>` | Any other image → optimized WebP (`--quitar-fondo`, `--max N`) |
+| `npm run favicons` | Regenerate site icons from the logo |
 
-## 3. Mover la imagen a la carpeta correspondiente (si no está aún)
+New photos/logos go in `fotos-nuevas/` (git-ignored). Data: `src/data/tournaments.json` (tournament cards),
+`src/data/contact.ts` (phone, social links), `src/app/translations/` (all texts, es/en).
 
-## 4. Cambiar el nombre al formato correcto
-
-## 5. Verificar que las imagenes se añaden correctamente
-- Correr la página localmente
-Abre la terminal y ejecuta  
-`npm run dev`
-
-## 6. Hacer commit y push
-Asegurarte de que estas aca:  
-`C:\Users\pablo\Desktop\CTS\ctennisstudio>`  
-- Desde la terminal, ejecutar  
-`git add .`  
-`git commit -m "añadida imagen engie biarritz"`  
-`git push`
-
-
-## Husky
-
-`npm install --save-dev husky lint-staged`  
-
-`npx husky install`
-`npx husky add .husky/pre-commit "npx lint-staged"`
+Contact form email uses Resend: `RESEND_API_KEY` must be set in the Vercel project.

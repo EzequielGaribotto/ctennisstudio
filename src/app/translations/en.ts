@@ -18,8 +18,8 @@ export const en: Translations = {
     contacto: "Contact"
   },
   footer: {
-    disclaimer: "© 2025 CTennis Studio.",
-    copyright: "© 2025 Custom Tennis Studio. All rights reserved."
+    disclaimer: "© {year} CTennis Studio.",
+    copyright: "© {year} Custom Tennis Studio. All rights reserved."
   },
   hero: {
     title: "CTennis Studio",
@@ -187,6 +187,7 @@ export const en: Translations = {
     whatsappSubtitle: "Chat directly and get quick responses",
     formTitle: "Contact Form",
     formSubtitle: "Fill out the form and we'll get back to you",
+    close: "Close",
     or: "or"
   },
   serviceDetail: {

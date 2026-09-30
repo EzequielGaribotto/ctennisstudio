@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { CONTACT } from '@/data/contact';
 
 // Initialize Resend only when API key is available (runtime)
 // During build time, this will be undefined, which is fine for static analysis
@@ -10,13 +11,29 @@ const MAX_REQUESTS_PER_HOUR = 5;
 const HOUR_IN_MS = 60 * 60 * 1000;
 
 // Sanitize input to prevent XSS and injection attacks
-function sanitizeInput(input: string): string {
+function sanitizeInput(input: unknown): string {
+  if (typeof input !== 'string') return '';
   return input
     .replace(/[<>]/g, '') // Remove HTML tags
     .replace(/javascript:/gi, '') // Remove javascript: protocol
     .replace(/on\w+=/gi, '') // Remove event handlers
     .trim()
     .slice(0, 5000); // Limit length
+}
+
+// Escape remaining HTML-significant characters before interpolating into the email body
+function escapeHtml(input: string): string {
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// Drop expired entries so the in-memory map can't grow without bound
+function pruneRateLimitMap(now: number) {
+  for (const [ip, times] of rateLimitMap) {
+    if (times.every(time => now - time >= HOUR_IN_MS)) rateLimitMap.delete(ip);
+  }
 }
 
 // Validate email format strictly
@@ -47,11 +64,10 @@ function containsSpam(text: string): boolean {
 
 export async function POST(request: Request) {
   try {
-    console.log('📧 Contact API called');
-    
-    // Rate limiting by IP
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    // Rate limiting by IP (first entry of x-forwarded-for is the client)
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || request.headers.get('x-real-ip') || 'unknown';
     const now = Date.now();
+    pruneRateLimitMap(now);
     const requestTimes = rateLimitMap.get(ip) || [];
     const recentRequests = requestTimes.filter(time => now - time < HOUR_IN_MS);
     
@@ -66,8 +82,13 @@ export async function POST(request: Request) {
     recentRequests.push(now);
     rateLimitMap.set(ip, recentRequests);
     
-    const body = await request.json();
-    const { name, email, phone, subject, message, honeypot } = body;
+    let body: Record<string, unknown>;
+    try {
+      body = await request.json();
+    } catch {
+      return Response.json({ error: 'Invalid request' }, { status: 400 });
+    }
+    const { name, email, phone, subject, message, honeypot } = body ?? {};
     
     // Honeypot field check (bot detection)
     if (honeypot) {
@@ -75,10 +96,8 @@ export async function POST(request: Request) {
       return Response.json({ success: true }); // Fake success to fool bots
     }
     
-    console.log('📝 Form data received:', { name, email, subject });
-
     // Validación de campos requeridos
-    if (!name || !email || !subject || !message) {
+    if (typeof name !== 'string' || typeof email !== 'string' || typeof subject !== 'string' || typeof message !== 'string' || !name || !email || !subject || !message) {
       console.error('❌ Missing required fields');
       return Response.json(
         { error: 'Missing required fields' },
@@ -89,7 +108,7 @@ export async function POST(request: Request) {
     // Sanitize all inputs
     const sanitizedName = sanitizeInput(name);
     const sanitizedEmail = sanitizeInput(email);
-    const sanitizedPhone = phone ? sanitizeInput(phone) : '';
+    const sanitizedPhone = sanitizeInput(phone);
     const sanitizedSubject = sanitizeInput(subject);
     const sanitizedMessage = sanitizeInput(message);
     
@@ -140,7 +159,13 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log('🔑 API Key exists:', process.env.RESEND_API_KEY?.substring(0, 10) + '...');
+    const html = {
+      name: escapeHtml(sanitizedName),
+      email: escapeHtml(sanitizedEmail),
+      phone: escapeHtml(sanitizedPhone),
+      subject: escapeHtml(sanitizedSubject),
+      message: escapeHtml(sanitizedMessage),
+    };
 
     const emailContent = {
       text: `
@@ -175,25 +200,25 @@ ${sanitizedMessage}
     <div class="content">
       <div class="field">
         <label>Nombre:</label>
-        <div class="value">${sanitizedName}</div>
+        <div class="value">${html.name}</div>
       </div>
       <div class="field">
         <label>Email:</label>
-        <div class="value"><a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></div>
+        <div class="value"><a href="mailto:${html.email}">${html.email}</a></div>
       </div>
       ${sanitizedPhone ? `
       <div class="field">
         <label>Teléfono:</label>
-        <div class="value"><a href="tel:${sanitizedPhone}">${sanitizedPhone}</a></div>
+        <div class="value"><a href="tel:${html.phone}">${html.phone}</a></div>
       </div>
       ` : ''}
       <div class="field">
         <label>Asunto:</label>
-        <div class="value">${sanitizedSubject}</div>
+        <div class="value">${html.subject}</div>
       </div>
       <div class="message">
         <label>Mensaje:</label>
-        <div class="value" style="white-space: pre-wrap;">${sanitizedMessage}</div>
+        <div class="value" style="white-space: pre-wrap;">${html.message}</div>
       </div>
     </div>
   </div>
@@ -202,23 +227,25 @@ ${sanitizedMessage}
       `,
     };
 
-    console.log('📨 Attempting to send email via Resend...');
-
-    const result = await resend!.emails.send({
+    const { error } = await resend.emails.send({
       from: 'CTennis Studio <noreply@ctenisstudio.com>',
-      to: 'pablo_garis@hotmail.com',
+      to: CONTACT.email,
       replyTo: sanitizedEmail,
       subject: sanitizedSubject || `Nuevo contacto de ${sanitizedName}`,
       html: emailContent.html,
+      text: emailContent.text,
     });
 
-    console.log('✅ Email sent successfully!', result);
+    if (error) {
+      console.error('❌ Resend rejected the email:', error);
+      return Response.json({ error: 'Failed to send email' }, { status: 500 });
+    }
 
     return Response.json({ success: true });
   } catch (error) {
     console.error('❌ Error sending email:', error);
     return Response.json(
-      { error: 'Failed to send email', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to send email' },
       { status: 500 }
     );
   }

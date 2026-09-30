@@ -99,10 +99,8 @@
   }
 }
 
-/* Ensure all buttons with orange background have white text */
-button[style*="background"],
-a[style*="background"],
-button[class*="primary"],
-a[class*="primary"] {
-  color: white !important;
+/* Visible focus ring for keyboard users (mouse clicks are unaffected) */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }

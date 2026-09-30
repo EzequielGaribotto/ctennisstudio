@@ -9,7 +9,10 @@ import { ContactInfoSidebar } from "./components/ContactInfoSidebar"
 import { LocationSection } from "./components/LocationSection"
 import { SocialSection } from "./components/SocialSection"
 
-type ServiceType = "encordado" | "set" | "match" | "point" | "base" | "avance" | "maestria"
+const SERVICE_TYPES = ["encordado", "set", "match", "point", "base", "avance", "maestria"] as const
+type ServiceType = (typeof SERVICE_TYPES)[number]
+const isServiceType = (value: string | null): value is ServiceType =>
+  value !== null && (SERVICE_TYPES as readonly string[]).includes(value)
 
 interface ContactFormData {
   name: string
@@ -94,10 +97,10 @@ const ContactPageContent: React.FC = () => {
 
   // Pre-fill form based on URL parameters
   useEffect(() => {
-    const service = searchParams.get("service") as ServiceType | null
-    const name = searchParams.get("name") || ""
+    const service = searchParams.get("service")
+    const name = (searchParams.get("name") || "").slice(0, 100)
     
-    if (service) {
+    if (isServiceType(service)) {
       const subject = getSubjectForService(service, name)
       const message = getMessageForService(service, locale)
       

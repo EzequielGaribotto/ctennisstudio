@@ -184,6 +184,7 @@ export const baseTranslations = {
         whatsappSubtitle: "",
         formTitle: "",
         formSubtitle: "",
+        close: "",
         or: ""
     },
     serviceDetail: {

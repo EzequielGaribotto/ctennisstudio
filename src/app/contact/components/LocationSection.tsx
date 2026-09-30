@@ -3,6 +3,7 @@ import type React from "react"
 import { FaPhone, FaMapMarkerAlt } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "../page.module.css"
+import { CONTACT } from "@/data/contact"
 
 export const LocationSection: React.FC = () => {
   const { t } = useTranslation()
@@ -40,9 +41,9 @@ export const LocationSection: React.FC = () => {
       {/* Phone */}
       <div className={styles.infoSection}>
         <h3 className={styles.infoSectionTitle}>{t("contact.info.phone")}</h3>
-        <a href="tel:+34630530839" className={styles.contactLink}>
+        <a href={`tel:+${CONTACT.phoneE164}`} className={styles.contactLink}>
           <FaPhone className={styles.contactIcon} />
-          <span>+34 630 530 839</span>
+          <span>{CONTACT.phoneDisplay}</span>
         </a>
       </div>
 
