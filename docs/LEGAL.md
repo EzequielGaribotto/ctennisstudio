@@ -43,8 +43,8 @@ No analytics, no advertising, no newsletter. If any is added: update the texts *
 - Final wording of the three texts; whether the "Titular" block fits his situation (autónomo vs sociedad).
 - **Tournament trademarks** (ATP, WTA, ITF, Rolex Monte-Carlo Masters, Mutua Madrid Open, Miami Open…): shown with a disclaimer;
   some owners restrict commercial use of logos/images. Ask whether permissions/accreditation terms exist. Reserve logos
-  (Roland Garros, Wimbledon, US Open, Australian Open, WTT…) stay in `assets-reserva/` (the GitHub repo is public, so they are
-  still visible there).
+  (Roland Garros, Wimbledon, US Open, Australian Open, WTT…) stay in `assets-reserva/` (not published; the GitHub repo
+  is private).
 - **Photos**: identifiable people (image rights, LO 1/1982 + RGPD) and who took each photo (copyright).
 - **Video** has an audio track: check there is no music with rights.
 - **"Encordador oficial"** claims: must be true and provable (unfair competition / misleading advertising).

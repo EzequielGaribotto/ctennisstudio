@@ -101,8 +101,8 @@ My website project is in: ``$Path``
 (GitHub: $RepoUrl - I push as ``$GitHubUser``; pushing to main publishes it via Vercel.)
 
 Whenever I ask to work on my website/page/web ("mi pagina", "la web", fotos, torneos, publicar, probar...):
-work inside that folder and follow its CLAUDE.md. If the folder doesn't exist, set it up again following
-https://raw.githubusercontent.com/EzequielGaribotto/ctennisstudio/main/docs/INSTALACION.md
+work inside that folder and follow its CLAUDE.md. If the folder doesn't exist, ask Ezequiel for the file
+instalar-web.ps1 (the website setup script) and run it again.
 $end
 "@
 $current = if (Test-Path $memory) { Get-Content $memory -Raw -Encoding UTF8 } else { "" }

@@ -13,4 +13,4 @@ npm run logos -- usar roland_garros_logo   # lo copia a public/ (y avisa de la r
 Después hay que añadirlo al torneo correspondiente en `src/data/tournaments.json`.
 Antes de mostrar logos de marcas ajenas, ver `docs/LEGAL.md` (marcas y permisos).
 
-Nota: el repositorio de GitHub es público, así que estos archivos siguen siendo visibles allí (no en ctenisstudio.com).
+Nota: estos archivos no se publican en ctenisstudio.com. El repositorio de GitHub es privado, así que solo lo ven quienes tienen acceso.

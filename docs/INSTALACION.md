@@ -17,10 +17,11 @@ Se hace **una sola vez**.
    Elegí el modo **automático** ("Auto"). Si no lo encontrás, preguntale a Claude "¿dónde activo el modo automático?".
    Así Claude no te pregunta "¿permitís esto?" en cada paso; igual te va a preguntar lo importante
    (por ejemplo, antes de publicar).
-5. Escribile a Claude este mensaje (copialo tal cual):
+5. **Ezequiel te manda por WhatsApp o correo un archivo llamado `instalar-web.ps1`.** Guardalo en la carpeta **Descargas**.
+   Después escribile a Claude este mensaje (copialo tal cual):
 
-   > Configurá mi computadora para trabajar en mi página web siguiendo
-   > https://raw.githubusercontent.com/EzequielGaribotto/ctennisstudio/main/docs/INSTALACION.md
+   > Ejecutá el archivo instalar-web.ps1 que está en mi carpeta Descargas y dejá mi computadora lista para
+   > trabajar en mi página web.
 
 6. Claude va a instalar lo necesario. Si Windows pregunta **"¿Permitir que esta aplicación haga cambios?"**,
    tocá **Sí**. Si se abre una ventana de **GitHub**, iniciá sesión con tu usuario **pablogaris**.
@@ -45,14 +46,13 @@ Listo. Desde ahí podés pedirle cosas como:
 You are setting up Pablo's Windows PC. Talk to him in simple Spanish (see the repo's CLAUDE.md for tone).
 Explain each step in one plain sentence before running it.
 
-1. Download and run the setup script (installs Git + Node.js LTS + Google Chrome via winget if missing, clones the repo,
-   sets the repo-local git identity to `pablogaris`, runs `npm ci`, saves the project location in
-   `~/.claude/CLAUDE.md`, and checks GitHub push access):
+1. Run the setup script. The repository is **private**, so there is no public download link: Ezequiel sends Pablo the file
+   `instalar-web.ps1` (a copy of `scripts/setup-windows.ps1`). It installs Git + Node.js LTS + Google Chrome via winget if
+   missing, clones the repo (Git asks Pablo to sign in to GitHub as `pablogaris`: he must be a collaborator), sets the
+   repo-local git identity, runs `npm ci`, saves the project location in `~/.claude/CLAUDE.md`, and checks GitHub push access:
 
    ```powershell
-   $s = "$env:TEMP\setup-ctennisstudio.ps1"
-   Invoke-WebRequest https://raw.githubusercontent.com/EzequielGaribotto/ctennisstudio/main/scripts/setup-windows.ps1 -OutFile $s
-   powershell -ExecutionPolicy Bypass -File $s
+   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\instalar-web.ps1"
    ```
 
    Default folder: `Documents\ctennisstudio` (or the old `Desktop\CTS\ctennisstudio` if it already exists).

@@ -20,7 +20,8 @@ wrong, never jargon (use the table in CLAUDE.md → "Talking about security with
 
 ## 2. Pre-production review (do it yourself, silently fix small things)
 
-Review the diff (and files it touches) for:
+**This is the moment for security and legal review.** Pablo's ideas and edits are built freely while developing; nothing was
+checked for these aspects until now, so review the whole change (not just the last edit) for:
 
 - **Security** (all of "Security rules" in CLAUDE.md): no secrets/keys, no injection sinks
   (`dangerouslySetInnerHTML`, `innerHTML`, `eval`), external links with `rel="noopener noreferrer"`,
@@ -98,9 +99,14 @@ Show the plain-language summary + "todo verificado ✅ (la web, su seguridad y s
 
 ## 6. Confirm it's live
 
-- Vercel builds automatically (1–2 min). Check the commit status:
-  `curl -s https://api.github.com/repos/EzequielGaribotto/ctennisstudio/commits/<sha>/status` (state
-  `success`/`pending`/`failure`), polling every ~30s for up to ~5 min.
+- Vercel builds automatically (1–2 min). The repo is **private**, so don't use unauthenticated GitHub API calls. The live
+  site carries the commit it was built from: poll `https://ctenisstudio.com/` every ~15 s for up to ~5 min until
+  `curl -s https://ctenisstudio.com/ | grep -o 'build-commit" content="[^"]*"'` shows the first 7 characters of the commit you
+  pushed (`git rev-parse --short=7 HEAD`). (If `gh` is installed, `gh api repos/EzequielGaribotto/ctennisstudio/commits/<sha>/status`
+  also works.)
+- If the marker never shows up: Vercel did not publish the commit. On a Hobby team, commits to a private repo only deploy when
+  authored by the account owner, so a push by `pablogaris` can be blocked. Don't retry in a loop: tell Ezequiel (plain words:
+  "tu cambio está guardado pero no se publicó; le aviso a Ezequiel") and stop.
 - Then check `https://ctenisstudio.com` answers 200 (and, if practical, that the new content/photo URL is there)
   and run `npm run seguridad -- --live` (protections active on the real site). A ❌ here is urgent: fix and republish
   (or revert) right away and tell Ezequiel.

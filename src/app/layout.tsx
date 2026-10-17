@@ -50,6 +50,8 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
+  // Lets the publish step confirm which commit is live without needing GitHub access (the repo is private)
+  other: { 'build-commit': process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'local' },
 }
 
 // Dark browser UI (address bar / overscroll area) on mobile, matching the page background

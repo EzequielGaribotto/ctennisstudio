@@ -53,11 +53,15 @@ Never publish (commit/push) unless he asked to publish **and** confirmed the sum
 
 ## Where the project lives
 
-- Repo: https://github.com/EzequielGaribotto/ctennisstudio (public). Pablo pushes as GitHub user `pablogaris`
-  (collaborator). Pushing to `main` deploys to production automatically on **Vercel** (1–2 min). There is no
-  other deploy step; old GitHub Pages files were removed.
-- On Pablo's PC the setup script records the folder in `~/.claude/CLAUDE.md`. If the folder is missing, follow
-  [docs/INSTALACION.md](docs/INSTALACION.md).
+- Repo: https://github.com/EzequielGaribotto/ctennisstudio (**private**). Pablo pushes as GitHub user `pablogaris`
+  (collaborator). Pushing to `main` deploys to production automatically on **Vercel** (1–2 min). There is no other deploy step.
+  **Vercel Hobby limitation:** if the Vercel team is on the Hobby plan, commits to a private repo only deploy when authored by
+  the account owner (Ezequiel); a commit by `pablogaris` may not deploy (see [docs/SEGURIDAD.md](docs/SEGURIDAD.md) → "Private
+  repository"). After every push confirm the deploy really went live (publicar step 6) and, if it didn't within ~5 minutes,
+  tell Ezequiel in plain words.
+- On Pablo's PC the setup script (`instalar-web.ps1`, a copy of `scripts/setup-windows.ps1` that Ezequiel sends him; the repo is
+  private, so there are no public download links) records the folder in `~/.claude/CLAUDE.md`. If the folder is missing, ask Pablo
+  to get that file from Ezequiel and run it (see [docs/INSTALACION.md](docs/INSTALACION.md)).
 
 ## Project map
 
@@ -127,11 +131,26 @@ Pablo drops new files in **`fotos-nuevas/`** (ignored by git; originals are kept
 - Match the existing code style (see surrounding files). Keep colors on the CSS variables in
   [src/app/globals.css](src/app/globals.css) (`--primary` orange, dark background, white cards).
 
-## Security rules (non-negotiable)
+## Security and legal: only at publish time
+
+Pablo suggests features and changes freely. **While building and iterating, don't stop for security or legal matters**: no
+warnings, no questions about data protection / cookies / trademarks / etc., no extra work for them, no refusing an idea because
+of them. Build what he asks and let him see it with **probar**. (Lint rules and the git safety rules under "Rules" run on their
+own; that's all that applies during development.)
+
+**Before publishing** (the `publicar` skill, step 2) review the whole change against "Security rules" and "Legal" below, fix what
+is needed so it is safe and legal to go online, and ask Pablo any plain questions the change requires. Typical things to look at:
+the feature collects personal data or adds a form field; loads something from another company (script, widget, map, font, video,
+analytics); stores things in the browser; shows brand logos, photos of people or music; shows prices or sells online; makes
+claims about him or the business. If a feature can't be made safe/legal as asked, say so at that moment, in plain words, and offer
+alternatives; don't pre-empt it during development.
+
+## Security rules (checklist for the pre-publish review)
 
 The site has no database, but it has a public contact form, an email key, and a visitor-facing page: keep all of it safe.
+These rules are applied when reviewing a change **before publishing**, not while developing it.
 
-1. **No secrets in the repo** (it's public): keys live in Vercel environment variables / local `.env.local` (git-ignored).
+1. **No secrets in the repo** (it is private today, but treat it as if it could be shared): keys live in Vercel environment variables / local `.env.local` (git-ignored).
    Only `NEXT_PUBLIC_*` values may reach the browser, and only if they are meant to be public (Turnstile *site* key).
 2. **Never trust input.** Everything arriving at an API route (body, headers, query) is validated on the server: type,
    length, format. Escape it before putting it in HTML/email. Use `own()` for object lookups with outside keys.
@@ -184,7 +203,7 @@ The site belongs to a business in Mataró, so LSSI (aviso legal), RGPD/LOPDGDD (
 Full picture, pending items and what a gestor should review: [docs/LEGAL.md](docs/LEGAL.md). Never tell Pablo the site "is legally
 compliant"; say the base texts exist and that a gestor/abogado should review them.
 
-- **Any change in data collected, outside services used, or browser storage** → update the privacy and cookie texts in
+- **At the pre-publish review, if the change adds data collection, an outside service, or browser storage** → update the privacy and cookie texts in
   `src/data/legal-content.ts` (es **and** en) and `updated` in `src/data/legal.ts`, and tell Ezequiel. Examples: a new form
   field, newsletter, analytics/pixel (needs a consent banner *before* it loads), chat widget, new embed, new email/hosting provider.
 - **No outside CDNs for visitor-facing assets** (flags, fonts, icons, scripts): host them ourselves. Third-party requests send
@@ -192,7 +211,7 @@ compliant"; say the base texts exist and that a gestor/abogado should review the
 - **Logos and names of tournaments are third-party trademarks**: only show events Pablo really worked, keep the disclaimer under
   the tournaments, and reserve logos stay out of `public/`. Ask Pablo before showing a new brand.
 - **Photos and videos**: people identifiable in a photo, who took it, and music in videos matter (image rights, copyright).
-  When Pablo adds photos, ask once if he took them himself and whether people in them agreed to appear on the web.
+  At the pre-publish review of a change that adds photos, ask Pablo once if he took them himself and whether people in them agreed to appear on the web.
 - **Claims** ("encordador oficial en…") must be true and provable; don't write new claims for him without asking.
-- If he starts **selling online or showing prices** again: stop and tell Ezequiel (needs terms of sale, withdrawal right, VAT info).
+- At the pre-publish review, if the change **sells online or shows prices** again: don't publish it yet and tell Ezequiel (needs terms of sale, withdrawal right, VAT info).
 - When explaining any of this to Pablo use plain words: what the law asks, why it protects him, what you did.
