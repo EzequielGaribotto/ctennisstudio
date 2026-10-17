@@ -3,6 +3,7 @@
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 import translations from "@/app/translations"
+import { own } from "@/lib/own"
 
 const STORAGE_KEYS = {
   LOCALE: "selected-locale",
@@ -75,7 +76,7 @@ export const TranslationProvider = ({
   const t = (key: string) => {
     try {
       const keys = key.split(".")
-      let value: NestedTranslation = (translations as TranslationsType)[locale]
+      let value: NestedTranslation | undefined = own(translations as TranslationsType, locale)
 
       for (const k of keys) {
         if (value === undefined || value === null) {
@@ -85,7 +86,7 @@ export const TranslationProvider = ({
           }
           return key
         }
-        const nextValue = value[k]
+        const nextValue = own(value, k)
 
         if (typeof nextValue === "string") {
           return nextValue

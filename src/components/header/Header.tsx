@@ -94,8 +94,8 @@ const Header: React.FC = () => {
               <Image
                 src="/images/logo/ctennisstudio_logo.webp"
                 alt="CTennisStudio"
-                width={140}
-                height={40}
+                width={47}
+                height={48}
                 priority
                 className={styles.logoImage}
               />

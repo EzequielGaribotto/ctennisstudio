@@ -3,8 +3,10 @@ import type React from "react"
 import { useState, useEffect, useCallback, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { useTranslation } from "@/context/TranslationContext"
+import { own } from "@/lib/own"
 import styles from "./page.module.css"
 import { ContactForm } from "./components/ContactForm"
+import { TURNSTILE_SITE_KEY } from "@/components/TurnstileWidget"
 import { ContactInfoSidebar } from "./components/ContactInfoSidebar"
 
 const SERVICE_TYPES = ["encordado", "set", "match", "point", "base", "avance", "maestria"] as const
@@ -41,6 +43,8 @@ const ContactPageContent: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [subjectAutoUpdate, setSubjectAutoUpdate] = useState(true)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [captchaKey, setCaptchaKey] = useState(0)
 
   const getSubjectForService = useCallback((service: ServiceType, name: string): string => {
     const serviceNames: Record<ServiceType, string> = {
@@ -53,7 +57,7 @@ const ContactPageContent: React.FC = () => {
       maestria: locale === "es" ? "Curso Maestría" : "Mastery Course"
     }
     
-    const serviceName = serviceNames[service] || service.toUpperCase()
+    const serviceName = own(serviceNames, service) || service.toUpperCase()
     return `${serviceName}${name ? ` - ${name}` : ""}`
   }, [locale])
 
@@ -90,7 +94,8 @@ const ContactPageContent: React.FC = () => {
     }
 
     const langKey = lang as "es" | "en"
-    return messages[service]?.[langKey] || ""
+    const entry = own(messages, service)
+    return (entry ? own(entry, langKey) : undefined) || ""
   }, [])
 
   // Pre-fill form based on URL parameters
@@ -178,6 +183,11 @@ const ContactPageContent: React.FC = () => {
       return
     }
 
+    if (TURNSTILE_SITE_KEY && !captchaToken) {
+      setErrorMessage(t("contact.errors.captchaRequired"))
+      return
+    }
+
     setIsSubmitting(true)
     setErrorMessage("")
     setSubmitStatus("idle")
@@ -195,6 +205,7 @@ const ContactPageContent: React.FC = () => {
           subject: formData.subject.trim(),
           message: formData.message.trim(),
           honeypot: formData.honeypot,
+          turnstileToken: captchaToken,
           locale
         }),
       })
@@ -216,6 +227,9 @@ const ContactPageContent: React.FC = () => {
       setErrorMessage(t("contact.errors.sendFailed"))
     } finally {
       setIsSubmitting(false)
+      // Security-check tokens work once: show a fresh check if the visitor needs to try again
+      setCaptchaToken(null)
+      setCaptchaKey((k) => k + 1)
     }
   }
 
@@ -224,7 +238,7 @@ const ContactPageContent: React.FC = () => {
   }
 
   return (
-    <div className={styles.pageWrapper}>
+    <main className={styles.pageWrapper}>
       <div className={styles.mainContainer}>
         <div className={styles.container}>
           <button onClick={handleBack} className={styles.backButton}>
@@ -245,12 +259,15 @@ const ContactPageContent: React.FC = () => {
               isSubmitting={isSubmitting}
               submitStatus={submitStatus}
               errorMessage={errorMessage}
+              captchaKey={captchaKey}
+              onCaptchaToken={setCaptchaToken}
+              captchaPassed={captchaToken !== null}
             />
             <ContactInfoSidebar />
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

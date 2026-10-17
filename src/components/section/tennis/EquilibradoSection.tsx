@@ -53,7 +53,7 @@ const EquilibradoSection: React.FC = () => {
             <div className={styles.carouselLeft}>
               <div className={styles.carouselWrapper}>
                 <Image
-                  src={equilibradoImages[currentImageIndex]}
+                  src={equilibradoImages.at(currentImageIndex) ?? equilibradoImages[0]}
                   alt={`Equilibrado ${currentImageIndex + 1}`}
                   width={300}
                   height={500}
@@ -117,6 +117,7 @@ const EquilibradoSection: React.FC = () => {
                 className={styles.ctaButton}
               >
                 {t("equilibrado.cta")}
+                <span className="sr-only"> — {service.title}</span>
               </Link>
             </div>
           ))}

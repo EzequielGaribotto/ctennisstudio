@@ -1,4 +1,5 @@
 import type React from "react"
+import { connection } from "next/server"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
@@ -56,11 +57,15 @@ export const viewport: Viewport = {
   themeColor: "#1a1a1a",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Render every page per request: the Content Security Policy nonce (src/middleware.ts) is
+  // different for each visit, so pages can't be pre-built at deploy time.
+  await connection()
+
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>

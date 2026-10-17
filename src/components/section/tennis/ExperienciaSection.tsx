@@ -52,7 +52,9 @@ const SORTED_TOURNAMENTS: Tournament[] = (tournamentsData as Array<Omit<Tourname
   })
 
 const ExperienciaSection: React.FC = () => {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
+  // "ES" -> "España" / "Spain" (flag images need a text alternative)
+  const countryName = (code: string) => new Intl.DisplayNames([locale], { type: "region" }).of(code) ?? code
   
   // Configurable timelapse speed (ms per image when hovering year navigation)
   const TIMELAPSE_SPEED_MS = 500 // Change this value to adjust speed (e.g., 100, 250, 500, 1000)
@@ -515,7 +517,7 @@ const ExperienciaSection: React.FC = () => {
   const getCurrentImageInfo = () => {
     if (!selectedTournament) return null
     const images = getTournamentImages(selectedTournament)
-    const imagePath = images[currentImageIndex]
+    const imagePath = images.at(currentImageIndex)
     
     if (!imagePath) return null
     
@@ -692,7 +694,6 @@ const ExperienciaSection: React.FC = () => {
               className={styles.card}
               role="button"
               tabIndex={0}
-              aria-label={`${tournament.category} (${tournament.years.join(", ")})`}
               onClick={(e) => handleCardClick(tournament, e)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -745,6 +746,7 @@ const ExperienciaSection: React.FC = () => {
                 <span className={styles.city}>{tournament.city}</span>
                 <ReactCountryFlag
                   countryCode={tournament.countryCode}
+                  aria-label={countryName(tournament.countryCode)}
                   svg
                   style={{
                     width: '2em',

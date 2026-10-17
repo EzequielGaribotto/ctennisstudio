@@ -7,6 +7,7 @@
   --primary: #ff8c00; /* Vibrant orange from logo */
   --primary-dark: #e67300;
   --primary-light: #ffb347;
+  --primary-text: #a84a00; /* orange for text on light/grey backgrounds (>= 4.5:1; the bright orange is only 2:1) */
   --on-primary: #1a1a1a; /* text on orange backgrounds (7.5:1 contrast; white is only 2.3:1) */
   --secondary: #2c2c2c;
   --accent: #ff8c00;

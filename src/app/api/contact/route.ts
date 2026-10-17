@@ -5,10 +5,35 @@ import { CONTACT } from '@/data/contact';
 // During build time, this will be undefined, which is fine for static analysis
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// Rate limiting: Track IPs and their request timestamps
+// Rate limiting: Track IPs and their request timestamps.
+// NOTE: this lives in the memory of a single serverless instance, and Vercel runs several of them,
+// so it only slows down simple abuse. The real protection is the Turnstile check below plus the
+// Vercel Firewall rate-limit rule (see docs/SEGURIDAD.md).
 const rateLimitMap = new Map<string, number[]>();
 const MAX_REQUESTS_PER_HOUR = 5;
 const HOUR_IN_MS = 60 * 60 * 1000;
+
+// Cloudflare Turnstile: proves the sender is a person. Enforced as soon as TURNSTILE_SECRET_KEY is set.
+const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY
+const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+async function verifyTurnstile(token: unknown, ip: string): Promise<boolean> {
+  if (typeof token !== 'string' || token.length === 0 || token.length > 2048) return false;
+  const form = new URLSearchParams({ secret: TURNSTILE_SECRET ?? '', response: token });
+  if (ip !== 'unknown') form.set('remoteip', ip);
+  try {
+    const res = await fetch(TURNSTILE_VERIFY_URL, {
+      method: 'POST',
+      body: form,
+      signal: AbortSignal.timeout(5000),
+    });
+    const result = (await res.json()) as { success?: boolean };
+    return result.success === true;
+  } catch (error) {
+    console.error('❌ Turnstile verification could not be completed:', error);
+    return false; // if the check can't run, don't let the message through
+  }
+}
 
 // Sanitize input to prevent XSS and injection attacks
 function sanitizeInput(input: unknown): string {
@@ -88,8 +113,18 @@ export async function POST(request: Request) {
     } catch {
       return Response.json({ error: 'Invalid request' }, { status: 400 });
     }
-    const { name, email, phone, subject, message, honeypot } = body ?? {};
+    const { name, email, phone, subject, message, honeypot, turnstileToken } = body ?? {};
     
+    // Human check (before doing any other work with the request)
+    if (TURNSTILE_SECRET) {
+      if (!(await verifyTurnstile(turnstileToken, ip))) {
+        console.warn('⚠️ Turnstile verification failed');
+        return Response.json({ error: 'Verification failed' }, { status: 403 });
+      }
+    } else if (process.env.NODE_ENV === 'production') {
+      console.warn('⚠️ TURNSTILE_SECRET_KEY is not set: the contact form has no human check');
+    }
+
     // Honeypot field check (bot detection)
     if (honeypot) {
       console.warn('⚠️ Honeypot triggered - potential bot detected');

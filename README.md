@@ -16,6 +16,7 @@ Website of Pablo Garibotto, professional tennis stringer. Next.js 15 + React 19,
 | `npm run fotos` | Tournament photo status; `revisar`, `agregar`, `descartar`, `recuperar`, `manifiesto`, `optimizar`, `verificar` |
 | `npm run imagen -- <src> <dest.webp>` | Any other image → optimized WebP (`--quitar-fondo`, `--max N`) |
 | `npm run favicons` | Regenerate site icons from the logo |
+| `npm run seguridad` | Security gate (`-- --live` also probes production); see [docs/SEGURIDAD.md](docs/SEGURIDAD.md) |
 | `npm run celular` | QR code to open the dev server on a phone (same Wi-Fi) |
 | `npm run historial` | Readable list of recent changes (published or not) |
 

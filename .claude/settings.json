@@ -27,7 +27,11 @@
       "Bash(npm run celular*)",
       "Bash(npm run historial*)",
       "PowerShell(npm run celular*)",
-      "PowerShell(npm run historial*)"
+      "PowerShell(npm run historial*)",
+      "Bash(npm run seguridad*)",
+      "PowerShell(npm run seguridad*)",
+      "Bash(npm run verificar*)",
+      "PowerShell(npm run verificar*)"
     ],
     "deny": [
       "Bash(git push --force*)",

@@ -7,6 +7,7 @@ import { FaArrowLeft } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import Footer from "@/components/section/footer/Footer"
 import ContactModal from "@/components/contact-modal/ContactModal"
+import { own } from "@/lib/own"
 import styles from "./page.module.css"
 
 interface ServiceDetail {
@@ -15,6 +16,8 @@ interface ServiceDetail {
   subtitle: string
   items: string[]
   image: string
+  /** Real [width, height] of the image: the browser reserves exactly that space, so the page doesn't jump when it loads */
+  imageSize: [number, number]
   whatsappMessage: string
 }
 
@@ -38,6 +41,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.point.item5"),
       ],
       image: "/images/stringer/services/racquets/POINT.webp",
+      imageSize: [1024, 1536],
       whatsappMessage: t("serviceDetail.whatsapp.point"),
     },
     set: {
@@ -52,6 +56,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.set.item5"),
       ],
       image: "/images/stringer/services/racquets/SET.webp",
+      imageSize: [1024, 1536],
       whatsappMessage: t("serviceDetail.whatsapp.set"),
     },
     match: {
@@ -66,6 +71,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.match.item5"),
       ],
       image: "/images/stringer/services/racquets/MATCH.webp",
+      imageSize: [1024, 1536],
       whatsappMessage: t("serviceDetail.whatsapp.match"),
     },
     encordado: {
@@ -80,6 +86,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.encordado.item5"),
       ],
       image: "/images/stringer/pablo/pablo_garibotto_stringer.webp",
+      imageSize: [659, 879],
       whatsappMessage: t("serviceDetail.whatsapp.encordado"),
     },
     base: {
@@ -94,6 +101,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.base.item5"),
       ],
       image: "/images/stringer/machines/babolat_machines.webp",
+      imageSize: [1171, 879],
       whatsappMessage: t("serviceDetail.whatsapp.base"),
     },
     avance: {
@@ -108,6 +116,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.avance.item5"),
       ],
       image: "/images/stringer/machines/babolat_machines.webp",
+      imageSize: [1171, 879],
       whatsappMessage: t("serviceDetail.whatsapp.avance"),
     },
     maestria: {
@@ -121,11 +130,12 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.maestria.item5"),
       ],
       image: "/images/stringer/pablo/pablo_10_yrs_mutua_2025.webp",
+      imageSize: [651, 869],
       whatsappMessage: t("serviceDetail.whatsapp.maestria"),
     },
   }
 
-  const currentService = serviceDetails[service]
+  const currentService = own(serviceDetails, service)
 
   if (!currentService) {
     return (
@@ -158,8 +168,8 @@ const ServiceDetailPage: React.FC = () => {
               <Image
                 src={currentService.image}
                 alt={currentService.title}
-                width={600}
-                height={400}
+                width={currentService.imageSize[0]}
+                height={currentService.imageSize[1]}
                 className={styles.serviceImage}
               />
             </div>

@@ -106,7 +106,9 @@ export const es: Translations = {
       title: "Información de Contacto",
       social: "Redes Sociales",
       phone: "Teléfono",
-      location: "Ubicación"
+      location: "Ubicación",
+      showMap: "Mostrar mapa",
+      mapNotice: "El mapa lo carga Google Maps (puede guardar cookies de Google) solo si lo pides."
     },
     form: {
       name: "Nombre",
@@ -128,6 +130,7 @@ export const es: Translations = {
       emailInvalid: "El email no es válido",
       messageRequired: "El mensaje es obligatorio",
       sendFailed: "Error al enviar el mensaje. Por favor, inténtalo de nuevo.",
+      captchaRequired: "Por favor, completa la verificación de seguridad antes de enviar.",
       invalidNameLength: "El nombre debe tener entre 2 y 100 caracteres",
       invalidSubjectLength: "El asunto debe tener entre 3 y 200 caracteres",
       invalidMessageLength: "El mensaje debe tener entre 10 y 5000 caracteres",

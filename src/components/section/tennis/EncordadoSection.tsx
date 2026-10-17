@@ -26,6 +26,7 @@ const EncordadoSection: React.FC = () => {
               className={styles.ctaButton}
             >
               {t("encordado.cta")}
+              <span className="sr-only"> — {t("encordado.title")}</span>
             </Link>
           </div>
 

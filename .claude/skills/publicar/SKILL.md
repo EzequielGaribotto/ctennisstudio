@@ -6,6 +6,8 @@ description: Publish the website changes to production (ctenisstudio.com). Use w
 # Publicar (llevar los cambios a la web real)
 
 Talk to Pablo in plain Spanish at every step (see CLAUDE.md). Nothing reaches production until step 5.
+**Security and quality results are always explained to Pablo in everyday words** — what is protected or what was
+wrong, never jargon (use the table in CLAUDE.md → "Talking about security with Pablo"). Technical detail goes to Ezequiel.
 
 ## 1. What's changing
 
@@ -20,8 +22,10 @@ Talk to Pablo in plain Spanish at every step (see CLAUDE.md). Nothing reaches pr
 
 Review the diff (and files it touches) for:
 
-- **Security**: no secrets/keys, no `dangerouslySetInnerHTML` with user data, external links with
-  `rel="noopener noreferrer"`, `window.open(..., "noopener,noreferrer")`, input validated in API routes.
+- **Security** (all of "Security rules" in CLAUDE.md): no secrets/keys, no injection sinks
+  (`dangerouslySetInnerHTML`, `innerHTML`, `eval`), external links with `rel="noopener noreferrer"`,
+  `window.open(..., "noopener,noreferrer")`, input validated and escaped in API routes, outside-key lookups via `own()`,
+  no new third-party scripts/embeds/dependencies without a reason and Ezequiel/Pablo agreeing, CSP untouched.
 - **Duplication / maintainability**: reuse `src/data/contact.ts`, translations, `tournaments.json`; no copy-pasted
   components; no leftover debug `console.log`, commented-out code or unused imports/files.
 - **Performance**: images via the scripts (WebP ≤1600px, few hundred KB), no new eager/priority images below the
@@ -40,25 +44,41 @@ What to do with findings:
 - **Cleanups** (duplication, dead code, small performance wins): fix when safe and small.
 - **Design/behavior changes that are a matter of taste or big**: don't do them silently — explain simply and ask.
 
-### Visual check (Chrome DevTools MCP)
+### Visual and quality check (Chrome DevTools MCP) — this is a gate
 
-With `npm run dev` running (or `npm run build && npx next start` for a production-like check), use the
-`chrome-devtools` MCP to open the pages touched by the change (home `/`, `/contact/`, `/services/<x>/`):
-`take_screenshot` on desktop and on a phone size (`emulate`/`resize_page` 390×844), and `list_console_messages`
-(no errors, no CSP violations). Anything wrong there is a bug → fix.
+Do this on a **production build** (it's what visitors get, and the CSP only applies there):
+`npm run build`, then `npx next start -p 3100` in the background.
+
+1. Open the pages touched by the change (at least `/`, plus `/contact/` or `/services/set/` if relevant) with
+   `navigate_page`, then `take_screenshot` on desktop and phone (`emulate` viewport `390x844x2,mobile,touch`) and
+   `list_console_messages` (types error/issue/warn): **no errors and no Content-Security-Policy violations**.
+2. **Lighthouse gate** — `lighthouse_audit` (mode `navigation`, device `mobile`) on `/`, `/contact/` and `/services/set/`
+   (and `desktop` on `/` if the layout changed). Required: **Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95**
+   and no failed audit in "agentic-browsing". The site currently scores **100/100/100/100** everywhere, so any drop
+   is something the change introduced. If you changed a popup or the tournament gallery, open it
+   (click via `evaluate_script`) and run the audit in `snapshot` mode too.
+3. Every failed audit is a bug → fix it (typical: low contrast → `--primary-text` for orange text on light backgrounds,
+   `--on-primary` for text on orange; missing `alt`/labels; images without real `width`/`height`; missing `<main>`).
+   Re-run until it passes. If you can't fix it, **don't publish** and explain simply.
+4. Stop the background server when done. If the MCP isn't available at all, say so, still run the automatic checks
+   below, and tell Ezequiel the visual/quality gate was skipped.
 
 ## 3. Automatic checks
 
 ```
 npm run build
+npm run seguridad
 ```
 
-(lint + photo/logo verification + type check + production build). If it fails: fix it, re-run; if you can't,
-explain in plain words and **don't publish**. Nothing is pushed while checks fail.
+`build` = lint (including security rules) + photo/logo verification + type check + production build.
+`seguridad` = vulnerable libraries, leaked keys, risky code, protections still in place, pinned tools.
+If either fails: fix the cause (e.g. `npm audit fix` for libraries), re-run; if you can't, explain in plain words
+and **don't publish**. Nothing is pushed while checks fail. A "⚠️" warning doesn't block, but mention it to
+Ezequiel (e.g. the contact form's anti-spam check still not active).
 
 ## 4. Confirm with Pablo
 
-Show the plain-language summary + "todo verificado ✅" and ask (AskUserQuestion) something like
+Show the plain-language summary + "todo verificado ✅ (la web, su seguridad y su calidad)" and ask (AskUserQuestion) something like
 "¿Lo publico en la web?" — options: "Sí, publicar" / "Primero quiero probarlo" (→ run the **probar** skill) /
 "No, todavía no".
 
@@ -76,7 +96,9 @@ Show the plain-language summary + "todo verificado ✅" and ask (AskUserQuestion
 - Vercel builds automatically (1–2 min). Check the commit status:
   `curl -s https://api.github.com/repos/EzequielGaribotto/ctennisstudio/commits/<sha>/status` (state
   `success`/`pending`/`failure`), polling every ~30s for up to ~5 min.
-- Then check `https://ctenisstudio.com` answers 200 (and, if practical, that the new content/photo URL is there).
+- Then check `https://ctenisstudio.com` answers 200 (and, if practical, that the new content/photo URL is there)
+  and run `npm run seguridad -- --live` (protections active on the real site). A ❌ here is urgent: fix and republish
+  (or revert) right away and tell Ezequiel.
 - Tell him: "¡Listo! Ya está en la web. Si no ves el cambio, apretá Ctrl+F5 para recargar."
 - If Vercel fails: the previous version stays online (nothing breaks for visitors). Explain that, find the cause,
   fix and publish again. If the status description says the deployment was **blocked / needs authorization**

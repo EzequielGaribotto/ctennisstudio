@@ -43,7 +43,7 @@
 .contactInfoTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--primary-text);
   margin: 0 0 1rem 0;
   text-align: center;
 }
@@ -125,6 +125,43 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mapPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 200px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.mapButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mapButton:hover {
+  background: var(--primary-dark);
+}
+
+.mapNotice {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #4a4a4a;
+  max-width: 28ch;
 }
 
 .backButton {
@@ -351,7 +388,8 @@
     font-size: 1rem;
   }
 
-  .mapContainer iframe {
+  .mapContainer iframe,
+  .mapPlaceholder {
     height: 250px;
   }
 }

@@ -1,6 +1,7 @@
 "use client"
 import type React from "react"
 import { useTranslation } from "@/context/TranslationContext"
+import { TurnstileWidget, TURNSTILE_SITE_KEY } from "@/components/TurnstileWidget"
 import styles from "../page.module.css"
 
 interface ContactFormProps {
@@ -17,6 +18,10 @@ interface ContactFormProps {
   isSubmitting: boolean
   submitStatus: "idle" | "success" | "error"
   errorMessage: string
+  /** Changing this value shows a fresh security check (tokens are single-use) */
+  captchaKey: number
+  onCaptchaToken: (token: string | null) => void
+  captchaPassed: boolean
 }
 
 export const ContactForm: React.FC<ContactFormProps> = ({
@@ -26,8 +31,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   isSubmitting,
   submitStatus,
   errorMessage,
+  captchaKey,
+  onCaptchaToken,
+  captchaPassed,
 }) => {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
 
   return (
     <div className={styles.formSection}>
@@ -124,6 +132,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           />
         </div>
 
+        <TurnstileWidget key={`${captchaKey}-${locale}`} onToken={onCaptchaToken} locale={locale} />
+
         {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
 
         {submitStatus === "success" && (
@@ -133,7 +143,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <button
           type="submit"
           className={styles.submitButton}
-          disabled={isSubmitting || submitStatus === "success"}
+          disabled={isSubmitting || submitStatus === "success" || (Boolean(TURNSTILE_SITE_KEY) && !captchaPassed)}
         >
           {isSubmitting ? t("contact.form.sending") : t("contact.form.submit")}
         </button>

@@ -103,7 +103,9 @@ export const baseTranslations = {
             title: "",
             social: "",
             phone: "",
-            location: ""
+            location: "",
+            showMap: "",
+            mapNotice: ""
         },
         form: {
             name: "",
@@ -125,6 +127,7 @@ export const baseTranslations = {
             emailInvalid: "",
             messageRequired: "",
             sendFailed: "",
+            captchaRequired: "",
             invalidNameLength: "",
             invalidSubjectLength: "",
             invalidMessageLength: "",

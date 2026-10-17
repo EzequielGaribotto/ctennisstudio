@@ -1,22 +1,4 @@
-// Content Security Policy: only allow what the site actually uses.
-// - flags (react-country-flag) come from cdn.jsdelivr.net, the map from google.com
-// - vercel.live = Vercel's preview toolbar (preview deployments only)
-// Not applied in `next dev`, which needs eval for hot reload.
-const csp = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://vercel.live",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://cdn.jsdelivr.net https://vercel.live https://vercel.com",
-  "font-src 'self' data: https://vercel.live",
-  "media-src 'self'",
-  "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com",
-  "frame-src https://www.google.com https://vercel.live",
-  "frame-ancestors 'self'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "object-src 'none'",
-  "upgrade-insecure-requests",
-].join("; ")
+// The Content Security Policy is set per request in src/middleware.ts (it needs a fresh nonce each time).
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,6 +6,10 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  // Pages are rendered per request (CSP nonce). By default Next.js then streams <title>/<meta>
+  // into <body> for normal browsers, which hides the description and link-preview (WhatsApp,
+  // social) tags from some tools. Always put them in <head>.
+  htmlLimitedBots: /.*/,
   // Let phones on the same Wi-Fi load the dev server (npm run celular)
   allowedDevOrigins: ['192.168.*.*', '10.*.*.*', '172.*.*.*'],
   reactStrictMode: true,
@@ -53,9 +39,6 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin'
           },
-          ...(process.env.NODE_ENV === 'production'
-            ? [{ key: 'Content-Security-Policy', value: csp }]
-            : []),
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
