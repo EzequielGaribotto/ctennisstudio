@@ -2,6 +2,9 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Checks (`npm run build:local`) build into .next-build so they don't clobber the dev server's .next folder.
+  // On Vercel the variable is unset, so the default .next is used.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   images: {
     unoptimized: true,
   },

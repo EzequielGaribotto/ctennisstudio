@@ -98,6 +98,7 @@ const RISKY = [
   [/\beval\s*\(|new\s+Function\s*\(/, "ejecuta texto como código (muy peligroso)"],
   [/document\.write\s*\(|\.innerHTML\s*=|insertAdjacentHTML\s*\(/, "escribe HTML directamente en la página (puede dejar entrar código malicioso)"],
   [/http:\/\/(?!localhost|127\.0\.0\.1|www\.w3\.org)/, "usa una dirección sin cifrar (http://) en vez de https://"],
+  [/cdn\.jsdelivr|unpkg\.com|cdnjs\.cloudflare|fonts\.googleapis|fonts\.gstatic|googletagmanager|google-analytics|connect\.facebook\.net/, "carga algo desde un servidor externo (envía la IP de cada visitante a otra empresa sin permiso; hay que alojarlo en la propia web)"],
 ]
 
 function checkCodePatterns() {
@@ -162,6 +163,15 @@ function checkProtections() {
   if (!fs.existsSync(path.join(ROOT, "package-lock.json"))) fail("Falta package-lock.json: sin él cada instalación podría traer versiones distintas de las librerías.")
 }
 
+// ------------------------------------------------------------------ 4b. legal texts
+function checkLegal() {
+  const legal = read("src/data/legal.ts") ?? ""
+  const taxId = legal.match(/taxId:\s*"([^"]*)"/)?.[1]?.trim()
+  if (!taxId || !/confirmedByOwner:\s*(false as boolean|true)/.test(legal) || /confirmedByOwner:\s*false/.test(legal)) {
+    warn("Faltan los datos legales de Pablo (NIF y confirmaciones): el aviso legal, la política de privacidad y la de cookies siguen apagados, así que la web aún no cumple con esa obligación legal. Hay que pedírselos (ver docs/LEGAL.md y `npm run pendientes`).")
+  }
+}
+
 // ------------------------------------------------------------------ 5. live site probe
 async function checkLive(base) {
   const url = base.replace(/\/$/, "")
@@ -203,6 +213,7 @@ checkDependencies()
 checkSecrets()
 checkCodePatterns()
 checkProtections()
+checkLegal()
 const liveIdx = args.indexOf("--live")
 if (liveIdx >= 0) await checkLive(args[liveIdx + 1] && !args[liveIdx + 1].startsWith("--") ? args[liveIdx + 1] : "https://ctenisstudio.com")
 

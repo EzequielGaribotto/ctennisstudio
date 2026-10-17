@@ -1,7 +1,10 @@
 "use client"
 import type React from "react"
 import { useTranslation } from "@/context/TranslationContext"
+import Link from "next/link"
 import { TurnstileWidget, TURNSTILE_SITE_KEY } from "@/components/TurnstileWidget"
+import { LEGAL, LEGAL_READY } from "@/data/legal"
+import { getLegalPath } from "@/data/legal-content"
 import styles from "../page.module.css"
 
 interface ContactFormProps {
@@ -22,6 +25,8 @@ interface ContactFormProps {
   captchaKey: number
   onCaptchaToken: (token: string | null) => void
   captchaPassed: boolean
+  privacyAccepted: boolean
+  onPrivacyChange: (accepted: boolean) => void
 }
 
 export const ContactForm: React.FC<ContactFormProps> = ({
@@ -34,6 +39,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   captchaKey,
   onCaptchaToken,
   captchaPassed,
+  privacyAccepted,
+  onPrivacyChange,
 }) => {
   const { t, locale } = useTranslation()
 
@@ -131,6 +138,29 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             required
           />
         </div>
+
+        {LEGAL_READY && (
+          <div className={styles.privacyBox}>
+            <p className={styles.privacySummary}>
+              {t("contact.privacy.summary").replace("{holder}", LEGAL.holderName).replace("{email}", LEGAL.email)}
+            </p>
+            <label className={styles.privacyLabel}>
+              <input
+                type="checkbox"
+                checked={privacyAccepted}
+                onChange={(e) => onPrivacyChange(e.target.checked)}
+                required
+              />
+              <span>
+                {t("contact.privacy.accept")}{" "}
+                <Link href={getLegalPath("privacy")} target="_blank" rel="noopener noreferrer">
+                  {t("contact.privacy.link")}
+                </Link>{" "}
+                <span className={styles.required}>*</span>
+              </span>
+            </label>
+          </div>
+        )}
 
         <TurnstileWidget key={`${captchaKey}-${locale}`} onToken={onCaptchaToken} locale={locale} />
 

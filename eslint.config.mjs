@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  { ignores: [".next/**", "out/**", "node_modules/**", "next-env.d.ts", "fotos-nuevas/**"] },
+  { ignores: [".next/**", ".next-build/**", "out/**", "node_modules/**", "next-env.d.ts", "fotos-nuevas/**"] },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   // Security rules for the website code that runs for visitors (eval, unsafe regex,
   // object-key injection, timing attacks...). The scripts/ folder only runs on the owner's own

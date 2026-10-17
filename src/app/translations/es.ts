@@ -32,7 +32,8 @@ export const es: Translations = {
               En Custom Tennis Studio, cada raqueta se ajusta con la misma precisión que en un torneo ATP o WTA.
               Fundado por Pablo Garibotto, encordador oficial en torneos como Montecarlo, Miami y Madrid.`,
     showMore: "Ver más",
-    showLess: "Ver menos"
+    showLess: "Ver menos",
+    trademarks: "Los nombres y logotipos de torneos, circuitos y patrocinadores son marcas de sus respectivos propietarios y se muestran únicamente a modo informativo para referenciar los eventos en los que se ha prestado el servicio de encordado. Custom Tennis Studio no está afiliado, patrocinado ni respaldado por dichos titulares."
   },
   encordado: {
     title: "Encordado Profesional",
@@ -97,6 +98,11 @@ export const es: Translations = {
       }
     }
   },
+  legal: {
+    backHome: "Volver al inicio",
+    updated: "Última actualización",
+    navLabel: "Información legal"
+  },
   contact: {
     title: "Contacto",
     description: "Completa el formulario y nos pondremos en contacto contigo lo antes posible.",
@@ -124,6 +130,11 @@ export const es: Translations = {
       submit: "Enviar Mensaje",
       sending: "Enviando..."
     },
+    privacy: {
+      summary: "Responsable: {holder}. Finalidad: responder a tu consulta. Legitimación: tu consentimiento. Destinatarios: proveedores técnicos necesarios para enviar y recibir el correo. Derechos: acceso, rectificación, supresión y otros, escribiendo a {email}.",
+      accept: "He leído y acepto la",
+      link: "política de privacidad"
+    },
     errors: {
       nameRequired: "El nombre es obligatorio",
       emailRequired: "El email es obligatorio",
@@ -131,6 +142,7 @@ export const es: Translations = {
       messageRequired: "El mensaje es obligatorio",
       sendFailed: "Error al enviar el mensaje. Por favor, inténtalo de nuevo.",
       captchaRequired: "Por favor, completa la verificación de seguridad antes de enviar.",
+      privacyRequired: "Debes aceptar la política de privacidad para enviar el mensaje.",
       invalidNameLength: "El nombre debe tener entre 2 y 100 caracteres",
       invalidSubjectLength: "El asunto debe tener entre 3 y 200 caracteres",
       invalidMessageLength: "El mensaje debe tener entre 10 y 5000 caracteres",

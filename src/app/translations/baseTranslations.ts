@@ -29,7 +29,8 @@ export const baseTranslations = {
         title: "",
         description: "",
         showMore: "",
-        showLess: ""
+        showLess: "",
+        trademarks: ""
     },
     encordado: {
         title: "",
@@ -94,6 +95,11 @@ export const baseTranslations = {
             }
         }
     },
+    legal: {
+        backHome: "",
+        updated: "",
+        navLabel: ""
+    },
     contact: {
         title: "",
         description: "",
@@ -121,6 +127,11 @@ export const baseTranslations = {
             submit: "",
             sending: ""
         },
+        privacy: {
+            summary: "",
+            accept: "",
+            link: ""
+        },
         errors: {
             nameRequired: "",
             emailRequired: "",
@@ -128,6 +139,7 @@ export const baseTranslations = {
             messageRequired: "",
             sendFailed: "",
             captchaRequired: "",
+            privacyRequired: "",
             invalidNameLength: "",
             invalidSubjectLength: "",
             invalidMessageLength: "",

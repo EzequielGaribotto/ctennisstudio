@@ -24,13 +24,23 @@ What protects ctenisstudio.com, what still needs a manual step, and how to keep 
 
 Until this is done the form still works but has **no human check** (`npm run seguridad -- --live` warns about it).
 
-1. https://dash.cloudflare.com → **Turnstile** → **Add widget**. Hostnames: `ctenisstudio.com` (and `www.ctenisstudio.com` if used). Widget mode **Managed**.
-2. Copy the **Site key** and **Secret key**.
-3. Vercel → project → **Settings → Environment Variables**:
-   - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` = site key (Production and Preview)
-   - `TURNSTILE_SECRET_KEY` = secret key (Production; mark **Sensitive**)
-4. **Redeploy** (the site key is baked in at build time).
-5. Check: `npm run seguridad -- --live` must print "✅ ... exige la verificación anti-spam".
+1. Create a free Cloudflare account (https://dash.cloudflare.com/sign-up). The site does not have to be moved to Cloudflare.
+2. Dashboard → **Turnstile** → **Add widget**:
+   - **Widget name**: `ctenisstudio.com contact form`
+   - **Hostname management**: add `ctenisstudio.com` (and `www.ctenisstudio.com` if it's used)
+   - **Widget mode**: **Managed**
+   - Leave pre-clearance off → **Create**
+3. Copy the **Site key** (public) and the **Secret key** (private) shown after creating it.
+4. Vercel → project → **Settings → Environment Variables**, add both, then **Save** each:
+   - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` = site key, type **Config**, environment **Production** only
+   - `TURNSTILE_SECRET_KEY` = secret key, type **Secret**, environment **Production** only
+
+   Production only on purpose: Turnstile rejects hostnames that aren't on the widget's list (e.g. `*.vercel.app` previews),
+   and a secret without a site key would make every form submission fail.
+5. **Redeploy** so the new values apply (they never apply to existing deployments, and the site key is baked in at build
+   time): Deployments → latest Production deployment → **⋯ → Redeploy**.
+6. Check: open `/contact/` (the "I'm not a robot" box appears), send a test message (it must arrive at Pablo's inbox), and
+   `npm run seguridad -- --live` must print "✅ ... exige la verificación anti-spam".
 
 Local testing with Cloudflare's dummy keys: build with `NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA` and run with
 `TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA` (always passes; `2x…AA` secret always fails).
@@ -38,12 +48,14 @@ Local testing with Cloudflare's dummy keys: build with `NEXT_PUBLIC_TURNSTILE_SI
 ### 2. Vercel Firewall rate limit (free on Hobby, 1 rule)
 
 The in-code counter is per serverless instance, so the real limit must live at the edge.
-Vercel → project → **Firewall → Configure → + New Rule**:
+Vercel → project → **Firewall** (sidebar) → **Configure** (top right) → **+ New Rule**:
 
 - Name: `contact-form-rate-limit`
-- If **Request Path** *contains* `/api/contact` (add **Method equals POST** if you like)
-- Then **Rate Limit**: Fixed Window, window **10 min**, limit **5** requests, key **IP**, action **Default (429)**
-- **Save Rule → Review Changes → Publish**
+- **If** → Request Path → *contains* → `/api/contact` (add Method equals POST if you like; all conditions must match)
+- **Then** → **Rate Limit** (first time only: read the "Rate Limiting Pricing" dialog → Continue; Hobby includes 1,000,000 allowed requests)
+- Strategy **Fixed Window**, **Time Window** 10 minutes (the Hobby maximum), **Request Limit** 5, key **IP**
+- Action: leave **Default (429)** (or pick **Log** first to watch before blocking)
+- **Save Rule** → **Review Changes** (top right) → **Publish**
 
 (Counters are per region; that's fine for this purpose.) Optionally start with action **Log** to watch traffic first.
 

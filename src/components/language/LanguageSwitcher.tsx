@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "@/context/TranslationContext";
-import ReactCountryFlag from "react-country-flag";
+import { Flag } from "@/components/Flag";
 import styles from "./LanguageSwitcher.module.css";
 
 export default function LanguageSwitcher() {
@@ -42,25 +42,23 @@ export default function LanguageSwitcher() {
     >
       <div className={styles.flagContainer}>
         <div className={styles.activeFlag}>
-          <ReactCountryFlag
-            countryCode={displayLocale === "en" ? "GB" : "ES"}
-            svg
+          <Flag
+            code={displayLocale === "en" ? "GB" : "ES"}
+            label={displayLocale === "en" ? "UK" : "Spain"}
             style={{
               width: "1.8em",
               height: "1.8em",
             }}
-            title={displayLocale === "en" ? "UK" : "Spain"}
           />
         </div>
         <div className={styles.inactiveFlag}>
-          <ReactCountryFlag
-            countryCode={displayLocale === "en" ? "ES" : "GB"}
-            svg
+          <Flag
+            code={displayLocale === "en" ? "ES" : "GB"}
+            label={displayLocale === "en" ? "Spain" : "UK"}
             style={{
               width: "1.2em",
               height: "1.2em",
             }}
-            title={displayLocale === "en" ? "Spain" : "UK"}
           />
         </div>
       </div>

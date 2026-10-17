@@ -31,7 +31,17 @@
       "Bash(npm run seguridad*)",
       "PowerShell(npm run seguridad*)",
       "Bash(npm run verificar*)",
-      "PowerShell(npm run verificar*)"
+      "PowerShell(npm run verificar*)",
+      "Bash(npm run banderas*)",
+      "Bash(npm run logos*)",
+      "Bash(npm run pendientes*)",
+      "PowerShell(npm run banderas*)",
+      "PowerShell(npm run logos*)",
+      "PowerShell(npm run pendientes*)",
+      "Bash(npm run build:local*)",
+      "Bash(npm run start:local*)",
+      "PowerShell(npm run build:local*)",
+      "PowerShell(npm run start:local*)"
     ],
     "deny": [
       "Bash(git push --force*)",

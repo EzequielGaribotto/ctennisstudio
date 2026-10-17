@@ -26,9 +26,17 @@ With Pablo:
 2. `git status` + `git pull --rebase origin main` so he works on the latest version. If he has unpublished
    changes, tell him plainly ("Tenés cambios sin publicar de la otra vez: …").
 3. If `node_modules` is missing or `package.json` changed, run `npm ci`.
-4. Run `npm run fotos -- recordatorio`. If it lists recent tournaments without photos (or photos waiting in
-   `fotos-nuevas`), mention it **once**, in one friendly line, and move on to what he asked
-   ("Por cierto: todavía faltan fotos del Mutua 2026 y Ginebra 2026, cuando las tengas pasámelas 😉").
+4. Run `npm run pendientes`. It lists what is still pending with Pablo:
+   - **Legal data (priority)**: if it asks for his NIF/DNI and confirmations, **ask him for them in this session**, right
+     after greeting and before/alongside what he asked (don't skip it, don't nag more than once per session if he says
+     "después"). Ask in plain words, one thing at a time, e.g.: "Pablo, para que tu web cumpla la ley necesito unos datos
+     tuyos: tu NIF o DNI (se muestra en el «aviso legal», es obligatorio para quien tiene un negocio con página web),
+     que me confirmes tu nombre completo como figura en Hacienda y que la dirección de la calle Jacint Verdaguer es tu
+     domicilio profesional. ¿Me los pasas ahora?" Use AskUserQuestion for choices (autónomo / sociedad) and let him type
+     the NIF in the free-text answer. Then fill `src/data/legal.ts`, set `confirmedByOwner: true`, run **probar** so he
+     sees the new pages and the checkbox on the form, and offer **publicar**. Never invent or guess a NIF.
+   - **Photos**: mention missing photos **once**, in one friendly line, and move on
+     ("Por cierto: todavía faltan fotos del Mutua 2026 y Ginebra 2026, cuando las tengas pasámelas 😉").
 
 ## Pablo's commands (plain phrases → what to do)
 
@@ -60,6 +68,12 @@ Never publish (commit/push) unless he asked to publish **and** confirmed the sum
   [en.ts](src/app/translations/en.ts); new keys must also be added to `baseTranslations.ts`. When Pablo changes a
   text, update **both** languages (translate it yourself and tell him).
 - **Contact data / social links**: [src/data/contact.ts](src/data/contact.ts) (single source of truth).
+- **Legal pages** (`/aviso-legal`, `/privacidad`, `/cookies`, es + en): owner data in [src/data/legal.ts](src/data/legal.ts), texts in
+  [src/data/legal-content.ts](src/data/legal-content.ts), page component in [src/components/legal/](src/components/legal/).
+  They stay **off** (404, no footer links, no form checkbox) until `LEGAL_READY` (tax id filled + owner confirmed). See "Legal" below.
+- **Flags** are served from `public/images/flags/` (own domain), never from an outside CDN: use `<Flag>`
+  ([src/components/Flag.tsx](src/components/Flag.tsx)); after adding a tournament in a new country run `npm run banderas`.
+- **Reserve logos** live in `assets-reserva/` (in the repo, NOT published, outside `public/`); bring one back with `npm run logos`.
 - **Tournaments** (cards): [src/data/tournaments.json](src/data/tournaments.json). Fields: `id`, `city`,
   `countryCode` (ISO, for the flag), `category` (display name), `years` (newest first), `tournamentCode`
   (UPPERCASE, letters/digits/_ — the photo filename prefix), `places`, optional logos (`unifiedLogo`,
@@ -91,6 +105,9 @@ Never publish (commit/push) unless he asked to publish **and** confirmed the sum
   [docs/SEGURIDAD.md](docs/SEGURIDAD.md).
 - `npm run dev` — local site at http://localhost:3000. `npm run celular` — QR code to open it on his phone (same Wi-Fi).
 - `npm run historial [-- N]` — last changes, who made them, published or not.
+- `npm run pendientes` — what's pending with Pablo (legal data, missing photos). Run at the start of every session.
+- `npm run banderas` — copy the flags needed by `tournaments.json` into `public/images/flags/`.
+- `npm run logos [-- usar <nombre>]` — list/bring back reserve tournament logos (`assets-reserva/`) into `public/`.
 - **Chrome DevTools MCP** (`chrome-devtools`, configured in `.mcp.json`, version pinned): use it to open the local
   site for Pablo, take screenshots (desktop + phone via `emulate`/`resize_page`), read console errors, and run
   `lighthouse_audit` (quality gate in the publicar skill). Prefer it over asking him to describe what he sees.
@@ -160,3 +177,22 @@ Keep it to one or two short sentences, calm (no alarm), and offer more detail on
 
 If a security matter needs a decision from Pablo, ask with a multiple-choice question in these same plain terms. Technical
 detail goes to Ezequiel (docs/SEGURIDAD.md), not to Pablo.
+
+## Legal (Spain / EU) — what to keep true
+
+The site belongs to a business in Mataró, so LSSI (aviso legal), RGPD/LOPDGDD (privacy) and the cookie rules apply.
+Full picture, pending items and what a gestor should review: [docs/LEGAL.md](docs/LEGAL.md). Never tell Pablo the site "is legally
+compliant"; say the base texts exist and that a gestor/abogado should review them.
+
+- **Any change in data collected, outside services used, or browser storage** → update the privacy and cookie texts in
+  `src/data/legal-content.ts` (es **and** en) and `updated` in `src/data/legal.ts`, and tell Ezequiel. Examples: a new form
+  field, newsletter, analytics/pixel (needs a consent banner *before* it loads), chat widget, new embed, new email/hosting provider.
+- **No outside CDNs for visitor-facing assets** (flags, fonts, icons, scripts): host them ourselves. Third-party requests send
+  visitors' IP addresses to that company without consent. Maps stay click-to-load.
+- **Logos and names of tournaments are third-party trademarks**: only show events Pablo really worked, keep the disclaimer under
+  the tournaments, and reserve logos stay out of `public/`. Ask Pablo before showing a new brand.
+- **Photos and videos**: people identifiable in a photo, who took it, and music in videos matter (image rights, copyright).
+  When Pablo adds photos, ask once if he took them himself and whether people in them agreed to appear on the web.
+- **Claims** ("encordador oficial en…") must be true and provable; don't write new claims for him without asking.
+- If he starts **selling online or showing prices** again: stop and tell Ezequiel (needs terms of sale, withdrawal right, VAT info).
+- When explaining any of this to Pablo use plain words: what the law asks, why it protects him, what you did.

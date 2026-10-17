@@ -5,9 +5,14 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 import Link from "next/link"
 import styles from "./Footer.module.css"
 import { SOCIAL_LINKS } from "@/data/contact"
+import { LEGAL_READY } from "@/data/legal"
+import { getLegalDoc, getLegalPath, type LegalDocKey } from "@/data/legal-content"
+
+const LEGAL_LINKS: LegalDocKey[] = ["notice", "privacy", "cookies"]
 
 export default function Footer() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
+  const lang = locale === "en" ? "en" : "es"
 
   return (
     <footer className="w-full py-3 flex justify-center">
@@ -17,6 +22,15 @@ export default function Footer() {
           <Link href="/contact" className={styles.contactButton}>
             {t("navigation.contacto")}
           </Link>
+          {LEGAL_READY && (
+            <nav className={styles.legalLinks} aria-label={t("legal.navLabel")}>
+              {LEGAL_LINKS.map((key) => (
+                <Link key={key} href={getLegalPath(key)}>
+                  {getLegalDoc(key, lang).title}
+                </Link>
+              ))}
+            </nav>
+          )}
         </div>
 
         <div className={styles.socialLinks}>

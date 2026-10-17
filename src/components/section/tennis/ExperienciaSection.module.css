@@ -842,3 +842,12 @@
     font-size: 3rem;
   }
 }
+
+.trademarkNote {
+  margin: 1.5rem auto 0;
+  max-width: 900px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #555;
+}

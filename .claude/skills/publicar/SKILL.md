@@ -26,6 +26,11 @@ Review the diff (and files it touches) for:
   (`dangerouslySetInnerHTML`, `innerHTML`, `eval`), external links with `rel="noopener noreferrer"`,
   `window.open(..., "noopener,noreferrer")`, input validated and escaped in API routes, outside-key lookups via `own()`,
   no new third-party scripts/embeds/dependencies without a reason and Ezequiel/Pablo agreeing, CSP untouched.
+- **Legal** (see "Legal" in CLAUDE.md): if the change adds a form field, an outside service/embed/script, analytics, anything
+  stored in the browser, a brand logo, photos with identifiable people, prices or online sales → the privacy/cookie texts
+  and `docs/LEGAL.md` must be updated (or the change reconsidered) before publishing; ask Pablo the relevant plain question.
+  `npm run pendientes` pending legal data is a reminder, not a blocker, but never publish legal pages with missing data
+  (they are off until `LEGAL_READY`).
 - **Duplication / maintainability**: reuse `src/data/contact.ts`, translations, `tournaments.json`; no copy-pasted
   components; no leftover debug `console.log`, commented-out code or unused imports/files.
 - **Performance**: images via the scripts (WebP ≤1600px, few hundred KB), no new eager/priority images below the

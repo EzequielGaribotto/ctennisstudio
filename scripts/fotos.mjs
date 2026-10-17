@@ -322,6 +322,11 @@ function verify() {
     }
   }
 
+  for (const t of tournaments) {
+    const flag = path.join(ROOT, "public", "images", "flags", `${String(t.countryCode).toLowerCase()}.svg`)
+    if (!fs.existsSync(flag)) errors.push(`Falta la bandera de ${t.countryCode} (${t.tournamentCode}): ejecuta "npm run banderas"`)
+  }
+
   const manifest = readJson(MANIFEST_JSON, {})
   const fresh = JSON.stringify(computeManifest())
   if (JSON.stringify(manifest) !== fresh) errors.push('La lista de fotos está desactualizada: corré "npm run fotos -- manifiesto"')

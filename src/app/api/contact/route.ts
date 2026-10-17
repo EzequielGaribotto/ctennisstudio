@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { CONTACT } from '@/data/contact';
+import { LEGAL_READY } from '@/data/legal';
 
 // Initialize Resend only when API key is available (runtime)
 // During build time, this will be undefined, which is fine for static analysis
@@ -113,7 +114,7 @@ export async function POST(request: Request) {
     } catch {
       return Response.json({ error: 'Invalid request' }, { status: 400 });
     }
-    const { name, email, phone, subject, message, honeypot, turnstileToken } = body ?? {};
+    const { name, email, phone, subject, message, honeypot, turnstileToken, privacyAccepted } = body ?? {};
     
     // Human check (before doing any other work with the request)
     if (TURNSTILE_SECRET) {
@@ -123,6 +124,11 @@ export async function POST(request: Request) {
       }
     } else if (process.env.NODE_ENV === 'production') {
       console.warn('⚠️ TURNSTILE_SECRET_KEY is not set: the contact form has no human check');
+    }
+
+    // Privacy policy acceptance (the form only shows the checkbox once the legal texts are active)
+    if (LEGAL_READY && privacyAccepted !== true) {
+      return Response.json({ error: 'Privacy policy not accepted' }, { status: 400 });
     }
 
     // Honeypot field check (bot detection)

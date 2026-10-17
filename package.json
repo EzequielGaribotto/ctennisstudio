@@ -17,7 +17,12 @@
     "historial": "node scripts/historial.mjs",
     "seguridad": "node scripts/seguridad.mjs",
     "seguridad:live": "node scripts/seguridad.mjs --live",
-    "verificar": "npm run build && npm run seguridad"
+    "verificar": "npm run build:local && npm run seguridad",
+    "banderas": "node scripts/banderas.mjs",
+    "logos": "node scripts/logos.mjs",
+    "pendientes": "node scripts/pendientes.mjs",
+    "build:local": "node scripts/prod-local.mjs build",
+    "start:local": "node scripts/prod-local.mjs start"
   },
   "dependencies": {
     "next": "^15.5.27",
@@ -36,6 +41,7 @@
     "eslint": "^9",
     "eslint-config-next": "^15.5.27",
     "eslint-plugin-security": "^4.2.0",
+    "flag-icons": "^7.6.0",
     "qrcode": "^1.5.4",
     "sharp": "^0.35.5",
     "tailwindcss": "^4",

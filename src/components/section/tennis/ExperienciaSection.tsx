@@ -3,7 +3,7 @@ import type React from "react"
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import { useTranslation } from "@/context/TranslationContext"
-import ReactCountryFlag from "react-country-flag"
+import { Flag } from "@/components/Flag"
 import styles from "./ExperienciaSection.module.css"
 import tournamentImagesManifest from "@/data/tournament-images.json"
 import tournamentsData from "@/data/tournaments.json"
@@ -744,10 +744,9 @@ const ExperienciaSection: React.FC = () => {
               {/* Row 2: City and Country Flag */}
               <div className={styles.locationRow}>
                 <span className={styles.city}>{tournament.city}</span>
-                <ReactCountryFlag
-                  countryCode={tournament.countryCode}
-                  aria-label={countryName(tournament.countryCode)}
-                  svg
+                <Flag
+                  code={tournament.countryCode}
+                  label={countryName(tournament.countryCode)}
                   style={{
                     width: '2em',
                     height: '2em',
@@ -799,6 +798,7 @@ const ExperienciaSection: React.FC = () => {
             </button>
           </div>
         )}
+        <p className={styles.trademarkNote}>{t("experiencia.trademarks")}</p>
       </div>
 
       {/* Carousel Modal - Instagram Stories Style */}

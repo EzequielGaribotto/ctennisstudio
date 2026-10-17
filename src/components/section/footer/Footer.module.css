@@ -42,6 +42,22 @@
   text-decoration-thickness: 3px;
 }
 
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.8rem;
+}
+
+.legalLinks a {
+  color: var(--foreground);
+  text-decoration: underline;
+}
+
+.legalLinks a:hover {
+  color: var(--primary-text);
+}
+
 .copyright {
   font-size: 0.9rem;
   margin: 0;
@@ -131,6 +147,10 @@
 
   .contactButton {
     align-self: center;
+  }
+
+  .legalLinks {
+    justify-content: center;
   }
 
   .copyright {

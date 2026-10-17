@@ -32,7 +32,8 @@ export const en: Translations = {
               At Custom Tennis Studio, each racquet is adjusted with the same precision as in an ATP or WTA tournament.
               Founded by Pablo Garibotto, official stringer at tournaments like Monte Carlo, Miami and Madrid.`,
     showMore: "Show more",
-    showLess: "Show less"
+    showLess: "Show less",
+    trademarks: "Tournament, tour and sponsor names and logos are trademarks of their respective owners and are shown for information only, to reference the events where stringing services were provided. Custom Tennis Studio is not affiliated with, sponsored by or endorsed by those owners."
   },
   encordado: {
     title: "Professional Stringing",
@@ -97,6 +98,11 @@ export const en: Translations = {
       }
     }
   },
+  legal: {
+    backHome: "Back to home",
+    updated: "Last updated",
+    navLabel: "Legal information"
+  },
   contact: {
     title: "Contact",
     description: "Fill out the form and we'll get back to you as soon as possible.",
@@ -124,6 +130,11 @@ export const en: Translations = {
       submit: "Send Message",
       sending: "Sending..."
     },
+    privacy: {
+      summary: "Controller: {holder}. Purpose: to answer your enquiry. Legal basis: your consent. Recipients: technical providers needed to send and receive the email. Rights: access, rectification, erasure and others, by writing to {email}.",
+      accept: "I have read and accept the",
+      link: "privacy policy"
+    },
     errors: {
       nameRequired: "Name is required",
       emailRequired: "Email is required",
@@ -131,6 +142,7 @@ export const en: Translations = {
       messageRequired: "Message is required",
       sendFailed: "Error sending message. Please try again.",
       captchaRequired: "Please complete the security check before sending.",
+      privacyRequired: "You must accept the privacy policy to send the message.",
       invalidNameLength: "Name must be between 2 and 100 characters",
       invalidSubjectLength: "Subject must be between 3 and 200 characters",
       invalidMessageLength: "Message must be between 10 and 5000 characters",

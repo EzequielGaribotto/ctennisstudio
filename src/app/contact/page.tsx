@@ -7,6 +7,7 @@ import { own } from "@/lib/own"
 import styles from "./page.module.css"
 import { ContactForm } from "./components/ContactForm"
 import { TURNSTILE_SITE_KEY } from "@/components/TurnstileWidget"
+import { LEGAL_READY } from "@/data/legal"
 import { ContactInfoSidebar } from "./components/ContactInfoSidebar"
 
 const SERVICE_TYPES = ["encordado", "set", "match", "point", "base", "avance", "maestria"] as const
@@ -45,6 +46,7 @@ const ContactPageContent: React.FC = () => {
   const [subjectAutoUpdate, setSubjectAutoUpdate] = useState(true)
   const [captchaToken, setCaptchaToken] = useState<string | null>(null)
   const [captchaKey, setCaptchaKey] = useState(0)
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
 
   const getSubjectForService = useCallback((service: ServiceType, name: string): string => {
     const serviceNames: Record<ServiceType, string> = {
@@ -183,6 +185,11 @@ const ContactPageContent: React.FC = () => {
       return
     }
 
+    if (LEGAL_READY && !privacyAccepted) {
+      setErrorMessage(t("contact.errors.privacyRequired"))
+      return
+    }
+
     if (TURNSTILE_SITE_KEY && !captchaToken) {
       setErrorMessage(t("contact.errors.captchaRequired"))
       return
@@ -206,6 +213,7 @@ const ContactPageContent: React.FC = () => {
           message: formData.message.trim(),
           honeypot: formData.honeypot,
           turnstileToken: captchaToken,
+          privacyAccepted,
           locale
         }),
       })
@@ -262,6 +270,8 @@ const ContactPageContent: React.FC = () => {
               captchaKey={captchaKey}
               onCaptchaToken={setCaptchaToken}
               captchaPassed={captchaToken !== null}
+              privacyAccepted={privacyAccepted}
+              onPrivacyChange={setPrivacyAccepted}
             />
             <ContactInfoSidebar />
           </div>
