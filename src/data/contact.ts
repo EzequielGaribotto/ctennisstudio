@@ -5,7 +5,7 @@ export const CONTACT = {
   phoneE164: "34630530839", // international format without "+", used by WhatsApp
   phoneDisplay: "+34 630 530 839",
   email: "pablo_garis@hotmail.com",
-  address: "C/ Jacint Verdaguer, 31, Mataró",
+  address: "Av. Puig i Cadafalch, 12, Mataró",
 } as const
 
 const mapsQuery = encodeURIComponent(CONTACT.address)

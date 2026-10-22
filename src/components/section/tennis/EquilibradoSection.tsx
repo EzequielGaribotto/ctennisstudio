@@ -56,7 +56,7 @@ const EquilibradoSection: React.FC = () => {
                   src={equilibradoImages.at(currentImageIndex) ?? equilibradoImages[0]}
                   alt={`Equilibrado ${currentImageIndex + 1}`}
                   width={300}
-                  height={500}
+                  height={400}
                   className={styles.carouselImage}
                   style={{ objectFit: 'cover', borderRadius: '12px' }}
                 />

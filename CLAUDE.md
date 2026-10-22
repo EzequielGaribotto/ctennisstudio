@@ -31,7 +31,7 @@ With Pablo:
      after greeting and before/alongside what he asked (don't skip it, don't nag more than once per session if he says
      "después"). Ask in plain words, one thing at a time, e.g.: "Pablo, para que tu web cumpla la ley necesito unos datos
      tuyos: tu NIF o DNI (se muestra en el «aviso legal», es obligatorio para quien tiene un negocio con página web),
-     que me confirmes tu nombre completo como figura en Hacienda y que la dirección de la calle Jacint Verdaguer es tu
+     que me confirmes tu nombre completo como figura en Hacienda y que la dirección del taller es tu
      domicilio profesional. ¿Me los pasas ahora?" Use AskUserQuestion for choices (autónomo / sociedad) and let him type
      the NIF in the free-text answer. Then fill `src/data/legal.ts`, set `confirmedByOwner: true`, run **probar** so he
      sees the new pages and the checkbox on the form, and offer **publicar**. Never invent or guess a NIF.

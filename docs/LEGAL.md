@@ -7,11 +7,11 @@ before relying on them. The AEPD offers a free tool for freelancers and small bu
 
 | Item | Where | State |
 |---|---|---|
-| Aviso legal (LSSI art. 10) | `/aviso-legal` | Built (es/en), **off until owner data is complete** |
-| Política de privacidad (RGPD arts. 13–14, LOPDGDD art. 11) | `/privacidad` | Built (es/en), **off until owner data is complete** |
-| Política de cookies / almacenamiento | `/cookies` | Built (es/en), **off until owner data is complete** |
-| Privacy notice + required checkbox on the contact form (server also checks it) | `ContactForm.tsx`, `route.ts` | Built, **off until owner data is complete** |
-| Footer links to the three pages | `Footer.tsx` | Built, **off until owner data is complete** |
+| Aviso legal (LSSI art. 10) | `/aviso-legal` | **Live** (es/en) |
+| Política de privacidad (RGPD arts. 13–14, LOPDGDD art. 11) | `/privacidad` | **Live** (es/en) |
+| Política de cookies / almacenamiento | `/cookies` | **Live** (es/en) |
+| Privacy notice + required checkbox on the contact form (server also checks it) | `ContactForm.tsx`, `route.ts` | **Live** |
+| Footer links to the three pages | `Footer.tsx` | **Live** |
 | Trademark disclaimer under the tournaments | `ExperienciaSection.tsx` | **Live** |
 | Flags served from our own domain (no outside CDN) | `public/images/flags/`, `<Flag>` | **Live** |
 | Google Maps only on click, with a cookie notice | `LocationSection.tsx` | **Live** |
@@ -22,8 +22,8 @@ before relying on them. The AEPD offers a free tool for freelancers and small bu
 return 404, the footer shows no legal links and the form has no checkbox, so nothing is ever published with missing or guessed data.
 `npm run pendientes` lists what is missing; Claude asks Pablo for it at the start of his next session (see CLAUDE.md).
 
-Needed from Pablo: NIF/DNI (or CIF), full legal name as registered, confirmation that the address is his professional address,
-and whether he is autónomo or a company. His NIF will be public in the aviso legal (required for business sites).
+Owner data confirmed by Pablo on 2026-10-22 (autónomo; NIE, name and professional address = the studio address in
+`src/data/contact.ts`). The pages are on. His NIE is public in the aviso legal (required for business sites).
 
 ## Third parties that touch visitors' data (keep the privacy/cookie texts in sync)
 

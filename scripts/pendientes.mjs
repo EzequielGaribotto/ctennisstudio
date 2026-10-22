@@ -15,7 +15,9 @@ const field = (name) => legalSource.match(new RegExp(`${name}:\\s*"([^"]*)"`))?.
 const taxId = field("taxId")
 const confirmed = /confirmedByOwner:\s*true/.test(legalSource)
 const holderName = field("holderName")
-const address = legalSource.match(/address:\s*CONTACT\.address/) ? "C/ Jacint Verdaguer, 31, Mataró" : field("address")
+const contactSource = fs.readFileSync(path.join(ROOT, "src", "data", "contact.ts"), "utf8")
+const contactAddress = contactSource.match(/address:\s*"([^"]*)"/)?.[1] ?? ""
+const address = legalSource.match(/address:\s*CONTACT\.address/) ? contactAddress : field("address")
 
 let pending = 0
 

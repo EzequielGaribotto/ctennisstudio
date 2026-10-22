@@ -25,7 +25,7 @@
     "start:local": "node scripts/prod-local.mjs start"
   },
   "dependencies": {
-    "next": "^15.5.27",
+    "next": "^15.5.28",
     "react": "^19.1.0",
     "react-country-flag": "^3.1.0",
     "react-dom": "^19.1.0",
@@ -39,7 +39,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.27",
+    "eslint-config-next": "^15.5.28",
     "eslint-plugin-security": "^4.2.0",
     "flag-icons": "^7.6.0",
     "qrcode": "^1.5.4",

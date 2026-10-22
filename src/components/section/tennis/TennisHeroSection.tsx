@@ -29,7 +29,7 @@ const TennisHeroSection: React.FC = () => {
                 src="/images/logo/cts studio banner_new.webp"
                 alt="CTS Studio by Pablo Garibotto"
                 width={600}
-                height={200}
+                height={232}
                 className={styles.bannerImage}
                 priority
               />
