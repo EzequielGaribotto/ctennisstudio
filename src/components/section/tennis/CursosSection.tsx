@@ -2,6 +2,7 @@
 import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { FaArrowRight } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import styles from "./CursosSection.module.css"
 
@@ -51,52 +52,47 @@ const CursosSection: React.FC = () => {
     <section id="cursos" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>{t("cursos.title")}</h2>
-          <p className={styles.description}>{t("cursos.description")}</p>
-          <div className={styles.headerImagesWrapper}>
-            <div className={styles.headerImageContainer}>
-              <Image 
+          <div className={styles.headerText}>
+            <h2 className={`${styles.title} cts-display`}>{t("cursos.title")}</h2>
+            <p className={styles.description}>{t("cursos.description")}</p>
+          </div>
+          <div className={styles.photos}>
+            <div className={styles.photoWide}>
+              <Image
                 src="/images/stringer/machines/babolat_machines.webp"
                 alt="Babolat Professional Stringing Machines"
-                width={600}
-                height={400}
-                className={styles.headerImage}
+                fill
+                sizes="(max-width: 860px) 60vw, 30vw"
+                className={styles.photo}
               />
             </div>
-            <div className={styles.diplomaImageContainer}>
-              <Image 
+            <div className={styles.photoTall}>
+              <Image
                 src="/images/stringer/pablo/pablo_10_yrs_mutua_2025.webp"
                 alt="Pablo Garibotto - 10 Years Mutua Madrid Open 2025"
-                width={500}
-                height={400}
-                className={styles.diplomaImage}
+                fill
+                sizes="(max-width: 860px) 40vw, 20vw"
+                className={styles.photo}
               />
             </div>
           </div>
         </div>
 
-        <div className={styles.coursesGrid}>
+        <div className={styles.courses}>
           {courses.map((course) => (
-            <div key={course.key} className={styles.courseCard}>
-              <div className={styles.courseHeader}>
-                <h3 className={styles.courseName}>{course.name}</h3>
-                <p className={styles.courseLevel}>{course.description}</p>
-              </div>
-
+            <div key={course.key} className={styles.course}>
+              <h3 className={`${styles.courseName} cts-display`}>{course.name}</h3>
+              <p className={styles.courseLevel}>{course.description}</p>
               <ul className={styles.contentList}>
-                {course.content.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {course.content.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
-
-              <div className={styles.courseFooter}>
-                <Link
-                  href={`/services/${course.key}`}
-                  className={styles.enrollButton}
-                >
-                  {t("cursos.cta")}
-                </Link>
-              </div>
+              <Link href={`/services/${course.key}/`} className={styles.more}>
+                {t("cursos.cta")}
+                <span className="sr-only"> — {course.name}</span>
+                <FaArrowRight aria-hidden="true" />
+              </Link>
             </div>
           ))}
         </div>

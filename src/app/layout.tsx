@@ -1,13 +1,16 @@
 import type React from "react"
 import { connection } from "next/server"
+import { cookies } from "next/headers"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Archivo } from "next/font/google"
 import "./globals.css"
 import { TranslationProvider } from "@/context/TranslationContext"
 
-const inter = Inter({ 
+// Served from our own domain by Next.js. The width axis gives the wide headline voice.
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-inter",
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
 })
 
@@ -54,9 +57,12 @@ export const metadata: Metadata = {
   other: { 'build-commit': process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'local' },
 }
 
-// Dark browser UI (address bar / overscroll area) on mobile, matching the page background
+// Browser UI (address bar / overscroll area) on mobile, matching the page background
 export const viewport: Viewport = {
-  themeColor: "#1a1a1a",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6efe3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1a36" },
+  ],
 }
 
 export default async function RootLayout({
@@ -68,9 +74,14 @@ export default async function RootLayout({
   // different for each visit, so pages can't be pre-built at deploy time.
   await connection()
 
+  // The visitor's light/dark choice, read on the server so the page never flashes the wrong colors.
+  // No choice saved: the CSS follows the device setting.
+  const savedTheme = (await cookies()).get("cts-theme")?.value
+  const theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : undefined
+
   return (
-    <html lang="es" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="es" data-theme={theme} suppressHydrationWarning>
+      <body className={`${archivo.variable} font-sans antialiased`}>
         <TranslationProvider>{children}</TranslationProvider>
       </body>
     </html>

@@ -1,0 +1,299 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  min-height: min(720px, calc(100svh - 73px));
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: clamp(2rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 4rem) clamp(2rem, 5vw, 4.5rem) max(var(--page-gutter), calc((100vw - var(--page-max)) / 2 + var(--page-gutter)));
+}
+
+/* "MANAGEMENT" is one long word: the size follows the screen so it always fits */
+.title {
+  font-size: clamp(1.875rem, 0.9rem + 3.6vw, 4rem);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.strapline {
+  max-width: 46ch;
+  color: var(--primary-text);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.heroPhoto {
+  position: relative;
+  min-height: 320px;
+  background: var(--surface-2);
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--section-space) var(--page-gutter);
+}
+
+.introBand,
+.services {
+  background: var(--surface-2);
+}
+
+.introContainer {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--section-space) var(--page-gutter);
+}
+
+/* The services follow straight on from the presentation, on the same background */
+.services .container {
+  padding-top: 0;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem clamp(2rem, 5vw, 5rem);
+}
+
+.introRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.introLead {
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.introBody {
+  max-width: 62ch;
+  font-size: var(--text-lead);
+}
+
+.sectionTitle {
+  font-size: var(--text-title);
+}
+
+/* Same card as the Experience Tour: real photo above, caption below */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--on-panel);
+}
+
+.cardPhoto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+}
+
+.cardText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.cardTitle {
+  font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.875rem);
+}
+
+.cardDescription {
+  color: var(--on-panel-muted);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.managerTitle {
+  margin-top: var(--section-space);
+  font-size: var(--text-title);
+}
+
+.managerList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem clamp(1.5rem, 3vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  list-style: none;
+}
+
+.managerItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--foreground);
+}
+
+.managerLogo {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(96px, 10vw, 140px);
+  aspect-ratio: 1;
+}
+
+.managerLogoImage {
+  object-fit: contain;
+}
+
+.managerName {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.managerYears {
+  margin-top: 0.25rem;
+  color: var(--primary-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.trademarkNote {
+  margin-top: 2rem;
+  max-width: 900px;
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.tools {
+  background: var(--background);
+}
+
+.toolsLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.toolsIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.toolsList {
+  border-top: 2px solid var(--foreground);
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.toolName {
+  color: var(--primary-text);
+  font-size: clamp(1.625rem, 1.25rem + 1.2vw, 2.5rem);
+}
+
+.toolsNote {
+  margin-top: 1.5rem;
+  font-size: var(--text-lead);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.closing {
+  background: var(--panel);
+  color: var(--on-panel);
+}
+
+.closingLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.closingText {
+  max-width: 22ch;
+  font-size: var(--text-title);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* Copper in light mode is too dark on the navy band, so the band sets its own button */
+.closingButton {
+  background: var(--on-panel);
+  color: #0b1a36;
+}
+
+.closingButton:hover {
+  background: var(--on-panel-accent);
+}
+
+@media (max-width: 1040px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .managerList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .heroText {
+    padding: 2rem var(--page-gutter);
+  }
+
+  .heroPhoto {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .intro,
+  .toolsLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

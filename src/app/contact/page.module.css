@@ -10,7 +10,7 @@
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--surface);
   border-radius: 24px;
   padding: 3rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@
 }
 
 .contactInfo {
-  background: rgba(249, 160, 40, 0.05);
+  background: var(--tint);
   border: 2px solid var(--primary);
   border-radius: 16px;
   padding: 2rem;
@@ -74,7 +74,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: white;
+  background: var(--surface);
   border-radius: 8px;
   color: var(--foreground);
   text-decoration: none;
@@ -102,7 +102,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: white;
+  background: var(--surface);
   border-radius: 8px;
   color: var(--foreground);
   text-decoration: none;
@@ -133,7 +133,7 @@
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: rgba(249, 160, 40, 0.06);
+  background: var(--tint);
   border: 1px solid var(--border);
   border-radius: 12px;
 }
@@ -141,7 +141,7 @@
 .privacySummary {
   font-size: 0.8rem;
   line-height: 1.5;
-  color: #4a4a4a;
+  color: var(--muted-foreground);
 }
 
 .privacyLabel {
@@ -174,7 +174,7 @@
   gap: 0.75rem;
   min-height: 200px;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--surface);
   text-align: center;
 }
 
@@ -199,7 +199,7 @@
 .mapNotice {
   font-size: 0.8rem;
   line-height: 1.4;
-  color: #4a4a4a;
+  color: var(--muted-foreground);
   max-width: 28ch;
 }
 
@@ -235,7 +235,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
-  color: #000000;
+  color: var(--foreground);
   position: relative;
   display: inline-block;
 }
@@ -248,7 +248,7 @@
   transform: translateX(-50%);
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #000000, var(--primary));
+  background: var(--primary);
   border-radius: 2px;
 }
 
@@ -296,7 +296,7 @@
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--surface);
   color: var(--foreground);
 }
 
@@ -304,7 +304,7 @@
 .textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(249, 160, 40, 0.1);
+  box-shadow: 0 0 0 3px var(--tint);
 }
 
 .textarea {
@@ -341,14 +341,14 @@
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(249, 160, 40, 0.3);
+  box-shadow: 0 4px 16px var(--tint);
   margin-top: 1rem;
 }
 
 .submitButton:hover:not(:disabled) {
   background: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(249, 160, 40, 0.4);
+  box-shadow: 0 6px 24px var(--tint);
 }
 
 .submitButton:disabled {

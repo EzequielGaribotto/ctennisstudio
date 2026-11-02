@@ -1,0 +1,77 @@
+.figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.strings line {
+  stroke: var(--primary);
+  stroke-width: 1.5;
+}
+
+.frame {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 4.5;
+}
+
+.bevel {
+  stroke-width: 1.5;
+}
+
+.drafting path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 1.25;
+}
+
+.drafting .centerLine {
+  stroke-dasharray: 22 6 4 6;
+}
+
+.leaders path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+.markers circle {
+  fill: var(--primary);
+}
+
+.markers text {
+  fill: var(--on-primary);
+  font-size: 30px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+/* Small screens: thicker lines so the drawing still reads, without the drafting marks */
+@media (max-width: 999px) {
+  .leaders,
+  .drafting {
+    display: none;
+  }
+
+  .strings line {
+    stroke-width: 3;
+  }
+
+  .frame {
+    stroke-width: 9;
+  }
+
+  .bevel {
+    stroke-width: 3;
+  }
+
+  .markers circle {
+    r: 40px;
+  }
+
+  .markers text {
+    font-size: 50px;
+    transform: translateY(6px);
+  }
+}

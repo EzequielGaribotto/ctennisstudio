@@ -247,6 +247,7 @@ export const LEGAL_DOCS: Record<LegalDocKey, Record<LegalLocale, LegalDoc>> = {
           list: [
             "Cookies propias de seguimiento, analítica o publicidad: ninguna.",
             "Almacenamiento local «selected-locale»: recuerda el idioma que elegiste. Es técnico y necesario para ofrecerte el servicio que pides; se conserva hasta que lo borres.",
+            "Cookie propia «cts-theme»: solo si cambias entre modo claro y oscuro, recuerda tu elección durante un año. Es técnica, no sirve para seguimiento ni se comparte con nadie.",
           ],
         },
         {
@@ -279,6 +280,7 @@ export const LEGAL_DOCS: Record<LegalDocKey, Record<LegalLocale, LegalDoc>> = {
           list: [
             "Own tracking, analytics or advertising cookies: none.",
             "Local storage “selected-locale”: remembers the language you chose. It is technical and needed to provide the service you ask for; it is kept until you delete it.",
+            "Own cookie “cts-theme”: only if you switch between light and dark mode, it remembers your choice for one year. It is technical, is not used for tracking and is not shared with anyone.",
           ],
         },
         {

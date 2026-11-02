@@ -66,8 +66,8 @@ Never publish (commit/push) unless he asked to publish **and** confirmed the sum
 ## Project map
 
 - Next.js 15 (App Router) + React 19 + TypeScript, CSS Modules + Tailwind 4. Node ≥ 20.
-- Home sections: [src/components/section/tennis/](src/components/section/tennis/) (Hero, Encordado,
-  Equilibrado, Cursos, Experiencia = tournaments). Header/Footer in [src/components/](src/components/).
+- Sections: [src/components/section/tennis/](src/components/section/tennis/). Home: Hero, Experiencia (tournaments), Servicios
+  (doorways), Cursos. Own pages: `/encordado` (EncordadoSection), `/equilibrado` (EquilibradoSection + RacquetBlueprint). Header/Footer in [src/components/](src/components/).
 - **All texts** (Spanish + English) live in [src/app/translations/es.ts](src/app/translations/es.ts) and
   [en.ts](src/app/translations/en.ts); new keys must also be added to `baseTranslations.ts`. When Pablo changes a
   text, update **both** languages (translate it yourself and tell him).
@@ -83,6 +83,8 @@ Never publish (commit/push) unless he asked to publish **and** confirmed the sum
   (UPPERCASE, letters/digits/_ — the photo filename prefix), `places`, optional logos (`unifiedLogo`,
   `mensLogo`/`womensLogo` category stamps in `public/images/stringer/tournament_logos/category_stamps/`),
   `level` (`ATP_WTA_1000` | `ATP_500` | `ATP_250` | `CHALLENGER` | `ATP_WTA_125` | `UNCLASSIFIED`, controls order).
+- **Behind the Game gallery** (`/behind-the-game`): photos different from the tournament cards, listed in [src/data/behind-the-game.json](src/data/behind-the-game.json)
+  (`{ src, width, height }`, processed with `npm run imagen`). Empty list: local preview shows samples, production has no page and no link.
 - **Tournament photos**: `public/images/stringer/tournaments/"<CODE> <PLACE> <YEAR> <N>.webp"`, listed in the
   generated `src/data/tournament-images.json` (never edit by hand). Years he has no photos for:
   `src/data/photo-status.json`.
@@ -127,9 +129,9 @@ Pablo drops new files in **`fotos-nuevas/`** (ignored by git; originals are kept
 - Never commit secrets (`.env*`), never `git push --force`, never `git reset --hard` on published work,
   never skip hooks/checks.
 - **Bugs are always fixed** when you find them (see the publicar checklist); taste/design changes are proposed first.
-- Text on orange (`--primary`) backgrounds uses `var(--on-primary)` (dark), never white (unreadable).
+- Text on `--primary` backgrounds uses `var(--on-primary)`; `--primary` is copper in light mode and silver in dark mode.
 - Match the existing code style (see surrounding files). Keep colors on the CSS variables in
-  [src/app/globals.css](src/app/globals.css) (`--primary` orange, dark background, white cards).
+  [src/app/globals.css](src/app/globals.css) (light mode: cream and copper; dark mode: midnight blue and silver; defined for both modes, so never hard-code a color).
 
 ## Security and legal: only at publish time
 

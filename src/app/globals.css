@@ -1,25 +1,40 @@
 @import 'tailwindcss';
+@source not '../../.claude/skills/impeccable';
 
+/* Light: cream drafting paper, ink and copper wire. Dark: midnight blue and silver wire. */
 :root {
-  /* Updated color palette - Logo inspired (Orange & Black) */
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --primary: #ff8c00; /* Vibrant orange from logo */
-  --primary-dark: #e67300;
-  --primary-light: #ffb347;
-  --primary-text: #a84a00; /* orange for text on light/grey backgrounds (>= 4.5:1; the bright orange is only 2:1) */
-  --on-primary: #1a1a1a; /* text on orange backgrounds (7.5:1 contrast; white is only 2.3:1) */
-  --secondary: #2c2c2c;
-  --accent: #ff8c00;
-  --border: #e5e7eb;
-  --navigation-current: #ff8c00;
+  color-scheme: light;
+  --background: #f6efe3;
+  --surface: #fbf7ef;
+  --surface-2: #eee3d2;
+  --foreground: #17130e;
+  --muted-foreground: #5e5243;
+  --text-secondary: #5e5243;
+  --primary: #a2551f; /* copper */
+  --primary-dark: #87451a;
+  --primary-light: #c9834d;
+  --primary-text: #8f4a1a; /* copper for text (>= 4.5:1 on every light surface) */
+  --on-primary: #fff8ee;
+  --secondary: #0b1a36;
+  --accent: #a2551f;
+  --border: #d9c8ae;
+  --grid-line: #e6dac6;
+  --tint: rgba(162, 85, 31, 0.08);
+  --panel: #0b1a36; /* always dark: tournament card captions */
+  --on-panel: #f6efe3;
+  --on-panel-muted: #c9cfd6;
+  --on-panel-accent: #e9a36b;
+  --logo-filter: none;
+  --shadow: 0 10px 28px rgba(23, 19, 14, 0.14);
   --radius: 0.625rem;
-  
-  /* Gradient colors - Dark elegant with orange accent */
-  --gradient-start: #1a1a1a;
-  --gradient-middle: #2c2c2c;
-  --gradient-end: #3d3d3d;
-  
+
+  --page-gutter: clamp(16px, 4vw, 56px);
+  --page-max: 1440px;
+  --section-space: clamp(3.5rem, 8vw, 7rem);
+  --text-display: clamp(2.5rem, 1.5rem + 4.2vw, 5rem);
+  --text-title: clamp(2.125rem, 1.5rem + 2.8vw, 4rem);
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+
   /* Social media brand colors */
   --facebook-blue: #1877f2;
   --instagram-gradient: #e4405f;
@@ -27,8 +42,62 @@
   --whatsapp-green: #25d366;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: #0b1a36;
+    --surface: #11244a;
+    --surface-2: #18305e;
+    --foreground: #eef1f5;
+    --muted-foreground: #b9c1cd;
+    --text-secondary: #b9c1cd;
+    --primary: #c9cfd6; /* silver */
+    --primary-dark: #e4e8ec;
+    --primary-light: #9aa5b3;
+    --primary-text: #d5dae0;
+    --on-primary: #0b1a36;
+    --secondary: #eef1f5;
+    --accent: #e9a36b;
+    --border: #2d4674;
+    --grid-line: #16294f;
+    --tint: rgba(201, 207, 214, 0.1);
+    --panel: #11244a;
+    --on-panel: #eef1f5;
+    --on-panel-muted: #b9c1cd;
+    --on-panel-accent: #e9a36b;
+    --logo-filter: invert(1) brightness(0.94);
+    --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --background: #0b1a36;
+    --surface: #11244a;
+    --surface-2: #18305e;
+    --foreground: #eef1f5;
+    --muted-foreground: #b9c1cd;
+    --text-secondary: #b9c1cd;
+    --primary: #c9cfd6; /* silver */
+    --primary-dark: #e4e8ec;
+    --primary-light: #9aa5b3;
+    --primary-text: #d5dae0;
+    --on-primary: #0b1a36;
+    --secondary: #eef1f5;
+    --accent: #e9a36b;
+    --border: #2d4674;
+    --grid-line: #16294f;
+    --tint: rgba(201, 207, 214, 0.1);
+    --panel: #11244a;
+    --on-panel: #eef1f5;
+    --on-panel-muted: #b9c1cd;
+    --on-panel-accent: #e9a36b;
+    --logo-filter: invert(1) brightness(0.94);
+    --shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
 @theme inline {
-  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-sans: var(--font-archivo), 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -47,51 +116,35 @@
     box-sizing: border-box;
   }
   
-  /* Solid dark base: anything the browser hasn't painted yet (e.g. when the mobile
-     address bar hides while scrolling, or on overscroll) shows dark, never white. */
   html {
-    background-color: var(--gradient-start);
-    min-height: 100vh;
+    background-color: var(--background);
+    min-height: 100%;
     width: 100%;
-    position: relative;
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    scrollbar-color: var(--primary-light) var(--background);
   }
 
-  /* Fixed background layers sized to the *largest* mobile viewport (100lvh), so they
-     already cover the area revealed when the address bar collapses. */
-  html::before,
-  html::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100lvh;
-    z-index: -1;
-    pointer-events: none;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
-  html::before {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-  }
-
-  html::after {
-    background: radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%);
-  }
-  
   body {
     font-family: var(--font-sans);
     color: var(--foreground);
-    background: transparent;
+    background: var(--background);
     min-height: 100vh;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.05;
+    text-wrap: balance;
   }
   
   p {
@@ -101,6 +154,66 @@
 
 /* Visible focus ring for keyboard users (mouse clicks are unaffected) */
 :focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline: 2px solid var(--primary-text);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* The logo files are ink on transparent; dark mode turns them light */
+.cts-logo {
+  filter: var(--logo-filter);
+}
+
+/* Wide, heavy headline voice shared by every page */
+.cts-display {
+  font-weight: 800;
+  font-stretch: 112%;
+  letter-spacing: -0.02em;
+}
+
+.cts-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 52px;
+  padding: 0.875rem 1.5rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cts-btn:hover {
+  background: var(--primary-dark);
+}
+
+.cts-btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 2px var(--foreground);
+}
+
+.cts-btn-outline:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Visitors who asked their device for less motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

@@ -1,168 +1,93 @@
 .section {
-  width: 100%;
-  padding: 5rem 2rem;
-  background: transparent;
-  color: var(--foreground);
+  display: grid;
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  align-items: start;
 }
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
-  padding: 3rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+/* The photo stays in view while the text scrolls past it */
+.photo {
+  position: sticky;
+  top: 73px;
+  height: calc(100svh - 73px);
+  background: var(--panel);
+}
+
+.photoInner {
+  position: relative;
+  height: 100%;
+}
+
+.photoImage {
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.textContent {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1.5rem;
+  max-width: 860px;
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--page-gutter) var(--section-space) clamp(1.5rem, 5vw, 5rem);
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
-  color: #000000;
-  text-align: center;
-  position: relative;
-  display: inline-block;
-}
-
-.title::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #000000, var(--primary));
-  border-radius: 2px;
-  animation: slideIn 0.6s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  font-size: var(--text-display);
 }
 
 .description {
-  font-size: 1.125rem;
-  color: var(--foreground);
-  line-height: 1.7;
-  margin: 0 auto;
-  text-align: center;
-  max-width: 600px;
+  max-width: 62ch;
+  font-size: var(--text-lead);
 }
 
-.featuresList {
+.includes {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+  font-weight: 800;
+  font-stretch: 112%;
+}
+
+.list {
+  align-self: stretch;
+  margin-top: -0.5rem;
   list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  border-top: 2px solid var(--foreground);
 }
 
-.featuresList li {
-  font-size: 1.125rem;
-  color: var(--foreground);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.list li {
+  padding: clamp(0.875rem, 1.4vw, 1.25rem) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-.featuresList li::before {
-  content: "✓";
-  color: var(--primary);
-  font-weight: bold;
-  font-size: 1.3rem;
+.video {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  margin-top: clamp(1rem, 3vw, 2rem);
+  border-radius: var(--radius);
+  background: var(--panel);
 }
 
-.ctaButton {
-  align-self: flex-start;
-  padding: 0.875rem 1.75rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: var(--on-primary);
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  font-family: inherit;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.25);
-}
-
-.ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.35);
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-}
-
-.videoContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.stringerVideo {
-  width: 50%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .section {
-    padding: 3rem 0.5rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .container {
-    padding: 2rem 0.5rem;
+  .photo {
+    position: relative;
+    top: 0;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   .content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    padding: 2rem var(--page-gutter) var(--section-space);
   }
 
-  .title {
-    font-size: 2rem;
-  }
-
-  .title::after {
-    width: auto;
+  .video {
     max-width: none;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .ctaButton {
-    align-self: center;
   }
 }

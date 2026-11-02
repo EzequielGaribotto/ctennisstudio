@@ -32,3 +32,8 @@ next-env.d.ts
 
 # local Claude settings
 .claude/settings.local.json
+
+# Design tool working files
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/questions/

@@ -8,7 +8,6 @@
     "tournamentCode": "ROLEX",
     "places": ["Montecarlo"],
     "mensLogo": "/images/stringer/tournament_logos/category_stamps/1000_atp.webp",
-    "womensLogo": "/images/stringer/tournament_logos/category_stamps/1000_wta.webp",
     "unifiedLogo": "/images/stringer/tournament_logos/montecarlo_masters_logo.webp",
     "level": "ATP_WTA_1000"
   },

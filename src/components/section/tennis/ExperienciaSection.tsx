@@ -2,8 +2,11 @@
 import type React from "react"
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import { FaArrowRight, FaChevronLeft, FaChevronRight, FaPause, FaTimes } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
 import { Flag } from "@/components/Flag"
+import { BEHIND_THE_GAME_READY } from "@/data/behind-the-game"
 import styles from "./ExperienciaSection.module.css"
 import tournamentImagesManifest from "@/data/tournament-images.json"
 import tournamentsData from "@/data/tournaments.json"
@@ -68,9 +71,9 @@ const ExperienciaSection: React.FC = () => {
   const [isTabletOrSmaller, setIsTabletOrSmaller] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [progress, setProgress] = useState(0)
-  const [isCollapsing, setIsCollapsing] = useState(false)
-  const gridRef = useRef<HTMLDivElement>(null)
+  
   const carouselRef = useRef<HTMLDivElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const timelapseIntervalRef = useRef<NodeJS.Timeout | null>(null)
   
@@ -111,17 +114,11 @@ const ExperienciaSection: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [selectedTournament])
 
-  // Timers used by the show more/less animation (cleared on unmount)
-  const animationTimersRef = useRef<ReturnType<typeof setTimeout>[]>([])
-  const later = (fn: () => void, ms: number) => {
-    animationTimersRef.current.push(setTimeout(fn, ms))
-  }
+  
 
   // Cleanup hover timeout on unmount
   useEffect(() => {
-    const animationTimers = animationTimersRef.current
     return () => {
-      animationTimers.forEach(clearTimeout)
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current)
       }
@@ -144,32 +141,34 @@ const ExperienciaSection: React.FC = () => {
   // Auto-advance stories (Instagram-like)
   useEffect(() => {
     if (!selectedTournament || isPaused) return
+    // Photos don't change on their own for visitors who asked their device for less motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    const images = getTournamentImages(selectedTournament)
     const storyDuration = 5000 // 5 seconds per image
     const intervalTime = 50 // Update progress every 50ms
 
     const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        const newProgress = prev + (intervalTime / storyDuration) * 100
-        if (newProgress >= 100) {
-          // Move to next image
-          setCurrentImageIndex((currentIdx) => {
-            const nextIdx = currentIdx + 1
-            if (nextIdx >= images.length) {
-              // Loop back to first image instead of closing
-              return 0
-            }
-            return nextIdx
-          })
-          return 0
-        }
-        return newProgress
-      })
+      setProgress((prev) => Math.min(100, prev + (intervalTime / storyDuration) * 100))
     }, intervalTime)
 
     return () => clearInterval(progressInterval)
-  }, [selectedTournament, currentImageIndex, isPaused])  
+  }, [selectedTournament, currentImageIndex, isPaused])
+
+  // Bar full: move to the next photo exactly once, looping back to the first after the last
+  useEffect(() => {
+    if (!selectedTournament || progress < 100) return
+    const total = getTournamentImages(selectedTournament).length
+    setCurrentImageIndex((current) => (current + 1) % total)
+    setProgress(0)
+  }, [progress, selectedTournament])
+
+  // Keyboard users land on the close button when the photos open, and return to where they were
+  useEffect(() => {
+    if (!isCarouselLocked) return
+    const previous = document.activeElement as HTMLElement | null
+    closeButtonRef.current?.focus()
+    return () => previous?.focus?.()
+  }, [isCarouselLocked])
 
   // Reset progress when image changes
   useEffect(() => {
@@ -281,7 +280,7 @@ const ExperienciaSection: React.FC = () => {
     }
   }, [isResizing, handleResize])
 
-  const handleCardClick = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
+  const handleCardClick = (tournament: Tournament, event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     
     // Clear any pending hide timeouts
@@ -299,15 +298,17 @@ const ExperienciaSection: React.FC = () => {
     setIsPaused(false)
   }
 
-  const handleYearHover = (tournament: Tournament, year: string, event: React.MouseEvent<HTMLSpanElement>) => {
+  const handleYearHover = (tournament: Tournament, year: string, event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
-    
+    if (isTabletOrSmaller) return // Phones and tablets open the photos on tap
+    if (isCarouselLocked) return
+
     // Clear any pending hide timeouts
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
       hoverTimeoutRef.current = null
     }
-    
+
     // Clear any ongoing timelapse
     if (timelapseIntervalRef.current) {
       clearInterval(timelapseIntervalRef.current)
@@ -369,7 +370,7 @@ const ExperienciaSection: React.FC = () => {
     }
   }
 
-  const handleYearClick = (tournament: Tournament, year: string, event: React.MouseEvent<HTMLSpanElement>) => {
+  const handleYearClick = (tournament: Tournament, year: string, event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     
     // Clear any pending hide timeouts
@@ -393,23 +394,6 @@ const ExperienciaSection: React.FC = () => {
         setIsPaused(false)
       }
     }
-  }
-
-  const handleCardHover = (tournament: Tournament, event: React.MouseEvent<HTMLDivElement>) => {
-    if (isTabletOrSmaller) return // Disable hover on tablet and mobile (3 or fewer columns)
-    if (isCarouselLocked) return // Don't change on hover if locked
-    
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current)
-      hoverTimeoutRef.current = null
-    }
-    
-    const rect = event.currentTarget.getBoundingClientRect()
-    setHoveredCardRect(rect)
-    setSelectedTournament(tournament)
-    setCurrentImageIndex(0)
-    setProgress(0)
-    setIsPaused(false)
   }
 
   const handleCardLeave = () => {
@@ -564,85 +548,12 @@ const ExperienciaSection: React.FC = () => {
     return tournaments
   }
 
-  // Handle show more/less with auto-scroll
+  // Handle show more/less; when closing, go back to the first card so the visitor is not left further down
   const handleToggleShowAll = () => {
-    const section = document.getElementById('experiencia')
-    
-    if (!showAll) {
-      // Expanding - add expanded class and show items first, then scroll to first card
-      setShowAll(true)
-      setIsCollapsing(false)
-      if (gridRef.current) {
-        gridRef.current.classList.add(styles.expanded)
-      }
-      later(() => {
-        if (section) {
-          // Find the first tournament card
-          const firstCard = section.querySelector('[class*="card"]')
-          if (firstCard) {
-            const headerOffset = 120 // Account for fixed header
-            const cardPosition = firstCard.getBoundingClientRect().top
-            const offsetPosition = cardPosition + window.pageYOffset - headerOffset
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            })
-          }
-        }
-      }, 100)
-    } else {
-      // Collapsing - animate cards out, then collapse height
-      if (gridRef.current && section) {
-        // Lock current height before starting collapse
-        const currentHeight = gridRef.current.scrollHeight
-        gridRef.current.style.maxHeight = `${currentHeight}px`
-        
-        // Force reflow
-        void gridRef.current.offsetHeight
-        
-        // Add collapsing class to trigger card animations
-        gridRef.current.classList.add(styles.collapsing)
-        setIsCollapsing(true)
-        
-        const firstCard = section.querySelector('[class*="card"]')
-        if (firstCard) {
-          const headerOffset = 120
-          const cardPosition = firstCard.getBoundingClientRect().top
-          const offsetPosition = cardPosition + window.pageYOffset - headerOffset
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
-        }
-        
-        // Start collapsing height after a short delay
-        later(() => {
-          // Calculate new height (only first 4 cards)
-          const cards = gridRef.current?.children
-          if (cards && gridRef.current) {
-            // Approximate height for 4 cards
-            const cardHeight = (cards[0] as HTMLElement).offsetHeight
-            const gap = 20 // 1.25rem gap
-            const rows = isMobile ? 2 : 1 // 2 rows on mobile, 1 row on desktop
-            const newHeight = (cardHeight * rows) + (gap * (rows - 1))
-            gridRef.current.style.maxHeight = `${newHeight}px`
-          }
-        }, 100)
-        
-        // Wait for animations to complete, then update state
-        later(() => {
-          setShowAll(false)
-          setIsCollapsing(false)
-          gridRef.current?.classList.remove(styles.collapsing)
-          gridRef.current?.classList.remove(styles.expanded)
-        }, 900)
-      } else {
-        setShowAll(false)
-        setIsCollapsing(false)
-      }
+    if (showAll) {
+      document.getElementById("experiencia")?.scrollIntoView({ behavior: "smooth" })
     }
+    setShowAll(!showAll)
   }
 
   const visibleTournaments = getVisibleTournaments()
@@ -650,150 +561,96 @@ const ExperienciaSection: React.FC = () => {
   const selectedImages = selectedTournament ? getTournamentImages(selectedTournament) : []
   const hasMoreTournaments = tournaments.length > 4
 
-  // Manage grid height animation
-  useEffect(() => {
-    if (gridRef.current) {
-      // Small delay to ensure DOM is updated
-      const timer = setTimeout(() => {
-        if (gridRef.current) {
-          const newHeight = gridRef.current.scrollHeight
-          gridRef.current.style.maxHeight = `${newHeight}px`
-        }
-      }, 50)
-      return () => clearTimeout(timer)
-    }
-  }, [showAll, isCollapsing, visibleTournaments.length])
-
-  // Add 'loaded' class to cards after initial animation
-  useEffect(() => {
-    if (gridRef.current) {
-      const cards = gridRef.current.querySelectorAll(`.${styles.card}`)
-      // Wait for longest animation delay (0.6s) + animation duration (0.5s)
-      const timer = setTimeout(() => {
-        cards.forEach(card => {
-          card.classList.add(styles.loaded)
-        })
-      }, 1100)
-      
-      return () => clearTimeout(timer)
-    }
-  }, [])
 
   return (
     <section id="experiencia" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>{t("experiencia.title")}</h2>
+          <div className={styles.headerTitle}>
+            <h2 className={`${styles.title} cts-display`}>{t("experiencia.title")}</h2>
+            {BEHIND_THE_GAME_READY && (
+              <Link href="/behind-the-game/" className={`${styles.behindLink} cts-display`}>
+                BEHIND THE GAME <FaArrowRight className={styles.behindArrow} aria-hidden="true" />
+              </Link>
+            )}
+          </div>
           <p className={styles.description}>{t("experiencia.description")}</p>
         </div>
 
-        <div className={styles.grid} ref={gridRef}>
-          {visibleTournaments.map((tournament) => (
-            <div
-              key={tournament.id}
-              className={styles.card}
-              role="button"
-              tabIndex={0}
-              onClick={(e) => handleCardClick(tournament, e)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault()
-                  handleCardClick(tournament, e)
-                }
-              }}
-              onMouseEnter={(e) => handleCardHover(tournament, e)}
-              onMouseLeave={handleCardLeave}
-            >
-              {/* Row 1: Tournament Logos */}
-              <div className={styles.logosRow}>
+        <div className={`${styles.grid} ${showAll ? styles.expanded : ""}`}>
+          {visibleTournaments.map((tournament) => {
+            const photos = (tournamentImagesManifest as Record<string, string[]>)[tournament.tournamentCode] ?? []
+            const logos = (
+              <>
                 {tournament.mensLogo && (
-                  <div className={styles.logoContainer}>
-                    <Image
-                      src={tournament.mensLogo}
-                      alt={`${tournament.category} ATP`}
-                      width={60}
-                      height={60}
-                      className={styles.logo}
-                    />
-                  </div>
+                  <Image src={tournament.mensLogo} alt={`${tournament.category} ATP`} width={60} height={60} className={styles.logo} />
                 )}
                 {tournament.unifiedLogo && (
-                  <div className={styles.logoContainer}>
-                    <Image
-                      src={tournament.unifiedLogo}
-                      alt={tournament.category}
-                      width={60}
-                      height={60}
-                      className={styles.logo}
-                    />
-                  </div>
+                  <Image src={tournament.unifiedLogo} alt={tournament.category} width={60} height={60} className={styles.logo} />
                 )}
                 {tournament.womensLogo && (
-                  <div className={styles.logoContainer}>
-                    <Image
-                      src={tournament.womensLogo}
-                      alt={`${tournament.category} WTA`}
-                      width={60}
-                      height={60}
-                      className={styles.logo}
-                    />
+                  <Image src={tournament.womensLogo} alt={`${tournament.category} WTA`} width={60} height={60} className={styles.logo} />
+                )}
+              </>
+            )
+
+            return (
+              <article key={tournament.id} className={styles.card}>
+                {photos.length > 0 ? (
+                  <button
+                    type="button"
+                    className={styles.cover}
+                    onClick={(e) => handleCardClick(tournament, e)}
+                    aria-label={t("common.viewPhotos").replace("{name}", tournament.category)}
+                  >
+                    <Image src={photos[0]} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1180px) 50vw, 25vw" className={styles.coverImage} />
+                    <span className={styles.logoPlate}>{logos}</span>
+                  </button>
+                ) : (
+                  <div className={`${styles.cover} ${styles.coverEmpty}`}>
+                    <span className={`${styles.logoPlate} ${styles.logoPlateLarge}`}>{logos}</span>
                   </div>
                 )}
-              </div>
 
-              {/* Row 2: City and Country Flag */}
-              <div className={styles.locationRow}>
-                <span className={styles.city}>{tournament.city}</span>
-                <Flag
-                  code={tournament.countryCode}
-                  label={countryName(tournament.countryCode)}
-                  style={{
-                    width: '2em',
-                    height: '2em',
-                  }}
-                />
-              </div>
+                <div className={styles.info}>
+                  <div className={styles.cityRow}>
+                    <h3 className={`${styles.city} cts-display`}>{tournament.city}</h3>
+                    <Flag
+                      code={tournament.countryCode}
+                      label={countryName(tournament.countryCode)}
+                      style={{ width: "1.75em", height: "1.75em", flexShrink: 0 }}
+                    />
+                  </div>
+                  <p className={styles.category}>{tournament.category}</p>
 
-              {/* Row 3: Category */}
-              <div className={styles.categoryRow}>
-                <span className={`${
-                  styles.category
-                } ${
-                  ['ROLEX', 'MUTUA', 'OPEN'].includes(tournament.id) 
-                    ? styles.categoryHighlight 
-                    : tournament.id === 'GODO' 
-                    ? styles.categoryHighlightSilver 
-                    : ''
-                }`}>{tournament.category}</span>
-              </div>
-
-              {/* Row 4: Years */}
-              <div className={styles.yearsRow}>
-                {tournament.years.map((year, idx) => (
-                  <span key={year}>
-                    <span 
-                      className={styles.year}
-                      onMouseEnter={(e) => handleYearHover(tournament, year, e)}
-                      onClick={(e) => handleYearClick(tournament, year, e)}
-                      data-year={year}
-                    >
-                      {year}
-                    </span>
-                    {idx < tournament.years.length - 1 && <span className={styles.yearSeparator}> - </span>}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+                  <div className={styles.yearsRow} onMouseLeave={handleCardLeave}>
+                    {tournament.years.map((year) =>
+                      photos.some((photo) => photo.includes(` ${year} `)) ? (
+                        <button
+                          type="button"
+                          key={year}
+                          className={styles.year}
+                          onMouseEnter={(e) => handleYearHover(tournament, year, e)}
+                          onClick={(e) => handleYearClick(tournament, year, e)}
+                          aria-label={t("common.viewPhotosYear").replace("{year}", year)}
+                        >
+                          {year}
+                        </button>
+                      ) : (
+                        <span key={year} className={styles.yearPlain}>{year}</span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </article>
+            )
+          })}
         </div>
 
         {/* Show More / Show Less Button */}
         {hasMoreTournaments && (
           <div className={styles.showMoreContainer}>
-            <button 
-              className={styles.showMoreButton}
-              onClick={handleToggleShowAll}
-            >
+            <button className="cts-btn cts-btn-outline" onClick={handleToggleShowAll}>
               {showAll ? t("experiencia.showLess") : t("experiencia.showMore")}
             </button>
           </div>
@@ -814,10 +671,12 @@ const ExperienciaSection: React.FC = () => {
             const isRightSide = cardCenterX > windowWidth / 2
             
             // Calculate position to show carousel next to card
-            const top = hoveredCardRect.top + window.scrollY
-            const left = isRightSide 
-              ? hoveredCardRect.left - carouselSize.width - 20 
+            const top = Math.max(8, Math.min(hoveredCardRect.top, window.innerHeight - carouselSize.height - 8)) + window.scrollY
+            const wantedLeft = isRightSide
+              ? hoveredCardRect.left - carouselSize.width - 20
               : hoveredCardRect.right + 20
+            // Keep the whole photo on screen, also with wide cards and small windows
+            const left = Math.max(8, Math.min(wantedLeft, windowWidth - carouselSize.width - 8))
             
             return {
               position: 'fixed',
@@ -834,8 +693,11 @@ const ExperienciaSection: React.FC = () => {
             }
           })() : {}}
         >
-          <div 
+          <div
             ref={carouselRef}
+            role="dialog"
+            aria-modal={isCarouselLocked}
+            aria-label={selectedTournament.category}
             className={styles.storiesContainer} 
             onClick={(e) => e.stopPropagation()}
             onMouseDown={isCarouselLocked ? handleDragStart : undefined}
@@ -894,8 +756,8 @@ const ExperienciaSection: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <button className={styles.closeButton} onClick={handleCloseCarousel} aria-label={t("contactModal.close")}>
-                ✕
+              <button ref={closeButtonRef} className={styles.closeButton} onClick={handleCloseCarousel} aria-label={t("contactModal.close")}>
+                <FaTimes aria-hidden="true" />
               </button>
             </div>
 
@@ -921,12 +783,12 @@ const ExperienciaSection: React.FC = () => {
               {/* Tap zones indicators (subtle) */}
               {currentImageIndex > 0 && (
                 <div className={styles.tapZoneLeft}>
-                  <span className={styles.tapIndicator}>‹</span>
+                  <span className={styles.tapIndicator}><FaChevronLeft aria-hidden="true" /></span>
                 </div>
               )}
               {currentImageIndex < selectedImages.length - 1 && (
                 <div className={styles.tapZoneRight}>
-                  <span className={styles.tapIndicator}>›</span>
+                  <span className={styles.tapIndicator}><FaChevronRight aria-hidden="true" /></span>
                 </div>
               )}
             </div>
@@ -934,7 +796,7 @@ const ExperienciaSection: React.FC = () => {
             {/* Pause indicator */}
             {isPaused && (
               <div className={styles.pauseIndicator}>
-                <div className={styles.pauseIcon}>❚❚</div>
+                <div className={styles.pauseIcon}><FaPause aria-hidden="true" /></div>
               </div>
             )}
           </div>

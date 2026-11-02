@@ -1,0 +1,178 @@
+.section {
+  background: var(--background);
+}
+
+.container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) var(--page-gutter) var(--section-space);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--foreground);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  margin: 1rem 0 clamp(2rem, 4vw, 3.5rem);
+}
+
+.title {
+  font-size: var(--text-display);
+}
+
+.intro {
+  max-width: 54ch;
+  font-size: var(--text-lead);
+}
+
+/* Each photo keeps its own shape, which gives the wall its uneven rhythm */
+.mosaic {
+  columns: 3;
+  column-gap: clamp(0.5rem, 1.25vw, 1.25rem);
+}
+
+.tile {
+  display: block;
+  width: 100%;
+  margin-bottom: clamp(0.5rem, 1.25vw, 1.25rem);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  break-inside: avoid;
+  cursor: pointer;
+}
+
+.tile:focus-visible {
+  outline-offset: -4px;
+}
+
+.tileImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tile:hover .tileImage {
+  transform: scale(1.03);
+}
+
+.viewer {
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(4, 9, 20, 0.94);
+  color: #eef1f5;
+}
+
+.viewer::backdrop {
+  background: transparent;
+}
+
+.viewerPhoto {
+  position: absolute;
+  inset: 64px clamp(8px, 7vw, 96px);
+  pointer-events: none;
+}
+
+.viewerImage {
+  object-fit: contain;
+}
+
+.viewerButton {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(238, 241, 245, 0.14);
+  color: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.viewerButton:hover {
+  background: rgba(238, 241, 245, 0.28);
+}
+
+.viewerButton:focus-visible {
+  outline-color: #eef1f5;
+}
+
+.close {
+  top: 8px;
+  right: 8px;
+}
+
+.previous,
+.next {
+  top: calc(50% - 24px);
+}
+
+.previous {
+  left: 8px;
+}
+
+.next {
+  right: 8px;
+}
+
+.counter {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mosaic {
+    columns: 2;
+  }
+}
+
+/* Phones: the photo uses the full width, the arrows move to the bottom next to the counter */
+@media (max-width: 640px) {
+  .viewerPhoto {
+    inset: 64px 0 72px;
+  }
+
+  .previous,
+  .next {
+    top: auto;
+    bottom: 8px;
+  }
+}

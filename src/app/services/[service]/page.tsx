@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import { FaArrowLeft } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
+import Header from "@/components/header/Header"
 import Footer from "@/components/section/footer/Footer"
 import ContactModal from "@/components/contact-modal/ContactModal"
 import { own } from "@/lib/own"
@@ -41,7 +42,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.point.item5"),
       ],
       image: "/images/stringer/services/racquets/POINT.webp",
-      imageSize: [1024, 1536],
+      imageSize: [890, 1245],
       whatsappMessage: t("serviceDetail.whatsapp.point"),
     },
     set: {
@@ -56,7 +57,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.set.item5"),
       ],
       image: "/images/stringer/services/racquets/SET.webp",
-      imageSize: [1024, 1536],
+      imageSize: [890, 1245],
       whatsappMessage: t("serviceDetail.whatsapp.set"),
     },
     match: {
@@ -71,7 +72,7 @@ const ServiceDetailPage: React.FC = () => {
         t("serviceDetails.match.item5"),
       ],
       image: "/images/stringer/services/racquets/MATCH.webp",
-      imageSize: [1024, 1536],
+      imageSize: [890, 1245],
       whatsappMessage: t("serviceDetail.whatsapp.match"),
     },
     encordado: {
@@ -140,6 +141,7 @@ const ServiceDetailPage: React.FC = () => {
   if (!currentService) {
     return (
       <div className={styles.notFound}>
+        <Header />
         <main className={styles.main}>
           <div className={styles.container}>
             <h1>{t("serviceDetail.notFound")}</h1>
@@ -157,6 +159,7 @@ const ServiceDetailPage: React.FC = () => {
 
   return (
     <div className={styles.page}>
+      <Header />
       <main className={styles.main}>
         <div className={styles.container}>
           <button onClick={() => router.back()} className={styles.backButton}>
@@ -164,7 +167,7 @@ const ServiceDetailPage: React.FC = () => {
           </button>
 
           <div className={styles.serviceHeader}>
-            <div className={styles.imageContainer}>
+            <div className={`${styles.imageContainer} ${["point", "set", "match"].includes(service) ? styles.drawingCard : ""}`}>
               <Image
                 src={currentService.image}
                 alt={currentService.title}
@@ -188,8 +191,7 @@ const ServiceDetailPage: React.FC = () => {
             <ul className={styles.itemsList}>
               {currentService.items.map((item, index) => (
                 <li key={index} className={styles.item}>
-                  <span className={styles.itemNumber}>{index + 1}</span>
-                  <span className={styles.itemText}>{item}</span>
+                  {item}
                 </li>
               ))}
             </ul>

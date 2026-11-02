@@ -16,6 +16,10 @@ const nextConfig = {
   // Let phones on the same Wi-Fi load the dev server (npm run celular)
   allowedDevOrigins: ['192.168.*.*', '10.*.*.*', '172.*.*.*'],
   reactStrictMode: true,
+  // Encordado now has its own page
+  async redirects() {
+    return [{ source: '/services/encordado', destination: '/encordado/', permanent: true }]
+  },
   // Add security headers to all responses
   async headers() {
     return [

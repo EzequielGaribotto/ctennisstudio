@@ -10,6 +10,7 @@ export const en: Translations = {
     description: "Specialized service in stringing and balancing tennis rackets."
   },
   navigation: {
+    gestion: "Tournament Stringing Management",
     inicio: "Home",
     encordado: "Professional Stringing",
     equilibrado: "Balancing",
@@ -22,6 +23,11 @@ export const en: Translations = {
     copyright: "© {year} Custom Tennis Studio. All rights reserved."
   },
   hero: {
+        stringing: "Professional stringing",
+        balancing: "Racquet balancing, repair and customization",
+        management: "Tournament stringing management",
+        courses: "Courses and technical training",
+        experience: "Professional solutions for all kinds of players, coaches, clubs, shops and tournaments.",
     title: "CTennis Studio",
     subtitle: "By Pablo Garibotto",
     description: "Professional tennis racquet stringing, balancing and repair service"
@@ -176,11 +182,12 @@ export const en: Translations = {
       item5: "Detailed report of both racquets' specifications"
     },
     encordado: {
-      item1: "Professional-grade Babolat stringing machines",
-      item2: "Precision tension calibration (±0.5kg)",
-      item3: "ATP/WTA tournament stringing techniques",
-      item4: "Personalized string and tension recommendations",
-      item5: "Complete racquet inspection and cleaning"
+      item1: "We use the same machine as a Grand Slam.",
+      item2: "Tension adjustment with maximum precision.",
+      item3: "Stringing techniques with 4 or 2 knots.",
+      item4: "Personalized string and tension recommendations.",
+      item5: "Complete racquet inspection and cleaning.",
+      item6: "Free analysis of your racquets' specifications if you have more than 2."
     },
     base: {
       item4: "Hands-on practice with professional equipment",
@@ -220,7 +227,72 @@ export const en: Translations = {
       maestria: "Hi, I'm interested in the Mastery stringing course"
     }
   },
+  management: {
+    "subtitle": "Complete stringing service management for professional tennis tournaments",
+    "strapline": "",
+    "heroPhoto": "Stringing team on court at the Mutua Madrid Open",
+    "whatsappMessage": "Hello, I would like information about complete stringing management for a tournament",
+    "intro1": "CTS provides complete management of the official stringing service for ATP and WTA tournaments and international competitions.",
+    "intro2": "From initial planning to the delivery of the last racquet, we take care of every operational detail needed to guarantee a professional, efficient, top-quality service for all participating players.",
+    "ctaServices": "See our services",
+    "managerTitle": "Experience as manager",
+    "servicesTitle": "Our services include",
+    "services": {
+      "planning": {
+        "title": "Planning",
+        "description": "Advance planning and coordination with the tournament director and the club."
+      },
+      "team": {
+        "title": "Team",
+        "description": "Selecting, hiring and coordinating the stringing team."
+      },
+      "equipment": {
+        "title": "Equipment",
+        "description": "Machines, tools, materials and logistics."
+      },
+      "workspace": {
+        "title": "Setup",
+        "description": "Organizing the workspace and getting the service up and running."
+      },
+      "orders": {
+        "title": "Orders and delivery",
+        "description": "Managing orders, task distribution, priorities and deliveries."
+      },
+      "supervision": {
+        "title": "Supervision",
+        "description": "Operational supervision and coordination throughout the competition."
+      }
+    },
+    "techTitle": "Technology applied to management",
+    "techIntro": "CTS combines experience at international tournaments with specialized technology.",
+    "tools": {
+      "prostring": {
+        "name": "ProString Manage",
+        "description": "A SaaS platform for managing tournament stringing, which we take part in developing."
+      },
+      "planner": {
+        "name": "CTS Planner Tour",
+        "description": "Our own operational planning system."
+      }
+    },
+    "techNote": "Two tools that optimize the planning, organization and tracking of the service.",
+    "closing": "One team. One complete service. From planning to execution."
+  },
+  behindGame: {
+    intro: "What you can't see from the stands: the work, the team and the moments behind every tournament.",
+    photo: "See photo {n} larger",
+  },
   common: {
+    whatsappCta: "Message me on WhatsApp",
+    themeToLight: "Switch to light mode",
+    themeToDark: "Switch to dark mode",
+    menu: "Menu",
+    viewPhotos: "See photos of {name}",
+    viewPhotosYear: "See photos from {year}",
+    blueprint: "Racquet drawn as a blueprint, with the POINT, SET and MATCH services marked",
+    workshopPhoto: "Balancing work in the studio, photo {n}",
+    stringingPhoto: "Pablo Garibotto stringing a racquet at the Miami Open",
+    heroPhoto: "Pablo Garibotto working on a racquet in his studio",
     loading: "Loading...",
     videoUnsupported: "Your browser does not support the video.",
     previousImage: "Previous image",

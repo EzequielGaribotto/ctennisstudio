@@ -1,370 +1,223 @@
 .section {
-  width: 100%;
-  padding: 5rem 2rem;
-  background: transparent;
+  background: var(--surface-2);
   color: var(--foreground);
 }
 
 .container {
-  max-width: 1400px;
+  max-width: var(--page-max);
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
-  padding: 3rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: var(--section-space) var(--page-gutter);
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
-  color: #000000;
-  position: relative;
-  display: inline-block;
+  font-size: var(--text-title);
 }
 
-.title::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #000000, var(--primary));
-  border-radius: 2px;
-  animation: slideIn 0.6s ease-out;
+.headerTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
-@keyframes slideIn {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+.behindLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 44px;
+  color: var(--primary-text);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.875rem);
+  line-height: 1.1;
+  text-decoration: none;
+}
+
+.behindLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+
+.behindArrow {
+  flex-shrink: 0;
+  font-size: 0.7em;
+  transition: transform 0.2s ease;
+}
+
+.behindLink:hover .behindArrow {
+  transform: translateX(4px);
 }
 
 .description {
-  font-size: 1.125rem;
-  color: var(--muted-foreground);
-  max-width: 600px;
-  margin: 2rem auto 0;
-  line-height: 1.6;
+  max-width: 62ch;
+  font-size: var(--text-lead);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  margin-top: 2rem;
-  padding: 12px;
-  transition: max-height 0.8s ease-in-out, opacity 0.3s ease;
-  overflow: hidden;
-  margin-left: -12px;
-  margin-right: -12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
-/* Hide cards 5+ by default (when not expanded) */
+/* First four until the visitor asks for more */
 .grid .card:nth-child(n+5) {
   display: none;
 }
 
-/* Show all cards when expanded */
 .grid.expanded .card:nth-child(n+5) {
   display: flex;
 }
 
-/* Collapsing state - fade out extra cards with reversed order */
-.grid.collapsing .card:nth-child(n+5) {
-  display: flex;
-  animation: fadeOutDown 0.5s ease-out forwards;
-}
-
-/* Reverse delays for bottom-to-top, right-to-left collapse */
-.grid.collapsing .card:nth-child(5) { animation-delay: 0.35s; }
-.grid.collapsing .card:nth-child(6) { animation-delay: 0.3s; }
-.grid.collapsing .card:nth-child(7) { animation-delay: 0.25s; }
-.grid.collapsing .card:nth-child(8) { animation-delay: 0.2s; }
-.grid.collapsing .card:nth-child(9) { animation-delay: 0.15s; }
-.grid.collapsing .card:nth-child(10) { animation-delay: 0.1s; }
-.grid.collapsing .card:nth-child(11) { animation-delay: 0.05s; }
-.grid.collapsing .card:nth-child(12) { animation-delay: 0s; }
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-}
-
 .card {
-  background: white;
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  /* Only animate on initial load */
-  animation: fadeInUp 0.5s ease-out forwards;
-  opacity: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--on-panel);
 }
 
-/* Remove animation after initial load */
-.card.loaded {
-  animation: none;
-  opacity: 1;
+.cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--surface);
+  cursor: pointer;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+button.cover:focus-visible {
+  outline-offset: -4px;
 }
 
-/* Default staggered animation for expanding */
-.card:nth-child(1) { animation-delay: 0.05s; }
-.card:nth-child(2) { animation-delay: 0.1s; }
-.card:nth-child(3) { animation-delay: 0.15s; }
-.card:nth-child(4) { animation-delay: 0.2s; }
-.card:nth-child(5) { animation-delay: 0.25s; }
-.card:nth-child(6) { animation-delay: 0.3s; }
-.card:nth-child(7) { animation-delay: 0.35s; }
-.card:nth-child(8) { animation-delay: 0.4s; }
-.card:nth-child(9) { animation-delay: 0.45s; }
-.card:nth-child(10) { animation-delay: 0.5s; }
-.card:nth-child(11) { animation-delay: 0.55s; }
-.card:nth-child(12) { animation-delay: 0.6s; }
-
-/* Override animation when collapsing - set all cards to no animation first */
-.grid.collapsing .card {
-  animation: none;
-  opacity: 1;
+.coverEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  cursor: default;
 }
 
-.card::before {
-  content: "";
+.coverImage {
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button.cover:hover .coverImage {
+  transform: scale(1.03);
+}
+
+/* Tournament logos are made for a white background, so they keep one in both modes */
+.logoPlate {
   position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 2px;
-  background: linear-gradient(135deg, #000000, var(--primary));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-}
-
-/* Row 1: Logos */
-.logosRow {
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
-  max-width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
-  box-sizing: border-box;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.375rem 0.625rem;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
 }
 
-.logoContainer {
-  flex-shrink: 0;
+.logoPlateLarge {
+  position: static;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
 }
 
-.logoContainer {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 25%;
-  min-width: 0;
-  box-sizing: border-box;
-  margin-left: 0.5%;
-  margin-right: 0.5%;
+.logoPlateLarge .logo {
+  width: auto;
+  height: clamp(52px, 5vw, 72px);
 }
 
 .logo {
   display: block;
+  width: auto;
+  height: clamp(30px, 3vw, 40px);
   max-width: 100%;
-  max-height: 60px;
-  width: 100%;
-  height: auto;
+  min-width: 0;
   object-fit: contain;
-  border-radius: 8px;
-  box-sizing: border-box;
 }
 
-/* Row 2: Location */
-.locationRow {
+.info {
   display: flex;
-  justify-content: space-between;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.125rem 1.125rem 1rem;
+}
+
+.cityRow {
+  display: flex;
   align-items: center;
-  padding: 0.4rem 0;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .city {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--foreground);
-}
-
-/* Row 3: Category */
-.categoryRow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4rem 0;
+  min-width: 0;
+  font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.875rem);
+  overflow-wrap: anywhere;
 }
 
 .category {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.4rem 0.7rem;
-  border-radius: 18px;
-  letter-spacing: 0.03em;
-  display: inline-block;
-  text-align: center;
-  line-height: 1.35;
-  max-width: 90%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--on-panel-muted);
+  font-size: 0.9375rem;
+  line-height: 1.3;
 }
 
-/* Top 3 tournaments (Monte-Carlo, Madrid, Miami) - Gold color */
-.categoryHighlight {
-  background: linear-gradient(135deg, #d1b153, #e8cc7a);
-  color: #1a1a1a;
-  border: 2px solid #d1b153;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 15px rgba(209, 177, 83, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* 4th tournament (Godó) - Silver color */
-.categoryHighlightSilver {
-  background: linear-gradient(135deg, #acacac, #d0d0d0);
-  color: #1a1a1a;
-  border: 2px solid #acacac;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 15px rgba(172, 172, 172, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* Row 4: Years */
 .yearsRow {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4rem 0;
   flex-wrap: wrap;
-  gap: 0;
+  gap: 0 0.125rem;
+  margin: 0.5rem 0 0 -0.5rem;
+}
+
+.year,
+.yearPlain {
+  min-height: 40px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 32px;
 }
 
 .year {
-  font-size: 1.125rem;
-  color: var(--muted-foreground);
-  font-weight: 500;
-  font-family: inherit;
-  text-align: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--on-panel-accent);
   cursor: pointer;
-  position: relative;
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 20px;
-  z-index: 1;
-}
-
-.year::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--primary);
-  border-radius: 20px;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  box-shadow: 0 0 0 0 rgba(249, 160, 40, 0.4);
-}
-
-.year:hover::before {
-  transform: translate(-50%, -50%) scale(1.3);
-  opacity: 1;
-  animation: ripple 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .year:hover {
-  color: var(--primary);
-  font-weight: 600;
-  transform: scale(1.05);
+  background: var(--on-panel-accent);
+  color: #0b1a36;
 }
 
-.year:active {
-  transform: scale(0.95);
+.year:focus-visible {
+  outline-color: var(--on-panel);
 }
 
-@keyframes ripple {
-  0% {
-    box-shadow: 0 0 0 0 rgba(249, 160, 40, 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(249, 160, 40, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(249, 160, 40, 0);
-  }
-}
-
-.yearSeparator {
-  font-size: 1.125rem;
-  color: var(--muted-foreground);
+.yearPlain {
+  color: var(--on-panel-muted);
   font-weight: 500;
-  padding: 0;
-  user-select: none;
-  pointer-events: none;
 }
 
 /* Carousel Modal - Instagram Stories Style */
@@ -383,6 +236,7 @@
 
 .carouselModal.locked {
   pointer-events: auto;
+  background: rgba(4, 9, 20, 0.72);
 }
 
 .carouselModal.hover {
@@ -396,7 +250,7 @@
   width: 100%;
   max-width: 500px;
   height: 90vh;
-  max-height: 900px;
+  max-height: min(900px, calc(100vh - 16px));
   background: #000;
   border-radius: 12px;
   overflow: hidden;
@@ -459,7 +313,6 @@
   background: #ffffff;
   border-radius: 2px;
   transition: width 0.05s linear;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 /* Stories Header */
@@ -620,16 +473,7 @@
   font-size: 4rem;
   opacity: 0.8;
   text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
-  animation: pulse 1s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.4;
-  }
+  
 }
 
 @keyframes fadeIn {
@@ -641,171 +485,45 @@
   }
 }
 
-/* Show More Button */
 .showMoreContainer {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.showMoreButton {
-  background: var(--primary);
-  color: var(--on-primary);
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(249, 160, 40, 0.3);
-  letter-spacing: 0.05em;
+.trademarkNote {
+  margin: 1.5rem auto 0;
+  max-width: 900px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--muted-foreground);
 }
 
-.showMoreButton:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(249, 160, 40, 0.4);
-}
-
-.showMoreButton:active {
-  transform: translateY(0);
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .card {
-    padding: 0.75rem;
-  }
-
-  .logoContainer {
-    max-width: 30%;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
-  }
-
-  .logo {
-    max-height: 48px;
-  }
-
-  .logosRow {
-    gap: 0.4rem;
-    padding: 0.6rem 0;
-    max-width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-  .city {
-    font-size: 1rem;
-  }
-
-  .category {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.6rem;
-    border-radius: 16px;
-  }
-
-  .year {
-    font-size: 0.95rem;
-    padding: 0.22rem 0.45rem;
+  .cover {
+    aspect-ratio: 4 / 3;
   }
 }
 
-@media (max-width: 768px) {
-  .section {
-    padding: 3rem 0.5rem;
+@media (max-width: 860px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .container {
-    padding: 2rem 0.5rem;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .title::after {
-    width: auto;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .card {
-    padding: 0.5rem;
-  }
-
-  .logoContainer {
-    max-width: 40%;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
-  }
-
-  .logo {
-    max-height: 36px;
-  }
-
-  .logosRow {
-    gap: 0.25rem;
-    padding: 0.5rem 0;
-    max-width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-  .city {
-    font-size: 0.875rem;
-  }
-
-  .category {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
-    border-radius: 14px;
-    letter-spacing: 0.02em;
-    line-height: 1.35;
-    max-width: 85%;
-  }
-
-  .year {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.4rem;
-    border-radius: 16px;
-  }
-
-  .year::before {
-    border-radius: 16px;
-  }
-
-  .yearSeparator {
-    font-size: 0.8rem;
-  }
-
-  .showMoreButton {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-  }
-
-  /* Stories mobile adjustments */
+  /* Stories: nearly full screen on phones */
   .carouselModal {
-    padding: 40px 30px;
+    padding: 16px;
   }
 
   .storiesContainer {
     max-width: 100%;
-    height: calc(100vh - 80px);
-    max-height: calc(100vh - 80px);
-    border-radius: 12px;
+    height: calc(100svh - 32px);
+    max-height: calc(100svh - 32px);
   }
 
   .progressBarsContainer {
@@ -818,24 +536,11 @@
   }
 
   .storiesHeader {
-    padding: 60px 12px 12px;
-  }
-
-  .tournamentLogoSmall {
-    width: 56px;
-    height: 56px;
-  }
-
-  .tournamentName {
-    font-size: 1.15rem;
-  }
-
-  .tournamentYear {
-    font-size: 1rem;
+    padding: 44px 12px 12px;
   }
 
   .tapIndicator {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .pauseIcon {
@@ -843,11 +548,8 @@
   }
 }
 
-.trademarkNote {
-  margin: 1.5rem auto 0;
-  max-width: 900px;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  text-align: center;
-  color: #555;
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

@@ -1,0 +1,22 @@
+[
+  {
+    "src": "/images/stringer/behind-the-game/behind_1.webp",
+    "width": 1600,
+    "height": 1200
+  },
+  {
+    "src": "/images/stringer/behind-the-game/behind_2.webp",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "src": "/images/stringer/behind-the-game/behind_3.webp",
+    "width": 1200,
+    "height": 1600
+  },
+  {
+    "src": "/images/stringer/behind-the-game/behind_4.webp",
+    "width": 900,
+    "height": 1600
+  }
+]

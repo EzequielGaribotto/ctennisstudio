@@ -24,7 +24,7 @@
 }
 
 .modal {
-  background: white;
+  background: var(--surface);
   border-radius: 24px;
   max-width: 500px;
   width: 100%;
@@ -143,9 +143,9 @@
 }
 
 .formButton {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: var(--primary);
   color: var(--on-primary);
-  box-shadow: 0 4px 16px rgba(255, 140, 0, 0.3);
+  box-shadow: 0 4px 16px var(--tint);
 }
 
 .formButton::before {
@@ -166,7 +166,7 @@
 
 .formButton:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.4);
+  box-shadow: 0 8px 24px var(--tint);
 }
 
 .icon {
@@ -220,7 +220,7 @@
 .dividerText {
   font-size: 0.875rem;
   color: var(--muted-foreground);
-  background: white;
+  background: var(--surface);
   padding: 0 1rem;
   font-weight: 500;
   text-transform: uppercase;

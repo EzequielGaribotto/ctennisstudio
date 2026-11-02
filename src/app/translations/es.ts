@@ -10,6 +10,7 @@ export const es: Translations = {
     description: "Servicio especializado en encordado y equilibrado de raquetas de tenis."
   },
   navigation: {
+    gestion: "Tournament Stringing Management",
     inicio: "Inicio",
     encordado: "Encordado Profesional",
     equilibrado: "Equilibrado",
@@ -22,6 +23,11 @@ export const es: Translations = {
     copyright: "© {year} Custom Tennis Studio. Todos los derechos reservados."
   },
   hero: {
+        stringing: "Encordado profesional",
+        balancing: "Equilibrado, reparación y personalización de raquetas",
+        management: "Gestión de encordado en torneos",
+        courses: "Cursos y formación técnica",
+        experience: "Soluciones profesionales para todo tipo de jugadores, entrenadores, clubes, tiendas y torneos.",
     title: "CTennis Studio",
     subtitle: "By Pablo Garibotto",
     description: "Servicio profesional de encordado, equilibrado y reparación de raquetas de tenis"
@@ -37,18 +43,18 @@ export const es: Translations = {
   },
   encordado: {
     title: "Encordado Profesional",
-    description: "Un encordado profesional es fundamental para optimizar el rendimiento de tu raqueta. En CTS utilizamos las mismas técnicas, métodos y maquinas de encordar que se utilizan actualmente en el circuito de torneos ATP/WTA .",
+    description: "Un encordado profesional es fundamental para optimizar el rendimiento de tu raqueta. En CTS utilizamos las mismas técnicas, métodos y máquinas de encordar que se utilizan actualmente en el circuito de torneos ATP/WTA.",
     cta: "Más información",
     whatsappMessage: "¡Hola! Estoy interesado en el servicio de encordado profesional para mi raqueta de tenis. ¿Podrías darme más información?",
     features: {
       feature1: "Precisión y Ajuste profesional",
-      feature2: "Herramientas y maquinas de Nivel ATP/WTA",
+      feature2: "Herramientas y máquinas de nivel ATP/WTA",
       feature3: "Asesoramiento personalizado para cada jugador/a"
     }
   },
   equilibrado: {
     title: "Equilibrado y Reparación",
-    description: "Nuestros servicios de equilibrado optimizan la configuracion de tu raqueta para mejorar tu juego. Ofrecemos tres niveles de servicio adaptados a tu necesidad.",
+    description: "Nuestros servicios de equilibrado optimizan la configuración de tu raqueta para mejorar tu juego. Ofrecemos tres niveles de servicio adaptados a tu necesidad.",
     cta: "Más información",
     services: {
       point: {
@@ -63,7 +69,7 @@ export const es: Translations = {
       },
       match: {
         title: "MATCH",
-        description: "Igualar una raqueta a otra a partir de una configuracion personalizada",
+        description: "Igualar una raqueta a otra a partir de una configuración personalizada",
         whatsappMessage: "¡Hola! Estoy interesado en el servicio MATCH para igualar mis raquetas. ¿Podrías explicarme el proceso?"
       }
     }
@@ -152,8 +158,8 @@ export const es: Translations = {
     }
   },
   serviceDetails: {
-    whatIncludes: "Qué Incluye",
-    serviceIncludes: "El Servicio Incluye",
+    whatIncludes: "Qué incluye",
+    serviceIncludes: "El servicio incluye",
     point: {
       item1: "Análisis detallado del balance actual de la raqueta",
       item2: "Ajuste profesional del peso usando herramientas de precisión",
@@ -176,11 +182,12 @@ export const es: Translations = {
       item5: "Informe detallado de las especificaciones de ambas raquetas"
     },
     encordado: {
-      item1: "Máquinas de encordar Babolat de nivel profesional",
-      item2: "Calibración de tensión de precisión (±0.5kg)",
-      item3: "Técnicas de encordado de torneos ATP/WTA",
-      item4: "Recomendaciones personalizadas de cuerdas y tensión",
-      item5: "Inspección completa y limpieza de la raqueta"
+      item1: "Usamos la misma máquina que un Gran Slam.",
+      item2: "Ajuste de tensión de máxima precisión.",
+      item3: "Técnicas de encordado a 4 o 2 nudos.",
+      item4: "Recomendaciones personalizadas de cuerdas y tensión.",
+      item5: "Inspección completa y limpieza de la raqueta.",
+      item6: "Análisis gratuito de las especificaciones de tus raquetas si tienes más de 2."
     },
     base: {
       item4: "Práctica con equipamiento profesional",
@@ -220,7 +227,72 @@ export const es: Translations = {
       maestria: "Hola, estoy interesado en el curso Maestría de encordado"
     }
   },
+  management: {
+    "subtitle": "Gestión integral de encordado en torneos",
+    "strapline": "COMPLETE STRINGING SERVICE MANAGEMENT FOR PROFESSIONAL TENNIS TOURNAMENTS.",
+    "heroPhoto": "Equipo de encordado en la pista del Mutua Madrid Open",
+    "whatsappMessage": "Hola, me gustaría recibir información sobre la gestión integral de encordado para un torneo",
+    "intro1": "CTS ofrece la gestión integral del servicio oficial de encordado para torneos ATP, WTA y competiciones internacionales.",
+    "intro2": "Desde la planificación inicial hasta la entrega de la última raqueta, nos encargamos de todos los aspectos operativos necesarios para garantizar un servicio profesional, eficiente y de máxima calidad para todos los jugadores participantes.",
+    "ctaServices": "Ver nuestros servicios",
+    "managerTitle": "Experiencia como manager",
+    "servicesTitle": "Nuestros servicios incluyen",
+    "services": {
+      "planning": {
+        "title": "Planificación",
+        "description": "Planificación y coordinación previa con la dirección del torneo y el club."
+      },
+      "team": {
+        "title": "Equipo",
+        "description": "Selección, contratación y coordinación del equipo de encordadores."
+      },
+      "equipment": {
+        "title": "Equipamiento",
+        "description": "Maquinaria, herramientas, materiales y logística."
+      },
+      "workspace": {
+        "title": "Puesta en marcha",
+        "description": "Organización del espacio de trabajo y puesta en marcha del servicio."
+      },
+      "orders": {
+        "title": "Pedidos y entregas",
+        "description": "Gestión de pedidos, distribución de tareas, prioridades y entregas."
+      },
+      "supervision": {
+        "title": "Supervisión",
+        "description": "Supervisión y coordinación operativa durante toda la competición."
+      }
+    },
+    "techTitle": "Tecnología aplicada a la gestión",
+    "techIntro": "CTS combina experiencia en torneos internacionales con tecnología especializada.",
+    "tools": {
+      "prostring": {
+        "name": "ProString Manage",
+        "description": "Plataforma SaaS de gestión de encordado en torneos, en cuyo desarrollo participamos."
+      },
+      "planner": {
+        "name": "CTS Planner Tour",
+        "description": "Nuestro propio sistema de planificación operativa."
+      }
+    },
+    "techNote": "Dos herramientas que permiten optimizar la planificación, organización y seguimiento del servicio.",
+    "closing": "Un equipo. Un servicio completo. Desde la planificación hasta la ejecución."
+  },
+  behindGame: {
+    intro: "Lo que no se ve desde la grada: el trabajo, el equipo y los momentos detrás de cada torneo.",
+    photo: "Ver foto {n} en grande",
+  },
   common: {
+    whatsappCta: "Escríbeme por WhatsApp",
+    themeToLight: "Cambiar a modo claro",
+    themeToDark: "Cambiar a modo oscuro",
+    menu: "Menú",
+    viewPhotos: "Ver fotos de {name}",
+    viewPhotosYear: "Ver fotos de {year}",
+    blueprint: "Raqueta dibujada como un plano, con los servicios POINT, SET y MATCH señalados",
+    workshopPhoto: "Trabajo de equilibrado en el taller, foto {n}",
+    stringingPhoto: "Pablo Garibotto encordando una raqueta en el Miami Open",
+    heroPhoto: "Pablo Garibotto trabajando con una raqueta en su taller",
     loading: "Cargando...",
     videoUnsupported: "Tu navegador no soporta el video.",
     previousImage: "Imagen anterior",

@@ -1,16 +1,12 @@
 "use client"
 import type React from "react"
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { FaArrowRight, FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
+import { whatsappUrl } from "@/data/contact"
+import RacquetBlueprint from "./RacquetBlueprint"
 import styles from "./EquilibradoSection.module.css"
-
-interface Service {
-  key: "set" | "match" | "point"
-  title: string
-  description: string
-}
 
 const equilibradoImages = [
   "/images/stringer/services/racquets/equilibrado_1.webp",
@@ -19,106 +15,64 @@ const equilibradoImages = [
   "/images/stringer/services/racquets/equilibrado_4.webp",
 ]
 
+// `letter` is the marker on the racquet drawing; `spot` places the label next to it on large screens
+const SERVICES = [
+  { key: "set", letter: "S", spot: styles.spotSet },
+  { key: "point", letter: "P", spot: styles.spotPoint },
+  { key: "match", letter: "M", spot: styles.spotMatch },
+] as const
+
 const EquilibradoSection: React.FC = () => {
   const { t } = useTranslation()
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  const services: Service[] = [
-    {
-      key: "point",
-      title: t("equilibrado.services.point.title"),
-      description: t("equilibrado.services.point.description"),
-    },
-    {
-      key: "set",
-      title: t("equilibrado.services.set.title"),
-      description: t("equilibrado.services.set.description"),
-    },
-    {
-      key: "match",
-      title: t("equilibrado.services.match.title"),
-      description: t("equilibrado.services.match.description"),
-    },
-  ]
 
   return (
-    <section id="equilibrado" className={styles.section}>
+    <section className={styles.section}>
       <div className={styles.container}>
-
         <div className={styles.header}>
-          <h2 className={styles.title}>{t("equilibrado.title")}</h2>
-          <p className={styles.description}>{t("equilibrado.description")}</p>
-
-          <div className={styles.topRow}>
-            <div className={styles.carouselLeft}>
-              <div className={styles.carouselWrapper}>
-                <Image
-                  src={equilibradoImages.at(currentImageIndex) ?? equilibradoImages[0]}
-                  alt={`Equilibrado ${currentImageIndex + 1}`}
-                  width={300}
-                  height={400}
-                  className={styles.carouselImage}
-                  style={{ objectFit: 'cover', borderRadius: '12px' }}
-                />
-                
-                {/* Navigation buttons - appear on hover */}
-                <button
-                  className={styles.navButton + ' ' + styles.navButtonLeft}
-                  onClick={() => setCurrentImageIndex((prev) => 
-                    prev === 0 ? equilibradoImages.length - 1 : prev - 1
-                  )}
-                  aria-label={t("common.previousImage")}
-                >
-                  ‹
-                </button>
-                <button
-                  className={styles.navButton + ' ' + styles.navButtonRight}
-                  onClick={() => setCurrentImageIndex((prev) => 
-                    (prev + 1) % equilibradoImages.length
-                  )}
-                  aria-label={t("common.nextImage")}
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-
-            <div className={styles.upgradeRight}>
-              <Image
-                src="/images/logo/cts studio upgrade_new.webp"
-                alt="CTS Studio Upgrade"
-                width={100}
-                height={100}
-                className={styles.upgradeImage}
-              />
-            </div>
+          <h1 className={`${styles.title} cts-display`}>{t("equilibrado.title")}</h1>
+          <div className={styles.intro}>
+            <p className={styles.description}>{t("equilibrado.description")}</p>
+            <a
+              href={whatsappUrl(t("common.whatsappGeneric"))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cts-btn"
+            >
+              <FaWhatsapp aria-hidden="true" /> {t("common.whatsappCta")}
+            </a>
           </div>
         </div>
 
+        <div className={styles.blueprint}>
+          <RacquetBlueprint label={t("common.blueprint")} markers />
+          <ul className={styles.services}>
+            {SERVICES.map(({ key, letter, spot }) => (
+              <li key={key} className={spot}>
+                <Link href={`/services/${key}/`} className={styles.service}>
+                  <span className={styles.letter} aria-hidden="true">{letter}</span>
+                  <span className={styles.serviceText}>
+                    <span className={`${styles.serviceTitle} cts-display`}>
+                      {t(`equilibrado.services.${key}.title`)}
+                      <FaArrowRight className={styles.arrow} aria-hidden="true" />
+                    </span>
+                    <span className={styles.serviceDescription}>{t(`equilibrado.services.${key}.description`)}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className={styles.servicesGrid}>
-          {services.map((service) => (
-            <div key={service.key} className={styles.serviceCard}>
-              <div className={styles.cardTop}>
-                <h3 className={styles.serviceTitle}>{service.title}</h3>
-                <p className={styles.serviceDescript}>{service.description}</p>
-              </div>
-              <div className={styles.imagePlaceholder}>
-                <Image 
-                  src={`/images/stringer/services/racquets/${service.key.toUpperCase()}.webp`}
-                  alt={service.title}
-                  width={300}
-                  height={450}
-                  className={styles.serviceImage}
-                />
-              </div>
-              <Link
-                href={`/services/${service.key}`}
-                className={styles.ctaButton}
-              >
-                {t("equilibrado.cta")}
-                <span className="sr-only"> — {service.title}</span>
-              </Link>
+        <div className={styles.gallery}>
+          {equilibradoImages.map((src, index) => (
+            <div key={src} className={styles.galleryItem}>
+              <Image
+                src={src}
+                alt={t("common.workshopPhoto").replace("{n}", String(index + 1))}
+                fill
+                sizes="(max-width: 700px) 70vw, 25vw"
+                className={styles.galleryImage}
+              />
             </div>
           ))}
         </div>

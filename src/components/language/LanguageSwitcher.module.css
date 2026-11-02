@@ -1,79 +1,43 @@
 .languageSwitcher {
-  background: transparent;
-  border: none;
-  padding: 4px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  min-width: 44px;
+  height: 44px;
   flex-shrink: 0;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .languageSwitcher:hover {
-  transform: scale(1.1);
+  background: var(--tint);
 }
 
 .flagContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-  position: relative;
-  height: 2.8em;
-  width: 2em;
-  justify-content: center;
-  overflow: visible;
+  gap: 6px;
 }
 
-.activeFlag {
-  transition: all 0.5s ease-in-out;
-  opacity: 1;
-  transform: translateY(-0.4em) scale(1);
-  position: absolute;
-  z-index: 2;
-  filter: grayscale(0%) brightness(1);
+.activeFlag,
+.inactiveFlag {
+  display: flex;
+  transition: opacity 0.25s ease;
 }
 
 .inactiveFlag {
-  transition: all 0.5s ease-in-out;
-  opacity: 0.4;
-  filter: grayscale(100%) brightness(1.5);
-  transform: translateY(1.2em) scale(0.7);
-  position: absolute;
-  z-index: 1;
+  opacity: 0.55;
+  filter: grayscale(100%);
+}
+
+.languageSwitcher:hover .inactiveFlag {
+  opacity: 0.85;
 }
 
 .languageSwitcher.animating .activeFlag {
   opacity: 0.4;
-  filter: grayscale(100%) brightness(1.5);
-  transform: translateY(1.2em) scale(0.7);
-  z-index: 1;
-}
-
-.languageSwitcher.animating .inactiveFlag {
-  opacity: 1;
-  filter: grayscale(0%) brightness(1);
-  transform: translateY(-0.4em) scale(1.43);
-  z-index: 2;
-}
-
-.languageSwitcher:hover .inactiveFlag {
-  opacity: 0.6;
-  transform: translateY(1.2em) scale(0.75);
-}
-
-/* Mobile responsive styles */
-@media (max-width: 768px) {
-  .languageSwitcher {
-    padding: 6px 10px;
-  }
-
-}
-
-@media (max-width: 480px) {
-  .languageSwitcher {
-    padding: 5px 8px;
-  }
-
 }

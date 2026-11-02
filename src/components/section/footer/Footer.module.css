@@ -1,192 +1,86 @@
-.footerContent {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 30px;
+.footer {
   width: 100%;
-  max-width: 1400px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  gap: 2rem;
-  margin: 0 2rem;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 2rem clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3rem) var(--page-gutter);
+}
+
+.logo {
+  display: block;
+  width: clamp(180px, 20vw, 260px);
+  height: auto;
 }
 
 .footerInfo {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  flex: 1;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .contactButton {
-  display: inline-block;
-  padding: 4px 0;
-  background: transparent;
   color: var(--foreground);
+  font-size: 0.9375rem;
   text-decoration: underline;
-  text-decoration-color: var(--primary);
-  text-decoration-thickness: 2px;
   text-underline-offset: 4px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  align-self: flex-start;
-}
-
-.contactButton:hover {
-  color: var(--primary);
-  text-decoration-thickness: 3px;
 }
 
 .legalLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1rem;
-  font-size: 0.8rem;
+  gap: 0.25rem 1.25rem;
 }
 
 .legalLinks a {
+  display: inline-block;
+  padding: 0.25rem 0;
   color: var(--foreground);
-  text-decoration: underline;
-}
-
-.legalLinks a:hover {
-  color: var(--primary-text);
+  font-size: 0.9375rem;
+  text-underline-offset: 4px;
 }
 
 .copyright {
-  font-size: 0.9rem;
-  margin: 0;
-  opacity: 0.9;
-  color: var(--foreground);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
 }
 
 .socialLinks {
   display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  gap: 0.25rem;
 }
 
-.socialIcon {
-  width: 42px;
-  height: 42px;
-  display: flex;
+.socialLinks a {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  font-size: 1.2rem;
-  border: 2px solid;
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  color: var(--foreground);
+  font-size: 1.25rem;
+  transition: background-color 0.2s ease;
 }
 
-/* Facebook */
-.socialIcon[aria-label="Facebook"] {
-  background: var(--facebook-blue);
-  border-color: var(--facebook-blue);
+.socialLinks a:hover {
+  background: var(--tint);
 }
 
-.socialIcon[aria-label="Facebook"]:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(24, 119, 242, 0.4);
-}
-
-/* Instagram */
-.socialIcon[aria-label="Instagram"] {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  border-color: #e4405f;
-}
-
-.socialIcon[aria-label="Instagram"]:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(228, 64, 95, 0.4);
-}
-
-/* LinkedIn */
-.socialIcon[aria-label="LinkedIn"] {
-  background: var(--linkedin-blue);
-  border-color: var(--linkedin-blue);
-}
-
-.socialIcon[aria-label="LinkedIn"]:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 119, 181, 0.4);
-}
-
-/* WhatsApp */
-.socialIcon[aria-label="WhatsApp"] {
-  background: var(--whatsapp-green);
-  border-color: var(--whatsapp-green);
-}
-
-.socialIcon[aria-label="WhatsApp"]:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(37, 211, 102, 0.4);
-}
-
-/* Mobile responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .footerContent {
-    padding: 15px 20px;
-    flex-direction: column;
-    gap: 1.5rem;
-    border-radius: 12px;
-    margin: 0 0.5rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .footerInfo {
-    text-align: center;
-    width: 100%;
-  }
-
-  .contactButton {
-    align-self: center;
-  }
-
-  .legalLinks {
-    justify-content: center;
-  }
-
-  .copyright {
-    font-size: 0.85rem;
-  }
-
-  .socialLinks {
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .socialIcon {
-    width: 38px;
-    height: 38px;
-    font-size: 1.1rem;
-  }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
-  .footerContent {
-    padding: 12px 15px;
-    margin: 0 0.5rem;
-  }
-
-  .copyright {
-    font-size: 0.75rem;
-  }
-
-  .socialLinks {
-    gap: 0.75rem;
-  }
-
-  .socialIcon {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
+  /* Leaves room for the floating WhatsApp button */
+  .footer {
+    padding-bottom: 72px;
   }
 }

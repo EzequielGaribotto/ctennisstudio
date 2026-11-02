@@ -1,5 +1,6 @@
 "use client"
 import type React from "react"
+import Header from "@/components/header/Header"
 import Link from "next/link"
 import { FaArrowLeft } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
@@ -25,6 +26,8 @@ export const LegalPage: React.FC<{ doc: LegalDocKey }> = ({ doc }) => {
   const fill = (text: string) => fillLegalText(text, values)
 
   return (
+    <>
+    <Header />
     <main className={styles.wrapper}>
       <article className={styles.card}>
         <Link href="/" className={styles.back}>
@@ -63,5 +66,6 @@ export const LegalPage: React.FC<{ doc: LegalDocKey }> = ({ doc }) => {
         </nav>
       </article>
     </main>
+    </>
   )
 }

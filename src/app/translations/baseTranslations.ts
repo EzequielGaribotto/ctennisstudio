@@ -7,6 +7,7 @@ export const baseTranslations = {
     },
     // Navigation translations
     navigation: {
+    gestion: "",
         inicio: "",
         encordado: "",
         equilibrado: "",
@@ -21,6 +22,11 @@ export const baseTranslations = {
     },
     // Tennis studio sections
     hero: {
+        stringing: "",
+        balancing: "",
+        management: "",
+        courses: "",
+        experience: "",
         title: "",
         subtitle: "",
         description: ""
@@ -156,7 +162,8 @@ export const baseTranslations = {
             item2: "",
             item3: "",
             item4: "",
-            item5: ""
+            item5: "",
+            item6: ""
         },
         point: {
             item1: "",
@@ -217,7 +224,72 @@ export const baseTranslations = {
             maestria: ""
         }
     },
+    management: {
+      "subtitle": "",
+      "strapline": "",
+      "heroPhoto": "",
+      "whatsappMessage": "",
+      "intro1": "",
+      "intro2": "",
+      "ctaServices": "",
+      "managerTitle": "",
+      "servicesTitle": "",
+      "services": {
+        "planning": {
+          "title": "",
+          "description": ""
+        },
+        "team": {
+          "title": "",
+          "description": ""
+        },
+        "equipment": {
+          "title": "",
+          "description": ""
+        },
+        "workspace": {
+          "title": "",
+          "description": ""
+        },
+        "orders": {
+          "title": "",
+          "description": ""
+        },
+        "supervision": {
+          "title": "",
+          "description": ""
+        }
+      },
+      "techTitle": "",
+      "techIntro": "",
+      "tools": {
+        "prostring": {
+          "name": "",
+          "description": ""
+        },
+        "planner": {
+          "name": "",
+          "description": ""
+        }
+      },
+      "techNote": "",
+      "closing": ""
+    },
+    behindGame: {
+      intro: "",
+      photo: "",
+    },
     common: {
+    whatsappCta: "",
+    themeToLight: "",
+    themeToDark: "",
+    menu: "",
+    viewPhotos: "",
+    viewPhotosYear: "",
+    blueprint: "",
+    workshopPhoto: "",
+    stringingPhoto: "",
+    heroPhoto: "",
         loading: "",
         videoUnsupported: "",
         previousImage: "",

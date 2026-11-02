@@ -1,0 +1,633 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T18:32:23.984Z",
+  "title": "Design System: CTennis Studio",
+  "extensions": {
+    "colorMeta": {
+      "cream-paper": {
+        "role": "neutral",
+        "displayName": "Cream Paper",
+        "canonical": "#f6efe3",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 81.3)",
+          "oklch(26.4% 0.015 81.3)",
+          "oklch(37.9% 0.018 81.3)",
+          "oklch(49.3% 0.018 81.3)",
+          "oklch(60.7% 0.018 81.3)",
+          "oklch(72.1% 0.018 81.3)",
+          "oklch(83.6% 0.012 81.3)",
+          "oklch(95.0% 0.004 81.3)"
+        ]
+      },
+      "pale-paper": {
+        "role": "neutral",
+        "displayName": "Pale Paper",
+        "canonical": "#fbf7ef",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 84.6)",
+          "oklch(26.4% 0.010 84.6)",
+          "oklch(37.9% 0.011 84.6)",
+          "oklch(49.3% 0.011 84.6)",
+          "oklch(60.7% 0.011 84.6)",
+          "oklch(72.1% 0.011 84.6)",
+          "oklch(83.6% 0.008 84.6)",
+          "oklch(95.0% 0.002 84.6)"
+        ]
+      },
+      "kraft-paper": {
+        "role": "neutral",
+        "displayName": "Kraft Paper",
+        "canonical": "#eee3d2",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 78.9)",
+          "oklch(26.4% 0.022 78.9)",
+          "oklch(37.9% 0.026 78.9)",
+          "oklch(49.3% 0.026 78.9)",
+          "oklch(60.7% 0.026 78.9)",
+          "oklch(72.1% 0.026 78.9)",
+          "oklch(83.6% 0.017 78.9)",
+          "oklch(95.0% 0.005 78.9)"
+        ]
+      },
+      "drafting-ink": {
+        "role": "neutral",
+        "displayName": "Drafting Ink",
+        "canonical": "#17130e",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 73.2)",
+          "oklch(26.4% 0.010 73.2)",
+          "oklch(37.9% 0.012 73.2)",
+          "oklch(49.3% 0.012 73.2)",
+          "oklch(60.7% 0.012 73.2)",
+          "oklch(72.1% 0.012 73.2)",
+          "oklch(83.6% 0.008 73.2)",
+          "oklch(95.0% 0.002 73.2)"
+        ]
+      },
+      "faded-ink": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "#5e5243",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 73.2)",
+          "oklch(26.4% 0.024 73.2)",
+          "oklch(37.9% 0.028 73.2)",
+          "oklch(49.3% 0.028 73.2)",
+          "oklch(60.7% 0.028 73.2)",
+          "oklch(72.1% 0.028 73.2)",
+          "oklch(83.6% 0.019 73.2)",
+          "oklch(95.0% 0.006 73.2)"
+        ]
+      },
+      "copper-wire": {
+        "role": "primary",
+        "displayName": "Copper Wire",
+        "canonical": "#a2551f",
+        "tonalRamp": [
+          "oklch(15.0% 0.048 51.5)",
+          "oklch(26.4% 0.103 51.5)",
+          "oklch(37.9% 0.121 51.5)",
+          "oklch(49.3% 0.121 51.5)",
+          "oklch(60.7% 0.121 51.5)",
+          "oklch(72.1% 0.121 51.5)",
+          "oklch(83.6% 0.079 51.5)",
+          "oklch(95.0% 0.024 51.5)"
+        ]
+      },
+      "copper-pressed": {
+        "role": "primary",
+        "displayName": "Copper Pressed",
+        "canonical": "#87451a",
+        "tonalRamp": [
+          "oklch(15.0% 0.042 50.1)",
+          "oklch(26.4% 0.090 50.1)",
+          "oklch(37.9% 0.105 50.1)",
+          "oklch(49.3% 0.105 50.1)",
+          "oklch(60.7% 0.105 50.1)",
+          "oklch(72.1% 0.105 50.1)",
+          "oklch(83.6% 0.069 50.1)",
+          "oklch(95.0% 0.021 50.1)"
+        ]
+      },
+      "copper-light": {
+        "role": "primary",
+        "displayName": "Copper Light",
+        "canonical": "#c9834d",
+        "tonalRamp": [
+          "oklch(15.0% 0.044 57.0)",
+          "oklch(26.4% 0.095 57.0)",
+          "oklch(37.9% 0.111 57.0)",
+          "oklch(49.3% 0.111 57.0)",
+          "oklch(60.7% 0.111 57.0)",
+          "oklch(72.1% 0.111 57.0)",
+          "oklch(83.6% 0.073 57.0)",
+          "oklch(95.0% 0.022 57.0)"
+        ]
+      },
+      "copper-text": {
+        "role": "primary",
+        "displayName": "Copper Text",
+        "canonical": "#8f4a1a",
+        "tonalRamp": [
+          "oklch(15.0% 0.044 51.3)",
+          "oklch(26.4% 0.095 51.3)",
+          "oklch(37.9% 0.110 51.3)",
+          "oklch(49.3% 0.110 51.3)",
+          "oklch(60.7% 0.110 51.3)",
+          "oklch(72.1% 0.110 51.3)",
+          "oklch(83.6% 0.073 51.3)",
+          "oklch(95.0% 0.022 51.3)"
+        ]
+      },
+      "on-copper": {
+        "role": "primary",
+        "displayName": "On Copper",
+        "canonical": "#fff8ee",
+        "tonalRamp": [
+          "oklch(15.0% 0.006 77.1)",
+          "oklch(26.4% 0.013 77.1)",
+          "oklch(37.9% 0.015 77.1)",
+          "oklch(49.3% 0.015 77.1)",
+          "oklch(60.7% 0.015 77.1)",
+          "oklch(72.1% 0.015 77.1)",
+          "oklch(83.6% 0.010 77.1)",
+          "oklch(95.0% 0.003 77.1)"
+        ]
+      },
+      "paper-rule": {
+        "role": "neutral",
+        "displayName": "Paper Rule",
+        "canonical": "#d9c8ae",
+        "tonalRamp": [
+          "oklch(15.0% 0.016 78.5)",
+          "oklch(26.4% 0.034 78.5)",
+          "oklch(37.9% 0.040 78.5)",
+          "oklch(49.3% 0.040 78.5)",
+          "oklch(60.7% 0.040 78.5)",
+          "oklch(72.1% 0.040 78.5)",
+          "oklch(83.6% 0.026 78.5)",
+          "oklch(95.0% 0.008 78.5)"
+        ]
+      },
+      "paper-grid": {
+        "role": "neutral",
+        "displayName": "Paper Grid",
+        "canonical": "#e6dac6",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 80.7)",
+          "oklch(26.4% 0.026 80.7)",
+          "oklch(37.9% 0.030 80.7)",
+          "oklch(49.3% 0.030 80.7)",
+          "oklch(60.7% 0.030 80.7)",
+          "oklch(72.1% 0.030 80.7)",
+          "oklch(83.6% 0.020 80.7)",
+          "oklch(95.0% 0.006 80.7)"
+        ]
+      },
+      "midnight": {
+        "role": "neutral",
+        "displayName": "Midnight",
+        "canonical": "#0b1a36",
+        "tonalRamp": [
+          "oklch(15.0% 0.023 261.7)",
+          "oklch(26.4% 0.050 261.7)",
+          "oklch(37.9% 0.058 261.7)",
+          "oklch(49.3% 0.058 261.7)",
+          "oklch(60.7% 0.058 261.7)",
+          "oklch(72.1% 0.058 261.7)",
+          "oklch(83.6% 0.038 261.7)",
+          "oklch(95.0% 0.012 261.7)"
+        ]
+      },
+      "midnight-surface": {
+        "role": "neutral",
+        "displayName": "Midnight Surface",
+        "canonical": "#11244a",
+        "tonalRamp": [
+          "oklch(15.0% 0.030 262.5)",
+          "oklch(26.4% 0.064 262.5)",
+          "oklch(37.9% 0.075 262.5)",
+          "oklch(49.3% 0.075 262.5)",
+          "oklch(60.7% 0.075 262.5)",
+          "oklch(72.1% 0.075 262.5)",
+          "oklch(83.6% 0.049 262.5)",
+          "oklch(95.0% 0.015 262.5)"
+        ]
+      },
+      "midnight-raised": {
+        "role": "neutral",
+        "displayName": "Midnight Raised",
+        "canonical": "#18305e",
+        "tonalRamp": [
+          "oklch(15.0% 0.035 262.0)",
+          "oklch(26.4% 0.075 262.0)",
+          "oklch(37.9% 0.087 262.0)",
+          "oklch(49.3% 0.087 262.0)",
+          "oklch(60.7% 0.087 262.0)",
+          "oklch(72.1% 0.087 262.0)",
+          "oklch(83.6% 0.057 262.0)",
+          "oklch(95.0% 0.017 262.0)"
+        ]
+      },
+      "moonlight": {
+        "role": "neutral",
+        "displayName": "Moonlight",
+        "canonical": "#eef1f5",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 255.5)",
+          "oklch(26.4% 0.005 255.5)",
+          "oklch(37.9% 0.006 255.5)",
+          "oklch(49.3% 0.006 255.5)",
+          "oklch(60.7% 0.006 255.5)",
+          "oklch(72.1% 0.006 255.5)",
+          "oklch(83.6% 0.004 255.5)",
+          "oklch(95.0% 0.001 255.5)"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#b9c1cd",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 258.4)",
+          "oklch(26.4% 0.016 258.4)",
+          "oklch(37.9% 0.019 258.4)",
+          "oklch(49.3% 0.019 258.4)",
+          "oklch(60.7% 0.019 258.4)",
+          "oklch(72.1% 0.019 258.4)",
+          "oklch(83.6% 0.013 258.4)",
+          "oklch(95.0% 0.004 258.4)"
+        ]
+      },
+      "silver-wire": {
+        "role": "primary",
+        "displayName": "Silver Wire",
+        "canonical": "#c9cfd6",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 252.1)",
+          "oklch(26.4% 0.010 252.1)",
+          "oklch(37.9% 0.012 252.1)",
+          "oklch(49.3% 0.012 252.1)",
+          "oklch(60.7% 0.012 252.1)",
+          "oklch(72.1% 0.012 252.1)",
+          "oklch(83.6% 0.008 252.1)",
+          "oklch(95.0% 0.002 252.1)"
+        ]
+      },
+      "silver-pressed": {
+        "role": "primary",
+        "displayName": "Silver Pressed",
+        "canonical": "#e4e8ec",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 247.9)",
+          "oklch(26.4% 0.006 247.9)",
+          "oklch(37.9% 0.007 247.9)",
+          "oklch(49.3% 0.007 247.9)",
+          "oklch(60.7% 0.007 247.9)",
+          "oklch(72.1% 0.007 247.9)",
+          "oklch(83.6% 0.005 247.9)",
+          "oklch(95.0% 0.001 247.9)"
+        ]
+      },
+      "silver-deep": {
+        "role": "primary",
+        "displayName": "Silver Deep",
+        "canonical": "#9aa5b3",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 254.4)",
+          "oklch(26.4% 0.020 254.4)",
+          "oklch(37.9% 0.024 254.4)",
+          "oklch(49.3% 0.024 254.4)",
+          "oklch(60.7% 0.024 254.4)",
+          "oklch(72.1% 0.024 254.4)",
+          "oklch(83.6% 0.016 254.4)",
+          "oklch(95.0% 0.005 254.4)"
+        ]
+      },
+      "silver-text": {
+        "role": "primary",
+        "displayName": "Silver Text",
+        "canonical": "#d5dae0",
+        "tonalRamp": [
+          "oklch(15.0% 0.004 252.8)",
+          "oklch(26.4% 0.008 252.8)",
+          "oklch(37.9% 0.010 252.8)",
+          "oklch(49.3% 0.010 252.8)",
+          "oklch(60.7% 0.010 252.8)",
+          "oklch(72.1% 0.010 252.8)",
+          "oklch(83.6% 0.006 252.8)",
+          "oklch(95.0% 0.002 252.8)"
+        ]
+      },
+      "midnight-rule": {
+        "role": "neutral",
+        "displayName": "Midnight Rule",
+        "canonical": "#2d4674",
+        "tonalRamp": [
+          "oklch(15.0% 0.034 261.7)",
+          "oklch(26.4% 0.072 261.7)",
+          "oklch(37.9% 0.084 261.7)",
+          "oklch(49.3% 0.084 261.7)",
+          "oklch(60.7% 0.084 261.7)",
+          "oklch(72.1% 0.084 261.7)",
+          "oklch(83.6% 0.055 261.7)",
+          "oklch(95.0% 0.017 261.7)"
+        ]
+      },
+      "midnight-grid": {
+        "role": "neutral",
+        "displayName": "Midnight Grid",
+        "canonical": "#16294f",
+        "tonalRamp": [
+          "oklch(15.0% 0.030 262.7)",
+          "oklch(26.4% 0.063 262.7)",
+          "oklch(37.9% 0.074 262.7)",
+          "oklch(49.3% 0.074 262.7)",
+          "oklch(60.7% 0.074 262.7)",
+          "oklch(72.1% 0.074 262.7)",
+          "oklch(83.6% 0.049 262.7)",
+          "oklch(95.0% 0.015 262.7)"
+        ]
+      },
+      "warm-copper": {
+        "role": "secondary",
+        "displayName": "Warm Copper",
+        "canonical": "#e9a36b",
+        "tonalRamp": [
+          "oklch(15.0% 0.044 58.8)",
+          "oklch(26.4% 0.094 58.8)",
+          "oklch(37.9% 0.110 58.8)",
+          "oklch(49.3% 0.110 58.8)",
+          "oklch(60.7% 0.110 58.8)",
+          "oklch(72.1% 0.110 58.8)",
+          "oklch(83.6% 0.072 58.8)",
+          "oklch(95.0% 0.022 58.8)"
+        ]
+      },
+      "plate-white": {
+        "role": "neutral",
+        "displayName": "Plate White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "whatsapp-green": {
+        "role": "tertiary",
+        "displayName": "WhatsApp Green",
+        "canonical": "#25d366",
+        "tonalRamp": [
+          "oklch(15.0% 0.081 149.7)",
+          "oklch(26.4% 0.173 149.7)",
+          "oklch(37.9% 0.201 149.7)",
+          "oklch(49.3% 0.201 149.7)",
+          "oklch(60.7% 0.201 149.7)",
+          "oklch(72.1% 0.201 149.7)",
+          "oklch(83.6% 0.132 149.7)",
+          "oklch(95.0% 0.040 149.7)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page titles on the encordado and equilibrado pages."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles on the home page."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Service names, with course names and tournament cities close to it."
+      },
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "The service line under the home logo."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The paragraph that introduces a section."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default running text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Menu items, tournament categories and year links."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Button text and more links."
+      },
+      "note": {
+        "displayName": "Note",
+        "purpose": "The trademark notice under the tournaments."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plate-lift",
+        "value": "0 4px 12px rgba(0, 0, 0, 0.22)",
+        "purpose": "White logo plate lying on a tournament photo."
+      },
+      {
+        "name": "floating-action",
+        "value": "0 6px 18px rgba(0, 0, 0, 0.3)",
+        "purpose": "Floating WhatsApp button over the page."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-color",
+        "value": "0.2s ease",
+        "purpose": "Background and color changes on buttons and icon controls."
+      },
+      {
+        "name": "arrow-shift",
+        "value": "transform 0.2s ease, translateX(4px)",
+        "purpose": "Arrow movement on service and detail links."
+      },
+      {
+        "name": "cover-settle",
+        "value": "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), scale(1.03)",
+        "purpose": "Tournament cover photo on hover."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "header-collapse",
+        "value": "1320px"
+      },
+      {
+        "name": "board-two-columns",
+        "value": "1180px"
+      },
+      {
+        "name": "blueprint-list",
+        "value": "999px"
+      },
+      {
+        "name": "stack",
+        "value": "860px"
+      },
+      {
+        "name": "gallery-scroller",
+        "value": "700px"
+      },
+      {
+        "name": "board-one-column",
+        "value": "600px"
+      },
+      {
+        "name": "small-phone",
+        "value": "380px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The WhatsApp action in the page, in the wire color of the current mode.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><svg viewBox=\"0 0 448 512\" width=\"18\" height=\"18\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z\"/></svg> Escríbeme por WhatsApp</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:0.625rem;min-height:52px;padding:0.875rem 1.5rem;border:0;border-radius:6px;font-weight:700;font-size:1.0625rem;line-height:1.2;text-decoration:none;cursor:pointer;transition:background-color 0.2s ease;background:var(--primary);color:var(--on-primary);} .ds-btn-primary:hover{background:var(--primary-dark);} .ds-btn-primary:focus-visible{outline:2px solid var(--primary-text);outline-offset:3px;}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary page actions such as revealing the rest of the tournament board.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\">Ver más</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:0.625rem;min-height:52px;padding:0.875rem 1.5rem;border:0;border-radius:6px;font-weight:700;font-size:1.0625rem;line-height:1.2;text-decoration:none;cursor:pointer;transition:background-color 0.2s ease;background:transparent;color:var(--foreground);box-shadow:inset 0 0 0 2px var(--foreground);} .ds-btn-outline:hover{background:var(--foreground);color:var(--background);} .ds-btn-outline:focus-visible{outline:2px solid var(--primary-text);outline-offset:3px;}"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Menu items in the sticky header; hover and current page get a wire-colored underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Inicio</a><a href=\"#\">Experience Tour</a><a href=\"#\" aria-current=\"page\">Equilibrado</a><a href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:1.5rem;padding:1rem 0;border-bottom:1px solid var(--border);background:var(--background);} .ds-nav a{display:inline-block;padding:0.5rem 0;color:var(--foreground);font-weight:500;font-size:0.9375rem;text-decoration:none;text-underline-offset:6px;text-decoration-thickness:2px;} .ds-nav a:hover,.ds-nav a[aria-current=\"page\"]{text-decoration-line:underline;text-decoration-color:var(--primary);} .ds-nav a:focus-visible{outline:2px solid var(--primary-text);outline-offset:3px;}"
+    },
+    {
+      "name": "Tournament Card",
+      "kind": "card",
+      "refersTo": "tournament-caption",
+      "description": "Large photo with a white logo plate over a caption that stays navy in light mode, the owner's approved choice.",
+      "html": "<article class=\"ds-tcard\"><div class=\"ds-tcard-cover\"><span class=\"ds-tcard-plate\">ATP / WTA 1000</span></div><div class=\"ds-tcard-info\"><h3 class=\"ds-tcard-city\">Madrid</h3><p class=\"ds-tcard-cat\">Mutua Madrid Open</p><div class=\"ds-tcard-years\"><button type=\"button\" class=\"ds-tcard-year\">2026</button><button type=\"button\" class=\"ds-tcard-year\">2025</button><span class=\"ds-tcard-plain\">2010</span></div></div></article>",
+      "css": ".ds-tcard{display:flex;flex-direction:column;max-width:320px;overflow:hidden;border-radius:var(--radius);background:var(--panel);color:var(--on-panel);} .ds-tcard-cover{position:relative;aspect-ratio:4/5;background:var(--surface-2);} .ds-tcard-plate{position:absolute;top:0.75rem;left:0.75rem;padding:0.375rem 0.625rem;border-radius:6px;background:#fff;color:#0b1a36;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,0.22);} .ds-tcard-info{display:flex;flex-direction:column;gap:0.25rem;padding:1.125rem 1.125rem 1rem;} .ds-tcard-city{font-size:clamp(1.375rem,1.1rem + 0.8vw,1.875rem);line-height:1.05;font-weight:800;font-stretch:112%;letter-spacing:-0.02em;} .ds-tcard-cat{color:var(--on-panel-muted);font-size:0.9375rem;line-height:1.3;} .ds-tcard-years{display:flex;flex-wrap:wrap;gap:0 0.125rem;margin:0.5rem 0 0 -0.5rem;} .ds-tcard-year,.ds-tcard-plain{min-height:40px;padding:0.25rem 0.5rem;font-size:0.9375rem;line-height:32px;font-variant-numeric:tabular-nums;} .ds-tcard-year{border:0;border-radius:6px;background:transparent;color:var(--on-panel-accent);font-weight:600;cursor:pointer;transition:background-color 0.2s ease,color 0.2s ease;} .ds-tcard-year:hover{background:var(--on-panel-accent);color:#0b1a36;} .ds-tcard-year:focus-visible{outline:2px solid var(--on-panel);outline-offset:3px;} .ds-tcard-plain{color:var(--on-panel-muted);font-weight:500;}"
+    },
+    {
+      "name": "Ruled Course Column",
+      "kind": "custom",
+      "description": "A course or service list: a 2px opening rule, hairline rows, and an arrow link.",
+      "html": "<section class=\"ds-ruled\"><h3 class=\"ds-ruled-name\">Base</h3><p class=\"ds-ruled-level\">Nivel Principiante</p><ul class=\"ds-ruled-list\"><li>Fundamentos de encordado</li><li>Encordado a 2 y 4 nudos</li></ul><a class=\"ds-ruled-more\" href=\"#\">Ver detalles <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></a></section>",
+      "css": ".ds-ruled{display:flex;flex-direction:column;gap:0.5rem;max-width:360px;padding-top:1.25rem;border-top:2px solid var(--foreground);color:var(--foreground);} .ds-ruled-name{font-size:clamp(1.75rem,1.25rem + 1.4vw,2.5rem);line-height:1.05;color:var(--primary-text);font-weight:800;font-stretch:112%;letter-spacing:-0.02em;} .ds-ruled-level{font-weight:600;} .ds-ruled-list{margin:0.75rem 0 1.25rem;list-style:none;padding:0;} .ds-ruled-list li{padding:0.625rem 0;border-bottom:1px solid var(--border);line-height:1.35;} .ds-ruled-more{display:inline-flex;align-items:center;gap:0.625rem;min-height:44px;color:var(--foreground);font-weight:700;text-decoration:none;} .ds-ruled-more svg{color:var(--primary-text);transition:transform 0.2s ease;} .ds-ruled-more:hover{text-decoration:underline;text-underline-offset:5px;} .ds-ruled-more:hover svg{transform:translateX(4px);} .ds-ruled-more:focus-visible{outline:2px solid var(--primary-text);outline-offset:3px;}"
+    },
+    {
+      "name": "Blueprint Service Label",
+      "kind": "custom",
+      "description": "A service link set on the drafting grid beside a wire-colored marker, as on the racquet blueprint.",
+      "html": "<a class=\"ds-blueprint\" href=\"#\"><span class=\"ds-blueprint-marker\">S</span><span><span class=\"ds-blueprint-title\">SET <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></span><span class=\"ds-blueprint-text\">Aumentar el peso de tu raqueta de tenis</span></span></a>",
+      "css": ".ds-blueprint{display:flex;align-items:center;gap:1rem;padding:1.5rem;color:var(--foreground);text-decoration:none;background-color:var(--background);background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:36px 36px;} .ds-blueprint-marker{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--primary);color:var(--on-primary);font-weight:800;font-size:1.125rem;} .ds-blueprint-title{display:flex;align-items:center;gap:0.5em;color:var(--primary-text);font-size:clamp(1.5rem,1rem + 1.4vw,2.25rem);line-height:1;font-weight:800;font-stretch:112%;letter-spacing:-0.02em;} .ds-blueprint-title svg{transition:transform 0.2s ease;} .ds-blueprint-text{display:block;margin-top:0.25rem;font-size:1rem;line-height:1.35;} .ds-blueprint:hover .ds-blueprint-title{text-decoration:underline;text-underline-offset:5px;} .ds-blueprint:hover svg{transform:translateX(4px);} .ds-blueprint:focus-visible{outline:2px solid var(--primary-text);outline-offset:3px;}"
+    },
+    {
+      "name": "Floating WhatsApp",
+      "kind": "button",
+      "refersTo": "whatsapp-float",
+      "description": "The green circle on phones and tablets, up to 1320px wide; the only green element.",
+      "html": "<a class=\"ds-wa-float\" href=\"#\" aria-label=\"WhatsApp\"><svg viewBox=\"0 0 448 512\" width=\"18\" height=\"18\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z\"/></svg></a>",
+      "css": ".ds-wa-float{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--whatsapp-green);color:#0b1a36;box-shadow:0 6px 18px rgba(0,0,0,0.3);} .ds-wa-float svg{width:28px;height:28px;} .ds-wa-float:focus-visible{outline:2px solid var(--primary-text);outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Stringer's Drafting Table",
+    "overview": "The site is a working table seen from above: paper, ink, a drawing of the racquet, a length of wire, and real photographs of the man at the machine. Precision is shown through drawing and rules, warmth through paper and the photographs. Pablo's tournament record does the persuading, so photos run large and the type around them stays plain and heavy.\n\nIt works in two modes that are the same table at different hours. Light is cream drafting paper, near-black ink and copper wire. Dark is midnight blue with silver wire. The mode follows the visitor's device, and a button switches it.\n\nDensity is calm. Sections are full-bleed bands divided by hairlines, with large headlines and generous vertical space. Motion is limited to small responses on hover. The owner has rejected overloaded pages with many animations or videos, a cold or overly serious feel, and looking like a template; the floating white cards on dark of the old site are what this world replaced.",
+    "keyCharacteristics": [
+      "Two paired modes: cream and copper, midnight and silver.",
+      "Full-bleed bands and hairline rules; the tournament board is the one place that uses cards.",
+      "One wide, heavy Archivo headline voice over a plain body.",
+      "Real photographs at large scale, often bleeding off an edge.",
+      "A line-drawn racquet on a drafting grid as the signature device."
+    ],
+    "rules": [
+      {
+        "name": "The Two Wires Rule",
+        "body": "Each mode has one wire: copper on cream, silver on midnight. Use the role variables so a color swaps with the mode, and never hardcode a wire color into a component.",
+        "section": "colors"
+      },
+      {
+        "name": "The Navy Caption Rule",
+        "body": "In light mode, tournament card captions are navy (#0b1a36) with cream text, silver secondary text and warm copper years. This is the owner's choice from a sketch he approved. Keep them navy; do not restyle them to paper to match the page.",
+        "section": "colors"
+      },
+      {
+        "name": "The White Plate Rule",
+        "body": "Tournament logos are made for a white background, so they always sit on a white plate (#ffffff), in both modes. The CTS logo is the opposite: ink on transparent, inverted by filter in dark mode, and it never gets a plate.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Green Rule",
+        "body": "WhatsApp green (#25d366) belongs only to the floating phone button. Every other WhatsApp action wears the wire color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wide Voice Rule",
+        "body": "Headlines are the one wide, heavy voice: 800 weight, 112% width, slightly tight spacing. Everything else stays at normal width, so width alone tells the visitor what is a headline.",
+        "section": "typography"
+      },
+      {
+        "name": "The Logo Headline Rule",
+        "body": "The home page's main heading is the full logo, large. No text headline competes with it in the first screen.",
+        "section": "typography"
+      },
+      {
+        "name": "The Bands Before Boxes Rule",
+        "body": "Group content with full-bleed bands, whitespace and rules. The tournament board is the only card grid; a new section gets a band, not a set of floating cards.",
+        "section": "layout"
+      },
+      {
+        "name": "The Earned Grid Rule",
+        "body": "The drafting grid (36px squares of 1px lines) appears only behind a drawing of the racquet. No drawing, no grid.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Paper Rule",
+        "body": "A shadow is allowed only on something physically lying over a photo or over the page. Bands, buttons, captions and photos stay flat.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Two Corners Rule",
+        "body": "Controls are 6px and pictures are 10px. Don't add other radii to new work.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do use the role variables in `src/app/globals.css` for every color, so both modes keep working.",
+      "Do keep a WhatsApp action in reach on every service surface: wire-colored in the page, green only on the floating phone button.",
+      "Do use real photographs at large scale, and let lead photos bleed to the screen edge.",
+      "Do keep tournament captions navy in light mode (#0b1a36), as the owner approved.",
+      "Do keep tap targets at 44px or more, 40px for year links.",
+      "Do set headlines in Archivo at 800 weight and 112% width.",
+      "Do separate content with a 2px opening rule and 1px hairlines."
+    ],
+    "donts": [
+      "Don't float white cards on a dark background; it is what made the old site read as a template.",
+      "Don't overload a page with animation or video; the owner rejected that. Keep motion to small hover responses.",
+      "Don't load fonts, icons, flags or scripts from outside companies.",
+      "Don't put tournament logos directly on photos or colored surfaces without the white plate.",
+      "Don't put the drafting grid behind content that has no drawing of the racquet.",
+      "Don't use WhatsApp green on anything but the floating button.",
+      "Don't invent numbers on the blueprint; its drafting marks are deliberately unlabeled."
+    ]
+  }
+}

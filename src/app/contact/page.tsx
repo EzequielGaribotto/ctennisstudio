@@ -2,6 +2,7 @@
 import type React from "react"
 import { useState, useEffect, useCallback, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
+import Header from "@/components/header/Header"
 import { useTranslation } from "@/context/TranslationContext"
 import { own } from "@/lib/own"
 import styles from "./page.module.css"
@@ -246,6 +247,8 @@ const ContactPageContent: React.FC = () => {
   }
 
   return (
+    <>
+    <Header />
     <main className={styles.pageWrapper}>
       <div className={styles.mainContainer}>
         <div className={styles.container}>
@@ -278,6 +281,7 @@ const ContactPageContent: React.FC = () => {
         </div>
       </div>
     </main>
+    </>
   )
 }
 

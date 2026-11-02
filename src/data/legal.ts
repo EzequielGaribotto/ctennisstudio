@@ -22,7 +22,7 @@ export const LEGAL = {
   /** Set to true only after Pablo confirmed name, tax id and address */
   confirmedByOwner: true as boolean,
   /** Date of the texts in src/data/legal-content.ts (update when they change) */
-  updated: "2026-10-18",
+  updated: "2026-11-02",
 } as const
 
 export const LEGAL_REQUIRED = ["holderName", "taxId", "address", "email", "phone"] as const
