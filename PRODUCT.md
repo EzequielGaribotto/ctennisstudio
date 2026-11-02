@@ -32,7 +32,7 @@ In the owner's order of importance:
 
 ## Operating Context
 
-- Services: professional stringing; racquet balancing and repair in three levels (POINT changes the balance, SET adds weight, MATCH makes one racquet match another); courses (Base, Avance, Maestría).
+- Services: professional stringing; racquet balancing and repair in three levels (POINT changes the balance, SET adds weight, MATCH makes one racquet match another); courses (Pro Stringer, Pro Tour Stringer, Pro Master Stringer).
 - Tournament Stringing Management: complete management of the official stringing service for ATP, WTA and international tournaments, aimed at organisers. Tools named by the owner: ProString Manage (he takes part in its development) and CTS Planner Tour (his own).
 - Each service and course has its own WhatsApp button with a pre-written message. A contact form and the studio address with a click-to-load map are also available.
 - The studio is at Av. Puig i Cadafalch, 12, Mataró.
@@ -48,7 +48,7 @@ In the owner's order of importance:
 
 ## Brand Commitments
 
-- Names in use: "CTennis Studio", "By Pablo Garibotto", "Custom Tennis Studio", "CTS". Service and course names are fixed: POINT, SET, MATCH, Base, Avance, Maestría; "Experience Tour" names the tournament section.
+- Names in use: "CTennis Studio", "By Pablo Garibotto", "Custom Tennis Studio", "CTS". Service and course names are fixed: POINT, SET, MATCH, Pro Stringer, Pro Tour Stringer, Pro Master Stringer; "Experience Tour" names the tournament section.
 - **Logo:** the owner chose the newer version from his reference banners (simplified emblem, no orange stripe, "POWERED BY PABLO GARIBOTTO"). In use on the site as `public/images/logo/cts_logo_full.webp`, `cts_logo_compact.webp` and `cts_logo_emblem.webp`, cut from his file `LOGO SOLO BLACK.PNG`.
 - **Colour, chosen by the owner from his reference banners (2026-11-01):** light mode is cream with copper; dark mode is midnight blue with silver. It follows the visitor's device and offers a button to switch.
 - **What he does not want:** overloaded pages with many animations or videos, or a cold, overly serious feel. He does want to stop looking like a template and to work well on phones.
@@ -61,6 +61,7 @@ In the owner's order of importance:
 - Tournament logos in `public/images/stringer/tournament_logos/`, and reserve logos in `assets-reserva/` that are not published.
 - Tournaments Pablo has managed, stated by him: Mutua Madrid Open 2022, Girona Challenger 100 2022 and 2023, La Bisbal WTA 125 2025. Their logos are shown as one-color silhouettes in `public/images/stringer/tournament_logos/silhouettes/`.
 - **Reference he likes, read from the page's content only (layout not seen):** on https://www.wtatennis.com/the-tour, cards run image first, then text; images are about 4:3 on news cards and 4:5 on collection tiles.
+- Stated by the owner: he is a GRSA (Global Racket Stringers Association) Instructor in Spain, qualified to teach its courses and manage certification. The courses are named after GRSA's levels: Pro Stringer, Pro Tour Stringer and Pro Master Stringer. GRSA logo: `public/images/logo/grsa_logo.webp`.
 - **Where new images came from:** the three `cts_logo_*.webp` files are cut from the owner's `LOGO SOLO BLACK.PNG` with the white background removed; `public/images/stringer/pablo/pablo_encordando_miami.webp` is a smaller copy of `OPEN MIAMI 2026 0.webp`; the browser icons are made from the same logo. Recorded here because site images keep no embedded metadata.
 - **Absent, must not be invented:** testimonials, named clients or players, prices, and numbers of racquets strung or students trained.
 

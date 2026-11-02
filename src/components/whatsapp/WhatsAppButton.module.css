@@ -21,7 +21,7 @@
   font-size: 1.75rem;
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1240px) {
   .whatsappButton {
     display: inline-flex;
   }

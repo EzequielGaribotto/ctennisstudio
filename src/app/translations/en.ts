@@ -76,31 +76,38 @@ export const en: Translations = {
   },
   cursos: {
     title: "Courses and Training",
-    description: "Training program in stringing, balancing and repair of tennis racquets. Learn the professional techniques used in the ATP/WTA circuit.",
+    description: "Technical training programs in professional stringing, for people who want to start in this specialty and for professionals looking to perfect their knowledge and skills.",
+    training: "The training combines theory, practice and the professional experience gained working at international ATP and WTA tournaments.",
+    instructor: "As a GRSA Instructor in Spain, I am qualified to teach the association's courses and manage the certification process for students.",
+    certTitle: "GRSA Certification",
+    certDescription: "Preparation, assessment and management of the official certification process.",
+    certNote: "Certification is subject to the requirements and procedures set by GRSA.",
+    closing: "Learn. Practice. Improve. Certify your knowledge.",
+    whatsappMessage: "Hello, I would like information about the stringing courses and GRSA certification",
     cta: "View Details",
     courses: {
       base: {
-        name: "Base",
+        name: "Pro Stringer",
         description: "Beginner Level",
         content1: "Stringing fundamentals",
         content2: "Handling professional tools and machines",
         content3: "2 and 4 knot stringing",
-        whatsappMessage: "Hello! I'm interested in enrolling in the Base stringing course. Could you provide information about schedule and availability?"
+        whatsappMessage: "Hello! I'm interested in enrolling in the Pro Stringer course. Could you provide information about schedule and availability?"
       },
       avance: {
-        name: "Advance",
+        name: "Pro Tour Stringer",
         description: "Intermediate Level",
         content1: "Advanced stringing techniques",
         content2: "Weight balance and swingweight",
         content3: "Repairs and grommet and grip changes",
-        whatsappMessage: "Hello! I'm interested in the Advance stringing course. Could you give me more details about the program and requirements?"
+        whatsappMessage: "Hello! I'm interested in the Pro Tour Stringer course. Could you give me more details about the program and requirements?"
       },
       maestria: {
-        name: "Mastery",
+        name: "Pro Master Stringer",
         description: "Advanced Level",
         content1: "ATP/WTA competition stringing",
         content2: "Personalized player service",
-        whatsappMessage: "Hello! I'm interested in the Mastery course to become a professional stringer. Could you provide information about the program?"
+        whatsappMessage: "Hello! I'm interested in the Pro Master Stringer course to become a professional stringer. Could you provide information about the program?"
       }
     }
   },
@@ -191,15 +198,15 @@ export const en: Translations = {
     },
     base: {
       item4: "Hands-on practice with professional equipment",
-      item5: "Certificate of completion"
+      item5: "Preparation for GRSA certification"
     },
     avance: {
       item4: "Advanced customization techniques",
-      item5: "Professional certification"
+      item5: "Preparation for GRSA certification"
     },
     maestria: {
       item4: "Tournament experience insights",
-      item5: "Master certification and networking"
+      item5: "Preparation for GRSA certification and networking"
     }
   },
   contactModal: {
@@ -222,9 +229,9 @@ export const en: Translations = {
       set: "Hi, I'm interested in the SET weight increase service",
       match: "Hi, I'm interested in the MATCH racquet matching service",
       encordado: "Hi, I'm interested in the professional stringing service",
-      base: "Hi, I'm interested in the Base stringing course",
-      avance: "Hi, I'm interested in the Advance stringing course",
-      maestria: "Hi, I'm interested in the Mastery stringing course"
+      base: "Hi, I'm interested in the Pro Stringer course",
+      avance: "Hi, I'm interested in the Pro Tour Stringer course",
+      maestria: "Hi, I'm interested in the Pro Master Stringer course"
     }
   },
   management: {

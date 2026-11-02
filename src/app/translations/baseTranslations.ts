@@ -74,6 +74,13 @@ export const baseTranslations = {
     cursos: {
         title: "",
         description: "",
+        training: "",
+        instructor: "",
+        certTitle: "",
+        certDescription: "",
+        certNote: "",
+        closing: "",
+        whatsappMessage: "",
         cta: "",
         courses: {
             base: {

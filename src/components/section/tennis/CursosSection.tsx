@@ -2,8 +2,9 @@
 import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { FaArrowRight } from "react-icons/fa"
+import { FaArrowRight, FaWhatsapp } from "react-icons/fa"
 import { useTranslation } from "@/context/TranslationContext"
+import { whatsappUrl } from "@/data/contact"
 import styles from "./CursosSection.module.css"
 
 interface Course {
@@ -55,6 +56,7 @@ const CursosSection: React.FC = () => {
           <div className={styles.headerText}>
             <h2 className={`${styles.title} cts-display`}>{t("cursos.title")}</h2>
             <p className={styles.description}>{t("cursos.description")}</p>
+            <p className={styles.description}>{t("cursos.training")}</p>
           </div>
           <div className={styles.photos}>
             <div className={styles.photoWide}>
@@ -78,10 +80,35 @@ const CursosSection: React.FC = () => {
           </div>
         </div>
 
+        <div className={styles.grsa}>
+          <div className={styles.grsaCertification}>
+            <h3 className={`${styles.grsaTitle} cts-display`}>{t("cursos.certTitle")}</h3>
+            <p>{t("cursos.certDescription")}</p>
+            <p className={styles.grsaNote}>{t("cursos.certNote")}</p>
+          </div>
+          <div className={styles.grsaInstructor}>
+            <div className={styles.grsaPlate}>
+              <Image
+                src="/images/logo/grsa_logo.webp"
+                alt="Global Racket Stringers Association (GRSA)"
+                width={512}
+                height={260}
+                className={styles.grsaLogo}
+              />
+            </div>
+            <p className={styles.grsaLead}>{t("cursos.instructor")}</p>
+          </div>
+        </div>
+
         <div className={styles.courses}>
           {courses.map((course) => (
             <div key={course.key} className={styles.course}>
-              <h3 className={`${styles.courseName} cts-display`}>{course.name}</h3>
+              <h3 className={`${styles.courseName} cts-display`}>
+                <span className={styles.courseEmblem}>
+                  <Image src="/images/logo/grsa_emblem.webp" alt="" width={233} height={260} className={styles.courseEmblemImage} />
+                </span>
+                {course.name}
+              </h3>
               <p className={styles.courseLevel}>{course.description}</p>
               <ul className={styles.contentList}>
                 {course.content.map((item) => (
@@ -95,6 +122,18 @@ const CursosSection: React.FC = () => {
               </Link>
             </div>
           ))}
+        </div>
+
+        <div className={styles.closing}>
+          <p className={`${styles.closingText} cts-display`}>{t("cursos.closing")}</p>
+          <a
+            href={whatsappUrl(t("cursos.whatsappMessage"))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cts-btn"
+          >
+            <FaWhatsapp aria-hidden="true" /> {t("common.whatsappCta")}
+          </a>
         </div>
       </div>
     </section>

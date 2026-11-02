@@ -583,13 +583,13 @@ const ExperienciaSection: React.FC = () => {
             const logos = (
               <>
                 {tournament.mensLogo && (
-                  <Image src={tournament.mensLogo} alt={`${tournament.category} ATP`} width={60} height={60} className={styles.logo} />
+                  <Image src={tournament.mensLogo} alt={`${tournament.category} ATP`} width={60} height={60} className={styles.logo} style={{ width: "auto" }} />
                 )}
                 {tournament.unifiedLogo && (
-                  <Image src={tournament.unifiedLogo} alt={tournament.category} width={60} height={60} className={styles.logo} />
+                  <Image src={tournament.unifiedLogo} alt={tournament.category} width={60} height={60} className={styles.logo} style={{ width: "auto" }} />
                 )}
                 {tournament.womensLogo && (
-                  <Image src={tournament.womensLogo} alt={`${tournament.category} WTA`} width={60} height={60} className={styles.logo} />
+                  <Image src={tournament.womensLogo} alt={`${tournament.category} WTA`} width={60} height={60} className={styles.logo} style={{ width: "auto" }} />
                 )}
               </>
             )

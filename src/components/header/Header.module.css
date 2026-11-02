@@ -32,7 +32,7 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 1.4vw, 1.75rem);
+  gap: clamp(0.625rem, 1.1vw, 1.75rem);
   list-style: none;
 }
 
@@ -41,7 +41,7 @@
   padding: 0.5rem 0;
   color: var(--foreground);
   font-weight: 500;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   white-space: nowrap;
   text-decoration: none;
   text-underline-offset: 6px;
@@ -50,7 +50,7 @@
 
 /* The longest name in the menu takes two lines so the bar keeps its height */
 .navLinkLong {
-  width: 10.5em;
+  width: 9.75em;
   white-space: normal;
   line-height: 1.15;
 }
@@ -94,7 +94,7 @@
   display: none;
 }
 
-@media (max-width: 1320px) {
+@media (max-width: 1240px) {
   .navigation,
   .whatsapp {
     display: none;

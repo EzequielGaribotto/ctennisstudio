@@ -76,31 +76,38 @@ export const es: Translations = {
   },
   cursos: {
     title: "Cursos y Formaciones",
-    description: "Programa de formación en encordado y equilibrado y reparación de raquetas de tenis. Aprende las técnicas profesionales utilizadas en el circuito ATP/WTA.",
+    description: "Programas de formación técnica en encordado profesional, dirigidos tanto a personas que desean iniciarse en esta especialidad como a profesionales que buscan perfeccionar sus conocimientos y habilidades.",
+    training: "La formación combina teoría, práctica y la experiencia profesional adquirida trabajando en torneos internacionales ATP y WTA.",
+    instructor: "Como Instructor GRSA en España, estoy habilitado para impartir los cursos de la asociación y gestionar el proceso de certificación de los alumnos.",
+    certTitle: "Certificación GRSA",
+    certDescription: "Preparación, evaluación y gestión del proceso de certificación oficial.",
+    certNote: "La certificación está sujeta a los requisitos y procedimientos establecidos por GRSA.",
+    closing: "Aprende. Practica. Perfecciónate. Certifica tus conocimientos.",
+    whatsappMessage: "Hola, me gustaría recibir información sobre los cursos de encordado y la certificación GRSA",
     cta: "Ver detalles",
     courses: {
       base: {
-        name: "Base",
+        name: "Pro Stringer",
         description: "Nivel Principiante",
         content1: "Fundamentos de encordado",
         content2: "Manejo de herramientas y máquinas profesionales",
         content3: "Encordado a 2 y 4 nudos",
-        whatsappMessage: "¡Hola! Estoy interesado en inscribirme en el curso Base de encordado. ¿Podrías darme información sobre horarios y disponibilidad?"
+        whatsappMessage: "¡Hola! Estoy interesado en inscribirme en el curso Pro Stringer de encordado. ¿Podrías darme información sobre horarios y disponibilidad?"
       },
       avance: {
-        name: "Avance",
+        name: "Pro Tour Stringer",
         description: "Nivel Intermedio",
         content1: "Técnicas avanzadas de encordado",
         content2: "Peso balance y swingweight",
         content3: "Reparaciones y cambios de grommets y grips",
-        whatsappMessage: "¡Hola! Estoy interesado en el curso Avance de encordado. ¿Podrías darme más detalles sobre el programa y requisitos?"
+        whatsappMessage: "¡Hola! Estoy interesado en el curso Pro Tour Stringer de encordado. ¿Podrías darme más detalles sobre el programa y requisitos?"
       },
       maestria: {
-        name: "Maestría",
+        name: "Pro Master Stringer",
         description: "Nivel Avanzado",
         content1: "Encordado de competición ATP/WTA",
         content2: "Servicio personalizado a jugadores",
-        whatsappMessage: "¡Hola! Estoy interesado en el curso Maestría para convertirme en encordador profesional. ¿Podrías darme información sobre el programa?"
+        whatsappMessage: "¡Hola! Estoy interesado en el curso Pro Master Stringer para convertirme en encordador profesional. ¿Podrías darme información sobre el programa?"
       }
     }
   },
@@ -191,15 +198,15 @@ export const es: Translations = {
     },
     base: {
       item4: "Práctica con equipamiento profesional",
-      item5: "Certificado de finalización"
+      item5: "Preparación para la certificación GRSA"
     },
     avance: {
       item4: "Técnicas avanzadas de personalización",
-      item5: "Certificación profesional"
+      item5: "Preparación para la certificación GRSA"
     },
     maestria: {
       item4: "Experiencia en torneos profesionales",
-      item5: "Certificación máster y networking"
+      item5: "Preparación para la certificación GRSA y networking"
     }
   },
   contactModal: {
@@ -222,9 +229,9 @@ export const es: Translations = {
       set: "Hola, estoy interesado en el servicio SET de aumento de peso",
       match: "Hola, estoy interesado en el servicio MATCH de igualación de raquetas",
       encordado: "Hola, estoy interesado en el servicio de encordado profesional",
-      base: "Hola, estoy interesado en el curso Base de encordado",
-      avance: "Hola, estoy interesado en el curso Avance de encordado",
-      maestria: "Hola, estoy interesado en el curso Maestría de encordado"
+      base: "Hola, estoy interesado en el curso Pro Stringer de encordado",
+      avance: "Hola, estoy interesado en el curso Pro Tour Stringer de encordado",
+      maestria: "Hola, estoy interesado en el curso Pro Master Stringer de encordado"
     }
   },
   management: {

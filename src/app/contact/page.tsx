@@ -55,9 +55,9 @@ const ContactPageContent: React.FC = () => {
       set: "SET",
       match: "MATCH",
       point: "POINT",
-      base: locale === "es" ? "Curso Base" : "Base Course",
-      avance: locale === "es" ? "Curso Avance" : "Advance Course",
-      maestria: locale === "es" ? "Curso Maestría" : "Mastery Course"
+      base: locale === "es" ? "Curso Pro Stringer" : "Pro Stringer Course",
+      avance: locale === "es" ? "Curso Pro Tour Stringer" : "Pro Tour Stringer Course",
+      maestria: locale === "es" ? "Curso Pro Master Stringer" : "Pro Master Stringer Course"
     }
     
     const serviceName = own(serviceNames, service) || service.toUpperCase()
@@ -83,16 +83,16 @@ const ContactPageContent: React.FC = () => {
         en: "Hello Pablo,\n\nI am interested in the POINT service to modify the balance of my tennis racquet.\n\nI would like to know:\n- Available balance options\n- Price and estimated time\n- Recommendations based on my playing style\n\nThank you."
       },
       base: {
-        es: "Hola Pablo,\n\nEstoy interesado/a en inscribirme al Curso Base de encordado.\n\nMe gustaría conocer:\n- Fechas disponibles\n- Ubicación del curso\n- Material incluido\n- Proceso de inscripción\n\nGracias.",
-        en: "Hello Pablo,\n\nI am interested in enrolling in the Base Course for stringing.\n\nI would like to know:\n- Available dates\n- Course location\n- Included materials\n- Enrollment process\n\nThank you."
+        es: "Hola Pablo,\n\nEstoy interesado/a en inscribirme al Curso Pro Stringer de encordado.\n\nMe gustaría conocer:\n- Fechas disponibles\n- Ubicación del curso\n- Material incluido\n- Proceso de inscripción\n\nGracias.",
+        en: "Hello Pablo,\n\nI am interested in enrolling in the Pro Stringer Course for stringing.\n\nI would like to know:\n- Available dates\n- Course location\n- Included materials\n- Enrollment process\n\nThank you."
       },
       avance: {
-        es: "Hola Pablo,\n\nEstoy interesado/a en inscribirme al Curso Avance de encordado y equilibrado.\n\nMe gustaría conocer:\n- Fechas disponibles\n- Requisitos previos\n- Material incluido\n- Proceso de inscripción\n\nGracias.",
-        en: "Hello Pablo,\n\nI am interested in enrolling in the Advance Course for stringing and balancing.\n\nI would like to know:\n- Available dates\n- Prerequisites\n- Included materials\n- Enrollment process\n\nThank you."
+        es: "Hola Pablo,\n\nEstoy interesado/a en inscribirme al Curso Pro Tour Stringer de encordado y equilibrado.\n\nMe gustaría conocer:\n- Fechas disponibles\n- Requisitos previos\n- Material incluido\n- Proceso de inscripción\n\nGracias.",
+        en: "Hello Pablo,\n\nI am interested in enrolling in the Pro Tour Stringer Course for stringing and balancing.\n\nI would like to know:\n- Available dates\n- Prerequisites\n- Included materials\n- Enrollment process\n\nThank you."
       },
       maestria: {
-        es: "Hola Pablo,\n\nEstoy interesado/a en inscribirme al Curso Maestría de encordado profesional ATP/WTA.\n\nMe gustaría conocer:\n- Fechas disponibles\n- Requisitos previos\n- Material incluido\n- Proceso de inscripción\n\nGracias.",
-        en: "Hello Pablo,\n\nI am interested in enrolling in the Mastery Course for professional ATP/WTA stringing.\n\nI would like to know:\n- Available dates\n- Prerequisites\n- Included materials\n- Enrollment process\n\nThank you."
+        es: "Hola Pablo,\n\nEstoy interesado/a en inscribirme al Curso Pro Master Stringer de encordado profesional ATP/WTA.\n\nMe gustaría conocer:\n- Fechas disponibles\n- Requisitos previos\n- Material incluido\n- Proceso de inscripción\n\nGracias.",
+        en: "Hello Pablo,\n\nI am interested in enrolling in the Pro Master Stringer Course for professional ATP/WTA stringing.\n\nI would like to know:\n- Available dates\n- Prerequisites\n- Included materials\n- Enrollment process\n\nThank you."
       }
     }
 
